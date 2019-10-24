@@ -4,10 +4,10 @@ frontend_target="FRONTEND"
 backend_target="BACKEND"
 
 if [ "$TARGET_APP" == "$frontend_target" ]; then
-  bash ./deployment/frontend.sh
+  bash ./deployment/serve/frontend.sh
 else 
   if [ "$TARGET_APP" == "$backend_target" ]; then
-    bash ./deployment/backend.sh
+    bash ./deployment/serve/backend.sh
   else
     echo "Target is not specified. Please see /deployment/README.md"
   fi

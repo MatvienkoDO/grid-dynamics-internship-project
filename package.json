@@ -4,16 +4,13 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./deployment/build/frontend.sh"
+    "build": "./deployment/build.sh"
   },
   "engines": {
     "node": "12.10.0",
     "npm": "6.12.0"
   },
   "dependencies": {
-    "@angular-devkit/build-angular": "0.803.13",
-    "@angular/cli": "8.3.13",
-    "@angular/compiler-cli": "8.2.11",
     "@nestjs/cli": "6.9.0",
     "serve": "11.2.0"
   }
