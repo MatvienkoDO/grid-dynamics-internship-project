@@ -1,1 +1,2 @@
-web: ./deployment/start-nest.sh
+web: ./deployment/backend.sh
+web: ./deployment/frontend.sh
