@@ -1,2 +1,1 @@
-backend: ./deployment/backend.sh
-frontend: ./deployment/frontend.sh
+web: ./deployment/deploy.sh
