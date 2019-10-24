@@ -1,2 +1,2 @@
-web: ./deployment/backend.sh
-web: ./deployment/frontend.sh
+backend: ./deployment/backend.sh
+frontend: ./deployment/frontend.sh
