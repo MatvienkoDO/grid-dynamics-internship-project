@@ -1,1 +1,1 @@
-web: ./deployment/start-nest.sh
+web: ./deployment/serve.sh
