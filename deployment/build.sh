@@ -3,7 +3,7 @@
 cd frontend
 npm install
 npm install --only=dev
-npm run build
+npm run build:prod
 
 cd ../backend
 npm install
