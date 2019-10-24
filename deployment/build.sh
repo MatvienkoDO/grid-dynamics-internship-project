@@ -3,9 +3,9 @@
 cd frontend
 npm install
 npm install --only=dev
-npx ng build --prod
+npm run build
 
 cd ../backend
 npm install
 npm install --only=dev
-npx nest build
+npm run build
