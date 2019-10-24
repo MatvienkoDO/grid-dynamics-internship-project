@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd backend
-npx nest start
+npm run start:prod
