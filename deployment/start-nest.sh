@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd backend
-nest start
+npx nest start
