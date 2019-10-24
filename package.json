@@ -1,0 +1,14 @@
+{
+  "name": "grid-dynamics-internship-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./deployment/build.sh"
+  },
+  "engines": {
+    "node": "12.10.0",
+    "npm": "6.12.0"
+  },
+  "dependencies": {}
+}
