@@ -1,65 +1,73 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 
-@Controller('clothes')
+@Controller('test/clothes')
 export class ClothesController {
-  constructor() {}
+  private clothes: Map<string, Object>;
 
-  clothes: Object[] = [
-    {
-      id: 1, name: 'jacket'
-    },
-    {
-      id: 2, name: 'shirt'
-    },
-    {
-      id: 3, name: 'boots'
-    }
-  ];
+  constructor() {
+    this.clothes = new Map();
+    this.clothes.set((+new Date).toString(16), {
+      name: 'jacket'
+    });
+    this.clothes.set((+new Date + 1).toString(16), {
+      name: 'shirt'
+    });
+    this.clothes.set((+new Date + 2).toString(16), {
+      name: 'boots'
+    });
+  }
 
   @Get()
   findAll(): Object[] {
-    return this.clothes;
+    const entities = [];
+    this.clothes.forEach((value, key) => {
+      entities.push({
+        id: key,
+        name: value['name']
+      });
+    });
+    return entities;
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    const entity = this.clothes.filter(el => el['id'] === +id);
-    return entity.length ? entity : '404 resourse not found';
+    const entity = this.clothes.get(id);
+    return entity ? entity : '404 resourse not found';
   }
 
   @Post()
   create(@Body() body: Object) {
-    let id = this.clothes.push(body) - 1;
-    return this.clothes;
+    const id = (+new Date).toString(16); // generate unique id
+    this.clothes.set(id, body);
+    return {
+      id,
+      name: this.clothes.get(id)['name']
+    };
   }
 
   @Put(':id')
   update(@Param('id') id: string, @Body() newEntity: Object) {
-    let entity = this.clothes.filter(el => el['id'] === +id);
-    if (entity.length === 0) {
+    let entity = this.clothes.get(id);
+    if (entity === undefined) {
       return '404 resourse not found';
     }
     for (const key in newEntity) {
       if (newEntity.hasOwnProperty(key)) {
-        entity[0][key] = newEntity[key];
+        entity[key] = newEntity[key];
       }
     }
-    return entity[0];
+    return {
+      id,
+      name: entity['name']
+    };
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    let index = -1;
-    for (let i = 0; i < this.clothes.length; i++) {
-      if (this.clothes[i]['id'] === +id) {
-        index = i;
-        break;
-      }
-    }
-    if (index === -1) {
+    if (!this.clothes.has(id)) {
       return '404 resourse not found';
     }
-    this.clothes.splice(index);
+    this.clothes.delete(id);
     return `This action removes a #${id} cat`;
   }
 }
