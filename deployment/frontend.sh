@@ -9,4 +9,4 @@ cd frontend
 npm install --production=false
 
 npm run build:prod
-npx serve dist/frontend --single --no-clipboard
+npx serve dist/frontend --single --no-clipboard -l $PORT
