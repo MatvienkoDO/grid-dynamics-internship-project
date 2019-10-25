@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 
-@Controller('test/clothes')
+@Controller('test-old/clothes')
 export class ClothesController {
   private clothes: Map<string, Object>;
 
