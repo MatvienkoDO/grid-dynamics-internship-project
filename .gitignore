@@ -1,1 +1,4 @@
 node_modules
+
+# Finder file
+.DS_Store
