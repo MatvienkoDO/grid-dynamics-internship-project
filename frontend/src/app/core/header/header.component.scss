@@ -75,7 +75,7 @@
     }
 
     &__right {
-      @include flex;
+      @include flex(flex-end);
     }
   }
 

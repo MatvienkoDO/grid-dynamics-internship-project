@@ -10,7 +10,7 @@
 
   &_search {
     @include fonts ($black, "HarmoniaSansProCyrRegular", 14px, 500);
-    @include icon (url(../../../assets/images/Search_Ico.svg), 18px, 21px, 34px);
+    @include icon (url(../../../assets/images/Search_Ico.svg), 18px, 20px, 34px);
     background-repeat: no-repeat;
   }
 
