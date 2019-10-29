@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppController } from './app.controller';
+import { ClothesController } from './clothes/clothes.controller';
 import { AppService } from './app.service';
 import { Connection } from 'typeorm';
 import { ProductModule } from './modules/product/product.module';
