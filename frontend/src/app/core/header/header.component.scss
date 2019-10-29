@@ -24,7 +24,6 @@
 
       &__item {
         display: flex;
-        align-items: baseline;
         padding-right: 30px;
         text-decoration: none;
 
@@ -33,7 +32,8 @@
         }
       }
 
-      &__link {
+      &__text {
+        margin: 0;
         padding-left: 9px;
         @include fonts (#34404b, "HarmoniaSansProCyrRegular", 12px, 400);
       }
