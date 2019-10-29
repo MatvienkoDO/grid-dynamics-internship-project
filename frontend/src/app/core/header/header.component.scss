@@ -75,7 +75,8 @@
     }
 
     &__right {
-      @include flex(flex-end);
+      @include flex;
+      height: 40px;
     }
   }
 

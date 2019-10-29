@@ -7,8 +7,10 @@
   }
   .button_search[type=search]:focus {
     width: 200px;
+    height: 24px;
     padding-left: 20px;
     color: $black;
+    box-sizing: border-box;
     border-bottom: 2px solid $primary-color;
     cursor: auto;
     outline: none;
