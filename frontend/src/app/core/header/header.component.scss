@@ -1,0 +1,82 @@
+@import 'mixins';
+@import 'fonts';
+@import 'icon';
+@import 'picture';
+@import 'button';
+@import 'search';
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  .header-contacts-container {
+    border-bottom: 1px solid rgba(230, 232, 235, 0.5);
+
+    .header-contacts {
+      @include container;
+      @include flex;
+      padding: 26px 0;
+
+      &__info {
+        display: flex;
+        width: 100%;
+      }
+
+      &__item {
+        display: flex;
+        align-items: baseline;
+        padding-right: 30px;
+        text-decoration: none;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      &__link {
+        padding-left: 9px;
+        @include fonts (#34404b, "HarmoniaSansProCyrRegular", 12px, 400);
+      }
+
+      &__social-media {
+        @include flex;
+        justify-content: flex-end;
+        width: 100%;
+      }
+    }
+  }
+
+  .header-navbar {
+    @include container;
+    @include flex;
+    padding: 40px 0;
+
+    &__left {
+      @include flex (flex-end);
+    }
+
+    &__content {
+      padding-left: 80px;
+    }
+
+    &__item {
+      padding-right: 20px;
+      @include fonts (#34404b, "HarmoniaSansProCyrRegular", 16px, 400);
+      text-decoration: none;
+      &:hover {
+        color: #ff5912;
+      }
+    }
+
+    &__logo {
+      width: 118px;
+      height: 23px;
+      cursor: pointer;
+    }
+
+    &__right {
+      @include flex;
+    }
+  }
+
+}
