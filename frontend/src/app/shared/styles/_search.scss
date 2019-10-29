@@ -1,0 +1,20 @@
+@import 'fonts';
+@import 'colors';
+
+.search-container {
+  .button_search[type=search]:hover {
+    background-color: #fff;
+  }
+  .button_search[type=search]:focus {
+    width: 400px;
+    height: 24px;
+    padding-left: 25px;
+    transition: width 2s;
+    -webkit-transition: width 2s;
+    color: $black;
+    box-sizing: border-box;
+    border-bottom: 2px solid $primary-color;
+    cursor: auto;
+    outline: none;
+  }
+}
