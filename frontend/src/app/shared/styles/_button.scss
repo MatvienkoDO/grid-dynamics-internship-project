@@ -10,16 +10,16 @@
 
   &_search {
     @include fonts ($black, "HarmoniaSansProCyrRegular", 14px, 500);
-    @include icon (url(../../../assets/images/Search_Ico.svg), 18px, 20px, 34px);
+    @include icon (url(/assets/images/Search_Ico.svg), 18px, 20px, 34px);
     background-repeat: no-repeat;
   }
 
   &_account {
-    @include icon (url(../../../assets/images/User_Ico.svg), 20px, 21px, 29px);
+    @include icon (url(/assets/images/User_Ico.svg), 20px, 21px, 29px);
   }
 
   &_shopping-cart {
-    @include icon (url(../../../assets/images/Cart_Ico.svg), 24px, 17px, 0);
+    @include icon (url(/assets/images/Cart_Ico.svg), 24px, 17px, 0);
 
     &__count {
       position: absolute;
