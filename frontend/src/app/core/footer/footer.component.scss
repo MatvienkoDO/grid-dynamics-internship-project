@@ -1,0 +1,70 @@
+@import 'mixins';
+@import 'fonts';
+@import 'icon';
+@import 'picture';
+@import 'button';
+@import 'fonts';
+
+.footer {
+  .footer-container {
+    @include container;
+    @include flex;
+    padding: 90px 0;
+
+    &__logo-img {
+      width: 117px;
+    }
+
+    &__copyright {
+      @include fonts (#28313b, "HarmoniaSansProCyrRegular", 14px, 400);
+      line-height: 30px;
+    }
+
+    .footer-navlist {
+      @include flex(baseline);
+
+      &__column {
+        @include flex(baseline, column);
+        padding-right: 60px;
+        &:last-child {
+          padding-right:0;
+        }
+      }
+
+      &__item {
+        text-align: left;
+
+      }
+
+      &__link {
+        @include fonts (#28313b, "HarmoniaSansProCyrRegular", 14px, 400);
+        line-height: 30px;
+        text-decoration: none;
+
+        &:hover {
+          color: $primary-color;
+        }
+
+        &:hover .footer-navlist__item {
+          color: $primary-color;
+        }
+
+      }
+    }
+
+    .footer-payment {
+      @include flex(baseline, column);
+
+      &__title {
+        @include fonts (#ff5912, "HarmoniaSansProCyrRegular", 16px, 400);
+        line-height: 30px;
+      }
+
+      &__icon {
+        background-image: url('/assets/images/Payment_Images.png');
+        width: 170px;
+        height: 20px;
+      }
+    }
+  }
+}
