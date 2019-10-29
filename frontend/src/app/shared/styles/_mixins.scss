@@ -1,0 +1,44 @@
+@mixin container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@mixin fonts($color: $black, $font-family: inherit, $font-size: inherit, $font-weight: inherit) {
+  color: $color;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+@mixin flex ($align-items: center, $row: row){
+  display: flex;
+  justify-content: space-between;
+  align-items: $align-items;
+  flex-direction: $row;
+}
+
+@mixin icon ($background-image, $width, $height, $margin-right){
+  background-image: $background-image;
+  width: $width;
+  height: $height;
+  margin-right: $margin-right;
+}
+
+@mixin for-tablet-landscape-up {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-intermediate {
+  @media (max-width: 1080px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (max-width: 1000px) {
+    @content;
+  }
+}
