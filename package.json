@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@nestjs/cli": "6.9.0",
-    "serve": "11.2.0"
+    "@nestjs/typeorm": "^6.2.0",
+    "serve": "11.2.0",
+    "typeorm": "^0.2.20"
   }
 }
