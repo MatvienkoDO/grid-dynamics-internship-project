@@ -1,0 +1,1 @@
+export const connectionUrl = 'mongodb://localhost/test';
