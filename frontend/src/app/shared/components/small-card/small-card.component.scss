@@ -1,0 +1,54 @@
+@import '../../styles/mixins';
+@import '../../styles/fonts';
+@import '../../styles/colors';
+
+.small-card {
+  height: 160px;
+  width: 370px;
+  padding: 35px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__image {
+    height: 90px;
+    width: 90px;
+  }
+
+  &__separator {
+    height: 56px;
+    border-left: 1px solid #f5f5f6;
+  }
+
+  &__description {
+    width: 175px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__name {
+    @include fonts($secondary-color, "Open Sans", 18px, 700);
+    margin-left: 8px;
+    margin-top: 0;
+  }
+
+  &__rate {
+    height: 23px;
+    width: 90px;
+    margin-left: 0;
+  }
+
+  &__price {
+    @include fonts($primary-color, "Open Sans", 16px, 700);
+    margin: 0;
+    margin-left: auto;
+  }
+}
