@@ -11,11 +11,11 @@
   font-weight: $font-weight;
 }
 
-@mixin flex ($align-items: center, $row: row){
+@mixin flex ($align-items: center, $direction: row){
   display: flex;
   justify-content: space-between;
   align-items: $align-items;
-  flex-direction: $row;
+  flex-direction: $direction;
 }
 
 @mixin icon ($background-image, $width, $height, $margin-right){
