@@ -7,11 +7,11 @@ import { ClothesController } from './clothes/clothes.controller';
 import { AppService } from './app.service';
 import { TestModule } from './modules/test/test.module';
 import { ProductModule } from './modules/product/product.module';
-import { connectionUrl } from './../connection'
+import { databaseUri } from './database'
 
 @Module({
   imports: [
-    MongooseModule.forRoot(connectionUrl),
+    MongooseModule.forRoot(databaseUri),
     AppRoutingModule,
     TestModule,
     ProductModule
