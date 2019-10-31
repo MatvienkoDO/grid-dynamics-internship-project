@@ -32,4 +32,22 @@
     @include icon (url(/assets/images/Phone_Ico.svg), 12px, 12px, 0);
     filter: invert(27%) sepia(51%) saturate(2878%);
   }
+  &__share {
+    @include icon (url(/assets/images/Share_Ico.svg), 19px, 17px, 0);
+    &:hover {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
+  }
+  &__add-to-cart {
+    @include icon (url(/assets/images/Add_To_Cart_Ico.svg), 22px, 21px, 0);
+    &:hover {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
+  }
+  &__like {
+    @include icon (url(/assets/images/Like_Ico.svg), 19px, 16px, 0);
+    &:hover {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
+  }
 }
