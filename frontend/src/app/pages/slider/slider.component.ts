@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent implements OnInit {
+  // FIXME: hotfix of error in template
+  public readonly showcontent = undefined;
+
   constructor() { }
 
   ngOnInit() {
