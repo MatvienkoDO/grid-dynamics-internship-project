@@ -2,19 +2,11 @@
 * {
   box-sizing: border-box;
 }
-html,
-app-root {
-  height: 100%;
-}
 
-app-root {
+body {
   margin: 0;
-  padding: 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
-router-outlet {
-  flex: 1 0 auto;
+html, body {
+  min-height: 100%;
 }
