@@ -1,0 +1,56 @@
+@import 'mixins';
+@import '_colors';
+@import '_button';
+
+.news-letter-container {
+  @include container;
+  width: 100%;
+}
+
+.news-letter {
+  padding: 35px 55px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__description {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0;
+    margin-right: 24px;
+    @include fonts ($primary-color, Poppins, 18px, 700);
+    text-transform: uppercase;
+  }
+
+  &__text {
+    margin: 0;
+    @include fonts ($text-color, Poppins, 14px);
+    font-style: italic;
+  }
+
+  &__icon {
+    height: 11px;
+    width: 18px;
+    margin-right: 10px;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__input {
+    width: 250px;
+    margin-right: 20px;
+    border: none;
+
+    &::placeholder {
+      @include fonts (#7c8791, Poppins, 14px);
+      font-style: italic;
+    }
+  }
+}
