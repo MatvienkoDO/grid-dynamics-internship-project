@@ -37,4 +37,11 @@
       border-radius: 50%;
     }
   }
+
+  &_common {
+    min-width: 100px;
+    padding: 16px 30px;
+    @include fonts (#ffffff, Poppins, 14px, 400);
+    background-color: $primary-color;
+  }
 }

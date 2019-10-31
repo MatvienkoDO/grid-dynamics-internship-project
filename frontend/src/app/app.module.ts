@@ -11,6 +11,7 @@ import { AdvertisementComponent } from './shared/components/advertisement/advert
 import { SaleComponent } from './shared/components/sale/sale.component';
 import { BestSalesComponent } from './pages/best-sales/best-sales.component';
 import { CardProductSmallComponent } from './shared/components/card-product-small/card-product-small.component';
+import { NewsLetterComponent } from './shared/components/news-letter/news-letter.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CardProductSmallComponent } from './shared/components/card-product-smal
     SaleComponent,
     BestSalesComponent,
     CardProductSmallComponent,
+    NewsLetterComponent,
   ],
   imports: [
     BrowserModule,
