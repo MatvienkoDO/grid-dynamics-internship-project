@@ -37,11 +37,11 @@
 
   &__title {
     padding-bottom: 15px;
-    @include fonts (#34404b, "Open Sans", 18px, 700);
+    @include fonts (#34404b, Poppins, 18px, 600);
   }
 
   &__price {
-    @include fonts (#ff5912, "Open Sans", 18px, 700);
+    @include fonts (#ff5912, Poppins, 18px, 700);
   }
 
   &-hover {
@@ -78,7 +78,7 @@
 
     &__title {
       display: block;
-      @include fonts (#34404b, "Open Sans", 16px, 700);
+      @include fonts (#34404b, Poppins, 16px, 600);
       text-decoration: none;
       padding-bottom: 20px;
 
@@ -91,7 +91,7 @@
       margin: 0;
       display: flex;
       justify-content: center;
-      @include fonts (#34404b, "Open Sans", 14px, 400);
+      @include fonts (#34404b, Poppins, 14px, 400);
       padding-bottom: 20px;
 
       &__title {

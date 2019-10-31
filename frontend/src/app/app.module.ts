@@ -10,6 +10,7 @@ import { CardComponent } from './shared/components/card/card.component';
 import { AdvertisementComponent } from './shared/components/advertisement/advertisement.component';
 import { SaleComponent } from './shared/components/sale/sale.component';
 import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
+import { NewsLetterComponent } from './shared/components/news-letter/news-letter.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.componen
     AdvertisementComponent,
     SaleComponent,
     NewArrivalsComponent,
+    NewsLetterComponent,
   ],
   imports: [
     BrowserModule,
