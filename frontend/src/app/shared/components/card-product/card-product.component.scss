@@ -102,7 +102,9 @@
         margin: 0;
         padding-left: 10px;
       }
-
+      .product-hover input[type="radio"] {
+        display: none;
+    }
       &__item {
         margin: 0;
         padding-right: 4px;
