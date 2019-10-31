@@ -31,8 +31,8 @@
   }
 
   &__img {
-    max-width: 100%;
-    height: auto;
+    width: 159px;
+    height: 214px;
   }
 
   &__title {
@@ -61,6 +61,10 @@
       height: 90px;
       padding: 0;
       margin-bottom: 20px;
+    }
+    &__img {
+      width: 70px;
+      height: 87px;
     }
 
     &__body {
