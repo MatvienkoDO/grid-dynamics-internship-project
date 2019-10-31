@@ -9,6 +9,7 @@ import { SliderComponent } from './pages/slider/slider.component';
 import { CardComponent } from './shared/components/card/card.component';
 import { AdvertisementComponent } from './shared/components/advertisement/advertisement.component';
 import { SaleComponent } from './shared/components/sale/sale.component';
+import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SaleComponent } from './shared/components/sale/sale.component';
     CardComponent,
     AdvertisementComponent,
     SaleComponent,
+    NewArrivalsComponent,
   ],
   imports: [
     BrowserModule,
