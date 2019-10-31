@@ -62,6 +62,7 @@
       padding: 0;
       margin-bottom: 20px;
     }
+
     &__img {
       width: 70px;
       height: 87px;
@@ -70,7 +71,7 @@
     &__body {
       padding-bottom: 25px;
     }
-    
+
     &__footer {
       display: flex;
       justify-content: center;
@@ -96,19 +97,23 @@
 
       &__title {
         margin: 0;
+        padding: 0 6px;
       }
 
-      &__content {
-        margin: 0;
-        padding-left: 10px;
-      }
-      .product-hover input[type="radio"] {
+      input[type="radio"] {
         display: none;
-    }
+        &:checked + label span {
+          color: #ff5912;
+         }
+      }
+
       &__item {
         margin: 0;
-        padding-right: 4px;
+        padding: 0 2px;
         display: inline-block;
+        &_first-child {
+          padding-left: 6px;
+        }
       }
 
       &__prop {
@@ -131,6 +136,22 @@
         padding-left: 0;
       }
 
+      input[type="radio"] {
+        display: none;
+        &:checked + .list-colors__item .list-colors__prop_red {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ea454f;
+         }
+         &:checked + .list-colors__item .list-colors__prop_black {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #41515d;
+         }
+         &:checked + .list-colors__item .list-colors__prop_blue {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3ab3ff;
+         }
+         &:checked + .list-colors__item .list-colors__prop_green {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2fd967;
+         }
+      }
+
       &__item {
         margin: 0;
         padding-right: 5px;
@@ -145,34 +166,19 @@
 
         &_red {
           background-color: #ea454f;
-
-          &:hover {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ea454f;
-          }
         }
 
         &_black {
           background-color: #41515d;
-
-          &:hover {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #41515d;
-          }
         }
 
         &_blue {
           background-color: #3ab3ff;
-
-          &:hover {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3ab3ff;
-          }
         }
 
         &_green {
           background-color: #2fd967;
 
-          &:hover {
-            box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2fd967;
-          }
         }
       }
     }
