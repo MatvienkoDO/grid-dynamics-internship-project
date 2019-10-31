@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { BestSalesComponent } from './shared/components/best-sales/best-sales.component';
+import { SmallCardComponent } from './shared/components/small-card/small-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BestSalesComponent,
+    SmallCardComponent
   ],
   imports: [
     BrowserModule,
