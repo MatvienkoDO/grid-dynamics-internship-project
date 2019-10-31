@@ -1,1 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url(//db.onlinewebfonts.com/c/32eb6c28879dcfcaf97b75a5194441e9?family=HarmoniaSansProCyrRegular);
+@import url(//db.onlinewebfonts.com/c/bcc66d56db6dce82b68eeb2bb20b07ce?family=HarmoniaSansProCyrBold);
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=devanagari,latin-ext');
+@import 'mixins';
+
+
+.title-big {
+  margin: 0;
+  color: #34404b;
+  font-family: Poppins;
+  font-size: 52px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.title-big_primary-color {
+  color: #ff5912;
+}
+
+.title-medium {
+  color: #34404b;
+  font-family: Poppins;
+  font-size: 36px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.title-medium_primary-color {
+  color: #ff5912;
+}
+
+.text {
+  margin: 0;
+  color: #495662;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 29.97px;
+}

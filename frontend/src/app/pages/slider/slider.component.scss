@@ -1,0 +1,103 @@
+@import './colors';
+@import 'mixins';
+@import 'variables';
+@import 'fonts';
+@import 'button';
+
+.tabs-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  &__item {
+    display: block;
+    width: 10px;
+    height: 20px;
+    background-color: #fff;
+    margin: 0;
+    margin-bottom: 5px;
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+  }
+}
+
+input[type="radio"] {
+  display: none;
+
+  &:checked+label {
+    background-color: $primary-color;
+    height: 36px;
+  }
+}
+.slider-wrapper {
+  @include flex;
+  justify-content: flex-start;
+  height: 650px;
+  padding: 0 0 0 180px;
+  background-image: url(/assets/images/home-layer_1.png);
+  background-size: cover;
+
+  .slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+    padding-left: 90px;
+    height: inherit;
+
+    &__title {
+      padding-bottom: 29px;
+    }
+
+    &__desc {
+      margin: 0;
+      padding-bottom: 6px;
+      @include fonts (#3c4751, Poppins, 18px, 500);
+      line-height: 29.97px;
+
+      &_primary-color {
+        padding-left: 9px;
+        color: $primary-color;
+      }
+    }
+
+    &__order {
+      @include flex;
+      padding-top: 60px;
+    }
+
+    &__button-container {
+      padding-left: 30px;
+      @include flex(baseline);
+    }
+  }
+}
+#tab1:checked~.slider-container #content1,
+#tab2:checked~.slider-container #content2,
+#tab3:checked~.slider-container #content3{
+  display: flex;
+  opacity: 1;
+  -webkit-animation: tabs-changing-up 2s;
+  animation: tabs-changing-up 2s;
+}
+
+@-webkit-keyframes tabs-changing-up {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tabs-changing-up {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

@@ -18,7 +18,7 @@
   flex-direction: $direction;
 }
 
-@mixin icon ($background-image, $width, $height, $margin-right){
+@mixin icon ($background-image, $width, $height, $margin-right) {
   background-image: $background-image;
   width: $width;
   height: $height;
