@@ -1,23 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import '_colors';
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background-color: $background-default-color;
 }
 
 html, body {
   min-height: 100%;
-}
-
-app-root {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  display: flex;
-  flex-direction: column;
 }
