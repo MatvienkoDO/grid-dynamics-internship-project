@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Patch, Body, Query, Param } from '@nestjs/common';
 
 import { ProductService } from './product.service';
-import { ProductDto } from './dto/create-product.dto';
+import { ProductDto } from './dto/product.dto';
 import { Product } from './product.interface';
 
 @Controller('api/products')
