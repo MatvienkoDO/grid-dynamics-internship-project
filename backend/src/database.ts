@@ -1,7 +1,7 @@
 import { Mode, mode, databasePassword } from './environment';
 
 const databaseUserName = 'backend';
-const databaseName = 'main';
+const databaseName = 'test';
 
 const clusterAddress = mode === Mode.Production
   ? `mongodb+srv://${databaseUserName}:${databasePassword}@gd-internship-ng-efuaa.mongodb.net`

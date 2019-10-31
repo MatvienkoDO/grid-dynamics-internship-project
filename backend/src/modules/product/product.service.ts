@@ -2,13 +2,13 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.interface';
-import { CreateProductDto } from './dto/create-product.dto';
+import { ProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductService {
   constructor(@InjectModel('Product') private readonly productModel: Model<Product>) {}
 
-  async create(createCatDto: CreateProductDto): Promise<Product> {
+  async create(createCatDto: ProductDto): Promise<Product> {
     const createdCat = new this.productModel(createCatDto);
     return await createdCat.save();
   }
@@ -17,12 +17,12 @@ export class ProductService {
     return await this.productModel.find(
       null,
       null,
-      { skip: skip, limit: limit }
+      { skip, limit }
     ).exec();
   }
 
-  async update(id: string, updateProductDto: CreateProductDto): Promise<Product> {
-    let res = await this.productModel.findByIdAndUpdate(
+  async update(id: string, updateProductDto: ProductDto): Promise<Product> {
+    await this.productModel.findByIdAndUpdate(
       id,
       updateProductDto
     );
