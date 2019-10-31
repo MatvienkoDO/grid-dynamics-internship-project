@@ -1,0 +1,32 @@
+@import 'mixins';
+@import '_colors';
+
+:host {
+  position: relative;
+  width: 80px;
+  height: 80px;
+
+  background-image:
+    url('/assets/images/sale_background_2.svg'),
+    url('/assets/images/sale_background_1.svg');
+}
+
+.sale {
+  &__text, &__percent {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    @include fonts ($white, 'Open Sans', 12px, 400);
+  }
+
+  &__text {
+    top: 18px;
+    font-style: italic;
+  }
+
+  &__percent {
+    bottom: 22px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
