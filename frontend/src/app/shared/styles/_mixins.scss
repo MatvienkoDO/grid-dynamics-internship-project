@@ -11,14 +11,14 @@
   font-weight: $font-weight;
 }
 
-@mixin flex ($align-items: center, $row: row){
+@mixin flex ($align-items: center, $row: row) {
   display: flex;
   justify-content: space-between;
   align-items: $align-items;
   flex-direction: $row;
 }
 
-@mixin icon ($background-image, $width, $height, $margin-right){
+@mixin icon ($background-image, $width, $height, $margin-right) {
   background-image: $background-image;
   width: $width;
   height: $height;

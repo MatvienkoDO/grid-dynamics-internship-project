@@ -23,7 +23,7 @@
       }
 
       &__item {
-        display: flex;
+        @include flex;
         padding-right: 30px;
         text-decoration: none;
 
@@ -35,7 +35,7 @@
       &__text {
         margin: 0;
         padding-left: 9px;
-        @include fonts (#34404b, "HarmoniaSansProCyrRegular", 12px, 400);
+        @include fonts (#34404b, Poppins, 12px, 400);
       }
 
       &__social-media {
@@ -52,7 +52,7 @@
     padding: 40px 0;
 
     &__left {
-      @include flex (flex-end);
+      @include flex;
     }
 
     &__content {
@@ -61,7 +61,7 @@
 
     &__item {
       padding-right: 20px;
-      @include fonts (#34404b, "HarmoniaSansProCyrRegular", 16px, 400);
+      @include fonts (#34404b, Poppins, 14px, 400);
       text-decoration: none;
       &:hover {
         color: #ff5912;

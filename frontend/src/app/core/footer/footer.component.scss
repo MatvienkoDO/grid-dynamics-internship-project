@@ -3,7 +3,6 @@
 @import 'icon';
 @import 'picture';
 @import 'button';
-@import 'fonts';
 
 .footer {
   .footer-container {
@@ -16,7 +15,7 @@
     }
 
     &__copyright {
-      @include fonts (#28313b, "HarmoniaSansProCyrRegular", 14px, 400);
+      @include fonts (#28313b, Poppins, 13px, 400);
       line-height: 30px;
     }
 
@@ -37,7 +36,7 @@
       }
 
       &__link {
-        @include fonts (#28313b, "HarmoniaSansProCyrRegular", 14px, 400);
+        @include fonts (#28313b, Poppins, 13px, 400);
         line-height: 30px;
         text-decoration: none;
 
@@ -56,7 +55,9 @@
       @include flex(baseline, column);
 
       &__title {
-        @include fonts (#ff5912, "HarmoniaSansProCyrRegular", 16px, 400);
+        margin: 0;
+        padding-bottom: 20px;
+        @include fonts (#ff5912, Poppins, 16px, 600);
         line-height: 30px;
       }
 
