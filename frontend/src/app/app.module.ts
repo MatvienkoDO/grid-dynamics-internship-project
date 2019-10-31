@@ -9,6 +9,7 @@ import { SliderComponent } from './pages/slider/slider.component';
 import { CardComponent } from './shared/components/card/card.component';
 import { AdvertisementComponent } from './shared/components/advertisement/advertisement.component';
 import { SaleComponent } from './shared/components/sale/sale.component';
+import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
 import { NewsLetterComponent } from './shared/components/news-letter/news-letter.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { NewsLetterComponent } from './shared/components/news-letter/news-letter
     CardComponent,
     AdvertisementComponent,
     SaleComponent,
+    NewArrivalsComponent,
     NewsLetterComponent,
   ],
   imports: [
