@@ -2,6 +2,18 @@
   max-width: 1140px;
   width: 100%;
   margin: 0 auto;
+  
+  @media(max-width: 1200px) {
+    width: calc(100% - 60px);
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  @media(max-width: 800px) {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 @mixin fonts($color: $black, $font-family: inherit, $font-size: inherit, $font-weight: inherit) {

@@ -4,7 +4,12 @@
 @import 'picture';
 @import 'button';
 
+:host {
+  background-color: white;
+}
+
 .footer {
+  // FIXME: refactor to plain structure
   .footer-container {
     @include container;
     @include flex;

@@ -5,10 +5,15 @@
 @import 'button';
 @import 'search';
 
+:host {
+  background-color: white;
+}
+
 .header {
   display: flex;
   flex-direction: column;
 
+  // FIXME: make it more plain
   .header-contacts-container {
     border-bottom: 1px solid rgba(230, 232, 235, 0.5);
 
@@ -78,5 +83,4 @@
       height: 40px;
     }
   }
-
 }

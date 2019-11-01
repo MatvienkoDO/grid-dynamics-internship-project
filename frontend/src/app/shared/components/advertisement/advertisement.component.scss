@@ -23,12 +23,12 @@
   }
 
   &__title {
-    @include fonts ($text-color, "Open Sans", 22px, bold);
+    @include fonts ($text-color, Poppins, 22px, bold);
     text-transform: uppercase;
   }
 
   &__description {
-    @include fonts ($text-color-secondary, "Open Sans", 12px, 400);
+    @include fonts ($text-color-secondary, Poppins, 12px, 400);
     margin-top: 10px;
   }
 
@@ -40,7 +40,7 @@
 
   &__price {
     margin-left: 20px;
-    @include fonts ($primary-color, "Open Sans", 32px, bold);
+    @include fonts ($primary-color, Poppins, 32px, 600);
 
     &::after {
       content: '$';
@@ -54,7 +54,7 @@
     }
 
     &::before, &::after {
-      @include fonts ($secondary-color, "Open Sans", 16px, 400);
+      @include fonts ($secondary-color, Poppins, 16px, 400);
     }
 
     &::before {
@@ -69,7 +69,7 @@
 
   &__size {
     margin-top: 7px;
-    @include fonts ($secondary-color, "Open Sans", 12px, 400);
+    @include fonts ($secondary-color, Poppins, 12px, 400);
     opacity: 0.4;
     letter-spacing: 7.2px;
   }
