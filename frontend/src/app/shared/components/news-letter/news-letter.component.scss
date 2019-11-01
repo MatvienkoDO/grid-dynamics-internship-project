@@ -22,7 +22,7 @@
   &__title {
     margin: 0;
     margin-right: 24px;
-    @include fonts ($primary-color, Poppins, 18px, 700);
+    @include fonts ($primary-color, Poppins, 18px, 600);
     text-transform: uppercase;
   }
 
@@ -48,10 +48,18 @@
     width: 250px;
     margin-right: 20px;
     border: none;
+    border-bottom: 2px solid transparent;
+    @include fonts ($black, Poppins, 14px);
 
     &::placeholder {
-      @include fonts (#7c8791, Poppins, 14px);
       font-style: italic;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid #ff5912;
+      transition: width 2s;
+      -webkit-transition: width 2s;
     }
 
     @media (max-width: 1100px) {

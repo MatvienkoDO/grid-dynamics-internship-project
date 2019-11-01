@@ -43,6 +43,9 @@
     &:hover {
       filter: invert(27%) sepia(51%) saturate(2878%);
     }
+    &_right {
+      @include icon (url(/assets/images/Add_To_Cart_Ico.svg), 22px, 21px, 9px);
+    }
   }
   &__like {
     @include icon (url(/assets/images/Like_Ico.svg), 19px, 16px, 0);
