@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export interface CardData {
-  id: string;
-  size: string;
-  color: string;
-}
+import { CardProduct } from '../../models/card-product';
 
 @Component({
   selector: 'app-card-product[id][image-url][title][price][sizes][colors]',
@@ -21,9 +17,9 @@ export class CardProductComponent implements OnInit {
   @Input('colors') public readonly colors: string[];
   @Input('currency-sign') public readonly currencySign: string | undefined;
 
-  @Output('show-details') public readonly showDetails = new EventEmitter<CardData>();
-  @Output('add-to-cart') public readonly addToCart = new EventEmitter<CardData>();
-  @Output('add-to-favorite') public readonly addToFavorite = new EventEmitter<CardData>();
+  @Output('show-details') public readonly showDetails = new EventEmitter<CardProduct>();
+  @Output('add-to-cart') public readonly addToCart = new EventEmitter<CardProduct>();
+  @Output('add-to-favorite') public readonly addToFavorite = new EventEmitter<CardProduct>();
   @Output('error') public readonly error = new EventEmitter<string>();
 
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
@@ -42,12 +38,12 @@ export class CardProductComponent implements OnInit {
     this.color$.next(color);
   }
 
-  public readonly action = (sender: EventEmitter<CardData>) => {
+  public readonly action = (sender: EventEmitter<CardProduct>) => {
     const size = this.size$.value;
     const color = this.color$.value;
 
     if (size && color) {
-      const data: CardData = {
+      const data: CardProduct = {
         id: this.id,
         size,
         color
