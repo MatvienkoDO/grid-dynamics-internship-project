@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { BestSalesComponent } from './pages/best-sales/best-sales.component';
 import { CardProductSmallComponent } from './shared/components/card-product-small/card-product-small.component';
 import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
 import { NewsLetterComponent } from './shared/components/news-letter/news-letter.component';
+import { ProductComponent } from './service/product.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,12 @@ import { NewsLetterComponent } from './shared/components/news-letter/news-letter
     CardProductSmallComponent,
     NewArrivalsComponent,
     NewsLetterComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
