@@ -14,7 +14,6 @@ import { BestSalesComponent } from './pages/best-sales/best-sales.component';
 import { CardProductSmallComponent } from './shared/components/card-product-small/card-product-small.component';
 import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.component';
 import { NewsLetterComponent } from './shared/components/news-letter/news-letter.component';
-import { ProductComponent } from './service/product.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { ProductComponent } from './service/product.component';
     CardProductSmallComponent,
     NewArrivalsComponent,
     NewsLetterComponent,
-    ProductComponent,
   ],
   imports: [
     BrowserModule,
