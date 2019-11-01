@@ -4,7 +4,7 @@
   </div>
   <div class="card-product__body">
     <div class="card-product__title">{{title}}</div>
-    <div class="card-product__price">{{price}}{{currencySign}}</div>
+    <div class="card-product__price">{{price}}{{currencySign || '$'}}</div>
   </div>
   <div class="card-product-hover">
     <div class="card-product-hover__header">
@@ -46,17 +46,17 @@
       <div class="list-options">
         <ul class="list-options__content">
           <li class="list-options__item">
-            <a href="#" class="list-options__icon">
+            <a class="list-options__icon" (click)="action(showDetails)">
               <i class="icon icon__share"></i>
             </a>
           </li>
           <li class="list-options__item">
-            <a href="#" class="list-options__icon">
+            <a class="list-options__icon" (click)="action(addToCart)">
               <i class="icon icon__add-to-cart"></i>
             </a>
           </li>
           <li class="list-options__item">
-            <a href="#" class="list-options__icon">
+            <a class="list-options__icon" (click)="action(addToFavorite)">
               <i class="icon icon__like"></i>
             </a>
           </li>
