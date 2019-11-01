@@ -7,7 +7,9 @@
 .tabs-content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   flex-wrap: wrap;
+  height: 300px;
 
   &__item {
     display: block;
@@ -20,6 +22,10 @@
     outline: none;
     cursor: pointer;
   }
+  &__articles > .slider-container {
+    display: none;
+  }
+
 }
 
 input[type="radio"] {
@@ -39,7 +45,6 @@ input[type="radio"] {
   background-size: cover;
 
   .slider-container {
-    display: flex;
     justify-content: center;
     align-items: baseline;
     flex-direction: column;
@@ -73,9 +78,9 @@ input[type="radio"] {
     }
   }
 }
-#tab1:checked~.slider-container #content1,
-#tab2:checked~.slider-container #content2,
-#tab3:checked~.slider-container #content3{
+#tab1:checked~.tabs-content__articles #content1,
+#tab2:checked~.tabs-content__articles #content2,
+#tab3:checked~.tabs-content__articles #content3{
   display: flex;
   opacity: 1;
   -webkit-animation: tabs-changing-up 2s;
