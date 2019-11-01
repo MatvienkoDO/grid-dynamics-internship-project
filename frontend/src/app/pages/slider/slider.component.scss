@@ -40,9 +40,12 @@ input[type="radio"] {
   @include flex;
   justify-content: flex-start;
   height: 650px;
-  padding: 0 0 0 180px;
+  padding: 0 0 0 60px;
   background-image: url(/assets/images/home-layer_1.png);
   background-size: cover;
+  @include for-tablet-intermediate {
+    padding: 0 0 0 30px;
+  }
 
   .slider-container {
     justify-content: center;

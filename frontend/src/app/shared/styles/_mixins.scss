@@ -4,12 +4,14 @@
   margin: 0 auto;
   
   @media(max-width: 1200px) {
+    max-width: unset;
     width: calc(100% - 60px);
     margin-left: 30px;
     margin-right: 30px;
   }
 
   @media(max-width: 800px) {
+    max-width: unset;
     width: calc(100% - 20px);
     margin-left: 10px;
     margin-right: 10px;
@@ -51,6 +53,12 @@
 
 @mixin for-tablet-portrait-up {
   @media (max-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin for-phone-intermediate {
+  @media (max-width: 610px) {
     @content;
   }
 }

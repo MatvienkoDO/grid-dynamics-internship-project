@@ -3,15 +3,22 @@
 @import 'icon';
 
 .card-product-small {
-  width: 370px;
+  margin: 0 15px;
+  max-width: 370px;
   background-color: #fff;
   padding: 35px 30px 35px 28px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: relative;
   transition: .2s all;
   margin-bottom: 30px;
+  @include for-tablet-intermediate {
+    width: 290px;
+  }
+  @include for-tablet-portrait-up {
+    width: 340px;
+  }
 
   &:hover &__stars-price &__add {
     opacity: 1;
