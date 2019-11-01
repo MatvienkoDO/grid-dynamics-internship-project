@@ -7,7 +7,6 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingIndicatorComponent implements OnInit {
-  @Input('show') show = true;
   @Input('error-message') errorMessage = '';
 
   constructor() { }
