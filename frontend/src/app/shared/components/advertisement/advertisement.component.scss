@@ -15,6 +15,9 @@
     flex-basis: 670px;
     margin-right: 30px;
     padding: 10px 60px;
+    @include for-phone {
+      flex-direction: column;
+    }
   }
 
   &__right {
@@ -36,6 +39,9 @@
     width: 1px;
     height: 45px;
     background-color: $background-default-color;
+    @include for-phone {
+      display: none;
+    }
   }
 
   &__price {

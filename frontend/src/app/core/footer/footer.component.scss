@@ -42,6 +42,9 @@
       @include for-tablet-portrait-up {
         width: 100%;
       }
+      @include for-phone {
+        display: none;
+      }
 
       &__column {
         @include flex(baseline, column);

@@ -20,6 +20,11 @@
     width: 340px;
   }
 
+  @include for-phone {
+    width: 290px;
+  }
+
+
   &:hover &__stars-price &__add {
     opacity: 1;
   }

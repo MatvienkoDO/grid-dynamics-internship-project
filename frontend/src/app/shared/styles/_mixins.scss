@@ -58,7 +58,19 @@
 }
 
 @mixin for-phone-intermediate {
-  @media (max-width: 610px) {
+  @media (max-width: 725px) {
+    @content;
+  }
+}
+
+@mixin for-phone {
+  @media (max-width: 400px) {
+    @content;
+  }
+}
+
+@mixin for-phone-smaller {
+  @media (max-width: 360px) {
     @content;
   }
 }

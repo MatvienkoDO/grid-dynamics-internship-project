@@ -24,6 +24,10 @@
   @include for-tablet-intermediate {
     margin: 0 25px 25px;
   }
+  @include for-phone {
+    margin: 0 0 20px 0;
+    width: 250px;
+  }
 
   &:hover &-hover {
     opacity: 1;
@@ -63,6 +67,9 @@
     padding: 35px 50px 30px 50px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    @include for-phone-intermediate {
+      opacity: 1;
+    }
 
     &__header {
       height: 90px;
