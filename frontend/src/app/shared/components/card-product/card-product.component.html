@@ -1,69 +1,65 @@
 <div class="card-product">
   <div class="card-product__header">
-    <img class="card-product__img" src="assets/images/Product_Img-jasket3.png" alt="product1">
+    <img class="card-product__img" src="{{imageUrl}}" alt="product1">
   </div>
   <div class="card-product__body">
-    <div class="card-product__title">Reebok Track Jacket</div>
-    <div class="card-product__price">100$</div>
+    <div class="card-product__title">{{title}}</div>
+    <div class="card-product__price">{{price}}{{currencySign || '$'}}</div>
   </div>
   <div class="card-product-hover">
     <div class="card-product-hover__header">
-      <img class="card-product-hover__img" src="assets/images/Product_Img-jasket3.png" alt="min-product">
+      <img class="card-product-hover__img" src="{{imageUrl}}" alt="min-product">
     </div>
     <div class="card-product-hover__body">
-      <a href="#" class="card-product-hover__title">Reebok Track Jacket</a>
+      <a href="#" class="card-product-hover__title">{{title}}</a>
       <div class="list-sizes">
         <p class="list-sizes__title">sizes </p>
         <p class="list-sizes__title">:</p>
-        <input type="radio" id="sizeS2" name="size">
-        <label for="sizeS2" class="list-sizes__item list-sizes__item_first-child"><span
-            class="list-sizes__prop">s</span></label>
-        <p class="list-sizes__item">-</p>
-        <input type="radio" id="sizeM2" name="size">
-        <label for="sizeM2" class="list-sizes__item"><span class="list-sizes__prop">m</span></label>
-        <p class="list-sizes__item">-</p>
-        <input type="radio" id="sizeL2" name="size">
-        <label for="sizeL2" class="list-sizes__item"><span class="list-sizes__prop">l</span></label>
-        <p class="list-sizes__item">-</p>
-        <input type="radio" id="sizeXL2" name="size">
-        <label for="sizeXL2" class="list-sizes__item"><span class="list-sizes__prop">xl</span></label>
+        <ng-container *ngFor="let size of sizes; last as isLast">
+          <span class="list-sizes__item list-sizes__item_first-child">
+            <span
+              class="list-sizes__prop"
+              [class.list-sizes__prop_active]="(size$ | async) === size"
+              (click)="changeSize(size)">
+              {{size}}
+            </span>
+          </span>
+          <span class="list-sizes__item" *ngIf="!isLast">-</span>
+        </ng-container>
       </div>
       <div class="list-colors">
         <div class="list-colors__content">
-          <input type="radio" id="color-red" name="color">
-          <label for="color-red" class="list-colors__item">
-            <span class="list-colors__prop list-colors__prop_red"></span>
-          </label>
-          <input type="radio" id="color-black" name="color">
-          <label for="color-black" class="list-colors__item">
-            <span class="list-colors__prop list-colors__prop_black"></span>
-          </label>
-          <input type="radio" id="color-blue" name="color">
-          <label for="color-blue" class="list-colors__item">
-            <span class="list-colors__prop list-colors__prop_blue"></span>
-          </label>
-          <input type="radio" id="color-green" name="color">
-          <label for="color-green" class="list-colors__item">
-            <span class="list-colors__prop list-colors__prop_green"></span>
-          </label>
+          <ng-container *ngFor="let color of colors">
+            <span class="list-colors__item">
+              <span
+                class="list-colors__prop"
+                [style.background-color]="color"
+                [class.list-colors__prop_active]="(color$ | async) === color"
+                (click)="changeColor(color)">
+              </span>
+            </span>
+          </ng-container>
         </div>
       </div>
     </div>
     <div class="card-product-hover__footer">
       <div class="list-options">
         <ul class="list-options__content">
-          <li class="list-options__item"><a href="#" class="list-options__icon">
-            <i class="icon icon__share"></i>
-          </a>
+          <li class="list-options__item">
+            <a class="list-options__icon" (click)="action(showDetails)">
+              <i class="icon icon__share"></i>
+            </a>
           </li>
-          <li class="list-options__item"><a href="#" class="list-options__icon">
+          <li class="list-options__item">
+            <a class="list-options__icon" (click)="action(addToCart)">
               <i class="icon icon__add-to-cart"></i>
             </a>
           </li>
-          <li class="list-options__item"><a href="#" class="list-options__icon">
-            <i class="icon icon__like"></i>
-          </a>
-        </li>
+          <li class="list-options__item">
+            <a class="list-options__icon" (click)="action(addToFavorite)">
+              <i class="icon icon__like"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

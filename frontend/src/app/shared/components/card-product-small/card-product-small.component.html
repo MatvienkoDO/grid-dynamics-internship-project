@@ -1,17 +1,16 @@
 
 <div class="card-product-small">
     <div class="card-product-small__image">
-        <img src="/assets/images/Product_Img-4.png" alt="jacket">
+        <img src="{{imageUrl}}" alt="{{imageAlt || 'product image'}}">
     </div>
     <div class="card-product-small__description">
-        <a href="#" class="card-product-small__title">Reebok Track Jacket</a>
+        <a class="card-product-small__title">{{title}}</a>
         <div class="card-product-small__stars-price">
             <img src="/assets/images/Rate.png" alt="stars">
-            <div class="card-product-small__price">$100</div>
-            <a href="#" class="card-product-small__add">
-              <i class="icon icon__add-to-cart icon__add-to-cart_right">
-              </i>
-              add to cart
+            <div class="card-product-small__price">{{price}}{{currencySign || '$'}}</div>
+            <a class="card-product-small__add" (click)="addToCartCb()">
+              <i class="icon icon__add-to-cart icon__add-to-cart_right"></i>
+              <span>add to cart</span>
             </a>
         </div>
     </div>

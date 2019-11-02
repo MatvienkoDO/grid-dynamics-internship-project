@@ -82,6 +82,7 @@
     transition: .2s;
     @include fonts (#ff5912, Poppins, 16px, 600);
     text-decoration: none;
+    cursor: pointer;
 
     &:hover .icon__add-to-cart {
       filter: invert(36%) sepia(51%) saturate(2878%);

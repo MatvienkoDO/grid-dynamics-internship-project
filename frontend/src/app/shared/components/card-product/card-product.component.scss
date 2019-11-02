@@ -136,8 +136,9 @@
         display: block;
         text-decoration: none;
         color: #34404b;
+        cursor: pointer;
 
-        &:hover {
+        &:hover, &_active {
           color: #ff5912;
         }
       }
@@ -183,6 +184,11 @@
         width: 14px;
         height: 14px;
         border-radius: 50%;
+        cursor: pointer;
+
+        &:hover, &_active {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px black;
+        }
 
         &_red {
           background-color: #ea454f;
@@ -198,7 +204,6 @@
 
         &_green {
           background-color: #2fd967;
-
         }
       }
     }
