@@ -22,13 +22,15 @@
       @include container;
       @include flex;
       padding: 26px 0;
+      @include for-phone-intermediate {
+        margin-top: 50px;
+      }
 
       &__info {
         display: flex;
         width: 100%;
 
         @include for-phone-intermediate {
-          margin-top: 50px;
           flex-direction: column;
         }
       }
