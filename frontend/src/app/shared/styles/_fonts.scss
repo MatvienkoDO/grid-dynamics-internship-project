@@ -38,4 +38,16 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 29.97px;
+
+  &_marker {
+    margin: 0;
+    font-family: Poppins;
+    color: #3c4751;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 29.97px;
+  }
+  &_large {
+    font-size: 20px;
+  }
 }

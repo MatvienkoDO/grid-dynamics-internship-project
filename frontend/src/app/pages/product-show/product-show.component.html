@@ -1,0 +1,101 @@
+<div class="product-show-wrapper">
+  <div class="product-show">
+    <div class="product-list">
+      <div class="tabs-content">
+        <div class="tabs-content__products">
+          <div class="slider-container" id="content1">
+            <picture>
+              <img src="/assets/images/Big_Product_Img.png" alt="">
+            </picture>
+          </div>
+          <!-- <div class="slider-container" id="content2">
+            <picture>
+              <img src="/assets/images/Big_Product_Img.png" alt="">
+            </picture>
+          </div>
+          <div class="slider-container" id="content3">
+            <picture>
+              <img src="/assets/images/Big_Product_Img.png" alt="">
+            </picture>
+          </div> -->
+        </div>
+        <input tabindex="0" id="tab1" type="radio" name="tabs">
+        <label tabindex="0" for="tab1" class="tabs-content__item tabs-content__item_1"></label>
+        <input tabindex="0" id="tab2" type="radio" name="tabs" checked>
+        <label tabindex="0" for="tab2" class="tabs-content__item tabs-content__item_2"></label>
+        <input id="tab3" type="radio" name="tabs">
+        <label tabindex="0" for="tab3" class="tabs-content__item tabs-content__item_3"></label>
+      </div>
+    </div>
+    <div class="product-details">
+      <div class="product-details__desc">
+        <h1 class="title-big title-big_primary-color">
+          full winter kit
+        </h1>
+        <p class="text_marker">
+          Half Jacket + Skiny Trousers + Boot leather
+        </p>
+        <p class="text product-details__text">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry
+          Lorem Ipsum is simply dummy text of the printing
+          and typesetting industry
+        </p>
+      </div>
+      <div class="product-details__choose">
+        <div class="product-details__size">
+          <p class="text_marker">
+            Choos Size
+          </p>
+          <ng-container *ngFor="let size of sizes; last as isLast">
+            <span class="list-sizes__item list-sizes__item_first-child">
+              <span
+                class="list-sizes__prop"
+                [class.list-sizes__prop_active]="(size$ | async) === size"
+                (click)="changeSize(size)">
+                {{size}}
+              </span>
+            </span>
+            <span class="list-sizes__item" *ngIf="!isLast">-</span>
+          </ng-container>
+        </div>
+        <div class="product-details__quantity">
+          <p class="text_marker">
+            Choos Quantity
+          </p>
+          <form class="form-selection">
+            <span class="form-selection__max">+</span>
+            <input class="form-selection__number" value="3">
+            <span class="form-selection__min">-</span>
+        </form>
+        </div>
+      </div>
+      <div class="product-details__order">
+       <div class="product-details__price">
+         <p class="text_marker text_large">Price : $120</p>
+       </div>
+        <div class="product-details__order-links">
+          <div class="list-options">
+            <ul class="list-options__content">
+              <li class="list-options__item">
+                <a class="list-options__icon" (click)="action(showDetails)">
+                  <i class="icon icon__share"></i>
+                </a>
+              </li>
+              <li class="list-options__item">
+                <a class="list-options__icon" (click)="action(addToCart)">
+                  <i class="icon icon__add-to-cart"></i>
+                </a>
+              </li>
+              <li class="list-options__item">
+                <a class="list-options__icon" (click)="action(addToFavorite)">
+                  <i class="icon icon__like"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="button button_order product-details__button">order now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
