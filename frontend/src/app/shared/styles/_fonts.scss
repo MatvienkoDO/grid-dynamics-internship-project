@@ -38,6 +38,10 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 29.97px;
+  @include for-phone-intermediate {
+    font-size: 12px;
+    line-height: 2;
+  }
 
   &_marker {
     margin: 0;
@@ -46,7 +50,12 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 29.97px;
+    @include for-phone-intermediate {
+      font-size: 12px;
+      line-height: 2;
+    }
   }
+
   &_large {
     font-size: 20px;
   }

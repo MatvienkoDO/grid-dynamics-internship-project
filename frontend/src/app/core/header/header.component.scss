@@ -4,6 +4,7 @@
 @import 'picture';
 @import 'button';
 @import 'search';
+@import '_mobile-menu';
 
 :host {
   background-color: white;
@@ -21,10 +22,17 @@
       @include container;
       @include flex;
       padding: 26px 0;
+      @include for-phone-intermediate {
+        margin-top: 50px;
+      }
 
       &__info {
         display: flex;
         width: 100%;
+
+        @include for-phone-intermediate {
+          flex-direction: column;
+        }
       }
 
       &__item {
@@ -32,8 +40,17 @@
         padding-right: 30px;
         text-decoration: none;
 
+        @include for-phone-intermediate {
+          justify-content: flex-start;
+          padding-bottom: 7px;
+        }
+
         &:last-child {
           padding-right: 0;
+
+          @include for-phone-intermediate {
+            padding-bottom: 0;
+          }
         }
       }
 
@@ -56,18 +73,27 @@
     @include flex;
     padding: 40px 0;
 
+    @include for-phone-intermediate {
+      align-items: flex-start;
+      padding-bottom: 0;
+    }
+
     &__left {
       @include flex;
     }
 
     &__content {
       padding-left: 80px;
+      @include for-phone-intermediate {
+        display: none;
+      }
     }
 
     &__item {
       padding-right: 20px;
       @include fonts (#34404b, Poppins, 14px, 400);
       text-decoration: none;
+
       &:hover {
         color: #ff5912;
       }

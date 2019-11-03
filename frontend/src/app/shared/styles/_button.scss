@@ -14,6 +14,13 @@
     @include fonts ($black, Poppins, 14px, 500);
     @include icon (url(/assets/images/Search_Ico.svg), 18px, 20px, 34px);
     background-repeat: no-repeat;
+    @include for-phone-intermediate {
+      margin: 0;
+      height: auto;
+      width:100%;
+      border-bottom: 2px solid $primary-color;
+      outline: none;
+    }
   }
 
   &_account {
