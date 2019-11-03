@@ -11,6 +11,9 @@
   font-size: 52px;
   font-weight: bold;
   text-transform: uppercase;
+  @include for-phone-intermediate {
+    font-size: 30px;
+  }
 }
 
 .title-big_primary-color {
