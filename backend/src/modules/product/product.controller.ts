@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Patch, Body, Query, Param } from '@nestjs/common';
+import { Controller, Post, Get, Patch, Body, Query, Param, Res, HttpStatus, HttpException } from '@nestjs/common';
 
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
@@ -10,8 +10,10 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
-  create(@Body() createProductDto: ProductDto): Promise<Product> {
-    return this.productService.create(createProductDto);
+  async create(@Body() createProductDto: ProductDto) {
+    const response = new ProductResponse();
+    response.data = await this.productService.create(createProductDto);
+    return response;
   }
 
   @Get()
@@ -26,8 +28,26 @@ export class ProductController {
     return response;
   }
 
+  @Get(':id')
+  async findById(@Param('id') id: string) {
+    const product = this.productService.findById(id);
+    const response = new ProductResponse();
+    try {
+      response.data = await product;
+    } catch (err) {
+      throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
+    }
+    return response;
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: ProductDto): Promise<Product> {
-    return this.productService.update(id, updateProductDto);
+  async update(@Param('id') id: string, @Body() updateProductDto: ProductDto) {
+    const response = new ProductResponse();
+    try {
+      response.data = await this.productService.update(id, updateProductDto);
+    } catch (err) {
+      throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
+    }
+    return response;
   }
 }
