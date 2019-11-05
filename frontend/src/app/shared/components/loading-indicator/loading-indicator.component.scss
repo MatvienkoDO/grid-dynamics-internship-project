@@ -5,12 +5,6 @@
 $offset: 187;
 $duration: 1.4s;
 
-.loading-indicator-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .loading-indicator {
   animation: rotator $duration linear infinite;
 }
