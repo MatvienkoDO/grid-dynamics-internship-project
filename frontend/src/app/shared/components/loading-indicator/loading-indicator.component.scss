@@ -62,12 +62,6 @@ $duration: 1.4s;
   }
 }
 
-.error-message-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .error-message {
   width: 300px;
   @include fonts(red, Poppins, 34px, 500);
