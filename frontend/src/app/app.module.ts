@@ -12,6 +12,7 @@ import {
 
 import {
   HomeComponent,
+  ProductDetailsComponent,
 } from './pages';
 
 import {
@@ -43,6 +44,7 @@ import {
     ProductShowComponent,
     LoadingIndicatorComponent,
     HomeComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
