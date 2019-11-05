@@ -5,45 +5,22 @@
   <p class="text">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry
   </p>
+
   <div class="cards-container">
     <app-card-product
-      id="0"
-      image-url="assets/images/Product_Img-jasket3.png"
-      title="Reebok Track Jacket"
-      price="100"
+      *ngFor="let product of products$ | async"
+      [id]="product.id"
+      [image-url]="product.images[0]"
+      [title]="product.name"
+      [price]="product.price"
       currency-sign="$"
-      [sizes]="['s', 'm', 'l', 'xl']"
-      [colors]="['red', 'green', 'blue', 'black']">
-    </app-card-product>
-    <app-card-product
-      id="1"
-      image-url="assets/images/Product_Img-jasket3.png"
-      title="Reebok Track Jacket"
-      price="100"
-      currency-sign="$"
-      [sizes]="['s', 'm', 'l', 'xl']"
-      [colors]="['red', 'green', 'blue', 'black']">
-    </app-card-product>
-    <app-card-product
-      id="2"
-      image-url="assets/images/Product_Img-jasket3.png"
-      title="Reebok Track Jacket"
-      price="100"
-      currency-sign="$"
-      [sizes]="['s', 'm', 'l', 'xl']"
-      [colors]="['red', 'green', 'blue', 'black']">
-    </app-card-product>
-    <app-card-product
-      id="3"
-      image-url="assets/images/Product_Img-jasket3.png"
-      title="Reebok Track Jacket"
-      price="100"
-      currency-sign="$"
-      [sizes]="['s', 'm', 'l', 'xl']"
-      [colors]="['red', 'green', 'blue', 'black']">
+      [sizes]="product.sizes"
+      [colors]="product.colors">
     </app-card-product>
   </div>
-  <a href="#" class="load-more">
+
+  <!-- TODO: add conditional showing depending on possibility to load more items -->
+  <a class="load-more" (click)="loadMore()">
     <span class="load-more__circle"></span>
     <span class="load-more__circle"></span>
     <span class="load-more__circle"></span>
