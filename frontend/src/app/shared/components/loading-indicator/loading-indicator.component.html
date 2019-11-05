@@ -1,9 +1,15 @@
 <ng-container *ngIf="!errorMessage; else errorTemplate">
-  <!-- TODO: realize regular loading indicator -->
-  Loading...
+  <div class="loading-indicator-container">
+      <svg class="loading-indicator" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+     </svg>
+  </div>
 </ng-container>
 
 <ng-template #errorTemplate>
-  <!-- TODO: realize showing of errorMessage -->
-  {{errorMessage}}
+  <div class="error-message-container">
+      <div class="error-message">
+        {{errorMessage}}
+      </div>
+  </div>
 </ng-template>
