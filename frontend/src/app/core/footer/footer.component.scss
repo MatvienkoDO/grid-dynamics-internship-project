@@ -14,6 +14,19 @@
     @include container;
     @include flex;
     padding: 90px 0;
+    @include for-tablet-portrait-up {
+      flex-wrap: wrap;
+      padding: 30px 0;
+    }
+    @include for-phone-intermediate {
+      flex-direction: column;
+    }
+
+    &__logo {
+      @include for-phone-intermediate {
+        @include flex ($direction: column);
+      }
+    }
 
     &__logo-img {
       width: 117px;
@@ -26,10 +39,22 @@
 
     .footer-navlist {
       @include flex(baseline);
+      @include for-tablet-portrait-up {
+        width: 100%;
+      }
+      @include for-phone {
+        display: none;
+      }
 
       &__column {
         @include flex(baseline, column);
         padding-right: 60px;
+        @include for-tablet-intermediate {
+          padding-right: 30px;
+        }
+        @include for-tablet-portrait-up {
+          padding-right: 0;
+        }
         &:last-child {
           padding-right:0;
         }
@@ -58,6 +83,9 @@
 
     .footer-payment {
       @include flex(baseline, column);
+      @include for-phone-intermediate {
+        @include flex ($direction: column);
+      }
 
       &__title {
         margin: 0;

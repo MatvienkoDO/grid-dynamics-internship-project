@@ -9,8 +9,12 @@
 }
 
 .cards-container {
-  @include flex;
+  display: flex;
+  flex-wrap: wrap;
   padding: 80px 0 0 0;
+  @include for-phone-intermediate {
+    justify-content: center;
+  }
 
   &_loading {
     height: 274px;

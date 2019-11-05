@@ -38,4 +38,8 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 29.97px;
+  @include for-phone-intermediate {
+    font-size: 12px;
+    line-height: 2;
+  }
 }

@@ -9,7 +9,7 @@ import { CardProduct } from 'src/app/shared/models/card-product';
   selector: 'app-best-sales',
   templateUrl: './best-sales.component.html',
   styleUrls: ['./best-sales.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BestSalesComponent implements OnInit, OnDestroy {
   public readonly products$ = new Subject<Product[]>();
