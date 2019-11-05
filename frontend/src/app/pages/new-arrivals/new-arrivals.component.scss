@@ -31,7 +31,11 @@
 }
 
 .cards-container {
-  @include flex;
-  flex-wrap: wrap; 
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   padding: 80px 0;
+  @include for-tablet-intermediate {
+    justify-content: center;
+  }
 }

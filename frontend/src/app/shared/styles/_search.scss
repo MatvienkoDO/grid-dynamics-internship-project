@@ -16,4 +16,17 @@
     cursor: auto;
     outline: none;
   }
+  @include for-phone-intermediate {
+    display: none;
+  }
+  &_mobile {
+    display: none;
+    @include for-phone-intermediate {
+      display: block;
+      margin: 20px 10px;
+      .button_search[type=search]:focus {
+        background-image: unset;
+      }
+    }
+  }
 }
