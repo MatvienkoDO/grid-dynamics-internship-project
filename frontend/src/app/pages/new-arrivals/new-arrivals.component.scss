@@ -7,17 +7,13 @@
 .new-arrivals-wrapper {
   @include container;
 
-  .cards-container {
-    @include flex;
-    padding: 80px 0;
-  }
-
   .load-more {
     @include flex;
     justify-content: center;
     height: 60px;
     text-decoration: none;
     background-color: #ffffff;
+    cursor: pointer;
 
     &:hover {
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -32,4 +28,10 @@
       background-color: #ff5912;
     }
   }
+}
+
+.cards-container {
+  @include flex;
+  flex-wrap: wrap; 
+  padding: 80px 0;
 }
