@@ -14,7 +14,7 @@ import { BestSalesComponent } from './shared/components/best-sales/best-sales.co
 import { CardProductSmallComponent } from './shared/components/card-product-small/card-product-small.component';
 import { NewArrivalsComponent } from './shared/components/new-arrivals/new-arrivals.component';
 import { NewsLetterComponent } from './shared/components/news-letter/news-letter.component';
-import { ProductShowComponent } from './pages/product-show/product-show.component';
+import { ProductShowComponent } from './shared/components/product-show/product-show.component';
 import { LoadingIndicatorComponent } from './shared/components/loading-indicator/loading-indicator.component';
 import { HomeComponent } from './pages/home/home.component';
 
