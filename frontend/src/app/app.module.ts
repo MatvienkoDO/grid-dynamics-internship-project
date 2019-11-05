@@ -16,6 +16,7 @@ import { NewArrivalsComponent } from './pages/new-arrivals/new-arrivals.componen
 import { NewsLetterComponent } from './shared/components/news-letter/news-letter.component';
 import { ProductShowComponent } from './pages/product-show/product-show.component';
 import { LoadingIndicatorComponent } from './shared/components/loading-indicator/loading-indicator.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LoadingIndicatorComponent } from './shared/components/loading-indicator
     NewsLetterComponent,
     ProductShowComponent,
     LoadingIndicatorComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
