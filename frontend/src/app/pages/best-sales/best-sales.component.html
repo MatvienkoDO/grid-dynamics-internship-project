@@ -5,24 +5,22 @@
   <p class="text">
     Lorem Ipsum is simply dummy text of the printing and typesetting industry
   </p>
-  <div class="cards-container">
+
+  <div class="cards-container"
+    [class.cards-container_loading]="!(products$ | async)">
+
+    <app-loading-indicator
+      *ngIf="!(products$ | async)"
+      class="cards-container__loading-indicator">
+    </app-loading-indicator>
+
     <app-card-product-small
-      id="0"
-      image-url="/assets/images/Product_Img-4.png"
-      title="Reebok Track Jacket"
-      price="100">
-    </app-card-product-small>
-    <app-card-product-small
-      id="1"
-      image-url="/assets/images/Product_Img-4.png"
-      title="Reebok Track Jacket"
-      price="101">
-    </app-card-product-small>
-    <app-card-product-small
-      id="2"
-      image-url="/assets/images/Product_Img-4.png"
-      title="Reebok Track Jacket"
-      price="102">
+      *ngFor="let product of products$ | async"
+      [id]="product.id"
+      [image-url]="product.images[0]"
+      [title]="product.name"
+      [price]="product.price"
+      (add-to-cart)="addProductToCart($event)">
     </app-card-product-small>
   </div>
 </div>

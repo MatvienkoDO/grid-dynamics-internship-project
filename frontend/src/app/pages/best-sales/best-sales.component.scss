@@ -6,10 +6,17 @@
 
 .best-sales-wrapper {
   @include container;
+}
 
-  .cards-container {
-    @include flex;
-    padding: 80px 0 0 0;
+.cards-container {
+  @include flex;
+  padding: 80px 0 0 0;
+
+  &_loading {
+    height: 274px;
   }
 
+  &__loading-indicator {
+    margin: auto;
+  }
 }

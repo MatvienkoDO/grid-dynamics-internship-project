@@ -1,0 +1,9 @@
+<ng-container *ngIf="!errorMessage; else errorTemplate">
+  <!-- TODO: realize regular loading indicator -->
+  Loading...
+</ng-container>
+
+<ng-template #errorTemplate>
+  <!-- TODO: realize showing of errorMessage -->
+  {{errorMessage}}
+</ng-template>
