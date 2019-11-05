@@ -11,14 +11,14 @@ import { Product, Filter } from '../../models'
 export class ProductsService {
   constructor(private readonly http: HttpClient) { }
 
-  getProducts(skip: number = 0, limit: number = 0): Observable<Product> {
+  getProducts(skip: number = 0, limit: number = 0): Observable<Product[]> {
     const url = this.createBaseUrl(skip, limit);
-    return this.http.get<Product>(url);
+    return this.http.get<Product[]>(url);
   }
 
-  getProductsByFilters(skip: number = 0, limit: number = 0, filter: Filter): Observable<Product> {
+  getProductsByFilters(skip: number = 0, limit: number = 0, filter: Filter): Observable<Product[]> {
     const url = this.createUrlWithFilter(skip, limit, filter);
-    return this.http.get<Product>(url);
+    return this.http.get<Product[]>(url);
   }
 
   private createBaseUrl(skip: number = 0, limit: number = 0) {
