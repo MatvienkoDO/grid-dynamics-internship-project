@@ -35,6 +35,8 @@ export class ProductController {
     try {
       response.data = await product;
     } catch (err) {
+      // FIXME: all possible exceptions from service will look like 'not found' even it is not such
+      // err is not actually used
       throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
     }
     return response;
@@ -46,6 +48,7 @@ export class ProductController {
     try {
       response.data = await this.productService.update(id, updateProductDto);
     } catch (err) {
+      // FIXME: all possible exceptions from service will look like 'not found' even it is not such
       throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
     }
     return response;
