@@ -9,9 +9,10 @@
 
   .cards-container {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     padding: 80px 0;
-    @include for-phone-intermediate {
+    @include for-tablet-intermediate {
       justify-content: center;
     }
   }
