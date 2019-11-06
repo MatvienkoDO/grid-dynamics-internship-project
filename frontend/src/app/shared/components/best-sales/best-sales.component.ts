@@ -4,6 +4,8 @@ import { Subscription, Subject } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services';
 import { Product } from 'src/app/shared/models';
 import { CardProduct } from 'src/app/shared/models/card-product';
+// FIXME: transfer product response to frontend models
+import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
 
 @Component({
   selector: 'app-best-sales',
@@ -19,9 +21,14 @@ export class BestSalesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.productsService.getProducts(0, 3).subscribe({
-      next: (products: Product[]) => {
+      next: (products: ProductResponse) => {
         this.subscription.unsubscribe();
-        this.products$.next(products);
+
+        if (products && Array.isArray(products.data)) {
+          this.products$.next(products.data);
+        } else {
+          throw 'incorrect data';
+        }
       }
     });
   }

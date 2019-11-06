@@ -63,6 +63,12 @@
   }
 }
 
+@mixin for-500px {
+  @media (max-width: 500px) {
+    @content;
+  }
+}
+
 @mixin for-phone {
   @media (max-width: 415px) {
     @content;

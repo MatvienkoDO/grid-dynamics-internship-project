@@ -11,6 +11,9 @@
   font-size: 52px;
   font-weight: bold;
   text-transform: uppercase;
+  @include for-phone-intermediate {
+    font-size: 30px;
+  }
 }
 
 .title-big_primary-color {
@@ -41,5 +44,22 @@
   @include for-phone-intermediate {
     font-size: 12px;
     line-height: 2;
+  }
+
+  &_marker {
+    margin: 0;
+    font-family: Poppins;
+    color: #3c4751;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 29.97px;
+    @include for-phone-intermediate {
+      font-size: 12px;
+      line-height: 2;
+    }
+  }
+
+  &_large {
+    font-size: 20px;
   }
 }
