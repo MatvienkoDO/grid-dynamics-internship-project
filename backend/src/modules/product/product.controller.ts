@@ -28,7 +28,7 @@ export class ProductController {
     return response;
   }
 
-  @Get(':id')
+  @Get('by-id/:id')
   async findById(@Param('id') id: string) {
     const product = this.productService.findById(id);
     const response = new ProductResponse();
@@ -61,7 +61,7 @@ export class ProductController {
     return response;
   }
 
-  @Get('slider/products')
+  @Get('for-slider')
   async findForSlider(@Query() query) {
     const products = this.productService.findAllSliders(Number(query.skip), Number(query.limit));
 
