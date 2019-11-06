@@ -18,7 +18,11 @@ export class ProductService {
       null,
       null,
       { skip, limit }
-    ).exec();
+    );
+  }
+
+  async findById(id: string): Promise<Product> {
+    return await this.productModel.findById(id);
   }
 
   async update(id: string, updateProductDto: ProductDto): Promise<Product> {
@@ -27,5 +31,9 @@ export class ProductService {
       updateProductDto
     );
     return this.productModel.findById(id);
+  }
+
+  async getCount(): Promise<number> {
+    return this.productModel.count({});
   }
 }
