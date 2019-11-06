@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable, combineLatest, Subscription, interval } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
 import { ProductsService } from '../../services';
@@ -11,10 +11,12 @@ import { Product } from '../../models';
   styleUrls: ['./slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnDestroy {
   public readonly current$ = new BehaviorSubject<number>(0);
   public currentProduct$: Observable<Product>;
   public products$: Observable<Product[]>;
+
+  private productChangerSubscription: Subscription;
 
   constructor(private readonly productsService: ProductsService) { }
 
@@ -31,6 +33,22 @@ export class SliderComponent implements OnInit {
 
     this.currentProduct$ = combineLatest(this.current$, this.products$)
       .pipe(map(([slideNumber, products]) => products[slideNumber]));
+
+    this.productChangerSubscription = combineLatest(interval(5000), this.products$)
+      .pipe(map(([_, products]) => products ? products.length : 0))
+      .subscribe(productsNumber => {
+        const possibleNext = this.current$.value + 1;
+
+        const next = possibleNext < productsNumber
+          ? possibleNext
+          : 0;
+
+        this.current$.next(next);
+      });
+  }
+
+  ngOnDestroy() {
+    this.productChangerSubscription.unsubscribe();
   }
 
   public readonly changeSlide = (newCurrent: number) => {
