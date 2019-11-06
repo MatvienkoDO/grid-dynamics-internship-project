@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { apiHost } from '../../../../environments/environment';
-import { Product, Filter } from '../../models'
+import { Filter } from '../../models';
+// FIXME: transfer product response to frontend models
+import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +13,14 @@ import { Product, Filter } from '../../models'
 export class ProductsService {
   constructor(private readonly http: HttpClient) { }
 
-  getProducts(skip: number = 0, limit: number = 0): Observable<Product[]> {
+  getProducts(skip: number = 0, limit: number = 0): Observable<ProductResponse> {
     const url = this.createBaseUrl(skip, limit);
-    return this.http.get<Product[]>(url);
+    return this.http.get<ProductResponse>(url);
   }
 
-  getProductsByFilters(skip: number = 0, limit: number = 0, filter: Filter): Observable<Product[]> {
+  getProductsByFilters(skip: number = 0, limit: number = 0, filter: Filter): Observable<ProductResponse> {
     const url = this.createUrlWithFilter(skip, limit, filter);
-    return this.http.get<Product[]>(url);
+    return this.http.get<ProductResponse>(url);
   }
 
   private createBaseUrl(skip: number = 0, limit: number = 0) {
