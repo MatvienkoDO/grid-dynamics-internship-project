@@ -5,6 +5,9 @@
 .news-letter-container {
   @include container;
   margin-bottom: 120px;
+  @include for-phone-intermediate {
+    margin-bottom: 60px;
+  }
 }
 
 .news-letter {
@@ -13,10 +16,19 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
+  @include for-tablet-portrait-up {
+    flex-direction: column;
+  }
+  @include for-phone-intermediate {
+    padding: 10px;
+  }
 
   &__description {
     display: flex;
     align-items: center;
+    @include for-phone-intermediate {
+      flex-direction: column;
+    }
   }
 
   &__title {
@@ -24,24 +36,36 @@
     margin-right: 24px;
     @include fonts ($primary-color, Poppins, 18px, 600);
     text-transform: uppercase;
+    @include for-phone-intermediate {
+      margin-right: 0;
+    }
   }
 
   &__text {
     margin: 0;
     @include fonts ($text-color, Poppins, 14px);
     font-style: italic;
+    @include for-phone-smaller {
+      display: none;
+    }
   }
 
   &__icon {
     height: 11px;
     width: 18px;
     margin-right: 10px;
+    @include for-phone-smaller {
+      display: none;
+    }
   }
 
   &__form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    @include for-phone-smaller {
+      flex-direction: column;
+    }
   }
 
   &__input {
@@ -50,6 +74,15 @@
     border: none;
     border-bottom: 2px solid transparent;
     @include fonts ($black, Poppins, 14px);
+    @media (max-width: 1100px) {
+      width: 150px;
+    }
+    @include for-phone-smaller {
+      width: 250px;
+      margin: 10px 0;
+      margin-right: 0;
+      border-bottom: 2px solid #ff5912;
+    }
 
     &::placeholder {
       font-style: italic;
@@ -60,10 +93,6 @@
       border-bottom: 2px solid #ff5912;
       transition: width 2s;
       -webkit-transition: width 2s;
-    }
-
-    @media (max-width: 1100px) {
-      width: 150px;
     }
   }
 

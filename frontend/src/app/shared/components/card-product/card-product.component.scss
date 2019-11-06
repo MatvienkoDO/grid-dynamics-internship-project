@@ -3,11 +3,15 @@
 @import 'icon';
 
 .card-product {
-  //margin: 0 15px 30px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: #fff;
-  padding: 37px 30px;
+  //padding: 37px 30px;
   position: relative;
+  //margin: 0 35px 35px;
   width: 270px;
+  height: 365px;
   background: #fefefe;
   text-align: center;
   -webkit-transition-property: -webkit-box-shadow;
@@ -17,6 +21,13 @@
   -webkit-transition-duration: .3s;
   transition-duration: .3s;
   margin-bottom: 30px;
+  @include for-tablet-intermediate {
+    margin: 0 25px 25px;
+  }
+  @include for-phone {
+    margin: 0 0 20px 0;
+    width: 250px;
+  }
 
   &:hover &-hover {
     opacity: 1;
@@ -56,6 +67,9 @@
     padding: 35px 50px 30px 50px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    @include for-phone-intermediate {
+      opacity: 1;
+    }
 
     &__header {
       height: 90px;
@@ -102,15 +116,17 @@
 
       input[type="radio"] {
         display: none;
-        &:checked + label span {
+
+        &:checked+label span {
           color: #ff5912;
-         }
+        }
       }
 
       &__item {
         margin: 0;
         padding: 0 2px;
         display: inline-block;
+
         &_first-child {
           padding-left: 6px;
         }
@@ -139,18 +155,22 @@
 
       input[type="radio"] {
         display: none;
-        &:checked + .list-colors__item .list-colors__prop_red {
+
+        &:checked+.list-colors__item .list-colors__prop_red {
           box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ea454f;
-         }
-         &:checked + .list-colors__item .list-colors__prop_black {
+        }
+
+        &:checked+.list-colors__item .list-colors__prop_black {
           box-shadow: 0 0 0 2px #fff, 0 0 0 4px #41515d;
-         }
-         &:checked + .list-colors__item .list-colors__prop_blue {
+        }
+
+        &:checked+.list-colors__item .list-colors__prop_blue {
           box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3ab3ff;
-         }
-         &:checked + .list-colors__item .list-colors__prop_green {
+        }
+
+        &:checked+.list-colors__item .list-colors__prop_green {
           box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2fd967;
-         }
+        }
       }
 
       &__item {
