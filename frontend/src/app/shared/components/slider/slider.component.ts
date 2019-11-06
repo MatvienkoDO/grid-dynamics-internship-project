@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrls: ['./slider.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent implements OnInit {
-  // FIXME: hotfix of error in template
-  public readonly showcontent = undefined;
-
   constructor() { }
 
   ngOnInit() {
