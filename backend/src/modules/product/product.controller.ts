@@ -53,4 +53,9 @@ export class ProductController {
     }
     return response;
   }
+
+  @Get('best-sales')
+    async findAllBestSales(@Query() query) {
+    return this.productService.findAll(Number(query.skip), Number(query.limit));
+  }
 }
