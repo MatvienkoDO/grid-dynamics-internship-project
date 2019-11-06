@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Patch, Body, Query, Param, Res, HttpStatus, HttpException } from '@nestjs/common';
+import { Controller, Post, Get, Patch, Body, Query, Param, HttpStatus, HttpException } from '@nestjs/common';
 
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
@@ -28,16 +28,19 @@ export class ProductController {
     return response;
   }
 
-  @Get(':id')
+  @Get('by-id/:id')
   async findById(@Param('id') id: string) {
     const product = this.productService.findById(id);
     const response = new ProductResponse();
     try {
       response.data = await product;
     } catch (err) {
-      // FIXME: all possible exceptions from service will look like 'not found' even it is not such
-      // err is not actually used
-      throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
+      // Mongoose returns an error with name CastError when document not found
+      if (err.name === 'CastError') {
+        throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
+      }
+
+      throw err;
     }
     return response;
   }
@@ -48,9 +51,23 @@ export class ProductController {
     try {
       response.data = await this.productService.update(id, updateProductDto);
     } catch (err) {
-      // FIXME: all possible exceptions from service will look like 'not found' even it is not such
-      throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
+      // Mongoose returns an error with name CastError when document not found
+      if (err.name === 'CastError') {
+        throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
+      }
+      
+      throw err;
     }
+    return response;
+  }
+
+  @Get('for-slider')
+  async findForSlider(@Query() query) {
+    const products = this.productService.findAllSliders(Number(query.skip), Number(query.limit));
+
+    const response = new ProductResponse();
+    response.data = await products;
+    
     return response;
   }
 }
