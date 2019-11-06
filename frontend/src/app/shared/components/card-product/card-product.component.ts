@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models/card-product';
+import { CartService } from '../../services';
 
 @Component({
   selector: 'app-card-product[id][image-url][title][price][sizes][colors]',
@@ -25,7 +26,9 @@ export class CardProductComponent implements OnInit {
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly color$ = new BehaviorSubject<string | undefined>(undefined);
 
-  constructor() { }
+  constructor(
+    private cartService: CartService
+  ) { }
 
   ngOnInit() {
   }
@@ -58,5 +61,13 @@ export class CardProductComponent implements OnInit {
 
       this.error.emit(message);
     }  
+  }
+
+  onAddToCart() {
+    this.cartService.addToCart({
+      id: this.id,
+      color: this.color$.value,
+      size: this.size$.value,
+    });
   }
 }

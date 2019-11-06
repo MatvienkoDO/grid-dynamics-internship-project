@@ -27,6 +27,7 @@ import {
   SaleComponent,
   SliderComponent,
 } from './shared/components';
+import { CartService } from './shared/services/index';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import {
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
