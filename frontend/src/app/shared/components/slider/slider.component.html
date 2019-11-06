@@ -1,6 +1,6 @@
 <div
   class="slider-wrapper"
-  [style.backgroundImage]="'url(' + (currentProduct$ | async)?.sliderImage + ')'">
+  [style.backgroundImage]="'url(' + ((currentProduct$ | async)?.sliderImage || '') + ')'">
 
   <div class="tabs-content">
     <div
