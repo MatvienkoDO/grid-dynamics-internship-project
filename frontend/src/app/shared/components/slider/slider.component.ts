@@ -34,7 +34,7 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.currentProduct$ = combineLatest(this.current$, this.products$)
       .pipe(map(([slideNumber, products]) => products[slideNumber]));
 
-    this.productChangerSubscription = combineLatest(interval(5000), this.products$)
+    this.productChangerSubscription = combineLatest(interval(7000), this.products$)
       .pipe(map(([_, products]) => products ? products.length : 0))
       .subscribe(productsNumber => {
         const possibleNext = this.current$.value + 1;
@@ -53,5 +53,10 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   public readonly changeSlide = (newCurrent: number) => {
     this.current$.next(newCurrent);
+  }
+
+  public readonly orderProduct = (productId: string) => {
+    // TODO: realize addition to cart
+    alert(`It is not realized yet. Product id: ${productId}`);
   }
 }

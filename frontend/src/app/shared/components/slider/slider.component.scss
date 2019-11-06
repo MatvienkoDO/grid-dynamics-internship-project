@@ -96,7 +96,10 @@
   }
 
   &__button-container {
-    padding-left: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 30px;
     @include flex(baseline);
   }
 }
