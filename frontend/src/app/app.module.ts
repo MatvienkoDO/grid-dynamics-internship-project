@@ -27,6 +27,7 @@ import {
   SaleComponent,
   SliderComponent,
 } from './shared/components';
+import { httpInterceptorProviders } from './core/interceptors/http interceptors';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import {
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
