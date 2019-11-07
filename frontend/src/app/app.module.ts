@@ -28,7 +28,6 @@ import {
   SaleComponent,
   SliderComponent,
 } from './shared/components';
-import { CartService } from './shared/services/index';
 import { CartComponent } from './shared/components/cart/cart.component';
 import { FavouritesComponent } from './shared/components/favourites/favourites.component';
 
@@ -59,7 +58,6 @@ import { FavouritesComponent } from './shared/components/favourites/favourites.c
     HttpClientModule,
     NotificationModule,
   ],
-  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
