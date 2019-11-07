@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { NotificationModule } from './modules/notification/notification.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import {
 } from './shared/components';
 import { httpInterceptorProviders } from './core/interceptors/http interceptors';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,7 @@ import { httpInterceptorProviders } from './core/interceptors/http interceptors'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NotificationModule,
   ],
   providers: [
     httpInterceptorProviders

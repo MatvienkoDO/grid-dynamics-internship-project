@@ -8,4 +8,5 @@ export interface Product {
   sizes: string[];
   colors: string[];
   images: string[];
+  sliderImage?: string;
 }

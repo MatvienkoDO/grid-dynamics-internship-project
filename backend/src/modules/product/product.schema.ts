@@ -9,6 +9,7 @@ export const ProductSchema = new Schema({
   sizes: [String],
   colors: [String],
   images: [String],
+  sliderImage: String,
 });
 
 ProductSchema.set('toJSON', {

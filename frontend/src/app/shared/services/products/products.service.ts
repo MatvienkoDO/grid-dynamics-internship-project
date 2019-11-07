@@ -23,6 +23,11 @@ export class ProductsService {
     return this.http.get<ProductResponse>(url);
   }
 
+  getProductsForSlider(): Observable<ProductResponse> {
+    const url = `${apiHost}/api/products/for-slider`;
+    return this.http.get<ProductResponse>(url);
+  }
+
   private createBaseUrl(skip: number = 0, limit: number = 0) {
     return `${apiHost}/api/products?skip=${skip}&limit=${limit}`;
   }
