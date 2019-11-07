@@ -24,7 +24,6 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
           this.notificationService.error('Resourse not found');
-          console.log(`Here is an error with ${error.status} code `);
         } else if (error.status === 500) {
           this.notificationService.error('Oooops... something goes wrong!');
         }
