@@ -6,7 +6,6 @@ import { Product, CardProduct } from 'src/app/shared/models';
 import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
 // FIXME: transfer product response to frontend models
 import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
-import { CardProductComponent } from '../card-product/card-product.component';
 
 @Component({
   selector: 'app-new-arrivals',
