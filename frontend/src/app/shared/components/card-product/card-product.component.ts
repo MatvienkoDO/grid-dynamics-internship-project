@@ -45,6 +45,7 @@ export class CardProductComponent implements OnInit {
     if (size && color) {
       const data: CardProduct = {
         id: this.id,
+        title: this.title,
         size,
         color
       };
