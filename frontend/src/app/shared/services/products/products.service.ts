@@ -33,6 +33,11 @@ export class ProductsService {
     return this.http.get<ProductResponse>(url);
   }
 
+  getRelatedProducts(id: string, skip: number = 0, limit: number = 0) {
+    // TODO: make real endpoint and request to it
+    return this.getProducts(skip, limit);
+  }
+
   private createBaseUrl(skip: number = 0, limit: number = 0) {
     return `${apiHost}/api/products?skip=${skip}&limit=${limit}`;
   }
