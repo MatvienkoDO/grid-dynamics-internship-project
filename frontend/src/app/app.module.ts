@@ -57,6 +57,7 @@ import {
     HttpClientModule,
     NotificationModule,
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
