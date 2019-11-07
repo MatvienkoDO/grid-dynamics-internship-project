@@ -2,6 +2,12 @@
 @import 'variables';
 @import 'mixins';
 
+button[disabled]{
+  background: #cad1cd;
+  color: #ffffff3b;
+  cursor: default;
+}
+
 .button-container {
   position: relative;
 }
@@ -48,6 +54,7 @@
   }
 
   &_common {
+    position: relative;
     min-width: 100px;
     padding: 16px 30px;
     @include fonts (#ffffff, Poppins, 14px, 400);
