@@ -64,7 +64,6 @@ export class NewArrivalsComponent implements OnInit {
   }
 
   public addToFavourites(cardProduct: CardProduct) {
-    console.log('addToFavourites');
     this.favouritesService.addToFavourites(cardProduct);
   }
 }
