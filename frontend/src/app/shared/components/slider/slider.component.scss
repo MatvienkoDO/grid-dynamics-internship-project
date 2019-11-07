@@ -24,26 +24,19 @@
     @include for-phone-intermediate {
       display: none;
     }
-  }
-  &__articles > .slider-container {
-    display: none;
+
+    &_active {
+      background-color: $primary-color;
+      height: 36px;
+    }
   }
 }
 
-input[type="radio"] {
-  display: none;
-
-  &:checked+label {
-    background-color: $primary-color;
-    height: 36px;
-  }
-}
 .slider-wrapper {
   @include flex;
   justify-content: flex-start;
   height: 650px;
   padding: 0 0 0 60px;
-  background-image: url(/assets/images/home-layer_1.png);
   background-size: cover;
   @include for-tablet-intermediate {
     padding: 0 0 0 30px;
@@ -54,62 +47,60 @@ input[type="radio"] {
   @include for-phone-intermediate {
     height: auto;
   }
-
-  .slider-container {
-    justify-content: center;
-    align-items: baseline;
-    flex-direction: column;
-    padding-left: 90px;
-    height: inherit;
-    @include for-phone-intermediate {
-      padding-left: 10px;
-    }
-    @include for-phone {
-      padding-left: 7px;
-    }
-    
-
-    &__title {
-      padding-bottom: 29px;
-      @include for-phone-intermediate {
-        padding-left: 0;
-        font-size: 36px;
-      }
-    }
-
-    &__desc {
-      margin: 0;
-      padding-bottom: 6px;
-      @include fonts (#3c4751, Poppins, 18px, 500);
-      line-height: 29.97px;
-      @include for-phone-intermediate {
-        font-size: 14px;
-      }
-
-      &_primary-color {
-        padding-left: 9px;
-        color: $primary-color;
-      }
-    }
-
-    &__order {
-      @include flex;
-      padding-top: 60px;
-    }
-
-    &__button-container {
-      padding-left: 30px;
-      @include flex(baseline);
-    }
-  }
 }
-#tab1:checked~.tabs-content__articles #content1,
-#tab2:checked~.tabs-content__articles #content2,
-#tab3:checked~.tabs-content__articles #content3{
+
+.slider-container {
   display: flex;
   opacity: 1;
-  -webkit-animation: tabs-changing-up 2s;
   animation: tabs-changing-up 2s;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: column;
+  padding-left: 90px;
+  height: inherit;
+  @include for-phone-intermediate {
+    padding-left: 10px;
+  }
+  @include for-phone {
+    padding-left: 7px;
+  }
+  
+
+  &__title {
+    padding-bottom: 29px;
+    @include for-phone-intermediate {
+      padding-left: 0;
+      font-size: 36px;
+    }
+  }
+
+  &__desc {
+    margin: 0;
+    padding-bottom: 6px;
+    @include fonts (#3c4751, Poppins, 18px, 500);
+    line-height: 29.97px;
+    @include for-phone-intermediate {
+      font-size: 14px;
+    }
+
+    &_primary-color {
+      padding-left: 9px;
+      color: $primary-color;
+    }
+  }
+
+  &__order {
+    @include flex;
+    padding-top: 60px;
+  }
+
+  &__button-container {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 30px;
+    @include flex(baseline);
+  }
 }
 
 @-webkit-keyframes tabs-changing-up {
