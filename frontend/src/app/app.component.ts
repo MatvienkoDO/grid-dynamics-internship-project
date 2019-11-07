@@ -39,7 +39,7 @@ export class AppComponent {
     this.subscriptions.push(this.offlineEvent.subscribe(e => {
       this.connectionStatusMessage = 'Connection lost! You are not connected to internet';
       this.connectionStatus = 'offline';
-      this.notificationService.warning('You are online now');
+      this.notificationService.warning('You are offline now');
     }));
   }
 
