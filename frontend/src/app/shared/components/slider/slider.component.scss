@@ -1,0 +1,124 @@
+@import './colors';
+@import 'mixins';
+@import 'variables';
+@import 'fonts';
+@import 'button';
+
+.tabs-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 300px;
+
+  &__item {
+    display: block;
+    width: 10px;
+    height: 20px;
+    background-color: #fff;
+    margin: 0;
+    margin-bottom: 5px;
+    border-radius: 0;
+    outline: none;
+    cursor: pointer;
+    @include for-phone-intermediate {
+      display: none;
+    }
+
+    &_active {
+      background-color: $primary-color;
+      height: 36px;
+    }
+  }
+}
+
+.slider-wrapper {
+  @include flex;
+  justify-content: flex-start;
+  height: 650px;
+  padding: 0 0 0 60px;
+  background-size: cover;
+  @include for-tablet-intermediate {
+    padding: 0 0 0 30px;
+  }
+  @include for-phone-intermediate {
+    padding: 0;
+  }
+  @include for-phone-intermediate {
+    height: auto;
+  }
+}
+
+.slider-container {
+  display: flex;
+  opacity: 1;
+  animation: tabs-changing-up 2s;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: column;
+  padding-left: 90px;
+  height: inherit;
+  @include for-phone-intermediate {
+    padding-left: 10px;
+  }
+  @include for-phone {
+    padding-left: 7px;
+  }
+  
+
+  &__title {
+    padding-bottom: 29px;
+    @include for-phone-intermediate {
+      padding-left: 0;
+      font-size: 36px;
+    }
+  }
+
+  &__desc {
+    margin: 0;
+    padding-bottom: 6px;
+    @include fonts (#3c4751, Poppins, 18px, 500);
+    line-height: 29.97px;
+    @include for-phone-intermediate {
+      font-size: 14px;
+    }
+
+    &_primary-color {
+      padding-left: 9px;
+      color: $primary-color;
+    }
+  }
+
+  &__order {
+    @include flex;
+    padding-top: 60px;
+  }
+
+  &__button-container {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 30px;
+    @include flex(baseline);
+  }
+}
+
+@-webkit-keyframes tabs-changing-up {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tabs-changing-up {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

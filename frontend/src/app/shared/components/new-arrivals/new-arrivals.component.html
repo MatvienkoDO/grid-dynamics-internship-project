@@ -6,7 +6,15 @@
     Lorem Ipsum is simply dummy text of the printing and typesetting industry
   </p>
 
-  <div class="cards-container">
+  <div
+    class="cards-container"
+    [class.cards-container_loading]="!(products$ | async)">
+
+    <app-loading-indicator
+      *ngIf="!(products$ | async)"
+      class="cards-container__loading-indicator">
+    </app-loading-indicator>
+
     <app-card-product
       *ngFor="let product of products$ | async"
       [id]="product.id"
@@ -19,8 +27,11 @@
     </app-card-product>
   </div>
 
-  <!-- TODO: add conditional showing depending on possibility to load more items -->
-  <a class="load-more" (click)="loadMore()">
+  <a
+    *ngIf="canLoadMore$ | async"
+    class="load-more"
+    (click)="loadMore()">
+
     <span class="load-more__circle"></span>
     <span class="load-more__circle"></span>
     <span class="load-more__circle"></span>

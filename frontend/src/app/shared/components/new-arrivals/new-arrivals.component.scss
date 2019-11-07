@@ -38,4 +38,12 @@
   @include for-tablet-intermediate {
     justify-content: center;
   }
+
+  &_loading {
+    height: 615px;
+  }
+
+  &__loading-indicator {
+    margin: auto;
+  }
 }

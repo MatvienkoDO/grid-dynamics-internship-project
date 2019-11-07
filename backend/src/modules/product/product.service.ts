@@ -32,6 +32,28 @@ export class ProductService {
       { skip, limit }
     );
   }
+
+  async findAllSliders(skip: number = 0, limit: number = 3): Promise<Product[]> {
+    return await this.productModel.find(
+      {
+        sliderImage: { $ne: null }
+      },
+      null,
+      { skip, limit }
+    );
+  }
+
+  async update(id: string, updateProductDto: ProductDto): Promise<Product> {
+    await this.productModel.findByIdAndUpdate(
+      id,
+      updateProductDto
+    );
+    return this.productModel.findById(id);
+  }
+
+  async getCount(): Promise<number> {
+    return this.productModel.count({});
+  }
 }
 
 
