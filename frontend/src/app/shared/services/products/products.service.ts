@@ -28,6 +28,11 @@ export class ProductsService {
     return this.http.get<ProductResponse>(url);
   }
 
+  getProductById(id: string) {
+    const url = `${apiHost}/api/products/by-id/${id}`;
+    return this.http.get<ProductResponse>(url);
+  }
+
   private createBaseUrl(skip: number = 0, limit: number = 0) {
     return `${apiHost}/api/products?skip=${skip}&limit=${limit}`;
   }
