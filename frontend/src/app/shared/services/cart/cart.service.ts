@@ -18,9 +18,10 @@ export class CartService {
     private readonly notificationService: NotificationService
   ) {
     this.items$ = this.items;
+    this.init();
   }
 
-  ngOnInit() {
+  init() {
     const itemsFromLocalStorage = this.getItemsFromLocalStorage();
 
     if (itemsFromLocalStorage) {
