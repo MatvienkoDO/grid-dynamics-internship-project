@@ -4,8 +4,7 @@ import { Subscription, Subject } from 'rxjs';
 import { ProductsService } from 'src/app/shared/services';
 import { Product } from 'src/app/shared/models';
 import { CardProduct } from 'src/app/shared/models/card-product';
-// FIXME: transfer product response to frontend models
-import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
+import { ProductResponse } from '../../models/product.response';
 
 @Component({
   selector: 'app-best-sales',
