@@ -1,0 +1,12 @@
+<div class="button-container">
+    <div class="favourites__content">
+        <ul class="favourites__product-list">
+          <li *ngFor="let product of products$ | async">
+            {{ product.title }} {{ product.size }} {{ product.color }}
+            <button (click)="deleteFromFavourites(product)" >Delete</button>
+          </li>
+          <button (click)="clearFavourites()" >Delete All</button>
+        </ul>
+    </div>
+    <button class="button button_account"></button>
+</div>

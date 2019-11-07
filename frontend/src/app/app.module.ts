@@ -30,6 +30,7 @@ import {
 } from './shared/components';
 import { CartService } from './shared/services/index';
 import { CartComponent } from './shared/components/cart/cart.component';
+import { FavouritesComponent } from './shared/components/favourites/favourites.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { CartComponent } from './shared/components/cart/cart.component';
     HomeComponent,
     ProductDetailsComponent,
     CartComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,
