@@ -46,6 +46,8 @@
         border-radius: 0;
         outline: none;
         cursor: pointer;
+        background-repeat: no-repeat;
+        background-position: center;
 
         @include for-500px {
           display: none;
@@ -55,22 +57,8 @@
           margin-right: 0;
         }
 
-        &_1 {
-          background-repeat: no-repeat;
-          background-position: center;
-          background-image: url('/assets/images/Product_Img-mini-1.png');
-        }
-
-        &_2 {
-          background-repeat: no-repeat;
-          background-position: center;
-          background-image: url('/assets/images/Product_Img-mini-2.png');
-        }
-
-        &_3 {
-          background-repeat: no-repeat;
-          background-position: center;
-          background-image: url('/assets/images/Product_Img-mini-3.png');
+        &_active {
+          background-color: $primary-color;
         }
       }
 
@@ -169,6 +157,11 @@
       }
     }
 
+    &__choose-size {
+      display: inline;
+      margin-right: 10px;
+    }
+
     &__size {
       border-right: 2px solid rgba(230, 232, 235, 0.5);
 
@@ -224,6 +217,7 @@
       display: flex;
 
       .form-selection {
+        user-select: none;
         padding-left: 21px;
 
         &__max,
@@ -277,5 +271,13 @@
 
   100% {
     opacity: 1;
+  }
+}
+
+.list-sizes__prop {
+  cursor: pointer;
+
+  &_active {
+    color: $primary-color;
   }
 }
