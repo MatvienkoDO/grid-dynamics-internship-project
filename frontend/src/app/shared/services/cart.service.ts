@@ -9,18 +9,20 @@ const localStorageCartKey = 'CART_ITEMS';
   providedIn: 'root'
 })
 export class CartService {
-  public items$: Observable<CardProduct[]>;
+  public readonly items$: Observable<CardProduct[]>;
 
-  private items: BehaviorSubject<CardProduct[]>;
+  private readonly items = new BehaviorSubject<CardProduct[]>([]);
   
-  constructor() {}
+  constructor() {
+    this.items$ = this.items;
+  }
 
   ngOnInit() {
     const itemsFromLocalStorage = this.getItemsFromLocalStorage();
-    const items = itemsFromLocalStorage || [];
 
-    this.items = new BehaviorSubject(items);
-    this.items$ = this.items;
+    if (itemsFromLocalStorage) {
+      this.items.next(itemsFromLocalStorage);
+    }
   }
 
   addToCart(cardProduct: CardProduct) {
@@ -28,6 +30,24 @@ export class CartService {
       ...this.items.value,
       cardProduct
     ];
+
+    this.saveItemsToLocalStorage(updatedItems);
+
+    this.items.next(updatedItems);
+  }
+
+  deleteFromCart(cardProduct: CardProduct) {
+    const updatedItems = [
+      ...this.items.value.filter(el => el.id !== cardProduct.id)
+    ];
+
+    this.saveItemsToLocalStorage(updatedItems);
+
+    this.items.next(updatedItems);
+  }
+
+  clearCart() {
+    const updatedItems = [];
 
     this.saveItemsToLocalStorage(updatedItems);
 

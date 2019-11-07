@@ -28,6 +28,7 @@ import {
   SliderComponent,
 } from './shared/components';
 import { CartService } from './shared/services/index';
+import { CartComponent } from './shared/components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { CartService } from './shared/services/index';
     LoadingIndicatorComponent,
     HomeComponent,
     ProductDetailsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

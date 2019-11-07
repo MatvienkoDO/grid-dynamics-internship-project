@@ -26,9 +26,7 @@ export class CardProductComponent implements OnInit {
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly color$ = new BehaviorSubject<string | undefined>(undefined);
 
-  constructor(
-    private cartService: CartService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -48,6 +46,7 @@ export class CardProductComponent implements OnInit {
     if (size && color) {
       const data: CardProduct = {
         id: this.id,
+        title: this.title,
         size,
         color
       };
@@ -61,13 +60,5 @@ export class CardProductComponent implements OnInit {
 
       this.error.emit(message);
     }  
-  }
-
-  onAddToCart() {
-    this.cartService.addToCart({
-      id: this.id,
-      color: this.color$.value,
-      size: this.size$.value,
-    });
   }
 }
