@@ -2,8 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Subscription, Subject } from 'rxjs';
 
 import { ProductsService, CartService } from 'src/app/shared/services';
-import { Product } from 'src/app/shared/models';
-import { CardProduct } from 'src/app/shared/models/card-product';
+import { Product, CardProduct } from 'src/app/shared/models';
 // FIXME: transfer product response to frontend models
 import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
 
