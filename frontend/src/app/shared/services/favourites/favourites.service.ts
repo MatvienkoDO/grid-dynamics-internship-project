@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-import { CardProduct } from '../../models/card-product';
-import { NotificationService } from '../notification/notification.service';
+import { CardProduct } from '../../models';
+import { NotificationService } from '..';
 
 const localStorageFavouritesKey = 'FAVOURITES_ITEMS';
 
