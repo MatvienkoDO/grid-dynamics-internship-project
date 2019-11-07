@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -8,7 +8,8 @@ import { FavouritesService } from '../../services';
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.component.html',
-  styleUrls: ['./favourites.component.scss']
+  styleUrls: ['./favourites.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavouritesComponent implements OnInit {
   public products$: Observable<CardProduct[]>;
