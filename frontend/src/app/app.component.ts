@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,5 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'frontend';
-  constructor(private translate: TranslateService) {
-    translate.addLangs(['en', 'ru']);
-    translate.setDefaultLang('ru');
-
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
-  }
+  constructor() { }
 }
