@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { NotificationModule } from './modules/notification/notification.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import {
 import { CartService } from './shared/services/index';
 import { CartComponent } from './shared/components/cart/cart.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,7 @@ import { CartComponent } from './shared/components/cart/cart.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NotificationModule,
   ],
   providers: [CartService],
   bootstrap: [AppComponent]

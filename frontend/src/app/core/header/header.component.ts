@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../../shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected _notify: NotificationService) { }
+    sendInfo() {
+      this._notify.info('This component is not working yet.');
+  }
 
   ngOnInit() {
   }
