@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models/card-product';
-import { CartService } from '../../services';
 
 @Component({
   selector: 'app-card-product[id][image-url][title][price][sizes][colors]',
