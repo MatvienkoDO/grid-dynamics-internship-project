@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { NotificationService } from './shared/services';
 
 
 @Component({
@@ -18,7 +19,9 @@ export class AppComponent {
   connectionStatusMessage: string;
   connectionStatus: string;
 
-  constructor() {}
+  constructor(
+    private readonly notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     /**
@@ -30,13 +33,13 @@ export class AppComponent {
     this.subscriptions.push(this.onlineEvent.subscribe(e => {
       this.connectionStatusMessage = 'Back to online';
       this.connectionStatus = 'online';
-      console.log('Online...');
+      this.notificationService.info('You are online now');
     }));
 
     this.subscriptions.push(this.offlineEvent.subscribe(e => {
       this.connectionStatusMessage = 'Connection lost! You are not connected to internet';
       this.connectionStatus = 'offline';
-      console.log('Offline...');
+      this.notificationService.warning('You are online now');
     }));
   }
 
