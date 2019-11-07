@@ -6,14 +6,14 @@ import { ProductDto } from './dto/product.dto';
 
 @Injectable()
 export class ProductService {
-  constructor(@InjectModel('Product') private readonly productModel: Model<Product>) {}
+  constructor(@InjectModel('Product') private readonly productModel: Model<Product>) { }
 
-  async create(createCatDto: ProductDto): Promise<Product> {
+  async create(createCatDto: ProductDto): Promise<Product> {
     const createdCat = new this.productModel(createCatDto);
     return await createdCat.save();
   }
 
-  async findAll(skip: number = 0, limit: number = 4): Promise<Product[]> {
+  async findAll(skip: number = 0, limit: number = 4): Promise<Product[]> {
     return await this.productModel.find(
       null,
       null,
@@ -23,6 +23,24 @@ export class ProductService {
 
   async findById(id: string): Promise<Product> {
     return await this.productModel.findById(id);
+  }
+
+  async findAllBestSales(skip: number = 0, limit: number = 3): Promise<Product[]> {
+    return await this.productModel.find(
+      null,
+      null,
+      { skip, limit }
+    );
+  }
+
+  async findAllSliders(skip: number = 0, limit: number = 3): Promise<Product[]> {
+    return await this.productModel.find(
+      {
+        sliderImage: { $ne: null }
+      },
+      null,
+      { skip, limit }
+    );
   }
 
   async update(id: string, updateProductDto: ProductDto): Promise<Product> {
@@ -36,14 +54,6 @@ export class ProductService {
   async getCount(): Promise<number> {
     return this.productModel.count({});
   }
-
-  async findAllSliders(skip: number = 0, limit: number = 3): Promise<Product[]> {
-    return await this.productModel.find(
-      {
-        sliderImage: { $ne: null }
-      },
-      null,
-      { skip, limit }
-    );
-  }
 }
+
+
