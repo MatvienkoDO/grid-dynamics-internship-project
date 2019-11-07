@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NotificationModule } from './modules/notification/notification.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NotificationModule } from './modules/notification/notification.module';
 
 import {
   HeaderComponent,
@@ -27,9 +27,10 @@ import {
   ProductShowComponent,
   SaleComponent,
   SliderComponent,
+  CartComponent,
+  FavouritesComponent,
 } from './shared/components';
 import { httpInterceptorProviders } from './core/interceptors/http interceptors';
-
 
 @NgModule({
   declarations: [
@@ -48,6 +49,8 @@ import { httpInterceptorProviders } from './core/interceptors/http interceptors'
     LoadingIndicatorComponent,
     HomeComponent,
     ProductDetailsComponent,
+    CartComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,
