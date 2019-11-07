@@ -26,6 +26,7 @@ import {
   ProductShowComponent,
   SaleComponent,
   SliderComponent,
+  RelatedProductsComponent,
 } from './shared/components';
 
 @NgModule({
@@ -45,6 +46,7 @@ import {
     LoadingIndicatorComponent,
     HomeComponent,
     ProductDetailsComponent,
+    RelatedProductsComponent,
   ],
   imports: [
     BrowserModule,
