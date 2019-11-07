@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../models/card-product';
+import { NotificationService } from './index';
 
 const localStorageCartKey = 'CART_ITEMS';
 
@@ -13,7 +14,9 @@ export class CartService {
 
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
   
-  constructor() {
+  constructor(
+    private readonly notificationService: NotificationService
+  ) {
     this.items$ = this.items;
   }
 
@@ -34,6 +37,8 @@ export class CartService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+
+    this.notificationService.info(`${cardProduct.title} has been added`);
   }
 
   deleteFromCart(cardProduct: CardProduct) {
@@ -44,6 +49,8 @@ export class CartService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+
+    this.notificationService.warning(`${cardProduct.title} has been removed`);
   }
 
   clearCart() {
@@ -52,6 +59,8 @@ export class CartService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+
+    this.notificationService.warning('Cart has been cleared');
   }
 
   private getItemsFromLocalStorage(): CardProduct[] | null {
