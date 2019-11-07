@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { BehaviorSubject, Observable, combineLatest, Subscription, interval } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
-import { ProductsService } from '../../services';
+import { ProductsService, CartService } from '../../services';
 import { Product } from '../../models';
 
 @Component({
@@ -18,7 +18,10 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   private productChangerSubscription: Subscription;
 
-  constructor(private readonly productsService: ProductsService) { }
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly cartService: CartService  
+  ) { }
 
   ngOnInit() {
     this.products$ = this.productsService.getProductsForSlider()
@@ -56,7 +59,9 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
 
   public readonly orderProduct = (productId: string) => {
-    // TODO: realize addition to cart
-    alert(`It is not realized yet. Product id: ${productId}`);
+    this.cartService.addToCart({
+      id: productId,
+      title: 'this.currentProduct$.'
+    });
   }
 }

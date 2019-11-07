@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../models/card-product';
-import { NotificationService } from './index';
+import { NotificationService } from './notification/notification.service';
 
 const localStorageCartKey = 'CART_ITEMS';
 

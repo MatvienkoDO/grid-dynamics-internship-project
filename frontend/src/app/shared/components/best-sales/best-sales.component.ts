@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
 
-import { ProductsService } from 'src/app/shared/services';
+import { ProductsService, CartService } from 'src/app/shared/services';
 import { Product } from 'src/app/shared/models';
 import { CardProduct } from 'src/app/shared/models/card-product';
 // FIXME: transfer product response to frontend models
@@ -17,7 +17,10 @@ export class BestSalesComponent implements OnInit, OnDestroy {
   public readonly products$ = new Subject<Product[]>();
   private subscription?: Subscription = undefined;
 
-  constructor(private readonly productsService: ProductsService) { }
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly cartService: CartService
+  ) { }
 
   ngOnInit() {
     this.subscription = this.productsService.getProducts(0, 3).subscribe({
@@ -40,7 +43,9 @@ export class BestSalesComponent implements OnInit, OnDestroy {
   }
 
   public readonly addProductToCart = (productInfo: CardProduct) => {
-    // TODO: realize addition to cart
-    alert(`It is not realized yet. Product id: ${productInfo.id}`);
+    this.cartService.addToCart({
+      id: productInfo.id,
+      title: productInfo.title
+    });
   }
 }
