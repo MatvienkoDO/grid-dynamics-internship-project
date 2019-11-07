@@ -42,9 +42,6 @@ export class BestSalesComponent implements OnInit, OnDestroy {
   }
 
   public readonly addProductToCart = (productInfo: CardProduct) => {
-    this.cartService.addToCart({
-      id: productInfo.id,
-      title: productInfo.title
-    });
+    this.cartService.addToCart(productInfo);
   }
 }
