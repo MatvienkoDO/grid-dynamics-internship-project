@@ -4,8 +4,7 @@ import { Observable } from 'rxjs';
 
 import { apiHost } from '../../../../environments/environment';
 import { Filter } from '../../models';
-// FIXME: transfer product response to frontend models
-import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
+import { ProductResponse } from '../../models/product.response';
 
 @Injectable({
   providedIn: 'root'

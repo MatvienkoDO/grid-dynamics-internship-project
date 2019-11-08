@@ -1,9 +1,9 @@
 <div class="new-arrivals-wrapper section-wrapper">
   <h2 class="title-medium">
-    new <span class="title-medium title-medium_primary-color">arrivals</span>
+    {{ 'new arrivals.new' | translate }} <span class="title-medium title-medium_primary-color">{{ 'new arrivals.arrivals' | translate }}</span>
   </h2>
   <p class="text">
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry
+    {{ 'new arrivals.description' | translate }}
   </p>
 
   <div
@@ -23,7 +23,10 @@
       [price]="product.price"
       currency-sign="$"
       [sizes]="product.sizes"
-      [colors]="product.colors">
+      [colors]="product.colors"
+      (add-to-cart)="addToCart($event)"
+      (add-to-favorite)="addToFavourites($event)"
+      >
     </app-card-product>
   </div>
 

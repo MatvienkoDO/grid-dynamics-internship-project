@@ -2,10 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, share, map } from 'rxjs/operators';
 
-import { Product } from 'src/app/shared/models';
-import { ProductsService } from 'src/app/shared/services';
-// FIXME: transfer product response to frontend models
-import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
+import { Product, CardProduct } from 'src/app/shared/models';
+import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
+import { ProductResponse } from '../../models/product.response';
 
 @Component({
   selector: 'app-new-arrivals',
@@ -19,7 +18,11 @@ export class NewArrivalsComponent implements OnInit {
 
   private readonly productsNumbers = new BehaviorSubject<number>(4);
 
-  constructor(private readonly productsService: ProductsService) { }
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly cartService: CartService,
+    private readonly favouritesService: FavouritesService
+  ) { }
 
   ngOnInit() {
     const productResponses: Observable<ProductResponse> = this.productsNumbers
@@ -54,5 +57,13 @@ export class NewArrivalsComponent implements OnInit {
     this.productsNumbers.next(
       this.productsNumbers.value + 4
     );
+  }
+
+  public addToCart(cardProduct: CardProduct) {
+    this.cartService.addToCart(cardProduct);
+  }
+
+  public addToFavourites(cardProduct: CardProduct) {
+    this.favouritesService.addToFavourites(cardProduct);
   }
 }
