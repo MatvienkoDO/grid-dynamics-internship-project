@@ -8,7 +8,9 @@ import { MailService } from '../../services';
   styleUrls: ['./news-letter.component.scss']
 })
 export class NewsLetterComponent implements OnInit {
-  dataForm = {};
+  dataForm = {
+    email: ''
+  };
   loading = false;
 
   constructor(private mailService: MailService) { }
@@ -20,7 +22,8 @@ export class NewsLetterComponent implements OnInit {
     this.mailService.post(this.dataForm).subscribe(() => {
       this.loading = false;
     });
-    this.dataForm = {};
+
+    this.dataForm.email = '';
   }
 
   ngOnInit() {
