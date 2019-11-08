@@ -14,35 +14,34 @@
     z-index: 1;
     height: 0;
     width: 180px;
+    
     transition: height .5s ease;
     transition-delay: .4s;
 
-    &:hover .cart__product-list {
-      height: 123px;
-      z-index: 3;
-      transition-delay: 0s;
-    }
   }
 
   &__product-list {
-    background: #fff;
     margin: 0;
     padding: 0;
     overflow: hidden;
     height: 100%;
+    @include fonts (#34404b, Poppins, 12px, 400);
+    line-height: 2;
+    background: #fff;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 
-    &:hover {
-      height: 123px;
-      z-index: 3;
-      transition-delay: 0s;
-    }
+  }
+  &__product-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 }
 
 .button-container:hover .cart__product-list {
-  height: 123px;
+  padding: 20px 10px;
+  height: auto;
   z-index: 3;
   transition-delay: 0s;
 }
