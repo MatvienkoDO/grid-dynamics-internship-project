@@ -3,10 +3,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, share, map } from 'rxjs/operators';
 
 import { Product, CardProduct } from 'src/app/shared/models';
-import { ProductsService, CartService } from 'src/app/shared/services';
-// FIXME: transfer product response to frontend models
-import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
-import { CardProductComponent } from '../card-product/card-product.component';
+import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
+import { ProductResponse } from '../../models/product.response';
 
 @Component({
   selector: 'app-new-arrivals',
@@ -22,7 +20,8 @@ export class NewArrivalsComponent implements OnInit {
 
   constructor(
     private readonly productsService: ProductsService,
-    private cartService: CartService
+    private readonly cartService: CartService,
+    private readonly favouritesService: FavouritesService
   ) { }
 
   ngOnInit() {
@@ -62,5 +61,9 @@ export class NewArrivalsComponent implements OnInit {
 
   public addToCart(cardProduct: CardProduct) {
     this.cartService.addToCart(cardProduct);
+  }
+
+  public addToFavourites(cardProduct: CardProduct) {
+    this.favouritesService.addToFavourites(cardProduct);
   }
 }

@@ -2,10 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Subscription, Subject } from 'rxjs';
 
 import { ProductsService, CartService } from 'src/app/shared/services';
-import { Product } from 'src/app/shared/models';
-import { CardProduct } from 'src/app/shared/models/card-product';
-// FIXME: transfer product response to frontend models
-import { ProductResponse } from '../../../../../../backend/src/modules/product/product.response';
+import { Product, CardProduct } from 'src/app/shared/models';
+import { ProductResponse } from '../../models/product.response';
 
 @Component({
   selector: 'app-best-sales',
@@ -43,9 +41,6 @@ export class BestSalesComponent implements OnInit, OnDestroy {
   }
 
   public readonly addProductToCart = (productInfo: CardProduct) => {
-    this.cartService.addToCart({
-      id: productInfo.id,
-      title: productInfo.title
-    });
+    this.cartService.addToCart(productInfo);
   }
 }

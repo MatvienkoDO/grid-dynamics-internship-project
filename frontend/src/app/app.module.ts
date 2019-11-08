@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NotificationModule } from './modules/notification/notification.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NotificationModule } from './modules/notification/notification.module';
 
 import {
   HeaderComponent,
@@ -27,10 +27,10 @@ import {
   ProductShowComponent,
   SaleComponent,
   SliderComponent,
+  CartComponent,
+  FavouritesComponent,
 } from './shared/components';
 import { CartService } from './shared/services/index';
-import { CartComponent } from './shared/components/cart/cart.component';
-
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { CartComponent } from './shared/components/cart/cart.component';
     HomeComponent,
     ProductDetailsComponent,
     CartComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,
