@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, share, map } from 'rxjs/operators';
 
@@ -32,6 +33,7 @@ export class NewArrivalsComponent implements OnInit {
     private readonly cartService: CartService,
     private readonly favouritesService: FavouritesService,
     private readonly notificationService: NotificationService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
@@ -67,6 +69,10 @@ export class NewArrivalsComponent implements OnInit {
     this.productsNumbers.next(
       this.productsNumbers.value + 4
     );
+  }
+
+  public readonly goToPdp = (cardProduct: CardProduct) => {
+    this.router.navigateByUrl(`/product/${cardProduct.id}`);
   }
 
   public addToCart(cardProduct: CardProduct) {
