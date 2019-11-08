@@ -49,5 +49,18 @@
   "news letter": {
     "title": "news letter",
     "description": "join us now to get all news and special offers"
-  }
+  },
+
+  "related products": {
+    "related": "related",
+    "products": "products",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+  },
+
+  "product show": {
+    "chooseSize": "Choose Size",
+    "chooseQuantity": "Choose Quantity"
+  },
+
+  "order now": "order now"
 }

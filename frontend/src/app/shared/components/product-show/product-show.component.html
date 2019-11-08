@@ -37,7 +37,7 @@
       <div class="product-details__choose">
         <div class="product-details__size">
           <p class="text_marker product-details__choose-size">
-            Choos Size
+            {{ 'product show.chooseSize' | translate }}
           </p>
           <ng-container *ngFor="let size of sizes; last as isLast">
             <span class="list-sizes__item list-sizes__item_first-child">
@@ -53,7 +53,7 @@
         </div>
         <div class="product-details__quantity">
           <p class="text_marker">
-            Choos Quantity
+            {{ 'product show.chooseQuantity' | translate }}
           </p>
           <form class="form-selection">
             <span
@@ -72,7 +72,7 @@
       </div>
       <div class="product-details__order">
        <div class="product-details__price">
-         <p class="text_marker text_large">Price : {{currency}}{{price}}</p>
+         <p class="text_marker text_large">{{ 'price' | translate }} : {{currency}}{{price}}</p>
        </div>
         <div class="product-details__order-links">
           <div class="list-options">
@@ -97,7 +97,7 @@
           <a
             class="button button_order product-details__button"
             (click)="orderNow()">
-            order now
+            {{ 'order now' | translate }}
           </a>
         </div>
       </div>
