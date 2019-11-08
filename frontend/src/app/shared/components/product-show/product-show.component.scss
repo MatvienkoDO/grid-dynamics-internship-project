@@ -164,6 +164,10 @@
 
     &__size {
       border-right: 2px solid rgba(230, 232, 235, 0.5);
+      padding-right: 50px;
+      @include for-tablet-portrait-up {
+        padding-right: 20%;
+      }
 
       @include for-500px {
         border-right: none;
@@ -275,6 +279,7 @@
 }
 
 .list-sizes__prop {
+  @include fonts (#34404b, Poppins, 14px, 400);
   cursor: pointer;
 
   &_active {
