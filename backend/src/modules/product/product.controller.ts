@@ -12,8 +12,7 @@ export class ProductController {
   @Post()
   async create(@Body() createProductDto: ProductDto) {
     const data = await this.productService.create(createProductDto);
-    const response = new ProductResponse(data);
-    return response;
+    return new ProductResponse(data);
   }
 
   @Get()

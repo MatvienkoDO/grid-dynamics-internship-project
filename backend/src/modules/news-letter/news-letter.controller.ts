@@ -22,7 +22,7 @@ export class NewsLetterController {
   update(
     @Param('id') id: string,
     @Body() updateNewsLetterDto: NewsLetterDto
-    ): Promise<NewsLetter> {
+  ): Promise<NewsLetter> {
     return this.newsLetterService.update(id, updateNewsLetterDto);
   }
 }
