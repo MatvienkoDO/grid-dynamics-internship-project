@@ -17,7 +17,7 @@ button[disabled]{
   cursor: pointer;
 
   &_search {
-    @include fonts ($black, Poppins, 14px, 500);
+    @include fonts ($black, "Open Sans", 14px, 500);
     @include icon (url(/assets/images/Search_Ico.svg), 18px, 20px, 34px);
     background-repeat: no-repeat;
 
@@ -45,8 +45,8 @@ button[disabled]{
       top: -32px;
       left: 3px;
       background-color: #34404b;
-      @include fonts (#ffffff, Poppins, 10px, 300);
-      line-height: 2;
+      @include fonts (#ffffff, "Open Sans", 10px, 300);
+      line-height: 1.8;
       text-align: center;
       width: 18px;
       height: 18px;
@@ -58,7 +58,7 @@ button[disabled]{
     position: relative;
     min-width: 100px;
     padding: 16px 30px;
-    @include fonts (#ffffff, Poppins, 14px, 400);
+    @include fonts (#ffffff, "Open Sans", 14px, 400);
     background-color: $primary-color;
   }
 
@@ -71,7 +71,7 @@ button[disabled]{
     border-radius: 25px;
     background-color: #ff5912;
     outline: none;
-    @include fonts(#ffffff, Poppins, 18px, 400);
+    @include fonts(#ffffff, "Open Sans", 18px, 400);
     text-transform: capitalize;
 
     &:hover {
@@ -103,7 +103,7 @@ button[disabled]{
     text-decoration: none;
     border-radius: 10px;
     outline: none;
-    @include fonts(#ffffff, Poppins, 12px, 400);
+    @include fonts(#ffffff, "Open Sans", 12px, 400);
     text-transform: capitalize;
 
     &:hover {
