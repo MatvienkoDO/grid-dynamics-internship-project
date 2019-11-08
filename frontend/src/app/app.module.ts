@@ -35,6 +35,7 @@ import {
   CartComponent,
   FavouritesComponent,
 } from './shared/components';
+import { CartService } from './shared/services/index';
 
 import {
   ErrorInterceptor,
@@ -77,6 +78,7 @@ import {
     NotificationModule,
   ],
   providers: [
+    CartService,
     ErrorInterceptor.provider,
   ],
   bootstrap: [AppComponent]

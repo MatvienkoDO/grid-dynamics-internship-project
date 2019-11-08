@@ -3,8 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, share, switchMap } from 'rxjs/operators';
 
-import { Product } from 'src/app/shared/models';
-import { ProductsService } from 'src/app/shared/services';
+import { Product, CardProduct } from 'src/app/shared/models';
+import { ProductsService, FavouritesService } from 'src/app/shared/services';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -18,6 +19,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly productsService: ProductsService,
+    private readonly cartService: CartService,
+    private readonly favouritesService: FavouritesService
   ) { }
 
   ngOnInit() {
@@ -34,5 +37,13 @@ export class ProductDetailsComponent implements OnInit {
             throw 'incorrect data';
           }));
       }), share());
+  }
+
+  public addToCart(cardProduct: CardProduct) {
+    this.cartService.addToCart(cardProduct);
+  }
+
+  public addToFavourites(cardProduct: CardProduct) {
+    this.favouritesService.addToFavourites(cardProduct);
   }
 }
