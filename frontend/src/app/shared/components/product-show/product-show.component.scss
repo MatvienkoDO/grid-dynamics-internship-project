@@ -114,10 +114,6 @@
           }
         }
       }
-
-      // &__products>.slider-container {
-      //   display: none;
-      // }
     }
 
     input[type="radio"] {
@@ -207,6 +203,7 @@
     }
 
     &__button {
+      text-align: center;
       margin-left: 10px;
 
       @include for-500px {
@@ -246,15 +243,6 @@
       }
     }
   }
-}
-
-#tab1:checked~.tabs-content__products #content1,
-#tab2:checked~.tabs-content__products #content2,
-#tab3:checked~.tabs-content__products #content3 {
-  display: flex;
-  opacity: 1;
-  -webkit-animation: tabs-changing-up 2s;
-  animation: tabs-changing-up 2s;
 }
 
 @-webkit-keyframes tabs-changing-up {
