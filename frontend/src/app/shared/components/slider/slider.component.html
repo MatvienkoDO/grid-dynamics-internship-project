@@ -23,17 +23,17 @@
           {{currentProduct.description}}
         </p>
         <div class="slider-container__order">
-          <p class="slider-container__desc">Price : ${{currentProduct.price}}</p>
+          <p class="slider-container__desc">{{ 'price' | translate }} : ${{currentProduct.price}}</p>
           <button
             class="slider-container__button-container button-container"
-            (click)="orderProduct(currentProduct.id)">
+            (click)="orderProduct(currentProduct.id, currentProduct.name)">
 
             <span class="button button_shopping-cart"></span>
-            <p class="slider-container__desc slider-container__desc_primary-color">Order Now</p>
+            <p class="slider-container__desc slider-container__desc_primary-color">{{ 'button.orderNow' | translate }}</p>
           </button>
         </div>
       </div>
-
+       
     </div>
   </div>
 </div>

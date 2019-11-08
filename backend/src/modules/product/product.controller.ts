@@ -61,6 +61,11 @@ export class ProductController {
     return response;
   }
 
+  @Get('best-sales')
+    async findAllBestSales(@Query() query) {
+    return this.productService.findAll(Number(query.skip), Number(query.limit));
+  }
+
   @Get('for-slider')
   async findForSlider(@Query() query) {
     const products = this.productService.findAllSliders(Number(query.skip), Number(query.limit));
