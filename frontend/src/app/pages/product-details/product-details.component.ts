@@ -3,9 +3,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, share, switchMap } from 'rxjs/operators';
 
-import { Product, CardProduct } from 'src/app/shared/models';
-import { ProductsService, FavouritesService } from 'src/app/shared/services';
-import { CartService } from 'src/app/shared/services/cart.service';
+import {
+  Product,
+  CardProduct
+} from 'src/app/shared/models';
+
+import {
+  ProductsService,
+  FavouritesService,
+  CartService,
+} from 'src/app/shared/services';
 
 @Component({
   selector: 'app-product-details',
