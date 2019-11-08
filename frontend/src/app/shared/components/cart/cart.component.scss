@@ -1,0 +1,48 @@
+@import 'mixins';
+@import 'fonts';
+@import 'icon';
+@import 'picture';
+@import 'button';
+@import '_mobile-menu';
+
+.cart {
+  &__content {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    display: block;
+    z-index: 1;
+    height: 0;
+    width: 180px;
+    transition: height .5s ease;
+    transition-delay: .4s;
+
+    &:hover .cart__product-list {
+      height: 123px;
+      z-index: 3;
+      transition-delay: 0s;
+    }
+  }
+
+  &__product-list {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    &:hover {
+      height: 123px;
+      z-index: 3;
+      transition-delay: 0s;
+    }
+  }
+}
+
+.button-container:hover .cart__product-list {
+  height: 123px;
+  z-index: 3;
+  transition-delay: 0s;
+}

@@ -23,7 +23,10 @@
       [price]="product.price"
       currency-sign="$"
       [sizes]="product.sizes"
-      [colors]="product.colors">
+      [colors]="product.colors"
+      (add-to-cart)="addToCart($event)"
+      (add-to-favorite)="addToFavourites($event)"
+      >
     </app-card-product>
   </div>
 

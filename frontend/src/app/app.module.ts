@@ -6,6 +6,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NotificationModule } from './modules/notification/notification.module';
 
 import {
   HeaderComponent,
@@ -28,6 +29,8 @@ import {
   ProductShowComponent,
   SaleComponent,
   SliderComponent,
+  CartComponent,
+  FavouritesComponent,
 } from './shared/components';
 
 @NgModule({
@@ -47,6 +50,8 @@ import {
     LoadingIndicatorComponent,
     HomeComponent,
     ProductDetailsComponent,
+    CartComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +63,8 @@ import {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
       }
-  })
+    }),
+    NotificationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
