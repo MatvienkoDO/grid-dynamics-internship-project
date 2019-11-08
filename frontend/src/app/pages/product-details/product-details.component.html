@@ -1,1 +1,15 @@
-<p>product-details works! Id: {{(productId$ | async) || 'none'}}</p>
+<ng-container *ngIf="product$ | async as product">
+  <app-product-show
+    [id]="product.id"
+    [title]="product.name"
+    [sizes]="product.sizes"
+    [price]="product.price"
+    [short-description]="product.category + ' | ' + product.brand"
+    [description]="product.description"
+    [images]="product.images">
+  </app-product-show>
+  <app-related-products
+    [id]="product.id">
+  </app-related-products>
+</ng-container>
+<app-news-letter></app-news-letter>

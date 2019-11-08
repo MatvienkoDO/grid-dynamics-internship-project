@@ -1,7 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, share, switchMap } from 'rxjs/operators';
+
+import { Product } from 'src/app/shared/models';
+import { ProductsService } from 'src/app/shared/services';
 
 @Component({
   selector: 'app-product-details',
@@ -10,12 +13,26 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailsComponent implements OnInit {
-  public productId$: Observable<string>;
+  public product$: Observable<Product>;
 
-  constructor(private readonly route: ActivatedRoute) { }
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly productsService: ProductsService,
+  ) { }
 
   ngOnInit() {
-    this.productId$ = this.route.params
-      .pipe(map(params => params['id']));
+    this.product$ = this.route.params
+      .pipe(switchMap((params: Params) => {
+        const id: string = params['id'];
+
+        return this.productsService.getProductById(id)
+          .pipe(map(response => {
+            if (response && !Array.isArray(response.data)) {
+              return response.data;
+            }
+
+            throw 'incorrect data';
+          }));
+      }), share());
   }
 }

@@ -29,6 +29,7 @@ import {
   ProductShowComponent,
   SaleComponent,
   SliderComponent,
+  RelatedProductsComponent,
   CartComponent,
   FavouritesComponent,
 } from './shared/components';
@@ -54,6 +55,7 @@ import {
     LoadingIndicatorComponent,
     HomeComponent,
     ProductDetailsComponent,
+    RelatedProductsComponent,
     CartComponent,
     FavouritesComponent,
   ],

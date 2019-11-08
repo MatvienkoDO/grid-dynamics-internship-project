@@ -3,4 +3,5 @@ export interface CardProduct {
   title: string;
   size?: string;
   color?: string;
+  quantity?: number;
 }

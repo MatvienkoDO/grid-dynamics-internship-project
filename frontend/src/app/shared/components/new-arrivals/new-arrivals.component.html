@@ -24,9 +24,10 @@
       currency-sign="$"
       [sizes]="product.sizes"
       [colors]="product.colors"
+      (show-details)="goToPdp($event)"
       (add-to-cart)="addToCart($event)"
       (add-to-favorite)="addToFavourites($event)"
-      >
+      (error)="notChosen($event)">
     </app-card-product>
   </div>
 
