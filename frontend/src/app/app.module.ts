@@ -5,9 +5,12 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotificationModule } from './modules/notification/notification.module';
+
+import {
+  AppRoutingModule,
+  NotificationModule,
+} from './modules';
 
 import {
   HeaderComponent,
