@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { NotificationService } from '../../shared/services/notification/notification.service';
 
@@ -11,21 +11,16 @@ import { NotificationService } from '../../shared/services/notification/notifica
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private translate: TranslateService,
-    protected _notify: NotificationService
-  ) {
-    translate.addLangs(['en', 'ru']);
-    translate.setDefaultLang('ru');
-
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
-   }
-   
-  sendInfo() {
-      this._notify.info('This component is not working yet.');
-  }
+    public readonly translate: TranslateService,
+    private readonly notify: NotificationService,
+  ) { }
 
   ngOnInit() {
+    this.translate.addLangs(['en', 'ru']);
+    this.translate.setDefaultLang('en');
+
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
   }
 
 }

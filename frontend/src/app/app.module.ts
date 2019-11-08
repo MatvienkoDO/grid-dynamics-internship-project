@@ -33,6 +33,10 @@ import {
   FavouritesComponent,
 } from './shared/components';
 
+import {
+  ErrorInterceptor,
+} from 'src/app/core/interceptors';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +70,9 @@ import {
     }),
     NotificationModule,
   ],
-  providers: [],
+  providers: [
+    ErrorInterceptor.provider,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
