@@ -25,7 +25,7 @@
     padding: 0;
     overflow: hidden;
     height: 100%;
-    @include fonts (#34404b, Poppins, 12px, 400);
+    @include fonts (#34404b, "Open Sans", 12px, 400);
     line-height: 2;
     background: #fff;
     border-bottom-left-radius: 5px;

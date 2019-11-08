@@ -52,7 +52,7 @@
   &__title {
     display: block;
     text-decoration: none;
-    @include fonts (#34404b, Poppins, 16px, 600);
+    @include fonts (#34404b, "Open Sans", 16px, 600);
     padding-bottom: 20px;
 
     &:hover {
@@ -61,7 +61,7 @@
   }
 
   &__price {
-    @include fonts (#ff5912, Poppins, 16px, 600);
+    @include fonts (#ff5912, "Open Sans", 16px, 600);
     transition: .2s;
   }
 
@@ -82,7 +82,7 @@
     position: absolute;
     display: flex;
     transition: .2s;
-    @include fonts (#ff5912, Poppins, 16px, 600);
+    @include fonts (#ff5912, "Open Sans", 16px, 600);
     text-decoration: none;
     cursor: pointer;
 
