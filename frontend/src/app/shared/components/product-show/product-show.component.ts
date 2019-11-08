@@ -26,7 +26,7 @@ export class ProductShowComponent implements OnInit {
 
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly quantity$ = new BehaviorSubject<number>(1);
-  public readonly currentImage$ = new BehaviorSubject('');
+  public readonly currentImage$ = new BehaviorSubject(0);
 
   constructor() { }
 
@@ -35,8 +35,6 @@ export class ProductShowComponent implements OnInit {
     if (initialSize) {
       this.size$.next(initialSize);
     }
-
-    this.currentImage$.next(this.images[0]);
   }
 
   public changeSize = (newSize: string) => {
@@ -75,8 +73,28 @@ export class ProductShowComponent implements OnInit {
     alert(`It is not realized yet. Id: ${this.id}`);
   }
 
-  public readonly changeImage = (image: string) => {
-    this.currentImage$.next(image);
+  public readonly changeImage = (imageNumber: number) => {
+    const current = this.currentImage$.value;
+
+    if (current !== imageNumber) {
+      this.currentImage$.next(imageNumber);
+    }
+  }
+
+  public readonly prevImage = () => {
+    const previous = this.currentImage$.value - 1;
+    
+    if (previous >= 0) {
+      this.currentImage$.next(previous);
+    }
+  }
+
+  public readonly nextImage = () => {
+    const next = this.currentImage$.value + 1;
+    
+    if (next < this.images.length) {
+      this.currentImage$.next(next);
+    }
   }
 
   private readonly generateCardProduct = (): CardProduct => {
