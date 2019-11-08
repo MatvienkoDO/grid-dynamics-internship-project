@@ -10,6 +10,9 @@
           <i class="icon icon__pnone-number"></i>
           <p class="header-contacts__text">453 - 5553 - 996</p>
         </a>
+        <select class="languages-translator" #langSelect (change)="translate.use(langSelect.value)">
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+        </select>
       </div>
       <div class="header-contacts__social-media">
         <a href="#" target="_blank" class="icon icon__facebook"></a>
@@ -25,24 +28,24 @@
         <img src="/assets/images/logo.png" alt="logo" class="picture-container__content">
       </picture>
       <nav class="header-navbar__content">
-        <a class="header-navbar__item" routerLink="/">Home</a>
-        <a class="header-navbar__item" routerLink="/products">Products</a>
-        <a class="header-navbar__item" routerLink="/hot-deals">Hot Deals</a>
-        <a class="header-navbar__item" routerLink="/about">About</a>
-        <a class="header-navbar__item" routerLink="/contact">Contact</a>
+        <a class="header-navbar__item" routerLink="/">{{ 'nav.home' | translate }}</a>
+        <a class="header-navbar__item" routerLink="/products">{{ 'nav.products' | translate }}</a>
+        <a class="header-navbar__item" routerLink="/hot-deals">{{ 'nav.hot-deals' | translate }}</a>
+        <a class="header-navbar__item" routerLink="/about">{{ 'nav.about' | translate }}</a>
+        <a class="header-navbar__item" routerLink="/contact">{{ 'nav.contact' | translate }}</a>
       </nav>
       <nav class="mobile-menu">
-          <input type="checkbox" id="checkbox" class="mobile-menu__checkbox">
-          <label for="checkbox" class="mobile-menu__btn"><div class="mobile-menu__icon"></div></label>
-          <div class="mobile-menu__container">
-          <ul class="mobile-menu__list">
-              <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">Home</a></li>
-              <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">Products</a></li>
-              <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">Hot Deals</a></li>
-              <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">About</a></li>
-              <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">Contact</a></li>
-          </ul>
-          </div>
+        <input type="checkbox" id="checkbox" class="mobile-menu__checkbox">
+        <label for="checkbox" class="mobile-menu__btn"><div class="mobile-menu__icon"></div></label>
+        <div class="mobile-menu__container">
+        <ul class="mobile-menu__list">
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.home' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.products' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.hot-deals' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.about' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.contact' | translate }}</a></li>
+        </ul>
+        </div>
       </nav>
     </div>
     <div class="header-navbar__right">
@@ -54,6 +57,6 @@
     </div>
   </div>
   <form action="GET" class="search-container_mobile">
-      <input type="search" class="button button_search" />
-    </form>
+    <input type="search" class="button button_search" />
+  </form>
 </header>

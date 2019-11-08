@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }   from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,9 +31,15 @@ import {
   ProductShowComponent,
   SaleComponent,
   SliderComponent,
+  RelatedProductsComponent,
   CartComponent,
   FavouritesComponent,
 } from './shared/components';
+import { CartService } from './shared/services/index';
+
+import {
+  ErrorInterceptor,
+} from 'src/app/core/interceptors';
 
 @NgModule({
   declarations: [
@@ -48,6 +58,7 @@ import {
     LoadingIndicatorComponent,
     HomeComponent,
     ProductDetailsComponent,
+    RelatedProductsComponent,
     CartComponent,
     FavouritesComponent,
   ],
@@ -55,9 +66,25 @@ import {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
     NotificationModule,
   ],
-  providers: [],
+  providers: [
+    CartService,
+    ErrorInterceptor.provider,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

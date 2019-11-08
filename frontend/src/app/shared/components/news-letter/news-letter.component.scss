@@ -45,6 +45,10 @@
     margin: 0;
     @include fonts ($text-color, Poppins, 14px);
     font-style: italic;
+    @include for-phone-intermediate {
+      text-align: center;
+      padding: 10px 0;
+    }
     @include for-phone-smaller {
       display: none;
     }
@@ -100,4 +104,24 @@
   &__form-element_non-shrinkable {
     flex-shrink: 0;
   }
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner .8s linear infinite;
 }

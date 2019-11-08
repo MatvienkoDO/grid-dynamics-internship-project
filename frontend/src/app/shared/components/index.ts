@@ -8,5 +8,6 @@ export * from './news-letter/news-letter.component';
 export * from './product-show/product-show.component';
 export * from './sale/sale.component';
 export * from './slider/slider.component';
+export * from './related-products/related-products.component';
 export * from './cart/cart.component';
 export * from './favourites/favourites.component';

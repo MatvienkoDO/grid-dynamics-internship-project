@@ -1,14 +1,17 @@
 <section class="news-letter-container">
   <div class="news-letter">
     <div class="news-letter__description">
-      <h3 class="news-letter__title">NEWS LETTER</h3>
-      <p class="news-letter__text">join us now to get all news and special offers</p>
+      <h3 class="news-letter__title">{{ 'news letter.title' | translate }}</h3>
+      <p class="news-letter__text">{{ 'news letter.description' | translate }}</p>
     </div>
     <div>
-      <form class="news-letter__form" action="" method="POST">
+      <form class="news-letter__form" action="" method="POST" (ngSubmit)="onSubmit($event)" #emailForm="ngForm">
         <img class="news-letter__icon" src="/assets/images/mail-icon.png" alt="Image of email icon" />
-        <input type="email" name="email"  class="news-letter__input" required placeholder="type your email here" autocomplete="on" />
-        <button type="submit" class="news-letter__form-element news-letter__form-element_non-shrinkable button button_common">join us</button>
+        <input type="email" name="email" class="news-letter__input" required placeholder="{{ 'input.email placesholder' | translate }}"
+          autocomplete="on" ngModel [(ngModel)]="dataForm.email" />
+        <button type="submit"
+          class="news-letter__form-element news-letter__form-element_non-shrinkable button button_common"
+          [class.spinner]="loading" [disabled]="!emailForm.valid">{{ 'button.join us' | translate }}</button>
       </form>
     </div>
   </div>

@@ -4,7 +4,7 @@
 @import 'fonts';
 @import 'button';
 
-.best-sales-wrapper {
+.related-products-wrapper {
   @include container;
 }
 
@@ -12,13 +12,13 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 80px 0 0 0;
-  @include for-phone-intermediate {
+  padding: 80px 0;
+  @include for-tablet-intermediate {
     justify-content: center;
   }
 
   &_loading {
-    height: 274px;
+    height: 615px;
   }
 
   &__loading-indicator {
