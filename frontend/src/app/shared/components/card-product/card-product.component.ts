@@ -16,7 +16,8 @@ export class CardProductComponent implements OnInit {
   @Input('price') public readonly price: number;
   @Input('sizes') public readonly sizes: string[];
   @Input('colors') public readonly colors: string[];
-  @Input('currency-sign') public readonly currencySign: string | undefined;
+
+  @Input('currency-sign') public readonly currencySign: string = '$';
 
   @Output('show-details') public readonly showDetails = new EventEmitter<CardProduct>();
   @Output('add-to-cart') public readonly addToCart = new EventEmitter<CardProduct>();
