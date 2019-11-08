@@ -6,7 +6,9 @@ import { NewsLetterSchema } from './news-letter.schema';
 import { NewsLetterService } from './news-letter.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'NewsLetter', schema: NewsLetterSchema }])],
+  imports: [MongooseModule.forFeature([
+    { name: 'NewsLetter', schema: NewsLetterSchema }
+  ])],
   controllers: [NewsLetterController],
   providers: [NewsLetterService],
 })
