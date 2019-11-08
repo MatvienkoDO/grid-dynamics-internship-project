@@ -77,8 +77,9 @@ export class ProductShowComponent implements OnInit {
   private readonly generateCardProduct = (): CardProduct => {
     const info: CardProduct = {
       id: this.id,
+      title: this.title,
       size: this.size$.value,
-      quantity: this.quantity$.value
+      quantity: this.quantity$.value,
     };
 
     return info;
