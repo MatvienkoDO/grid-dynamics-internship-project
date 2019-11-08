@@ -33,7 +33,7 @@
     }
 
     &__copyright {
-      @include fonts (#28313b, Poppins, 13px, 400);
+      @include fonts (#28313b, "Open Sans", 13px, 400);
       line-height: 30px;
     }
 
@@ -66,7 +66,7 @@
       }
 
       &__link {
-        @include fonts (#28313b, Poppins, 13px, 400);
+        @include fonts (#28313b, "Open Sans", 13px, 400);
         line-height: 30px;
         text-decoration: none;
 
@@ -90,7 +90,7 @@
       &__title {
         margin: 0;
         padding-bottom: 20px;
-        @include fonts (#ff5912, Poppins, 16px, 600);
+        @include fonts (#ff5912, "Open Sans", 16px, 600);
         line-height: 30px;
       }
 

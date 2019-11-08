@@ -84,7 +84,7 @@
   }
 
   &__link {
-   @include fonts ($black, Poppins, 30px, 400);
+   @include fonts ($black, "Open Sans", 30px, 400);
     text-decoration: none;
     &:hover {
     color: $primary-color;

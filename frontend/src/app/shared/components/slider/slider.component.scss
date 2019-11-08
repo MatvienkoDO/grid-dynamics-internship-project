@@ -77,7 +77,7 @@
   &__desc {
     margin: 0;
     padding-bottom: 6px;
-    @include fonts (#3c4751, Poppins, 18px, 500);
+    @include fonts (#3c4751, "Open Sans", 18px, 500);
     line-height: 29.97px;
     @include for-phone-intermediate {
       font-size: 14px;

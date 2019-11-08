@@ -16,7 +16,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    @include fonts ($white, 'Open Sans', 12px, 400);
+    @include fonts ($white, '"Open Sans"', 12px, 400);
   }
 
   &__text {
