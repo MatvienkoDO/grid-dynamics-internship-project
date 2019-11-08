@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotificationModule } from './modules/notification/notification.module';
+
+import {
+  AppRoutingModule,
+  NotificationModule,
+} from './modules';
 
 import {
   HeaderComponent,
   FooterComponent,
+  ErrorInterceptor,
 } from './core';
 
 import {
@@ -35,11 +38,14 @@ import {
   CartComponent,
   FavouritesComponent,
 } from './shared/components';
-import { CartService } from './shared/services/index';
 
-import {
-  ErrorInterceptor,
-} from 'src/app/core/interceptors';
+const translateModuleConfig = {
+  loader: {
+    provide: TranslateLoader,
+    useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
+    deps: [HttpClient]
+  }
+};
 
 @NgModule({
   declarations: [
@@ -68,23 +74,12 @@ import {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule.forRoot({
-      loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-    }),
+    TranslateModule.forRoot(translateModuleConfig),
     NotificationModule,
   ],
   providers: [
-    CartService,
     ErrorInterceptor.provider,
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}

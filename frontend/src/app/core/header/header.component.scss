@@ -57,7 +57,7 @@
       &__text {
         margin: 0;
         padding-left: 9px;
-        @include fonts (#34404b, Poppins, 12px, 400);
+        @include fonts (#34404b, "Open Sans", 12px, 400);
       }
 
       &__social-media {
@@ -91,7 +91,7 @@
 
     &__item {
       padding-right: 20px;
-      @include fonts (#34404b, Poppins, 14px, 400);
+      @include fonts (#34404b, "Open Sans", 14px, 400);
       text-decoration: none;
 
       &:hover {
