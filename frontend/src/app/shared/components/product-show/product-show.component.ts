@@ -31,6 +31,11 @@ export class ProductShowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const initialSize = this.sizes[0];
+    if (initialSize) {
+      this.size$.next(initialSize);
+    }
+
     this.currentImage$.next(this.images[0]);
   }
 
