@@ -32,7 +32,10 @@ import {
   CartComponent,
   FavouritesComponent,
 } from './shared/components';
-import { httpInterceptorProviders } from './core/interceptors/http interceptors';
+
+import {
+  ErrorInterceptor,
+} from 'src/app/core/interceptors';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,7 @@ import { httpInterceptorProviders } from './core/interceptors/http interceptors'
     NotificationModule,
   ],
   providers: [
-    httpInterceptorProviders
+    ErrorInterceptor.provider,
   ],
   bootstrap: [AppComponent]
 })
