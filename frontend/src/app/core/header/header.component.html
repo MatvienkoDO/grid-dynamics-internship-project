@@ -10,7 +10,7 @@
           <i class="icon icon__pnone-number"></i>
           <p class="header-contacts__text">453 - 5553 - 996</p>
         </a>
-        <select #langSelect (change)="translate.use(langSelect.value)">
+        <select class="languages-translator" #langSelect (change)="translate.use(langSelect.value)">
           <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
         </select>
       </div>

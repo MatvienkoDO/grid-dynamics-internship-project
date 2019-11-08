@@ -45,6 +45,10 @@
     margin: 0;
     @include fonts ($text-color, Poppins, 14px);
     font-style: italic;
+    @include for-phone-intermediate {
+      text-align: center;
+      padding: 10px 0;
+    }
     @include for-phone-smaller {
       display: none;
     }
