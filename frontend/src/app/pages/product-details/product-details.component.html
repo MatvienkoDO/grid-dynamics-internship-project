@@ -6,7 +6,9 @@
     [price]="product.price"
     [short-description]="product.category + ' | ' + product.brand"
     [description]="product.description"
-    [images]="product.images">
+    [images]="product.images"
+    (add-to-cart)="addToCart($event)"
+    (add-to-favorite)="addToFavourites($event)">
   </app-product-show>
   <app-related-products
     [id]="product.id">
