@@ -15,6 +15,7 @@ import {
 import {
   HeaderComponent,
   FooterComponent,
+  ErrorInterceptor,
 } from './core';
 
 import {
@@ -37,10 +38,6 @@ import {
   CartComponent,
   FavouritesComponent,
 } from './shared/components';
-
-import {
-  ErrorInterceptor,
-} from 'src/app/core/interceptors';
 
 const translateModuleConfig = {
   loader: {
