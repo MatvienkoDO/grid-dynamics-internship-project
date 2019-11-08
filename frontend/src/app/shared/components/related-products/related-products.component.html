@@ -1,12 +1,13 @@
-<div class="best-sales-wrapper section-wrapper">
+<div class="related-products-wrapper section-wrapper">
   <h2 class="title-medium">
-    {{ 'best sales.best' | translate }} <span class="title-medium title-medium_primary-color">{{ 'best sales.sales' | translate }}</span>
+    <span class="title-medium title-medium_primary-color">Related</span> products
   </h2>
   <p class="text">
-    {{ 'best sales.description' | translate }}
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry
   </p>
 
-  <div class="cards-container"
+  <div
+    class="cards-container"
     [class.cards-container_loading]="!(products$ | async)">
 
     <app-loading-indicator
@@ -14,13 +15,15 @@
       class="cards-container__loading-indicator">
     </app-loading-indicator>
 
-    <app-card-product-small
+    <app-card-product
       *ngFor="let product of products$ | async"
       [id]="product.id"
       [image-url]="product.images[0]"
       [title]="product.name"
       [price]="product.price"
-      (add-to-cart)="addProductToCart($event)">
-    </app-card-product-small>
+      currency-sign="$"
+      [sizes]="product.sizes"
+      [colors]="product.colors">
+    </app-card-product>
   </div>
 </div>

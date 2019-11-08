@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { CardProduct } from '../../models/card-product';
-import { CartService } from '../../services';
+import { CardProduct } from '../../models';
 
 @Component({
   selector: 'app-card-product[id][image-url][title][price][sizes][colors]',
   templateUrl: './card-product.component.html',
-  styleUrls: ['./card-product.component.scss']
+  styleUrls: ['./card-product.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardProductComponent implements OnInit {
   @Input('id') public readonly id: string;

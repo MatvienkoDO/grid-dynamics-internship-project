@@ -1,10 +1,20 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { switchMap, share, map } from 'rxjs/operators';
 
-import { Product, CardProduct } from 'src/app/shared/models';
-import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
-import { ProductResponse } from '../../models/product.response';
+import {
+  Product,
+  CardProduct,
+  ProductResponse
+} from 'src/app/shared/models';
+
+import {
+  ProductsService,
+  CartService,
+  FavouritesService,
+  NotificationService,
+} from 'src/app/shared/services';
 
 @Component({
   selector: 'app-new-arrivals',
@@ -21,7 +31,9 @@ export class NewArrivalsComponent implements OnInit {
   constructor(
     private readonly productsService: ProductsService,
     private readonly cartService: CartService,
-    private readonly favouritesService: FavouritesService
+    private readonly favouritesService: FavouritesService,
+    private readonly notificationService: NotificationService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
@@ -59,11 +71,19 @@ export class NewArrivalsComponent implements OnInit {
     );
   }
 
+  public readonly goToPdp = (cardProduct: CardProduct) => {
+    this.router.navigateByUrl(`/product/${cardProduct.id}`);
+  }
+
   public addToCart(cardProduct: CardProduct) {
     this.cartService.addToCart(cardProduct);
   }
 
   public addToFavourites(cardProduct: CardProduct) {
     this.favouritesService.addToFavourites(cardProduct);
+  }
+
+  public readonly notChosen = (message: string) => {
+    this.notificationService.warning(message);
   }
 }
