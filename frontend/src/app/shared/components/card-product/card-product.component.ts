@@ -30,6 +30,15 @@ export class CardProductComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const initialSize = this.sizes[0];
+    const initialColor = this.colors[0];
+
+    if (initialSize) {
+      this.size$.next(initialSize);
+    }
+    if (initialColor) {
+      this.color$.next(initialColor);
+    }
   }
 
   public readonly changeSize = size => {
