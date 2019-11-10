@@ -1,0 +1,67 @@
+<div class="card-product">
+  <div class="card-product__header">
+    <img class="card-product__img" src="{{imageUrl}}" alt="product1">
+  </div>
+  <div class="card-product__body">
+    <div class="card-product__title">{{title}}</div>
+    <div class="card-product__price">{{price}}{{currencySign || '$'}}</div>
+  </div>
+  <div class="card-product-hover">
+    <div class="card-product-hover__header">
+      <img class="card-product-hover__img" src="{{imageUrl}}" alt="min-product">
+    </div>
+    <div class="card-product-hover__body">
+      <a class="card-product-hover__title">{{title}}</a>
+      <div class="list-sizes">
+        <p class="list-sizes__title">sizes </p>
+        <p class="list-sizes__title">:</p>
+        <ng-container *ngFor="let size of sizes; last as isLast">
+          <span class="list-sizes__item list-sizes__item_first-child">
+            <span
+              class="list-sizes__prop"
+              [class.list-sizes__prop_active]="(size$ | async) === size"
+              (click)="changeSize(size)">
+              {{size}}
+            </span>
+          </span>
+          <span class="list-sizes__item" *ngIf="!isLast">-</span>
+        </ng-container>
+      </div>
+      <div class="list-colors">
+        <div class="list-colors__content">
+          <ng-container *ngFor="let color of colors">
+            <span class="list-colors__item">
+              <span
+                class="list-colors__prop"
+                [style.background-color]="color"
+                [class.list-colors__prop_active]="(color$ | async) === color"
+                (click)="changeColor(color)">
+              </span>
+            </span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="card-product-hover__footer">
+      <div class="list-options">
+        <ul class="list-options__content">
+          <li class="list-options__item">
+            <a class="list-options__icon" (click)="action(showDetails)">
+              <i class="icon icon__share"></i>
+            </a>
+          </li>
+          <li class="list-options__item">
+            <a class="list-options__icon" (click)="action(addToCart)">
+              <i class="icon icon__add-to-cart"></i>
+            </a>
+          </li>
+          <li class="list-options__item">
+            <a class="list-options__icon" (click)="action(addToFavorite)">
+              <i class="icon icon__like"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="new-arrivals-wrapper section-wrapper">
+  <h2 class="title-medium">
+    {{ 'new arrivals.new' | translate }} <span class="title-medium title-medium_primary-color">{{ 'new arrivals.arrivals' | translate }}</span>
+  </h2>
+  <p class="text">
+    {{ 'new arrivals.description' | translate }}
+  </p>
+
+  <div
+    class="cards-container"
+    [class.cards-container_loading]="!(products$ | async)">
+
+    <app-loading-indicator
+      *ngIf="!(products$ | async)"
+      class="cards-container__loading-indicator">
+    </app-loading-indicator>
+
+    <app-card-product
+      *ngFor="let product of products$ | async"
+      [id]="product.id"
+      [image-url]="product.images[0]"
+      [title]="product.name"
+      [price]="product.price"
+      currency-sign="$"
+      [sizes]="product.sizes"
+      [colors]="product.colors"
+      (show-details)="goToPdp($event)"
+      (add-to-cart)="addToCart($event)"
+      (add-to-favorite)="addToFavourites($event)"
+      (error)="notChosen($event)">
+    </app-card-product>
+  </div>
+
+  <a
+    *ngIf="canLoadMore$ | async"
+    class="load-more"
+    (click)="loadMore()">
+
+    <span class="load-more__circle"></span>
+    <span class="load-more__circle"></span>
+    <span class="load-more__circle"></span>
+  </a>
+</div>

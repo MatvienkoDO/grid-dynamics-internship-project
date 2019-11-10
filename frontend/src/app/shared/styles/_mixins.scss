@@ -1,0 +1,82 @@
+@mixin container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  
+  @media(max-width: 1200px) {
+    max-width: unset;
+    width: calc(100% - 60px);
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  @media(max-width: 800px) {
+    max-width: unset;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@mixin fonts($color: $black, $font-family: inherit, $font-size: inherit, $font-weight: inherit) {
+  color: $color;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+@mixin flex ($align-items: center, $direction: row){
+  display: flex;
+  justify-content: space-between;
+  align-items: $align-items;
+  flex-direction: $direction;
+}
+
+@mixin icon ($background-image, $width, $height, $margin-right) {
+  background-image: $background-image;
+  width: $width;
+  height: $height;
+  margin-right: $margin-right;
+}
+
+@mixin for-tablet-landscape-up {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-intermediate {
+  @media (max-width: 1080px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (max-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin for-phone-intermediate {
+  @media (max-width: 725px) {
+    @content;
+  }
+}
+
+@mixin for-500px {
+  @media (max-width: 500px) {
+    @content;
+  }
+}
+
+@mixin for-phone {
+  @media (max-width: 415px) {
+    @content;
+  }
+}
+
+@mixin for-phone-smaller {
+  @media (max-width: 360px) {
+    @content;
+  }
+}

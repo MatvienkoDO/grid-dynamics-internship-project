@@ -1,0 +1,10 @@
+.section-wrapper {
+  padding: 120px 0;
+  text-align: center;
+  @include for-phone-intermediate {
+    padding: 60px 0;
+  }
+  @include for-phone {
+    padding: 30px 0;
+  }
+}

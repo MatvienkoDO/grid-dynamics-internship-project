@@ -1,0 +1,47 @@
+@import 'mixins';
+@import 'fonts';
+@import 'icon';
+@import 'picture';
+@import 'button';
+@import '_mobile-menu';
+
+.favourites {
+  &__content {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    display: block;
+    z-index: 1;
+    height: 0;
+    width: 180px;
+    
+    transition: height .5s ease;
+    transition-delay: .4s;
+
+  }
+
+  &__product-list {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    @include fonts (#34404b, "Open Sans", 12px, 400);
+    line-height: 2;
+    background: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+  }
+  &__product-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+.button-container:hover .favourites__product-list {
+  padding: 20px 10px;
+  height: auto;
+  z-index: 3;
+  transition-delay: 0s;
+}

@@ -1,0 +1,111 @@
+@import 'mixins';
+@import '_colors';
+
+.advertisement {
+  @include container;
+  @include flex($align-items: stretch);
+
+  &__left, &__right {
+    @include flex;
+    background-color: $white;
+    min-height: 100px;
+  }
+
+  &__left {
+    flex-basis: 670px;
+    margin-right: 30px;
+    padding: 10px 60px;
+    @include for-phone {
+      flex-direction: column;
+    }
+  }
+
+  &__right {
+    flex-basis: 470px;
+    justify-content: center;
+  }
+
+  &__title {
+    @include fonts ($text-color, "Open Sans", 22px, bold);
+    text-transform: uppercase;
+  }
+
+  &__description {
+    @include fonts ($text-color-secondary, "Open Sans", 12px, 400);
+    margin-top: 10px;
+  }
+
+  &__dash {
+    width: 1px;
+    height: 45px;
+    background-color: $background-default-color;
+    @include for-phone {
+      display: none;
+    }
+  }
+
+  &__price {
+    margin-left: 20px;
+    @include fonts ($primary-color, "Open Sans", 32px, 600);
+
+    &::after {
+      content: '$';
+      font-size: 22px;
+    }
+  }
+
+  &__placeholder {
+    &-wrapper {
+      text-align: center;
+    }
+
+    &::before, &::after {
+      @include fonts ($secondary-color, "Open Sans", 16px, 400);
+    }
+
+    &::before {
+      content: 'adv ';
+    }
+
+    &::after {  
+      content: 'area';
+      color: $primary-color;
+    }
+  }
+
+  &__size {
+    margin-top: 7px;
+    @include fonts ($secondary-color, "Open Sans", 12px, 400);
+    opacity: 0.4;
+    letter-spacing: 7.2px;
+  }
+
+  &__element_non-shrinking {
+    flex-shrink: 0;
+  }
+
+  @media(max-width: 1000px) {
+    flex-direction: column;
+
+    &__left, &__right {
+      flex-basis: auto;
+      justify-content: space-evenly;
+    }
+
+    &__left {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media(max-width: 600px) {
+    &__left {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    &__price {
+      margin-left: 5px;
+    }
+  }
+}

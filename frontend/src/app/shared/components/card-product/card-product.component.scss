@@ -1,0 +1,227 @@
+@import 'fonts';
+@import 'mixins';
+@import 'icon';
+
+.card-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  //padding: 37px 30px;
+  position: relative;
+  //margin: 0 35px 35px;
+  width: 270px;
+  height: 365px;
+  background: #fefefe;
+  text-align: center;
+  -webkit-transition-property: -webkit-box-shadow;
+  transition-property: -webkit-box-shadow;
+  transition-property: box-shadow;
+  transition-property: box-shadow, -webkit-box-shadow;
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  margin-bottom: 30px;
+  @include for-tablet-intermediate {
+    margin: 0 25px 25px;
+  }
+  @include for-phone {
+    margin: 0 0 20px 0;
+    width: 250px;
+  }
+
+  &:hover &-hover {
+    opacity: 1;
+  }
+
+  &__header {
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 25px;
+  }
+
+  &__img {
+    width: 159px;
+    height: 214px;
+  }
+
+  &__title {
+    padding-bottom: 15px;
+    @include fonts (#34404b, "Open Sans", 18px, 600);
+  }
+
+  &__price {
+    @include fonts (#ff5912, "Open Sans", 18px, 700);
+  }
+
+  &-hover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    transition: .2s;
+    padding: 35px 50px 30px 50px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    @include for-phone-intermediate {
+      opacity: 1;
+    }
+
+    &__header {
+      height: 90px;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    &__img {
+      width: 70px;
+      height: 87px;
+    }
+
+    &__body {
+      padding-bottom: 25px;
+    }
+
+    &__footer {
+      display: flex;
+      justify-content: center;
+    }
+
+    &__title {
+      display: block;
+      @include fonts (#34404b, "Open Sans", 16px, 600);
+      text-decoration: none;
+      padding-bottom: 20px;
+
+      &:hover {
+        color: #ff5912;
+      }
+    }
+
+    .list-sizes {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      @include fonts (#34404b, "Open Sans", 14px, 400);
+      padding-bottom: 20px;
+
+      &__title {
+        margin: 0;
+        padding: 0 6px;
+      }
+
+      input[type="radio"] {
+        display: none;
+
+        &:checked+label span {
+          color: #ff5912;
+        }
+      }
+
+      &__item {
+        margin: 0;
+        padding: 0 2px;
+        display: inline-block;
+
+        &_first-child {
+          padding-left: 6px;
+        }
+      }
+
+      &__prop {
+        display: block;
+        text-decoration: none;
+        color: #34404b;
+        cursor: pointer;
+
+        &:hover, &_active {
+          color: #ff5912;
+        }
+      }
+    }
+
+    .list-colors {
+      padding-bottom: 30px;
+      border-bottom: 1px solid #f2f4f7;
+
+      &__content {
+        margin: 0;
+        padding-left: 0;
+      }
+
+      input[type="radio"] {
+        display: none;
+
+        &:checked+.list-colors__item .list-colors__prop_red {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ea454f;
+        }
+
+        &:checked+.list-colors__item .list-colors__prop_black {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #41515d;
+        }
+
+        &:checked+.list-colors__item .list-colors__prop_blue {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3ab3ff;
+        }
+
+        &:checked+.list-colors__item .list-colors__prop_green {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2fd967;
+        }
+      }
+
+      &__item {
+        margin: 0;
+        padding-right: 5px;
+        display: inline-block;
+      }
+
+      &__prop {
+        display: block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover, &_active {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px black;
+        }
+
+        &_red {
+          background-color: #ea454f;
+        }
+
+        &_black {
+          background-color: #41515d;
+        }
+
+        &_blue {
+          background-color: #3ab3ff;
+        }
+
+        &_green {
+          background-color: #2fd967;
+        }
+      }
+    }
+
+    .list-options {
+      &__content {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: baseline;
+      }
+
+      &__item {
+        padding: 0 16px;
+        margin-right: -4px;
+        vertical-align: middle;
+        list-style-type: none;
+      }
+    }
+  }
+}

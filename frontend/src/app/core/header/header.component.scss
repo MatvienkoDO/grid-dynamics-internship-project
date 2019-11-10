@@ -1,0 +1,117 @@
+@import 'mixins';
+@import 'fonts';
+@import 'icon';
+@import 'picture';
+@import 'button';
+@import 'search';
+@import '_mobile-menu';
+
+:host {
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  // FIXME: make it more plain
+  .header-contacts-container {
+    border-bottom: 1px solid rgba(230, 232, 235, 0.5);
+
+    .header-contacts {
+      @include container;
+      @include flex;
+      padding: 26px 0;
+      @include for-phone-intermediate {
+        margin-top: 50px;
+      }
+
+      &__info {
+        display: flex;
+        width: 100%;
+
+        @include for-phone-intermediate {
+          flex-direction: column;
+        }
+      }
+
+      &__item {
+        @include flex;
+        padding-right: 30px;
+        text-decoration: none;
+
+        @include for-phone-intermediate {
+          justify-content: flex-start;
+          padding-bottom: 7px;
+        }
+
+        &:last-child {
+          padding-right: 0;
+
+          @include for-phone-intermediate {
+            padding-bottom: 0;
+          }
+        }
+      }
+
+      &__text {
+        margin: 0;
+        padding-left: 9px;
+        @include fonts (#34404b, "Open Sans", 12px, 400);
+      }
+
+      &__social-media {
+        @include flex;
+        justify-content: flex-end;
+        width: 100%;
+      }
+    }
+  }
+
+  .header-navbar {
+    @include container;
+    @include flex;
+    padding: 40px 0;
+
+    @include for-phone-intermediate {
+      align-items: flex-start;
+      padding-bottom: 0;
+    }
+
+    &__left {
+      @include flex;
+    }
+
+    &__content {
+      padding-left: 80px;
+      @include for-phone-intermediate {
+        display: none;
+      }
+    }
+
+    &__item {
+      padding-right: 20px;
+      @include fonts (#34404b, "Open Sans", 14px, 400);
+      text-decoration: none;
+
+      &:hover {
+        color: #ff5912;
+      }
+    }
+
+    &__logo {
+      width: 118px;
+      cursor: pointer;
+    }
+
+    &__right {
+      @include flex;
+      height: 40px;
+    }
+  }
+}
+
+.languages-translator {
+  width: 40px;
+  border: 2px solid #ff5912;
+}

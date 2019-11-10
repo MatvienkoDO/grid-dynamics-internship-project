@@ -1,0 +1,56 @@
+.icon {
+  display: block;
+  cursor: pointer;
+  &__facebook {
+    @include icon (url(/assets/images/facebook.svg), 6px, 11px, 20px);
+    &:hover {
+      filter: invert(36%) sepia(51%) saturate(2878%);
+    }
+  }
+  &__twitter {
+    @include icon (url(/assets/images/twitter.svg), 14px, 11px, 20px);
+    &:hover {
+      filter: invert(36%) sepia(51%) saturate(2878%);
+    }
+  }
+  &__google-plus {
+    @include icon (url(/assets/images/google_+.svg), 13px, 11px, 20px);
+    &:hover {
+      filter: invert(36%) sepia(51%) saturate(2878%);
+    }
+  }
+  &__instagram {
+    @include icon (url(/assets/images/instagram.svg), 11px, 11px, 0);
+    &:hover {
+      filter: invert(36%) sepia(51%) saturate(2878%);
+    }
+  }
+  &__mail {
+    @include icon (url(/assets/images/Mail_Ico.svg), 18px, 11px, 0);
+  }
+  &__pnone-number {
+    @include icon (url(/assets/images/Phone_Ico.svg), 12px, 12px, 0);
+    filter: invert(36%) sepia(51%) saturate(2878%);
+  }
+  &__share {
+    @include icon (url(/assets/images/Share_Ico.svg), 19px, 17px, 0);
+    &:hover {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
+  }
+  &__add-to-cart {
+    @include icon (url(/assets/images/Add_To_Cart_Ico.svg), 22px, 21px, 0);
+    &:hover {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
+    &_right {
+      @include icon (url(/assets/images/Add_To_Cart_Ico.svg), 22px, 21px, 9px);
+    }
+  }
+  &__like {
+    @include icon (url(/assets/images/Like_Ico.svg), 19px, 16px, 0);
+    &:hover {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
+  }
+}

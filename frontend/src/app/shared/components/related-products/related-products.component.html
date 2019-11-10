@@ -1,0 +1,29 @@
+<div class="related-products-wrapper section-wrapper">
+  <h2 class="title-medium">
+    <span class="title-medium title-medium_primary-color">{{ 'related products.related' | translate }}</span> {{ 'related products.products' | translate }}
+  </h2>
+  <p class="text">
+      {{ 'related products.description' | translate }}
+  </p>
+
+  <div
+    class="cards-container"
+    [class.cards-container_loading]="!(products$ | async)">
+
+    <app-loading-indicator
+      *ngIf="!(products$ | async)"
+      class="cards-container__loading-indicator">
+    </app-loading-indicator>
+
+    <app-card-product
+      *ngFor="let product of products$ | async"
+      [id]="product.id"
+      [image-url]="product.images[0]"
+      [title]="product.name"
+      [price]="product.price"
+      currency-sign="$"
+      [sizes]="product.sizes"
+      [colors]="product.colors">
+    </app-card-product>
+  </div>
+</div>

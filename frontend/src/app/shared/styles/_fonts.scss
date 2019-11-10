@@ -1,0 +1,64 @@
+// @import url('https://fonts.googleapis.com/css?family="Open Sans":100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=devanagari,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap&subset=cyrillic,cyrillic-ext,latin-ext');
+@import 'mixins';
+
+
+.title-big {
+  margin: 0;
+  color: #34404b;
+  font-family: "Open Sans";
+  font-size: 52px;
+  font-weight: bold;
+  text-transform: uppercase;
+  @include for-phone-intermediate {
+    font-size: 30px;
+  }
+}
+
+.title-big_primary-color {
+  color: #ff5912;
+}
+
+.title-medium {
+  margin: 0;
+  padding-bottom: 30px;
+  color: #34404b;
+  font-family: "Open Sans";
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.title-medium_primary-color {
+  color: #ff5912;
+}
+
+.text {
+  margin: 0;
+  color: #495662;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 29.97px;
+  @include for-phone-intermediate {
+    font-size: 12px;
+    line-height: 2;
+  }
+
+  &_marker {
+    margin: 0;
+    font-family: "Open Sans";
+    color: #3c4751;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 29.97px;
+    @include for-phone-intermediate {
+      font-size: 14px;
+      line-height: 2;
+    }
+  }
+
+  &_large {
+    font-size: 20px;
+  }
+}
