@@ -1,4 +1,4 @@
-import { Model } from 'mongoose';
+import { Model, Mongoose, Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.interface';
@@ -53,6 +53,33 @@ export class ProductService {
 
   async getCount(): Promise<number> {
     return this.productModel.count({});
+  }
+
+  async findRelatedProducts(id: string) {
+    const inputProduct = await this.productModel.findById(Types.ObjectId(id));
+    const relatedProducts = [];
+    const sameCategoryAndBrand = this.productModel.find(
+      {
+        _id: { $ne: id },
+        category: inputProduct.category,
+        brand: inputProduct.brand
+      }
+    );
+    const sameCateory = this.productModel.find(
+      {
+        _id: { $ne: id },
+        category: inputProduct.category,
+        brand: { $ne: inputProduct.brand }
+      }
+    );
+    const sameBrand = this.productModel.find(
+      {
+        _id: { $ne: id },
+        category: { $ne: inputProduct.category },
+        brand: inputProduct.brand
+      }
+    );
+    return relatedProducts.concat(await sameCategoryAndBrand, await sameCateory, await sameBrand);
   }
 }
 
