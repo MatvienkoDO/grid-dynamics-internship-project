@@ -66,7 +66,7 @@ export class ProductService {
         brand
       }
     );
-    const sameCateory = this.productModel.find(
+    const sameCategory = this.productModel.find(
       {
         _id: { $ne: id },
         category,
@@ -82,6 +82,6 @@ export class ProductService {
     );
 
     return (await sameCategoryAndBrand)
-      .concat(await sameCateory, await sameBrand);
+      .concat(await sameCategory, await sameBrand);
   }
 }
