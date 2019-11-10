@@ -1,6 +1,7 @@
 import { Model, Mongoose, Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+
 import { Product } from './product.interface';
 import { ProductDto } from './dto/product.dto';
 
@@ -82,5 +83,3 @@ export class ProductService {
     return relatedProducts.concat(await sameCategoryAndBrand, await sameCateory, await sameBrand);
   }
 }
-
-
