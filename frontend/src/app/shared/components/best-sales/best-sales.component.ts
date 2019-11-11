@@ -24,7 +24,9 @@ export class BestSalesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.productsService.getProducts(0, 3).subscribe({
       next: (products: ProductResponse) => {
-        this.subscription.unsubscribe();
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+        }
 
         if (products && Array.isArray(products.data)) {
           this.products$.next(products.data);

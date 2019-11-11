@@ -67,15 +67,17 @@ export class CartService {
   private getItemsFromLocalStorage(): CardProduct[] | null {
     const localStorageData = localStorage.getItem(localStorageCartKey);
 
+    if (!localStorageData) {
+      return null;
+    }
+
     try {
       const data = JSON.parse(localStorageData);
 
       if (Array.isArray(data)) {
         return data;
       }
-    } catch (e) {
-      return null;
-    }
+    } catch (e) { }
 
     return null;
   }
