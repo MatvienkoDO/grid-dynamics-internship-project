@@ -13,7 +13,9 @@
     <div class="tabs-content__articles" *ngIf="currentProduct$ | async as currentProduct">
 
       <div class="slider-container">
-        <h1 class="slider-container__title title-big title-big_primary-color">
+        <h1
+          class="slider-container__title title-big title-big_primary-color"
+          (click)="showDetails(currentProduct.id)">
           {{currentProduct.name}}
         </h1>
         <p class="slider-container__desc">
