@@ -3,7 +3,11 @@
     <img src="{{imageUrl}}" alt="{{imageAlt || 'product image'}}">
   </div>
   <div class="card-product-small__description">
-    <a class="card-product-small__title">{{title}}</a>
+    <a
+      class="card-product-small__title"
+      (click)="showDetailsCb()">
+      {{title}}
+    </a>
     <div class="card-product-small__stars-price">
       <img src="/assets/images/Rate.png" alt="stars">
       <div class="card-product-small__price">{{price}}{{currencySign || '$'}}</div>
