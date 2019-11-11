@@ -22,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: '',
+    // TODO: make 'not found' notification
   },
 ];
 
