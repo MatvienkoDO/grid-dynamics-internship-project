@@ -1,13 +1,4 @@
-<div class="button-container">
-    <div class="cart__content">
-        <ul class="cart__product-list">
-          <li class="cart__product-item" *ngFor="let product of products$ | async">
-            {{ product.title }} {{ product.size }} {{ product.color }}
-            <button class="button button_delete" (click)="deleteFromCart(product)">X</button>
-          </li>
-          <button class="button button_delete-all" (click)="clearCart()" >Delete All</button>
-        </ul>
-    </div>
+ <div class="button-container">
     <p class="button_shopping-cart__count">{{ (productsNumber$ | async) || 0 }}</p>
     <button class="button button_shopping-cart"></button>
 </div>

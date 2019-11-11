@@ -5,43 +5,119 @@
 @import 'button';
 @import '_mobile-menu';
 
+
 .cart {
   &__content {
-    position: absolute;
-    top: 15px;
-    right: 0;
-    display: block;
-    z-index: 1;
-    height: 0;
-    width: 180px;
-    
-    transition: height .5s ease;
-    transition-delay: .4s;
+    width: 100%;
+    height: auto;
 
   }
 
   &__product-list {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-    @include fonts (#34404b, "Open Sans", 12px, 400);
+    @include fonts (#34404b, "Open Sans", 18px, 400);
+    padding-left: 0;
     line-height: 2;
     background: #fff;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+
+    @include for-tablet-portrait-up {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
 
   }
+
   &__product-item {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-  }
-}
 
-.button-container:hover .cart__product-list {
-  padding: 20px 10px;
-  height: auto;
-  z-index: 3;
-  transition-delay: 0s;
+    @include for-tablet-portrait-up {
+      display: none;
+    }
+
+    @include for-500px {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &_head {
+      font-weight: bold;
+    }
+  }
+
+  &__product-item_mobile {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include for-tablet-portrait-up {
+      display: flex;
+    }
+  }
+
+  &__product-head {
+    justify-content: flex-start;
+
+    @include for-tablet-portrait-up {
+      display: none;
+    }
+  }
+
+  &__product-title {
+    max-width: 240px;
+    width: 100%;
+
+    @include for-tablet-portrait-up {
+      padding-right: 15px;
+    }
+  }
+
+  &__product-size {
+    max-width: 100px;
+    width: 100%;
+    text-align: center;
+
+    @include for-tablet-portrait-up {
+      width: auto;
+      padding-right: 15px;
+    }
+  }
+
+  &__product-color {
+    max-width: 120px;
+    width: 100%;
+
+    @include for-tablet-portrait-up {
+      width: auto;
+      padding-right: 15px;
+    }
+  }
+
+  &__product-price {
+    max-width: 120px;
+    width: 100%;
+
+    @include for-500px {
+      width: auto;
+      padding-right: 15px;
+    }
+  }
+
+  &__product-quantity {
+    max-width: 120px;
+    width: 100%;
+
+    @include for-tablet-portrait-up {
+      width: auto;
+      padding-right: 15px;
+      display: inline-block;
+    }
+
+    &_number {
+      display: inline-block;
+      width: 60px;
+      text-align: center;
+    }
+  }
 }

@@ -2,10 +2,11 @@
 @import 'variables';
 @import 'mixins';
 
-button[disabled]{
+button[disabled] {
   background: #cad1cd;
   color: #ffffff3b;
   cursor: default;
+  outline: none;
 }
 
 .button-container {
@@ -38,6 +39,7 @@ button[disabled]{
   &_shopping-cart {
     @include icon (url(/assets/images/Cart_Ico.svg), 24px, 17px, 0);
     background-color: transparent;
+    background-repeat: no-repeat;
     filter: invert(36%) sepia(51%) saturate(2878%);
 
     &__count {
@@ -80,31 +82,33 @@ button[disabled]{
   }
 
   &_delete {
-    padding: 0;
+    margin-left: auto;
+    padding: 2px 9px;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 25px;
     display: inline-block;
-    width: 24px;
     text-align: center;
     line-height: 2;
+
     &:hover {
       background: rgba(0, 0, 0, 0.04);
-  }
-
+    }
   }
 
   &_delete-all {
     @include flex;
     justify-content: center;
-    margin: 0 auto;
     margin-top: 10px;
     width: 100%;
-    background-color: $black;
-    text-decoration: none;
-    border-radius: 10px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #ff5912;
     outline: none;
-    @include fonts(#ffffff, "Open Sans", 12px, 400);
+    @include fonts(#ffffff, "Open Sans", 18px, 400);
     text-transform: capitalize;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
 
     &:hover {
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);

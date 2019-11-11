@@ -4,6 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 
@@ -36,8 +41,10 @@ import {
   SliderComponent,
   RelatedProductsComponent,
   CartComponent,
+  CartComponentInner,
   FavouritesComponent,
 } from './shared/components';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const translateModuleConfig = {
   loader: {
@@ -66,6 +73,7 @@ const translateModuleConfig = {
     ProductDetailsComponent,
     RelatedProductsComponent,
     CartComponent,
+    CartComponentInner,
     FavouritesComponent,
   ],
   imports: [
@@ -76,10 +84,20 @@ const translateModuleConfig = {
     ReactiveFormsModule,
     TranslateModule.forRoot(translateModuleConfig),
     NotificationModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatIconModule,
+    MatTableModule,
   ],
   providers: [
     ErrorInterceptor.provider,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CartComponent,
+    CartComponentInner,
+  ]
 })
 export class AppModule { }
