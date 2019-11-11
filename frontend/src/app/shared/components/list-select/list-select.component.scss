@@ -1,0 +1,58 @@
+:host {
+  display: inline-block;
+  user-select: none;
+  padding: 40px 40px 35px;
+  background-color: white;
+}
+
+.list-select {
+  &__title, &__item {
+    display: block;
+    text-transform: capitalize;
+  }
+
+  &__title {
+    padding-bottom: 10px;
+    cursor: default;
+    color: #ff5912;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &__item {
+    margin-top: 25px;
+    padding: 5px 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+
+    &:hover {
+      color: grey;
+    }
+
+    &_multiselect {
+      &::before {
+        content: '';
+        display: inline-block;
+        box-sizing: border-box;
+        width: 13px;
+        height: 13px;
+        margin-right: 12px;
+        border: 6.5px solid #edf0f2;;
+      }
+    }
+
+    &_active {
+      color: #ff5912;
+
+      &::before {
+        border-width: 4px;
+        border-color: #ff5912;
+      }
+
+      &:hover {
+        color: #ff5912;
+      }
+    }
+  }
+}

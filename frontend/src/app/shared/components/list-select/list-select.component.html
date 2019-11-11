@@ -1,1 +1,14 @@
-<p>list-select works!</p>
+<span class="list-select__title">{{title}}</span>
+
+<ng-container *ngIf="selected$ | async as selected">
+  <a
+    *ngFor="let option of options"
+    title=""
+    tabindex="0"
+    class="list-select__item"
+    [class.list-select__item_multiselect]="!oneOfMany"
+    [class.list-select__item_active]="selected.indexOf(option.value) !== -1"
+    (click)="click(option.value)">
+    {{option.title}}
+  </a>
+</ng-container>
