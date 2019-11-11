@@ -4,22 +4,30 @@
       <div class="tabs-content">
         <div class="tabs-content__products">
           <div class="slider-container" id="content1">
-            <a href=# id=prev class="slider-container__arrow left-arrow"></a>
+            <a
+              class="slider-container__arrow left-arrow"
+              [class.slider-container__arrow_disabled]="(currentImage$ | async) === 0"
+              (click)="prevImage()">
+            </a>
             <picture class="picture-container">
               <img
                 class="picture-container__content"
-                [src]="currentImage$ | async"
+                [src]="images[currentImage$ | async]"
                 alt="">
             </picture>
-            <a href=# id=next class="slider-container__arrow right-arrow"></a> 
+            <a
+              class="slider-container__arrow right-arrow"
+              [class.slider-container__arrow_disabled]="(currentImage$ | async) === images.length - 1"
+              (click)="nextImage()">
+            </a> 
           </div>
         </div>
         <img
-          *ngFor="let image of images"
+          *ngFor="let image of images; index as i"
           class="tabs-content__item"
-          [class.tabs-content__item_active]="(currentImage$ | async) === image"
+          [class.tabs-content__item_active]="(currentImage$ | async) === i"
           [src]="image"
-          (click)="changeImage(image)">
+          (click)="changeImage(i)">
       </div>
     </div>
     <div class="product-details">
