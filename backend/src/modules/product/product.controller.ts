@@ -11,9 +11,8 @@ export class ProductController {
 
   @Post()
   async create(@Body() createProductDto: ProductDto) {
-    const response = new ProductResponse();
-    response.data = await this.productService.create(createProductDto);
-    return response;
+    const data = await this.productService.create(createProductDto);
+    return new ProductResponse(data);
   }
 
   @Get()
@@ -21,19 +20,14 @@ export class ProductController {
     const products = this.productService.findAll(Number(query.skip), Number(query.limit));
     const quantity = this.productService.getCount();
 
-    const response = new ProductResponse();
-    response.data = await products;
-    response.quantity = await quantity;
-    
-    return response;
+    return new ProductResponse(await products, await quantity);
   }
 
   @Get('by-id/:id')
   async findById(@Param('id') id: string) {
     const product = this.productService.findById(id);
-    const response = new ProductResponse();
     try {
-      response.data = await product;
+      return new ProductResponse(await product);
     } catch (err) {
       // Mongoose returns an error with name CastError when document not found
       if (err.name === 'CastError') {
@@ -42,14 +36,13 @@ export class ProductController {
 
       throw err;
     }
-    return response;
   }
 
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateProductDto: ProductDto) {
-    const response = new ProductResponse();
     try {
-      response.data = await this.productService.update(id, updateProductDto);
+      const data = await this.productService.update(id, updateProductDto);
+      return new ProductResponse(data);
     } catch (err) {
       // Mongoose returns an error with name CastError when document not found
       if (err.name === 'CastError') {
@@ -58,7 +51,6 @@ export class ProductController {
       
       throw err;
     }
-    return response;
   }
 
   @Get('best-sales')
@@ -70,9 +62,12 @@ export class ProductController {
   async findForSlider(@Query() query) {
     const products = this.productService.findAllSliders(Number(query.skip), Number(query.limit));
 
-    const response = new ProductResponse();
-    response.data = await products;
-    
-    return response;
+    return new ProductResponse(await products);
+  }
+
+  @Get('related/:id')
+  async findRelatedProducts(@Param('id') id: string) {
+    const data = await this.productService.findRelatedProducts(id);
+    return new ProductResponse(data);
   }
 }
