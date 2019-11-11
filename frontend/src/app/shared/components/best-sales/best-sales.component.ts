@@ -2,8 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Subscription, Subject } from 'rxjs';
 
 import { ProductsService, CartService } from 'src/app/shared/services';
-import { Product, CardProduct } from 'src/app/shared/models';
-import { ProductResponse } from '../../models/product.response';
+import { Product, CardProduct, ProductResponse } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-best-sales',
