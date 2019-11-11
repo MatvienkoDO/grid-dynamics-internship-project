@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models';
 import { NotificationService } from '../notification/notification.service';
+import { LocalizationService } from '../localization/localization.service';
 
 const localStorageCartKey = 'CART_ITEMS';
 
@@ -15,6 +16,7 @@ export class CartService {
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
   
   constructor(
+    private readonly localizationService: LocalizationService,
     private readonly notificationService: NotificationService
   ) {
     this.items$ = this.items;
@@ -39,7 +41,8 @@ export class CartService {
 
     this.items.next(updatedItems);
 
-    this.notificationService.info(`${cardProduct.title} has been added`);
+    const message = this.localizationService.getNotificationServiceMessage('addToCart');
+    this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
   deleteFromCart(cardProduct: CardProduct) {
@@ -51,7 +54,8 @@ export class CartService {
 
     this.items.next(updatedItems);
 
-    this.notificationService.warning(`${cardProduct.title} has been removed`);
+    const message = this.localizationService.getNotificationServiceMessage('deleteFromCart');
+    this.notificationService.warning(`${cardProduct.title} ${message}`);
   }
 
   clearCart() {
@@ -61,7 +65,8 @@ export class CartService {
 
     this.items.next(updatedItems);
 
-    this.notificationService.warning('Cart has been cleared');
+    const message = this.localizationService.getNotificationServiceMessage('clearCart');
+    this.notificationService.warning(message);
   }
 
   private getItemsFromLocalStorage(): CardProduct[] | null {

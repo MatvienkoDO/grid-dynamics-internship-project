@@ -10,7 +10,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { NotificationService } from '../../shared/services';
+import { NotificationService, LocalizationService } from '../../shared/services';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -20,20 +20,25 @@ export class ErrorInterceptor implements HttpInterceptor {
   };
 
   constructor(
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    // private readonly localizationService: LocalizationService
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 0) {
-          this.notificationService.error('Error: there is no internet connection');
+          this.notificationService.error('Error 0');
+            // this.localizationService.getNotificationServiceMessage('noInternet'));
         } else if (error.status === 404) {
-          this.notificationService.error('Error: resourse not found');
+          // const message = this.localizationService.getNotificationServiceMessage('notFound');
+          this.notificationService.error('Error 404');
         } else if (error.status >= 500 && error.status < 600) {
-          this.notificationService.error('Error: server-side error');
+          this.notificationService.error('Error 500');
+            // this.localizationService.getNotificationServiceMessage('serverError'));
         } else {
-          this.notificationService.error('Error: unknown error');
+          this.notificationService.error('Error unknown');
+            // this.localizationService.getNotificationServiceMessage('unknownError'));
         }
 
         return throwError(error);

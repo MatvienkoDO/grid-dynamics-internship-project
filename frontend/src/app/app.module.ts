@@ -38,6 +38,7 @@ import {
   CartComponent,
   FavouritesComponent,
 } from './shared/components';
+import { LocalizationService } from './shared/services';
 
 const translateModuleConfig = {
   loader: {
@@ -78,6 +79,7 @@ const translateModuleConfig = {
     NotificationModule,
   ],
   providers: [
+    LocalizationService,
     ErrorInterceptor.provider,
   ],
   bootstrap: [AppComponent]

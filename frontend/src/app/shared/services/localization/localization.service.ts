@@ -26,7 +26,7 @@ export class LocalizationService {
     const localeFromLocalStorage = this.getLocaleFromLocalStorage();
 
     if (localeFromLocalStorage) {
-      this.locale.next(localeFromLocalStorage);
+      this.setLocale(localeFromLocalStorage);
     }
   }
 
@@ -53,4 +53,59 @@ export class LocalizationService {
     this.locale.next(newLocale);
     this.saveLocaleToLocalStorage();
   }
+
+  public getNotificationServiceMessage(type: string) {
+    return notificationServiceMessages[type][this.locale.getValue()];
+  }
 }
+
+const notificationServiceMessages = {
+  addToCart: {
+    en: 'has been added',
+    ru: 'в корзине'
+  },
+  deleteFromCart: {
+    en: 'has been removed',
+    ru: 'удален из корзины'
+  },
+  clearCart: {
+    en: 'Cart has been cleared',
+    ru: 'Корзина очищена'
+  },
+  addToFavourites: {
+    en: 'has been added to Favourites',
+    ru: 'добавлен в избранное'
+  },
+  deleteFromFavourites: {
+    en: 'has been removed from Favourites',
+    ru: 'удален из избранного'
+  },
+  clearFavourites: {
+    en: 'Favourites has been cleared',
+    ru: 'Список избранного очищен'
+  },
+  noInternet: {
+    en: 'Cart has been cleared',
+    ru: 'Корзина очищена'
+  },
+  notFound: {
+    en: 'Product not found',
+    ru: 'Товар не найден'
+  },
+  serverError: {
+    en: 'Server-side error',
+    ru: 'Ошибка сервера'
+  },
+  unknownError: {
+    en: 'Ooops... something goes wrong',
+    ru: 'Ууупс... что-то пошло не так'
+  },
+  onlineNow: {
+    en: 'You are online now',
+    ru: 'Соединение восстановлено'
+  },
+  offlineNow: {
+    en: 'You are offline now',
+    ru: 'Соединение потеряно'
+  }
+};
