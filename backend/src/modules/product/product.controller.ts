@@ -72,8 +72,8 @@ export class ProductController {
   }
 
   @Get('related/:id')
-  async findRelatedProducts(@Param('id') id: string) {
-    const data = await this.productService.findRelatedProducts(id);
+  async findRelatedProducts(@Headers() headers, @Param('id') id: string) {
+    const data = await this.productService.findRelatedProducts(id, headers.locale);
     return new ProductResponse(data);
   }
 }

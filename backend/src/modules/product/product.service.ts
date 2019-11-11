@@ -146,7 +146,7 @@ export class ProductService {
     );
   }
 
-  async findRelatedProducts(id: string) {
+  async findRelatedProducts(id: string, locale: string = 'en') {
     const { category, brand } = await this.productModel.findById(Types.ObjectId(id));
 
     const sameCategoryAndBrand = this.productModel.find(
@@ -171,7 +171,7 @@ export class ProductService {
       }
     );
 
-    return (await sameCategoryAndBrand)
-      .concat(await sameCategory, await sameBrand);
+    const related = (await sameCategoryAndBrand).concat(await sameCategory, await sameBrand);
+    return this.getLocalizedProducts(locale, related);
   }
 }
