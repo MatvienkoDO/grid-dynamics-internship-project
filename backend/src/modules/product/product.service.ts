@@ -2,6 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './product.interface';
+import { LocalizedProduct } from './localizedProduct.model'
 import { ProductDto } from './dto/product.dto';
 import { Filter } from './filter.model';
 
@@ -9,12 +10,17 @@ import { Filter } from './filter.model';
 export class ProductService {
   constructor(@InjectModel('Product') private readonly productModel: Model<Product>) { }
 
-  async create(createCatDto: ProductDto): Promise<Product> {
-    const createdCat = new this.productModel(createCatDto);
-    return await createdCat.save();
+  async create(createProductDto: ProductDto, locale: string = 'en'): Promise<LocalizedProduct> {
+    const createdProduct = new this.productModel(createProductDto);
+    return this.getLocalizedProduct(locale, await createdProduct.save());
   }
 
-  async findAll(skip: number = 0, limit: number = 4, filter?: Filter): Promise<Product[]> {
+  async findAll(
+    skip: number = 0,
+    limit: number = 4,
+    locale: String = 'en',
+    filter?: Filter
+  ): Promise<LocalizedProduct[]> {
     const query = this.productModel.find(null, null, { skip, limit });
     if (filter) {
       if (filter.category) {
@@ -33,37 +39,44 @@ export class ProductService {
         query.where('sizes').elemMatch({ $in: filter.sizes });
       }
     }
-    return await query;
+    const products = await query;
+    return this.getLocalizedProducts(locale, products);
   }
 
-  async findById(id: string): Promise<Product> {
-    return await this.productModel.findById(id);
+  async findById(id: string, locale: string = 'en'): Promise<LocalizedProduct> {
+    return this.getLocalizedProduct(locale, await this.productModel.findById(id));
   }
 
-  async findAllBestSales(skip: number = 0, limit: number = 3): Promise<Product[]> {
-    return await this.productModel.find(
+  async findAllBestSales(skip: number = 0, limit: number = 3, locale: string = 'en'): Promise<LocalizedProduct[]> {
+    const bestSalesProducts = await this.productModel.find(
       null,
       null,
       { skip, limit }
     );
+    return this.getLocalizedProducts(locale, bestSalesProducts);
   }
 
-  async findAllSliders(skip: number = 0, limit: number = 3): Promise<Product[]> {
-    return await this.productModel.find(
+  async findAllSliders(skip: number = 0, limit: number = 3, locale: string = 'en'): Promise<LocalizedProduct[]> {
+    const productsForSlider = await this.productModel.find(
       {
         sliderImage: { $ne: null }
       },
       null,
       { skip, limit }
     );
+    return this.getLocalizedProducts(locale, productsForSlider);
   }
 
-  async update(id: string, updateProductDto: ProductDto): Promise<Product> {
+  async update(
+    id: string,
+    locale: string = 'en',
+    updateProductDto: ProductDto
+  ): Promise<LocalizedProduct> {
     await this.productModel.findByIdAndUpdate(
       id,
       updateProductDto
     );
-    return this.productModel.findById(id);
+    return this.getLocalizedProduct(locale, await this.productModel.findById(id));
   }
 
   async getCount(filter?: Filter): Promise<number> {
@@ -86,6 +99,50 @@ export class ProductService {
       }
     }
     return query;
+  }
+
+  private getLocalizedProducts(locale: String = 'en', dbProducts: Product[]): LocalizedProduct[] {
+    const result = [];
+    for (const dbProduct of dbProducts) {
+      result.push(this.getLocalizedProduct(locale, dbProduct));
+    }
+    return result;
+  }
+
+  private getLocalizedProduct(locale: String = 'en', dbProduct: Product): LocalizedProduct {
+    let localeName = null;
+    for (const elem of dbProduct.name) {
+      if (elem.locale === locale) {
+        localeName = elem.value;
+        break;
+      }
+    }
+    let localeSubtitle = null;
+    for (const elem of dbProduct.subtitle) {
+      if (elem.locale === locale) {
+        localeSubtitle = elem.value;
+        break;
+      }
+    }
+    let localeDescription = null;
+    for (const elem of dbProduct.description) {
+      if (elem.locale === locale) {
+        localeDescription = elem.value;
+        break;
+      }
+    }
+    return new LocalizedProduct(
+      dbProduct.id,
+      localeName,
+      localeSubtitle,
+      localeDescription,
+      dbProduct.category,
+      dbProduct.brand,
+      dbProduct.price,
+      dbProduct.sizes,
+      dbProduct.colors,
+      dbProduct.images
+    );
   }
 }
 

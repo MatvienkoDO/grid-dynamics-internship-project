@@ -1,8 +1,7 @@
-import { Controller, Post, Get, Patch, Body, Query, Param, HttpStatus, HttpException } from '@nestjs/common';
+import { Controller, Post, Get, Patch, Body, Query, Headers, Param, HttpStatus, HttpException } from '@nestjs/common';
 
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
-import { Product } from './product.interface';
 import { ProductResponse } from './product.response';
 import { Filter } from './filter.model';
 
@@ -11,13 +10,13 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
-  async create(@Body() createProductDto: ProductDto) {
-    const data = await this.productService.create(createProductDto);
+  async create(@Headers() headers, @Body() createProductDto: ProductDto) {
+    const data = await this.productService.create(createProductDto, headers.locale);
     return new ProductResponse(data);
   }
 
   @Get()
-  async findAll(@Query() query) {
+  async findAll(@Headers() headers, @Query() query) {
     const filter = new Filter(
       query.category,
       Number(query.minPrice),
@@ -25,14 +24,14 @@ export class ProductController {
       query.sizes,
       query.brands
     );
-    const products = this.productService.findAll(Number(query.skip), Number(query.limit), filter);
+    const products = this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale, filter);
     const quantity = this.productService.getCount(filter);
     return new ProductResponse(await products, await quantity);
   }
 
   @Get('by-id/:id')
-  async findById(@Param('id') id: string) {
-    const product = this.productService.findById(id);
+  async findById(@Headers() headers, @Param('id') id: string) {
+    const product = this.productService.findById(id, headers.locale);
     try {
       return new ProductResponse(await product);
     } catch (err) {
@@ -46,9 +45,9 @@ export class ProductController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateProductDto: ProductDto) {
+  async update(@Headers() headers, @Param('id') id: string, @Body() updateProductDto: ProductDto) {
     try {
-      const data = await this.productService.update(id, updateProductDto);
+      const data = await this.productService.update(id, headers.locale, updateProductDto);
       return new ProductResponse(data);
     } catch (err) {
       // Mongoose returns an error with name CastError when document not found
@@ -61,13 +60,13 @@ export class ProductController {
   }
 
   @Get('best-sales')
-    async findAllBestSales(@Query() query) {
-    return this.productService.findAll(Number(query.skip), Number(query.limit));
+    async findAllBestSales(@Headers() headers, @Query() query) {
+    return this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale);
   }
 
   @Get('for-slider')
-  async findForSlider(@Query() query) {
-    const products = this.productService.findAllSliders(Number(query.skip), Number(query.limit));
+  async findForSlider(@Headers() headers, @Query() query) {
+    const products = this.productService.findAllSliders(Number(query.skip), Number(query.limit), headers.locale);
 
     return new ProductResponse(await products);
   }
