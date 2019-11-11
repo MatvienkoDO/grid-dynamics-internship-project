@@ -11,6 +11,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { NotificationService } from '../../shared/services';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -20,7 +21,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   };
 
   constructor(
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly router: Router
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -35,7 +37,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else {
           this.notificationService.error('Error: unknown error');
         }
-
+        this.router.navigate(['']);
         return throwError(error);
       })
     );
