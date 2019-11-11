@@ -38,6 +38,7 @@ import {
   RelatedProductsComponent,
   CartComponent,
   FavouritesComponent,
+  ListSelectComponent,
 } from './shared/components';
 
 const translateModuleConfig = {
@@ -69,6 +70,7 @@ const translateModuleConfig = {
     CartComponent,
     FavouritesComponent,
     ProductsComponent,
+    ListSelectComponent,
   ],
   imports: [
     BrowserModule,
