@@ -83,9 +83,16 @@
               display: block;
             }
 
-            &:hover {
-              border: solid $primary-color;
-              border-width: 0 3px 3px 0;
+            &:active {
+              border-color: $primary-color;
+            }
+
+            &_disabled {
+              border-color: darkgray;
+
+              &:active {
+                border-color: darkgray;
+              }
             }
           }
 
