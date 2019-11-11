@@ -4,6 +4,7 @@ import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 import { Product } from './product.interface';
 import { ProductResponse } from './product.response';
+import { Filter } from './filter.model';
 
 @Controller('api/products')
 export class ProductController {
@@ -17,9 +18,15 @@ export class ProductController {
 
   @Get()
   async findAll(@Query() query) {
-    const products = this.productService.findAll(Number(query.skip), Number(query.limit));
-    const quantity = this.productService.getCount();
-
+    const filter = new Filter(
+      query.category,
+      Number(query.minPrice),
+      Number(query.maxPrice),
+      query.sizes,
+      query.brands
+    );
+    const products = this.productService.findAll(Number(query.skip), Number(query.limit), filter);
+    const quantity = this.productService.getCount(filter);
     return new ProductResponse(await products, await quantity);
   }
 
