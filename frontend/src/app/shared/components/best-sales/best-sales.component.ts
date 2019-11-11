@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 
 import { ProductsService, CartService } from 'src/app/shared/services';
@@ -16,7 +17,8 @@ export class BestSalesComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly productsService: ProductsService,
-    private readonly cartService: CartService
+    private readonly cartService: CartService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
@@ -37,6 +39,10 @@ export class BestSalesComponent implements OnInit, OnDestroy {
     if (this.subscription && !this.subscription.closed) {
       this.subscription.unsubscribe();
     }
+  }
+
+  public readonly showDetails = (productInfo: CardProduct) => {
+    this.router.navigateByUrl(`/product/${productInfo.id}`);
   }
 
   public readonly addProductToCart = (productInfo: CardProduct) => {
