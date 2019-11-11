@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 import { NotificationService } from '../../shared/services/notification/notification.service';
+import { LocalizationService } from 'src/app/shared/services/localization/localization.service';
 
 @Component({
   selector: 'app-header',
@@ -11,16 +11,12 @@ import { NotificationService } from '../../shared/services/notification/notifica
 export class HeaderComponent implements OnInit {
 
   constructor(
-    public readonly translate: TranslateService,
+    private readonly localizationService: LocalizationService,
     private readonly notify: NotificationService,
   ) { }
 
   ngOnInit() {
-    this.translate.addLangs(['en', 'ru']);
-    this.translate.setDefaultLang('en');
-
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    
   }
 
 }
