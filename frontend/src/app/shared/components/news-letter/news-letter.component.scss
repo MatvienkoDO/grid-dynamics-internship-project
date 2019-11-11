@@ -58,18 +58,19 @@
     height: 11px;
     width: 18px;
     margin-right: 10px;
-    @include for-phone-smaller {
-      display: none;
-    }
   }
 
   &__form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    @include for-phone-smaller {
+    @include for-phone {
       flex-direction: column;
     }
+  }
+
+  &__input-block {
+    @include flex;
   }
 
   &__input {
@@ -82,7 +83,7 @@
       width: 150px;
     }
     @include for-phone-smaller {
-      width: 250px;
+      width: 240px;
       margin: 10px 0;
       margin-right: 0;
       border-bottom: 2px solid #ff5912;
