@@ -54,6 +54,7 @@
     text-decoration: none;
     @include fonts (#34404b, "Open Sans", 16px, 600);
     padding-bottom: 20px;
+    cursor: pointer;
 
     &:hover {
       color: #ff5912;
