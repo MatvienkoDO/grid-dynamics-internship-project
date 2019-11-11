@@ -84,6 +84,11 @@
 
     &__content {
       padding-left: 80px;
+      @include for-tablet-portrait-up {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 20px;
+      }
       @include for-phone-intermediate {
         display: none;
       }
@@ -93,6 +98,9 @@
       padding-right: 20px;
       @include fonts (#34404b, "Open Sans", 14px, 400);
       text-decoration: none;
+      @include for-tablet-portrait-up {
+        padding-right: 15px;
+      }
 
       &:hover {
         color: #ff5912;

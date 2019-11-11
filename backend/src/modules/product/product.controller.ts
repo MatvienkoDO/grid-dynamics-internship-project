@@ -70,4 +70,10 @@ export class ProductController {
 
     return new ProductResponse(await products);
   }
+
+  @Get('related/:id')
+  async findRelatedProducts(@Param('id') id: string) {
+    const data = await this.productService.findRelatedProducts(id);
+    return new ProductResponse(data);
+  }
 }

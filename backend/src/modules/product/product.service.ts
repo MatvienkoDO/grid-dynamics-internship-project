@@ -1,6 +1,7 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+
 import { Product } from './product.interface';
 import { LocalizedProduct } from './localizedProduct.model'
 import { ProductDto } from './dto/product.dto';
@@ -144,6 +145,33 @@ export class ProductService {
       dbProduct.images
     );
   }
+
+  async findRelatedProducts(id: string) {
+    const { category, brand } = await this.productModel.findById(Types.ObjectId(id));
+
+    const sameCategoryAndBrand = this.productModel.find(
+      {
+        _id: { $ne: id },
+        category,
+        brand
+      }
+    );
+    const sameCategory = this.productModel.find(
+      {
+        _id: { $ne: id },
+        category,
+        brand: { $ne: brand }
+      }
+    );
+    const sameBrand = this.productModel.find(
+      {
+        _id: { $ne: id },
+        category: { $ne: category },
+        brand
+      }
+    );
+
+    return (await sameCategoryAndBrand)
+      .concat(await sameCategory, await sameBrand);
+  }
 }
-
-
