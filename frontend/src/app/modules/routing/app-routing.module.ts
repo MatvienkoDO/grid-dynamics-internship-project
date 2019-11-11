@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   HomeComponent,
   ProductDetailsComponent,
+  ProductsComponent,
 } from '../../pages';
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'product/:id',
     component: ProductDetailsComponent
+  },
+  {
+    path: 'products',
+    component: ProductsComponent
   },
   {
     path: '**',
