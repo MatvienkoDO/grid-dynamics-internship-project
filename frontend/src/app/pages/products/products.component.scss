@@ -1,0 +1,13 @@
+@import './colors';
+@import 'mixins';
+@import 'variables';
+@import 'fonts';
+@import 'button';
+
+.container {
+  @include container;
+}
+
+.products {
+  padding: 120px 0;
+}
