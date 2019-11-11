@@ -21,6 +21,7 @@ import {
 import {
   HomeComponent,
   ProductDetailsComponent,
+  ProductsComponent,
 } from './pages';
 
 import {
@@ -67,6 +68,7 @@ const translateModuleConfig = {
     RelatedProductsComponent,
     CartComponent,
     FavouritesComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
