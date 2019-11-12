@@ -16,6 +16,7 @@ import {
   HeaderComponent,
   FooterComponent,
   ErrorInterceptor,
+  LocalizationInterceptor,
 } from './core';
 
 import {
@@ -79,8 +80,8 @@ const translateModuleConfig = {
     NotificationModule,
   ],
   providers: [
-    LocalizationService,
-    ErrorInterceptor.provider,
+    LocalizationInterceptor.provider,
+    ErrorInterceptor.provider
   ],
   bootstrap: [AppComponent]
 })
