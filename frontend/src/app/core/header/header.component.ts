@@ -6,6 +6,9 @@ import { NotificationService } from '../../shared/services';
 import { CartComponentInner } from '../../shared/components';
 import { FavouritesComponentInner } from '../../shared/components';
 
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,7 +20,8 @@ export class HeaderComponent implements OnInit {
     public readonly translate: TranslateService,
     private readonly notify: NotificationService,
     public dialog: MatDialog,
-  ) { }
+    ) { }
+
 
   ngOnInit() {
     this.translate.addLangs(['en', 'ru']);
