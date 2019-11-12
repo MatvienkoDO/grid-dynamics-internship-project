@@ -20,6 +20,7 @@
       [image-url]="product.images[0]"
       [title]="product.name"
       [price]="product.price"
+      (show-details)="showDetails($event)"
       (add-to-cart)="addProductToCart($event)">
     </app-card-product-small>
   </div>

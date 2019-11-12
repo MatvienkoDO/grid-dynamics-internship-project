@@ -1,8 +1,18 @@
 import { Schema } from 'mongoose';
 
 export const ProductSchema = new Schema({
-  name: String,
-  description: String,
+  name: [{
+    locale: String,
+    value: String
+  }],
+  subtitle: [{
+    locale: String,
+    value: String
+  }],
+  description: [{
+    locale: String,
+    value: String
+  }],
   category: String,
   brand: String,
   price: Number,
