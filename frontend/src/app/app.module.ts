@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Ng5SliderModule } from 'ng5-slider';
 
 import { AppComponent } from './app.component';
 
@@ -80,6 +81,7 @@ const translateModuleConfig = {
     ReactiveFormsModule,
     TranslateModule.forRoot(translateModuleConfig),
     NotificationModule,
+    Ng5SliderModule,
   ],
   providers: [
     ErrorInterceptor.provider,
