@@ -57,6 +57,8 @@ export class CardProductComponent implements OnInit {
       const data: CardProduct = {
         id: this.id,
         title: this.title,
+        quantity: 1,
+        price: this.price,
         size,
         color
       };
