@@ -19,4 +19,8 @@ export class HeaderComponent implements OnInit {
     
   }
 
+  changeLanguage(value: string) {
+    this.localizationService.setLocale(value);
+  }
+
 }
