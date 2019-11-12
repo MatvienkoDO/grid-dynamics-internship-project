@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '_colors';
 @import "~angular-notifier/styles";
 * {
   box-sizing: border-box;
@@ -7,4 +8,34 @@
 body {
   margin: 0;
   font-family: "Open Sans";
+}
+
+// ng5slider styles overriding in range-select component
+app-range-select .ng5-slider {
+  .ng5-slider-bar {
+    background-color: $background-default-color;
+
+    &.ng5-slider-selection {
+      background-color: $secondary-color;
+    }
+  }
+
+  .ng5-slider-pointer {
+    background-color: $secondary-color;
+    width: 11px;
+    height: 11px;
+    top: -3.5px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .ng5-slider-bubble {
+    color: $secondary-color;
+
+    &.ng5-slider-floor, &.ng5-slider-ceil {
+      display: none;
+    }
+  }
 }
