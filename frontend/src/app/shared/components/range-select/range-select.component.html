@@ -1,0 +1,17 @@
+<span class="range-select__title">{{title}}</span>
+
+<ng5-slider
+  [options]="options"
+  [(value)]="low"
+  [(highValue)]="high">
+</ng5-slider>
+
+<div class="range-select__boundaries">
+  <span class="range-select__boundaries-label">From</span>
+
+  <input class="range-select__input" type="number" [(ngModel)]="low">
+
+  <span class="range-select__boundaries-label">To</span>
+
+  <input class="range-select__input" type="number" [(ngModel)]="high">
+</div>
