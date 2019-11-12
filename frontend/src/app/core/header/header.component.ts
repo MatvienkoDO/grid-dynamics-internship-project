@@ -1,4 +1,8 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { 
+  Component,
+  OnInit,
+  ElementRef 
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { NotificationService } from '../../shared/services/notification/notification.service';
@@ -13,7 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public readonly translate: TranslateService,
     private readonly notify: NotificationService,
-    private elRef:ElementRef
+    private readonly elRef: ElementRef
   ) { }
 
   ngOnInit() {
@@ -24,8 +28,7 @@ export class HeaderComponent implements OnInit {
     this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
   }
 
-  onClickMenuItem(element) {
-    console.log(element);
+  onClickMenuItem() {
     const closeButton = this.elRef.nativeElement.querySelector('.mobile-menu__btn');
     closeButton.click();
   }
