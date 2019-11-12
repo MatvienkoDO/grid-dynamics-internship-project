@@ -16,12 +16,13 @@
     cursor: auto;
     outline: none;
   }
-  @include for-phone-intermediate {
+  @include for-tablet-landscape-up {
     display: none;
   }
   &_mobile {
     display: none;
-    @include for-phone-intermediate {
+    border-bottom: 2px solid $primary-color;
+    @include for-tablet-landscape-up {
       display: block;
       margin: 20px 10px;
       .button_search[type=search]:focus {

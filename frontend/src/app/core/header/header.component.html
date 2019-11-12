@@ -52,9 +52,9 @@
       <form action="GET" class="search-container">
         <input type="search" class="button button_search" />
       </form>
-      <app-favourites class="button button_account"></app-favourites>
-      <p class="button_shopping-cart__count">{{ (productsNumber$ | async) || 0 }}</p>
-      <app-cart mat-button (click)="openDialog()"></app-cart>
+      <button class="button button_account"></button>
+      <app-favourites mat-button (click)="openFavourites()"></app-favourites>
+      <app-cart mat-button (click)="openCart()"></app-cart>
     </div>
   </div>
   <form action="GET" class="search-container_mobile">

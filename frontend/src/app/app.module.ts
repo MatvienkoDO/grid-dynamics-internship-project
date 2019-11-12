@@ -43,6 +43,7 @@ import {
   CartComponent,
   CartComponentInner,
   FavouritesComponent,
+  FavouritesComponentInner,
 } from './shared/components';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -75,6 +76,7 @@ const translateModuleConfig = {
     CartComponent,
     CartComponentInner,
     FavouritesComponent,
+    FavouritesComponentInner,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +100,8 @@ const translateModuleConfig = {
   entryComponents: [
     CartComponent,
     CartComponentInner,
+    FavouritesComponent,
+    FavouritesComponentInner,
   ]
 })
 export class AppModule { }

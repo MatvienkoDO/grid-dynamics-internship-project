@@ -27,6 +27,11 @@ $frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-
 @include angular-material-theme($frontend-theme);
 
 /* You can add global styles to this file, and also import other style files */
+.cdk-overlay-pane {
+  @media (max-width: 760px) {
+    height: 600px;
+  }
+}
 @import "~angular-notifier/styles";
 * {
   box-sizing: border-box;

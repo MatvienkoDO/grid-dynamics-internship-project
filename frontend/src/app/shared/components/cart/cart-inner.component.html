@@ -1,18 +1,21 @@
 <div class="button-container">
   <div class="cart__content">
+    <h3 class="title-medium">
+      Product  <span class="title-medium title-medium_primary-color"> Cart </span> 
+    </h3>
     <ul class="cart__product-list">
       <li class="cart__product-item cart__product-head">
-        <span class="cart__product-item_head cart__product-title">Title</span>
-        <span class="cart__product-item_head cart__product-size">Size</span>
-        <span class="cart__product-item_head cart__product-color">Color</span>
-        <span class="cart__product-item_head cart__product-price">Price</span>
-        <span class="cart__product-item_head cart__product-quantity">Quantity</span>
+        <span class="cart__product-item_bold cart__product-title">Title</span>
+        <span class="cart__product-item_bold cart__product-size">Size</span>
+        <span class="cart__product-item_bold cart__product-color">Color</span>
+        <span class="cart__product-item_bold cart__product-price">Price</span>
+        <span class="cart__product-item_bold cart__product-quantity">Quantity</span>
       </li>
       <li class="cart__product-item" *ngFor="let product of products$ | async">
           <span class="cart__product-title">{{ product.title }} </span>
           <span class="cart__product-size">{{ product.size }} </span>
           <span class="cart__product-color">{{ product.color }}</span>
-          <span class="cart__product-color">{{ product.price }}</span>
+          <span class="cart__product-price">{{ product.price }}</span>
           <div class="product-details__quantity cart__product-quantity">
               <form class="form-selection">
                 <span
@@ -31,28 +34,28 @@
         <button class="button button_delete" (click)="deleteFromCart(product)">X</button>
       </li>
       <li class="cart__product-item cart__product-head">
-          <span class="cart__product-item_head cart__product-title">Total cost {{getTotalCost()}}</span>
+          <span class="cart__product-item_bold cart__product-title">Total cost {{getTotalCost()}}</span>
       </li>
       <li class="cart__product-item_mobile" *ngFor="let product of products$ | async">
         <button class="button button_delete" (click)="deleteFromCart(product)">X</button>
         <div class="">
-          <span class="cart__product-item_head cart__product-title">Title</span>
+          <span class="cart__product-item_bold cart__product-title">Title</span>
           <span class="cart__product-title">{{ product.title }} </span>
         </div>
         <div class="">
-          <span class="cart__product-item_head cart__product-size">Size</span>
+          <span class="cart__product-item_bold cart__product-size">Size</span>
           <span class="cart__product-size">{{ product.size }} </span>
         </div>
         <div class="">
-          <span class="cart__product-item_head cart__product-color">Color</span>
+          <span class="cart__product-item_bold cart__product-color">Color</span>
           <span class="cart__product-color">{{ product.color }}</span>
         </div>
         <div class="">
-          <span class="cart__product-item_head cart__product-color">Price</span>
+          <span class="cart__product-item_bold cart__product-color">Price</span>
           <span class="cart__product-color">{{ product.price }}</span>
         </div>
         <div class="">
-          <span class="cart__product-item_head cart__product-color">Quantity</span>
+          <span class="cart__product-item_bold cart__product-color">Quantity</span>
           <div class="product-details__quantity cart__product-quantity">
             <form class="form-selection">
               <span class="form-selection__max" (click)="increaseQuantity()">
@@ -67,7 +70,7 @@
         </div>
       </li>
       <li class="cart__product-item_mobile cart__product-item_mobile-head">
-          <span class="cart__product-item_head cart__product-title">Total cost {{getTotalCost()}}</span>
+          <span class="cart__product-item_bold cart__product-title">Total cost {{getTotalCost()}}</span>
       </li>
       <button class="button button_delete-all" (click)="clearCart()">Delete All</button>
     </ul>

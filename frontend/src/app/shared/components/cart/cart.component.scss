@@ -40,7 +40,7 @@
       align-items: flex-start;
     }
 
-    &_head {
+    &_bold {
       font-weight: bold;
     }
   }
@@ -123,6 +123,10 @@
       text-align: center;
     }
   }
+}
+
+.mat-button {
+  font-family: "Open Sans"
 }
 
 .mat-dialog-actions {

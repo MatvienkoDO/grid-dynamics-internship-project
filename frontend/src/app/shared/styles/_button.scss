@@ -26,7 +26,6 @@ button[disabled] {
       margin: 0;
       height: auto;
       width: 100%;
-      border-bottom: 2px solid $primary-color;
       outline: none;
     }
   }
@@ -34,6 +33,15 @@ button[disabled] {
   &_account {
     @include icon (url(/assets/images/User_Ico.svg), 20px, 21px, 29px);
     background-color: transparent;
+  }
+
+  &_favourites {
+    @include icon (url(/assets/images/Like_Ico.svg), 19px, 16px, 29px);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    &:hover {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
   }
 
   &_shopping-cart {

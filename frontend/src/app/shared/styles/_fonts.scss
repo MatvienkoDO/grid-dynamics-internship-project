@@ -27,6 +27,9 @@
   font-size: 36px;
   font-weight: 600;
   text-transform: uppercase;
+  @include for-phone-intermediate {
+    font-size: 24px;
+  }
 }
 
 .title-medium_primary-color {

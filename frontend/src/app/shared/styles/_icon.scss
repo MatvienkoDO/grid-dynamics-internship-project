@@ -52,5 +52,8 @@
     &:hover {
       filter: invert(27%) sepia(51%) saturate(2878%);
     }
+    &:active {
+      filter: invert(27%) sepia(51%) saturate(2878%);
+    }
   }
 }
