@@ -55,6 +55,9 @@
       display: flex;
     }
   }
+  &__product-item_mobile-head {
+    margin-top: 15px;
+  }
 
   &__product-head {
     justify-content: flex-start;
@@ -120,4 +123,8 @@
       text-align: center;
     }
   }
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
 }

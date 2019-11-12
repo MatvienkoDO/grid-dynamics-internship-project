@@ -72,4 +72,8 @@ export class CartComponentInner implements OnInit {
     );
   }
 
+  getTotalCost() {
+    return 1 //this.products$.map(t => t.price).reduce((acc, value) => acc + value, 0);
+  }
+
 }
