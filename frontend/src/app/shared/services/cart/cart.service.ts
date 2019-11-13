@@ -32,10 +32,17 @@ export class CartService {
   }
 
   addToCart(cardProduct: CardProduct) {
-    const updatedItems = [
-      ...this.items.value,
-      cardProduct
-    ];
+    let updatedItems = null;
+    const idx = this.indexOf(cardProduct);
+    if (idx !== -1) {
+      updatedItems = this.items.value;
+      updatedItems[idx].quantity += cardProduct.quantity;
+    } else {
+      updatedItems = [
+        ...this.items.value,
+        cardProduct
+      ];
+    }
 
     this.saveItemsToLocalStorage(updatedItems);
 
@@ -43,6 +50,16 @@ export class CartService {
 
     const message = this.localizationService.getNotificationServiceMessage('addToCart');
     this.notificationService.info(`${cardProduct.title} ${message}`);
+  }
+
+  private indexOf(cardProduct: CardProduct) {
+    for (let i = 0; i < this.items.value.length; i++) {
+      const item = this.items.value[i];
+      if (item.id === cardProduct.id && item.color === cardProduct.color && item.size) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   deleteFromCart(cardProduct: CardProduct) {
@@ -87,5 +104,21 @@ export class CartService {
 
   private saveItemsToLocalStorage(items: CardProduct[]): void {
     localStorage.setItem(localStorageCartKey, JSON.stringify(items));
+  }
+
+  public readonly increaseQuantity = (index: number) => {
+    const products = this.items.value;
+    products[index].quantity++;
+    this.items.next(products);
+    this.saveItemsToLocalStorage(products);
+  }
+
+  public readonly decreaseQuantity = (index: number) => {
+    const products = this.items.value;
+    if (products[index].quantity > 1) {
+      products[index].quantity--;
+      this.items.next(products);
+      this.saveItemsToLocalStorage(products);
+    }
   }
 }

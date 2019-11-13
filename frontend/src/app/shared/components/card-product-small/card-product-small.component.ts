@@ -43,7 +43,9 @@ export class CardProductSmallComponent implements OnInit {
   private readonly generateCardProduct = () => {
     const info: CardProduct = {
       id: this.id,
-      title: this.title
+      title: this.title,
+      quantity: 1,
+      price: Number(this.price)
     };
 
     return info;
