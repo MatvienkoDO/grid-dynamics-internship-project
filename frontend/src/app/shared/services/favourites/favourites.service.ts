@@ -18,11 +18,11 @@ export class FavouritesService {
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
   ) { 
-    this.items$ = this.items;
+    this.items$ = this.items.asObservable();
     this.init();
   }
 
-  init() {
+  private init() {
     const itemsFromLocalStorage = this.getItemsFromLocalStorage();
 
     if (itemsFromLocalStorage) {

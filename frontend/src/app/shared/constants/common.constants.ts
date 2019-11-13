@@ -1,0 +1,1 @@
+export const localStorageCartKey = 'CART_ITEMS';

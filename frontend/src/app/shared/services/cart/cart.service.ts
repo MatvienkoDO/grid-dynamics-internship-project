@@ -5,7 +5,7 @@ import { CardProduct } from '../../models';
 import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 
-const localStorageCartKey = 'CART_ITEMS';
+import { localStorageCartKey } from '../../constants/common.constants'
 
 @Injectable({
   providedIn: 'root'
