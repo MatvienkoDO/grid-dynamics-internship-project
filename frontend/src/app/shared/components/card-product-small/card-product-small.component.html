@@ -1,17 +1,18 @@
-
 <div class="card-product-small">
-    <div class="card-product-small__image">
-        <img src="{{imageUrl}}" alt="{{imageAlt || 'product image'}}">
+  <div class="card-product-small__image">
+    <img src="{{imageUrl}}" alt="{{imageAlt || 'product image'}}">
+  </div>
+  <div class="card-product-small__description">
+    <a class="card-product-small__title">{{title}}</a>
+    <div class="card-product-small__stars-price">
+      <img src="/assets/images/Rate.png" alt="stars">
+      <div class="card-product-small__price">{{price}}{{currencySign || '$'}}</div>
+      <a class="card-product-small__add" (click)="addToCartCb()">
+        <i class="icon material-icons icon__add-to-cart_right">
+          add_shopping_cart
+        </i>
+        <span>{{ 'button.add to cart' | translate }}</span>
+      </a>
     </div>
-    <div class="card-product-small__description">
-        <a class="card-product-small__title">{{title}}</a>
-        <div class="card-product-small__stars-price">
-            <img src="/assets/images/Rate.png" alt="stars">
-            <div class="card-product-small__price">{{price}}{{currencySign || '$'}}</div>
-            <a class="card-product-small__add" (click)="addToCartCb()">
-              <i class="icon icon__add-to-cart icon__add-to-cart_right"></i>
-              <span>{{ 'button.add to cart' | translate }}</span>
-            </a>
-        </div>
-    </div>
+  </div>
 </div>

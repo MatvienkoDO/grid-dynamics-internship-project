@@ -3,6 +3,7 @@
 @import 'variables';
 @import 'fonts';
 @import 'button';
+@import 'icon';
 
 .tabs-content {
   display: flex;
@@ -52,12 +53,16 @@
 .slider-container {
   display: flex;
   opacity: 1;
+  outline: none;
   animation: tabs-changing-up 2s;
   justify-content: center;
   align-items: baseline;
   flex-direction: column;
   padding-left: 90px;
   height: inherit;
+  &:focus {
+    outline: none;
+  }
   @include for-phone-intermediate {
     padding-left: 10px;
   }
@@ -99,7 +104,10 @@
     background: none;
     cursor: pointer;
     margin-left: 30px;
-    @include flex(baseline);
+    @include flex(end);
+    &:focus {
+      outline: none;
+    }
   }
 }
 
