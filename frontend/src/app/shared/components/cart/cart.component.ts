@@ -63,6 +63,7 @@ export class CartComponentInner implements OnInit {
 
   clearCart() {
     this.cartService.clearCart();
+    this.dialogRef.close();
   }
 
   onNoClick(): void {
