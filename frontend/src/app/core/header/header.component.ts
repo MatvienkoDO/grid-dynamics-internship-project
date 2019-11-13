@@ -18,7 +18,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private readonly localizationService: LocalizationService,
+    public readonly localizationService: LocalizationService,
     private readonly notify: NotificationService,
     public dialog: MatDialog,
     private readonly elRef: ElementRef
