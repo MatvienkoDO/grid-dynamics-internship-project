@@ -32,16 +32,13 @@ export class CartService {
   }
 
   addToCart(cardProduct: CardProduct) {
-    let updatedItems = null;
+    const updatedItems = this.items.value;
+
     const idx = this.indexOf(cardProduct);
     if (idx !== -1) {
-      updatedItems = this.items.value;
       updatedItems[idx].quantity += cardProduct.quantity;
     } else {
-      updatedItems = [
-        ...this.items.value,
-        cardProduct
-      ];
+      updatedItems.push(cardProduct);
     }
 
     this.saveItemsToLocalStorage(updatedItems);
@@ -89,15 +86,17 @@ export class CartService {
   private getItemsFromLocalStorage(): CardProduct[] | null {
     const localStorageData = localStorage.getItem(localStorageCartKey);
 
+    if (!localStorageData) {
+      return null;
+    }
+
     try {
       const data = JSON.parse(localStorageData);
 
       if (Array.isArray(data)) {
         return data;
       }
-    } catch (e) {
-      return null;
-    }
+    } catch (e) { }
 
     return null;
   }

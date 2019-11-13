@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   HomeComponent,
   ProductDetailsComponent,
+  ProductsComponent,
 } from '../../pages';
 
 const routes: Routes = [
@@ -16,8 +17,13 @@ const routes: Routes = [
     component: ProductDetailsComponent
   },
   {
+    path: 'products',
+    component: ProductsComponent
+  },
+  {
     path: '**',
-    redirectTo: ''
+    redirectTo: '',
+    // TODO: make 'not found' notification
   },
 ];
 

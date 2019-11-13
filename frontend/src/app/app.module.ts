@@ -1,9 +1,10 @@
 import { NgModule, Provider, Injector } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Ng5SliderModule } from 'ng5-slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -27,6 +28,7 @@ import {
 import {
   HomeComponent,
   ProductDetailsComponent,
+  ProductsComponent,
 } from './pages';
 
 import {
@@ -44,6 +46,8 @@ import {
   CartComponent,
   CartComponentInner,
   FavouritesComponent,
+  ListSelectComponent,
+  RangeSelectComponent,
   FavouritesComponentInner,
 } from './shared/components';
 import { LocalizationService } from './shared/services';
@@ -78,6 +82,9 @@ const translateModuleConfig = {
     CartComponent,
     CartComponentInner,
     FavouritesComponent,
+    ProductsComponent,
+    ListSelectComponent,
+    RangeSelectComponent,
     FavouritesComponentInner,
   ],
   imports: [
@@ -88,6 +95,7 @@ const translateModuleConfig = {
     ReactiveFormsModule,
     TranslateModule.forRoot(translateModuleConfig),
     NotificationModule,
+    Ng5SliderModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,

@@ -24,10 +24,18 @@ export class LocalizationInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const locale = localStorage.getItem('LOCALE');
-    const localizedReq = request.clone({ headers: request.headers.set('locale', locale)});
 
-    // send cloned request with header to the next handler.
-    return next.handle(localizedReq);
+    if (!locale) {
+      return next.handle(request);  
+    }
+
+    const requestUpdate = {
+      headers: request.headers.set('locale', locale)
+    };
+
+    const localizedRequest = request.clone(requestUpdate);
+
+    return next.handle(localizedRequest);
   }
 
 }

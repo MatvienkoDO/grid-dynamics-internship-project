@@ -31,10 +31,10 @@ export class FavouritesService {
   }
 
   addToFavourites(cardProduct: CardProduct) {
-    let updatedItems = null;
     const idx = this.indexOf(cardProduct);
+
     if (idx === -1) {
-      updatedItems = [
+      const updatedItems = [
         ...this.items.value,
         cardProduct
       ];
@@ -85,15 +85,17 @@ export class FavouritesService {
   private getItemsFromLocalStorage(): CardProduct[] | null {
     const localStorageData = localStorage.getItem(localStorageFavouritesKey);
 
+    if (!localStorageData) {
+      return null;
+    }
+
     try {
       const data = JSON.parse(localStorageData);
 
       if (Array.isArray(data)) {
         return data;
       }
-    } catch (e) {
-      return null;
-    }
+    } catch (e) { }
 
     return null;
   }

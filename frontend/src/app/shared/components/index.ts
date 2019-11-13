@@ -11,3 +11,5 @@ export * from './slider/slider.component';
 export * from './related-products/related-products.component';
 export * from './cart/cart.component';
 export * from './favourites/favourites.component';
+export * from './list-select/list-select.component';
+export * from './range-select/range-select.component';
