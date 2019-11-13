@@ -5,12 +5,12 @@ import {
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { NotificationService } from '../../shared/services/notification/notification.service';
+import { NotificationService } from '../../shared/services';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
 
