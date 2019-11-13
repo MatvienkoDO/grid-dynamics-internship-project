@@ -28,17 +28,31 @@ export class FavouritesService {
     }
   }
 
-  addToFavourites(product: CardProduct) {
-    const updatedItems = [
-      ...this.items.value,
-      product
-    ];
+  addToFavourites(cardProduct: CardProduct) {
+    let updatedItems = null;
+    const idx = this.indexOf(cardProduct);
+    if (idx === -1) {
+      updatedItems = [
+        ...this.items.value,
+        cardProduct
+      ];
 
-    this.saveItemsToLocalStorage(updatedItems);
+      this.saveItemsToLocalStorage(updatedItems);
 
-    this.items.next(updatedItems);
+      this.items.next(updatedItems);
 
-    this.notificationService.info(`${product.title} has been added to Favourites`);
+      this.notificationService.info(`${cardProduct.title} has been added to Favourites`);
+    }
+  }
+
+  private indexOf(cardProduct: CardProduct) {
+    for (let i = 0; i < this.items.value.length; i++) {
+      const item = this.items.value[i];
+      if (item.id === cardProduct.id) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   deleteFromFavourites(product: CardProduct) {

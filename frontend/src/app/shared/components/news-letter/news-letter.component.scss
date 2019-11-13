@@ -1,6 +1,7 @@
 @import 'mixins';
 @import '_colors';
 @import '_button';
+@import 'icon';
 
 .news-letter-container {
   @include container;
@@ -55,8 +56,6 @@
   }
 
   &__icon {
-    height: 11px;
-    width: 18px;
     margin-right: 10px;
   }
 
