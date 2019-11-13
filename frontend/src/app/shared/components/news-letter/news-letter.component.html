@@ -11,7 +11,7 @@
         </i>
         <input type="email" name="email" class="news-letter__input" required
           placeholder="{{ 'input.email placesholder' | translate }}" autocomplete="on" ngModel
-          [(ngModel)]="newsLetterForm.email" />
+          [(ngModel)]="newsLetterForm['email']" />
         <button type="submit"
           class="news-letter__form-element news-letter__form-element_non-shrinkable button button_common"
           [class.spinner]="loading" [disabled]="!newsLetterForm.valid">{{ 'button.join us' | translate }}</button>
