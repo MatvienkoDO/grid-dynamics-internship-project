@@ -36,7 +36,7 @@
       <li class="cart__product-item cart__product-head">
         <span class="cart__product-item_bold cart__product-title">Total cost {{totalCost$ | async}}</span>
       </li>
-      <li class="cart__product-item_mobile" *ngFor="let product of products$ | async">
+      <li class="cart__product-item_mobile" *ngFor="let product of products$ | async; index as i">
         <button class="button button_delete" (click)="deleteFromCart(product)">
           <i class="material-icons">
             close
