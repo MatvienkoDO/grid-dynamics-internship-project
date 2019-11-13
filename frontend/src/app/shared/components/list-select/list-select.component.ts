@@ -16,7 +16,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ListSelectComponent implements OnInit {
   @Input() title = '';
-  @Input() options: Options = [];
+  @Input() options: ListSelectComponent.Options = [];
   @Input('one-of-many') oneOfMany = true;
 
   @Output() values = new EventEmitter<string[]>();
