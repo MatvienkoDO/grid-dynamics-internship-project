@@ -14,7 +14,6 @@ import { catchError } from 'rxjs/operators';
 
 import { NotificationService } from '../../shared/services';
 
-
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
@@ -24,7 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
     private readonly notificationService: NotificationService,
-    private readonly router: Router
+    private readonly router: Router,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
