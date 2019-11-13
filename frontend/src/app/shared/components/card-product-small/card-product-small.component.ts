@@ -34,7 +34,9 @@ export class CardProductSmallComponent implements OnInit {
   public readonly addToCartCb = () => {
     this.addToCart.emit({
       id: this.id,
-      title: this.title
+      title: this.title,
+      quantity: 1,
+      price: Number(this.price)
     });
   }
 }

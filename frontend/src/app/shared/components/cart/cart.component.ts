@@ -35,17 +35,26 @@ export class CartComponent implements OnInit {
 export class CartComponentInner implements OnInit {
   public products$: Observable<CardProduct[]>;
   public productsNumber$: Observable<number>;
+  public totalCost$: Observable<number>;
   public readonly quantity$ = new BehaviorSubject<number>(1);
 
   constructor(
+    public readonly dialogRef: MatDialogRef<CartComponentInner>,
     private readonly cartService: CartService,
-    public dialogRef: MatDialogRef<CartComponentInner>,
   ) { }
 
   ngOnInit() {
     this.products$ = this.cartService.items$;
     this.productsNumber$ = this.cartService.items$
       .pipe(map(products => products.length));
+
+    this.totalCost$ = this.products$.pipe(map(products => {
+      return products
+        .reduce(
+          (acc, current) => acc + current.price * current.quantity,
+          0
+        );
+    }));
   }
 
   deleteFromCart(cartProduct: CardProduct) {
@@ -60,20 +69,11 @@ export class CartComponentInner implements OnInit {
     this.dialogRef.close();
   }
 
-  public readonly increaseQuantity = () => {
-    this.quantity$.next(
-      this.quantity$.value + 1
-    );
+  public readonly increaseQuantity = (index: number) => {
+    this.cartService.increaseQuantity(index);
   }
 
-  public readonly decreaseQuantity = () => {
-    this.quantity$.next(
-      Math.max(this.quantity$.value - 1, 1)
-    );
+  public readonly decreaseQuantity = (index: number) => {
+    this.cartService.decreaseQuantity(index);
   }
-
-  getTotalCost() {
-    return 1 //this.products$.map(t => t.price).reduce((acc, value) => acc + value, 0);
-  }
-
 }

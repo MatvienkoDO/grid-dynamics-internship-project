@@ -11,30 +11,30 @@
         <span class="cart__product-item_bold cart__product-price">Price</span>
         <span class="cart__product-item_bold cart__product-quantity">Quantity</span>
       </li>
-      <li class="cart__product-item" *ngFor="let product of products$ | async">
+      <li class="cart__product-item" *ngFor="let i = index; let product of products$ | async">
         <span class="cart__product-title">{{ product.title }} </span>
         <span class="cart__product-size">{{ product.size }} </span>
         <span class="cart__product-color">{{ product.color }}</span>
         <span class="cart__product-price">{{ product.price }}</span>
         <div class="product-details__quantity cart__product-quantity">
           <form class="form-selection">
-            <span class="form-selection__max" (click)="increaseQuantity()">
+            <span class="form-selection__max" (click)="increaseQuantity(i)">
               +
             </span>
             <span class="form-selection__number cart__product-quantity_number">{{product.quantity}}</span>
-            <span class="form-selection__min" (click)="decreaseQuantity()">
+            <span class="form-selection__min" (click)="decreaseQuantity(i)">
               -
             </span>
           </form>
         </div>
         <button class="button button_delete" (click)="deleteFromCart(product)">
-            <i class="material-icons">
-                close
-              </i>
+          <i class="material-icons">
+            close
+          </i>
         </button>
       </li>
       <li class="cart__product-item cart__product-head">
-        <span class="cart__product-item_bold cart__product-title">Total cost {{getTotalCost()}}</span>
+        <span class="cart__product-item_bold cart__product-title">Total cost {{totalCost$ | async}}</span>
       </li>
       <li class="cart__product-item_mobile" *ngFor="let product of products$ | async">
         <button class="button button_delete" (click)="deleteFromCart(product)">
@@ -62,11 +62,11 @@
           <span class="cart__product-item_bold cart__product-color">Quantity</span>
           <div class="product-details__quantity cart__product-quantity">
             <form class="form-selection">
-              <span class="form-selection__max" (click)="increaseQuantity()">
+              <span class="form-selection__max" (click)="increaseQuantity(i)">
                 +
               </span>
               <span class="form-selection__number cart__product-quantity_number">{{product.quantity}}</span>
-              <span class="form-selection__min" (click)="decreaseQuantity()">
+              <span class="form-selection__min" (click)="decreaseQuantity(i)">
                 -
               </span>
             </form>
@@ -74,7 +74,7 @@
         </div>
       </li>
       <li class="cart__product-item_mobile cart__product-item_mobile-head">
-        <span class="cart__product-item_bold cart__product-title">Total cost {{getTotalCost()}}</span>
+        <span class="cart__product-item_bold cart__product-title">Total cost {{totalCost$ | async}}</span>
       </li>
       <button class="button button_delete-all" (click)="clearCart()">Delete All</button>
     </ul>
