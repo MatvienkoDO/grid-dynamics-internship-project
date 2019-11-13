@@ -52,6 +52,7 @@ export class FavouritesComponentInner implements OnInit {
 
   clearCart() {
     this.favouritesService.clearFavourites();
+    this.dialogRef.close();
   }
   onNoClick(): void {
     this.dialogRef.close();

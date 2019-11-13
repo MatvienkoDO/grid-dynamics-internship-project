@@ -1,8 +1,17 @@
 <div class="button-container">
   <div class="cart__content">
-    <h3 class="title-medium">
-      Product <span class="title-medium title-medium_primary-color"> Cart </span>
-    </h3>
+    <div class="cart__content-head">
+      <h3 class="title-medium cart-title">
+        Product <span class="title-medium title-medium_primary-color cart-title"> Cart </span>
+      </h3>
+      <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">
+          <i class="material-icons">
+            close
+          </i>
+        </button>
+      </div>
+    </div>
     <ul class="cart__product-list">
       <li class="cart__product-item cart__product-head">
         <span class="cart__product-item_bold cart__product-title">Title</span>
@@ -12,7 +21,9 @@
         <span class="cart__product-item_bold cart__product-quantity">Quantity</span>
       </li>
       <li class="cart__product-item" *ngFor="let i = index; let product of products$ | async">
-        <span class="cart__product-title">{{ product.title }} </span>
+        <span class="cart__product-title">
+          <img class="cart__product-image" src="/assets/images/Product_Img-jasket3-mini.png" alt="product's content">
+          {{ product.title }} </span>
         <span class="cart__product-size">{{ product.size }} </span>
         <span class="cart__product-color">{{ product.color }}</span>
         <span class="cart__product-price">{{ product.price }}</span>
@@ -33,7 +44,7 @@
           </i>
         </button>
       </li>
-      <li class="cart__product-item cart__product-head">
+      <li class="cart__product-item cart__product-head cart__product-item_last-child">
         <span class="cart__product-item_bold cart__product-title">Total cost {{totalCost$ | async}}</span>
       </li>
       <li class="cart__product-item_mobile" *ngFor="let product of products$ | async">
@@ -42,9 +53,11 @@
             close
           </i>
         </button>
+        <img class="cart__product-image" src="/assets/images/Product_Img-jasket3-mini.png" alt="product's content">
         <div class="">
           <span class="cart__product-item_bold cart__product-title">Title</span>
-          <span class="cart__product-title">{{ product.title }} </span>
+          <span class="cart__product-title">
+            {{ product.title }} </span>
         </div>
         <div class="">
           <span class="cart__product-item_bold cart__product-size">Size</span>
@@ -73,13 +86,10 @@
           </div>
         </div>
       </li>
-      <li class="cart__product-item_mobile cart__product-item_mobile-head">
+      <li class="cart__product-item_mobile cart__product-item_mobile-head cart__product-item_last-child">
         <span class="cart__product-item_bold cart__product-title">Total cost {{totalCost$ | async}}</span>
       </li>
       <button class="button button_delete-all" (click)="clearCart()">Delete All</button>
     </ul>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Close</button>
-    </div>
   </div>
 </div>
