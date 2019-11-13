@@ -31,10 +31,10 @@ export class FavouritesService {
   }
 
   addToFavourites(cardProduct: CardProduct) {
-    let updatedItems = null;
     const idx = this.indexOf(cardProduct);
+
     if (idx === -1) {
-      updatedItems = [
+      const updatedItems = [
         ...this.items.value,
         cardProduct
       ];
