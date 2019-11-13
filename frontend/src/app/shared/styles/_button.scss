@@ -16,44 +16,57 @@ button[disabled] {
 .button {
   border: none;
   cursor: pointer;
+  outline: none;
+  background-color: transparent;
 
   &_search {
     @include fonts ($black, "Open Sans", 14px, 500);
-    @include icon (url(/assets/images/Search_Ico.svg), 18px, 20px, 34px);
+    @include icon (url(/assets/images/search-24px.svg), 21px, 21px, 34px);
     background-repeat: no-repeat;
+    &:hover {
+      filter: invert(37%) sepia(51%) saturate(2878%);
+    }
+    &:active {
+      filter: invert(37%) sepia(51%) saturate(2878%);
+    }
 
     @include for-phone-intermediate {
       margin: 0;
       height: auto;
       width: 100%;
-      outline: none;
     }
   }
 
   &_account {
-    @include icon (url(/assets/images/User_Ico.svg), 20px, 21px, 29px);
-    background-color: transparent;
+    @include icon (url(/assets/images/person-24px.svg), 20px, 21px, 29px);
+    &:hover {
+      filter: invert(37%) sepia(51%) saturate(2878%);
+    }
+    @include for-tablet-intermediate {
+      margin-right: 24px;
+    }
   }
 
   &_favourites {
-    @include icon (url(/assets/images/Like_Ico.svg), 19px, 16px, 29px);
-    background-color: transparent;
+    @include icon (url(/assets/images/favorite_border-24px.svg), 22px, 21px, 29px);
     background-repeat: no-repeat;
     &:hover {
-      filter: invert(27%) sepia(51%) saturate(2878%);
+      filter: invert(37%) sepia(51%) saturate(2878%);
+    }
+    @include for-tablet-intermediate {
+      margin-right: 13px;
     }
   }
 
   &_shopping-cart {
-    @include icon (url(/assets/images/Cart_Ico.svg), 24px, 17px, 0);
-    background-color: transparent;
+    @include icon (url(/assets/images/logo-basket.svg), 24px, 17px, 0);
     background-repeat: no-repeat;
     filter: invert(36%) sepia(51%) saturate(2878%);
 
     &__count {
       position: absolute;
       top: -32px;
-      left: 3px;
+      left: 9px;
       background-color: #34404b;
       @include fonts (#ffffff, "Open Sans", 10px, 300);
       line-height: 1.8;
@@ -61,6 +74,9 @@ button[disabled] {
       width: 18px;
       height: 18px;
       border-radius: 50%;
+    }
+    &:hover {
+      filter: invert(37%) sepia(51%) saturate(2878%);
     }
   }
 
@@ -80,7 +96,6 @@ button[disabled] {
     height: 49px;
     border-radius: 25px;
     background-color: #ff5912;
-    outline: none;
     @include fonts(#ffffff, "Open Sans", 18px, 400);
     text-transform: capitalize;
 
@@ -91,12 +106,11 @@ button[disabled] {
 
   &_delete {
     margin-left: auto;
-    padding: 2px 9px;
+    padding: 2px 4px;
     cursor: pointer;
     border-radius: 25px;
     display: inline-block;
     text-align: center;
-    line-height: 2;
 
     &:hover {
       background: rgba(0, 0, 0, 0.04);

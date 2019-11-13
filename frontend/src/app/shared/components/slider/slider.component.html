@@ -1,13 +1,8 @@
-<div
-  class="slider-wrapper"
-  [style.backgroundImage]="'url(' + ((currentProduct$ | async)?.sliderImage || '') + ')'">
+<div class="slider-wrapper" [style.backgroundImage]="'url(' + ((currentProduct$ | async)?.sliderImage || '') + ')'">
 
   <div class="tabs-content">
-    <div
-      *ngFor="let product of products$ | async; index as i"
-      class="tabs-content__item"
-      [class.tabs-content__item_active]="(current$ | async) === i"
-      (click)="changeSlide(i)">
+    <div *ngFor="let product of products$ | async; index as i" class="tabs-content__item"
+      [class.tabs-content__item_active]="(current$ | async) === i" (click)="changeSlide(i)">
     </div>
 
     <div class="tabs-content__articles" *ngIf="currentProduct$ | async as currentProduct">
@@ -30,12 +25,15 @@
             class="slider-container__button-container button-container"
             (click)="orderProduct(currentProduct.id, currentProduct.name, currentProduct.price)">
 
-            <span class="button button_shopping-cart"></span>
-            <p class="slider-container__desc slider-container__desc_primary-color">{{ 'button.orderNow' | translate }}</p>
+            <i class="button material-icons primary-color">
+              add_shopping_cart
+            </i>
+            <p class="slider-container__desc slider-container__desc_primary-color">{{ 'button.orderNow' | translate }}
+            </p>
           </button>
         </div>
       </div>
-       
+
     </div>
   </div>
 </div>

@@ -28,9 +28,7 @@ $frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-
 
 /* You can add global styles to this file, and also import other style files */
 .cdk-overlay-pane {
-  @media (max-width: 760px) {
-    height: 600px;
-  }
+    max-height: 600px;
 }
 @import "~angular-notifier/styles";
 * {

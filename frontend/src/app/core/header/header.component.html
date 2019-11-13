@@ -3,15 +3,20 @@
     <div class="header-contacts">
       <div class="header-contacts__info">
         <a href="mailto:info@shopy.com" class="header-contacts__item">
-          <i class="icon icon__mail"></i>
+          <i class="icon material-icons primary-color">
+            mail_outline
+          </i>
           <p class="header-contacts__text">info@shopy.com</p>
         </a>
         <a href="tel:+14535553996" class="header-contacts__item">
-          <i class="icon icon__pnone-number"></i>
+          <i class="icon material-icons primary-color">
+            phone_android
+          </i>
           <p class="header-contacts__text">453 - 5553 - 996</p>
         </a>
         <select class="languages-translator" #langSelect (change)="translate.use(langSelect.value)">
-          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+          <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">
+            {{ lang }}</option>
         </select>
       </div>
       <div class="header-contacts__social-media">
@@ -24,9 +29,14 @@
   </div>
   <div class="header-navbar">
     <div class="header-navbar__left">
-      <picture routerLink="/" class="header-navbar__logo picture-container">
-        <img src="/assets/images/logo.png" alt="logo" class="picture-container__content">
-      </picture>
+      <a routerLink="/" class="header-navbar__logo">
+        <div class="logo-wrapper">
+          <p class="logo-text_large">sh</p>
+          <img src="/assets/images/logo.svg" alt="logo" class="logo-img">
+          <p class="logo-text_large">py</p>
+        </div>
+        <p class="logo-text">shope any where</p>
+      </a>
       <nav class="header-navbar__content">
         <a class="header-navbar__item" routerLink="/">{{ 'nav.home' | translate }}</a>
         <a class="header-navbar__item" routerLink="/products">{{ 'nav.products' | translate }}</a>
@@ -36,7 +46,9 @@
       </nav>
       <nav class="mobile-menu">
         <input type="checkbox" id="checkbox" class="mobile-menu__checkbox">
-        <label for="checkbox" class="mobile-menu__btn"><div class="mobile-menu__icon"></div></label>
+        <label for="checkbox" class="mobile-menu__btn">
+          <div class="mobile-menu__icon"></div>
+        </label>
         <div class="mobile-menu__container">
         <ul class="mobile-menu__list" (click)="onClickMenuItem()">
           <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.home' | translate }}</a></li>

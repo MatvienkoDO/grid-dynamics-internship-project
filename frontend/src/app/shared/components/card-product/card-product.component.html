@@ -21,9 +21,7 @@
         <p class="list-sizes__title">:</p>
         <ng-container *ngFor="let size of sizes; last as isLast">
           <span class="list-sizes__item list-sizes__item_first-child">
-            <span
-              class="list-sizes__prop"
-              [class.list-sizes__prop_active]="(size$ | async) === size"
+            <span class="list-sizes__prop" [class.list-sizes__prop_active]="(size$ | async) === size"
               (click)="changeSize(size)">
               {{size}}
             </span>
@@ -36,11 +34,8 @@
           <ng-container *ngFor="let color of colors">
             <span class="list-colors__item">
               <!-- FIXME: [style.background-color]="color" is awful -->
-              <span
-                class="list-colors__prop"
-                [style.background-color]="color"
-                [class.list-colors__prop_active]="(color$ | async) === color"
-                (click)="changeColor(color)">
+              <span class="list-colors__prop" [style.background-color]="color"
+                [class.list-colors__prop_active]="(color$ | async) === color" (click)="changeColor(color)">
               </span>
             </span>
           </ng-container>
@@ -52,12 +47,16 @@
         <ul class="list-options__content">
           <li class="list-options__item">
             <a class="list-options__icon" (click)="action(showDetails)">
-              <i class="icon icon__share"></i>
+              <i class="icon material-icons">
+                language
+              </i>
             </a>
           </li>
           <li class="list-options__item">
             <a class="list-options__icon" (click)="action(addToCart)">
-              <i class="icon icon__add-to-cart"></i>
+              <i class="icon material-icons">
+                add_shopping_cart
+              </i>
             </a>
           </li>
           <li class="list-options__item">
