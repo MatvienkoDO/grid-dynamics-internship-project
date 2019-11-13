@@ -19,7 +19,7 @@
               class="slider-container__arrow right-arrow"
               [class.slider-container__arrow_disabled]="currentImage === images.length - 1"
               (click)="nextImage()">
-            </a> 
+            </a>
           </div>
         </div>
         <img
@@ -49,9 +49,7 @@
           </p>
           <ng-container *ngFor="let size of sizes; last as isLast">
             <span class="list-sizes__item list-sizes__item_first-child">
-              <span
-                class="list-sizes__prop"
-                [class.list-sizes__prop_active]="(size$ | async) === size"
+              <span class="list-sizes__prop" [class.list-sizes__prop_active]="(size$ | async) === size"
                 (click)="changeSize(size)">
                 {{size | uppercase}}
               </span>
@@ -64,35 +62,35 @@
             {{ 'product show.chooseQuantity' | translate }}
           </p>
           <form class="form-selection">
-            <span
-              class="form-selection__max"
-              (click)="increaseQuantity()">
+            <span class="form-selection__max" (click)="increaseQuantity()">
               +
             </span>
             <span class="form-selection__number">{{quantity$ | async}}</span>
-            <span
-              class="form-selection__min"
-              (click)="decreaseQuantity()">
+            <span class="form-selection__min" (click)="decreaseQuantity()">
               -
             </span>
           </form>
         </div>
       </div>
       <div class="product-details__order">
-       <div class="product-details__price">
-         <p class="text_marker text_large">{{ 'price' | translate }} : {{currency}}{{price}}</p>
-       </div>
+        <div class="product-details__price">
+          <p class="text_marker text_large">{{ 'price' | translate }} : {{currency}}{{price}}</p>
+        </div>
         <div class="product-details__order-links">
           <div class="list-options">
             <ul class="list-options__content">
               <li class="list-options__item">
                 <a class="list-options__icon" (click)="shareCb()">
-                  <i class="icon icon__share"></i>
+                  <i class="icon material-icons">
+                    language
+                  </i>
                 </a>
               </li>
               <li class="list-options__item">
                 <a class="list-options__icon" (click)="addToCartCb()">
-                  <i class="icon icon__add-to-cart"></i>
+                  <i class="icon material-icons">
+                    add_shopping_cart
+                  </i>
                 </a>
               </li>
               <li class="list-options__item">
@@ -102,9 +100,7 @@
               </li>
             </ul>
           </div>
-          <a
-            class="button button_order product-details__button"
-            (click)="orderNow()">
+          <a class="button button_order product-details__button" (click)="orderNow()">
             {{ 'order now' | translate }}
           </a>
         </div>

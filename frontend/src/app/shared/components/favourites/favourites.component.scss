@@ -7,29 +7,21 @@
 
 .favourites {
   &__content {
-    position: absolute;
-    top: 15px;
-    right: 0;
-    display: block;
-    z-index: 1;
-    height: 0;
-    width: 180px;
-    
-    transition: height .5s ease;
-    transition-delay: .4s;
+    width: 100%;
+    height: auto;
 
   }
 
   &__product-list {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-    @include fonts (#34404b, "Open Sans", 12px, 400);
+    @include fonts (#34404b, "Open Sans", 18px, 400);
+    padding-left: 0;
     line-height: 2;
     background: #fff;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+
+    @include for-tablet-portrait-up {
+      font-size: 16px;
+      line-height: 1.5;
+    }
 
   }
   &__product-item {
@@ -38,10 +30,10 @@
     align-items: center;
   }
 }
+.mat-button {
+  font-family: "Open Sans"
+}
 
-.button-container:hover .favourites__product-list {
-  padding: 20px 10px;
-  height: auto;
-  z-index: 3;
-  transition-delay: 0s;
+.mat-dialog-actions {
+  justify-content: flex-end;
 }

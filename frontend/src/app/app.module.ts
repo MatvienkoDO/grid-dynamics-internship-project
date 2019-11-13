@@ -1,10 +1,15 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider, Injector } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Ng5SliderModule } from 'ng5-slider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 
@@ -17,6 +22,7 @@ import {
   HeaderComponent,
   FooterComponent,
   ErrorInterceptor,
+  LocalizationInterceptor,
 } from './core';
 
 import {
@@ -38,10 +44,14 @@ import {
   SliderComponent,
   RelatedProductsComponent,
   CartComponent,
+  CartComponentInner,
   FavouritesComponent,
   ListSelectComponent,
   RangeSelectComponent,
+  FavouritesComponentInner,
 } from './shared/components';
+import { LocalizationService } from './shared/services';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const translateModuleConfig = {
   loader: {
@@ -70,10 +80,12 @@ const translateModuleConfig = {
     ProductDetailsComponent,
     RelatedProductsComponent,
     CartComponent,
+    CartComponentInner,
     FavouritesComponent,
     ProductsComponent,
     ListSelectComponent,
     RangeSelectComponent,
+    FavouritesComponentInner,
   ],
   imports: [
     BrowserModule,
@@ -84,10 +96,23 @@ const translateModuleConfig = {
     TranslateModule.forRoot(translateModuleConfig),
     NotificationModule,
     Ng5SliderModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatIconModule,
+    MatTableModule,
   ],
   providers: [
-    ErrorInterceptor.provider,
+    LocalizationInterceptor.provider,
+    ErrorInterceptor.provider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CartComponent,
+    CartComponentInner,
+    FavouritesComponent,
+    FavouritesComponentInner,
+  ]
 })
 export class AppModule { }
