@@ -22,7 +22,8 @@ export class ProductController {
       Number(query.minPrice),
       Number(query.maxPrice),
       query.sizes,
-      query.brands
+      query.brands,
+      query.search
     );
     const products = this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale, filter);
     const quantity = this.productService.getCount(filter);
