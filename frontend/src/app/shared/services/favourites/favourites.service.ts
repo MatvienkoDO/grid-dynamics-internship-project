@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models';
 import { NotificationService } from '../notification/notification.service';
+import { LocalizationService } from '../localization/localization.service';
 
 const localStorageFavouritesKey = 'FAVOURITES_ITEMS';
 
@@ -14,7 +15,8 @@ export class FavouritesService {
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
 
   constructor(
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly localizationService: LocalizationService,
   ) { 
     this.items$ = this.items;
     this.init();
@@ -41,7 +43,8 @@ export class FavouritesService {
 
       this.items.next(updatedItems);
 
-      this.notificationService.info(`${cardProduct.title} has been added to Favourites`);
+      const message = this.localizationService.getNotificationServiceMessage('addToFavourites');
+      this.notificationService.info(`${cardProduct.title} ${message}`);
     }
   }
 
@@ -64,7 +67,8 @@ export class FavouritesService {
 
     this.items.next(updatedItems);
 
-    this.notificationService.warning(`${product.title} has been removed from Favourites`);
+    const message = this.localizationService.getNotificationServiceMessage('deleteFromFavourites');
+    this.notificationService.warning(`${product.title} ${message}`);
   }
 
   clearFavourites() {
@@ -74,7 +78,8 @@ export class FavouritesService {
 
     this.items.next(updatedItems);
 
-    this.notificationService.warning('Favourites has been cleared');
+    const message = this.localizationService.getNotificationServiceMessage('clearFavourites');
+    this.notificationService.warning(message);
   }
 
   private getItemsFromLocalStorage(): CardProduct[] | null {

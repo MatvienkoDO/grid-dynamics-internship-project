@@ -18,7 +18,7 @@ import { NotificationService } from '../../shared/services';
 export class ErrorInterceptor implements HttpInterceptor {
 
   public static readonly provider = {
-    provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+    provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true,
   };
 
   constructor(
@@ -30,13 +30,17 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 0) {
-          this.notificationService.error('Error: there is no internet connection');
+          this.notificationService.error(
+            this.getNotificationServiceMessage('noInternet'));
         } else if (error.status === 404) {
-          this.notificationService.error('Error: resourse not found');
+          this.notificationService.error(
+            this.getNotificationServiceMessage('notFound'));
         } else if (error.status >= 500 && error.status < 600) {
-          this.notificationService.error('Error: server-side error');
+          this.notificationService.error(
+            this.getNotificationServiceMessage('serverError'));
         } else {
-          this.notificationService.error('Error: unknown error');
+          this.notificationService.error(
+            this.getNotificationServiceMessage('unknownError'));
         }
         this.router.navigate(['']);
         
@@ -45,4 +49,36 @@ export class ErrorInterceptor implements HttpInterceptor {
     );
   }
 
+  private getNotificationServiceMessage(type: string) {
+    const locale = localStorage.getItem('LOCALE');
+    return errorMessages[type][locale];
+  }
+
 }
+
+const errorMessages = {
+  noInternet: {
+    en: 'Cart has been cleared',
+    ru: 'Корзина очищена'
+  },
+  notFound: {
+    en: 'Product not found',
+    ru: 'Товар не найден'
+  },
+  serverError: {
+    en: 'Server-side error',
+    ru: 'Ошибка сервера'
+  },
+  unknownError: {
+    en: 'Ooops... something goes wrong',
+    ru: 'Ууупс... что-то пошло не так'
+  },
+  onlineNow: {
+    en: 'You are online now',
+    ru: 'Соединение восстановлено'
+  },
+  offlineNow: {
+    en: 'You are offline now',
+    ru: 'Соединение потеряно'
+  }
+};

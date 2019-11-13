@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider, Injector } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
@@ -21,6 +21,7 @@ import {
   HeaderComponent,
   FooterComponent,
   ErrorInterceptor,
+  LocalizationInterceptor,
 } from './core';
 
 import {
@@ -45,6 +46,7 @@ import {
   FavouritesComponent,
   FavouritesComponentInner,
 } from './shared/components';
+import { LocalizationService } from './shared/services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const translateModuleConfig = {
@@ -94,7 +96,8 @@ const translateModuleConfig = {
     MatTableModule,
   ],
   providers: [
-    ErrorInterceptor.provider,
+    LocalizationInterceptor.provider,
+    ErrorInterceptor.provider
   ],
   bootstrap: [AppComponent],
   entryComponents: [

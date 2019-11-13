@@ -1,12 +1,9 @@
-import { 
-  Component,
-  OnInit,
-  ElementRef 
-} from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { NotificationService } from '../../shared/services';
+import { NotificationService, LocalizationService } from '../../shared/services';
 import { CartComponentInner } from '../../shared/components';
 import { FavouritesComponentInner } from '../../shared/components';
 
@@ -21,18 +18,18 @@ import { MatIconRegistry } from '@angular/material/icon';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    public readonly translate: TranslateService,
+    private readonly localizationService: LocalizationService,
     private readonly notify: NotificationService,
     public dialog: MatDialog,
     private readonly elRef: ElementRef
   ) { }
 
   ngOnInit() {
-    this.translate.addLangs(['en', 'ru']);
-    this.translate.setDefaultLang('en');
+    
+  }
 
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+  changeLanguage(value: string) {
+    this.localizationService.setLocale(value);
   }
 
   openCart() : void {
