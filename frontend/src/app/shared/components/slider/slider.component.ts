@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, combineLatest, Subscription, interval } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
@@ -20,7 +21,8 @@ export class SliderComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly productsService: ProductsService,
-    private readonly cartService: CartService  
+    private readonly cartService: CartService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
@@ -65,5 +67,9 @@ export class SliderComponent implements OnInit, OnDestroy {
       price: productPrice,
       quantity: 1,
     });
+  }
+
+  public readonly showDetails = (productId: string) => {
+    this.router.navigateByUrl(`/product/${productId}`);
   }
 }

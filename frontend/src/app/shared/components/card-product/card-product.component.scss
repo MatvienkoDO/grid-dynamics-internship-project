@@ -74,7 +74,7 @@
     &__header {
       height: 90px;
       padding: 0;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     &__img {
@@ -95,7 +95,10 @@
       display: block;
       @include fonts (#34404b, "Open Sans", 16px, 600);
       text-decoration: none;
-      padding-bottom: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
 
       &:hover {
         color: #ff5912;

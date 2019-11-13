@@ -7,7 +7,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { CardProduct } from '../../models/card-product';
+import { CardProduct } from '../../models';
 
 @Component({
   selector: 'app-card-product-small[id][image-url][title][price]',
@@ -24,6 +24,7 @@ export class CardProductSmallComponent implements OnInit {
   @Input('image-alt') public readonly imageAlt: string | undefined;
   @Input('currency-sign') public readonly currencySign: string | undefined;
 
+  @Output('show-details') public readonly showDetails = new EventEmitter<CardProduct>();
   @Output('add-to-cart') public readonly addToCart = new EventEmitter<CardProduct>();
 
   constructor() { }
@@ -31,12 +32,22 @@ export class CardProductSmallComponent implements OnInit {
   ngOnInit() {
   }
 
+  public readonly showDetailsCb = () => {
+    this.showDetails.emit(this.generateCardProduct());
+  }
+
   public readonly addToCartCb = () => {
-    this.addToCart.emit({
+    this.addToCart.emit(this.generateCardProduct());
+  }
+
+  private readonly generateCardProduct = () => {
+    const info: CardProduct = {
       id: this.id,
       title: this.title,
       quantity: 1,
       price: Number(this.price)
-    });
+    };
+
+    return info;
   }
 }

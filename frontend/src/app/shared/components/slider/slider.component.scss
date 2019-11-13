@@ -67,7 +67,10 @@
   
 
   &__title {
+    padding-top: 20px;
     padding-bottom: 29px;
+    cursor: pointer;
+
     @include for-phone-intermediate {
       padding-left: 0;
       font-size: 36px;

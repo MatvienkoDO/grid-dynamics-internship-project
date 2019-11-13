@@ -1,10 +1,13 @@
-import { Product } from './product.interface'
+import { LocalizedProduct } from './localizedProduct.model';
 
 export class ProductResponse {
-  public data: Product | Product[];
+  public data: LocalizedProduct | LocalizedProduct[];
   public quantity: number;
 
-  constructor(data?: Product | Product[], quantity?: number) {
+  constructor(
+    data?: LocalizedProduct | LocalizedProduct[],
+    quantity?: number
+  ) {
     this.data = data;
     this.quantity = quantity;
   }

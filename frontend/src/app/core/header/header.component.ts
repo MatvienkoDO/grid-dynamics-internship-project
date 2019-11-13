@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { 
+  Component,
+  OnInit,
+  ElementRef 
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -9,7 +13,7 @@ import { FavouritesComponentInner } from '../../shared/components';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
 
@@ -17,6 +21,7 @@ export class HeaderComponent implements OnInit {
     public readonly translate: TranslateService,
     private readonly notify: NotificationService,
     public dialog: MatDialog,
+    private readonly elRef: ElementRef
   ) { }
 
   ngOnInit() {
@@ -45,5 +50,10 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+  
+  onClickMenuItem() {
+    const closeButton = this.elRef.nativeElement.querySelector('.mobile-menu__btn');
+    closeButton.click();
   }
 }

@@ -39,6 +39,9 @@
 
     .footer-navlist {
       @include flex(baseline);
+      @include for-phone-intermediate {
+        justify-content: space-around;
+      }
       @include for-tablet-portrait-up {
         width: 100%;
       }
