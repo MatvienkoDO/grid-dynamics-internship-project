@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
-import { NotificationService } from '../../shared/services/notification/notification.service';
-import { LocalizationService } from 'src/app/shared/services/localization/localization.service';
+import { TranslateService } from '@ngx-translate/core';
+
+import { NotificationService, LocalizationService } from '../../shared/services';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
 
   constructor(
     private readonly localizationService: LocalizationService,
     private readonly notify: NotificationService,
+    private readonly elRef: ElementRef
   ) { }
 
   ngOnInit() {
@@ -23,4 +25,8 @@ export class HeaderComponent implements OnInit {
     this.localizationService.setLocale(value);
   }
 
+  onClickMenuItem() {
+    const closeButton = this.elRef.nativeElement.querySelector('.mobile-menu__btn');
+    closeButton.click();
+  }
 }
