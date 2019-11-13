@@ -8,13 +8,6 @@ import {
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export interface Option {
-  title: string;
-  value: string;
-}
-
-export type Options = Option[];
-
 @Component({
   selector: 'app-list-select',
   templateUrl: './list-select.component.html',
@@ -63,4 +56,13 @@ export class ListSelectComponent implements OnInit {
     this.selected$.next(newValues);
     this.values.emit(newValues);
   }
+}
+
+export namespace ListSelectComponent {
+  export interface Option {
+    title: string;
+    value: string;
+  }
+  
+  export type Options = Option[];
 }
