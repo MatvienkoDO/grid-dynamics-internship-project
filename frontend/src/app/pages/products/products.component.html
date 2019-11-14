@@ -33,8 +33,14 @@
 
     <div class="cards">
       <div class="cards__container">
+        <span
+          *ngIf="(products$ | async)?.length === 0"
+          class="cards__empty">
+          No items
+        </span>
         <app-card-product
           *ngFor="let product of products$ | async"
+          class="cards__element"
           [id]="product.id"
           [image-url]="product.images[0]"
           [title]="product.name"

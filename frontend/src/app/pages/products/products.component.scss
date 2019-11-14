@@ -30,10 +30,20 @@ $gap: 30px;
 
 .cards {
   margin-left: $gap;
+  flex-grow: 1;
 
   &__container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+  }
+
+  &__element {
+    width: 250px;
+  }
+
+  &__empty {
+    margin-top: 100px;
+    font-size: 30px;
   }
 }
