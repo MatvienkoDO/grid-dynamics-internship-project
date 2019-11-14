@@ -20,4 +20,5 @@ export interface Product extends Document {
   sizes: string[];
   colors: string[];
   images: string[];
+  sliderImage?: string;
 }

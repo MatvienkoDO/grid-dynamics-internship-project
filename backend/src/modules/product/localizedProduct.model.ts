@@ -9,6 +9,7 @@ export class LocalizedProduct {
   sizes: string[];
   colors: string[];
   images: string[];
+  sliderImage?: string;
 
   constructor(
     id: string,
@@ -20,7 +21,8 @@ export class LocalizedProduct {
     price: number,
     sizes: string[],
     colors: string[],
-    images: string[]
+    images: string[],
+    sliderImage?: string
   ) {
     this.id = id;
     this.name = name;
@@ -32,5 +34,6 @@ export class LocalizedProduct {
     this.sizes = sizes;
     this.colors = colors;
     this.images = images;
+    this.sliderImage = sliderImage;
   }
 }
