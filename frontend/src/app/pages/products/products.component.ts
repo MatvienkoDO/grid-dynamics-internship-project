@@ -83,6 +83,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ];
 
   public products$: Observable<Product[]>;
+  public productsQuantity$: Observable<number>;
   public readonly loading$ = new BehaviorSubject<boolean>(true);
 
   private readonly subscriptions: Subscription[] = [];
@@ -109,12 +110,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
       })
     );
 
-    this.products$ = this.query
-      .pipe(tap( () => this.changeLoading(true) ))
-      .pipe(debounceTime(1000))
-      .pipe(switchMap(({ paging, filter }) =>
-        this.productsService.getProductsByFilters(paging.skip, paging.limit, filter)
-      ))
+    const response = this.query
+      .pipe(
+        tap( () => this.changeLoading(true) ),
+        debounceTime(1000),
+        switchMap(({ paging, filter }) =>
+          this.productsService.getProductsByFilters(paging.skip, paging.limit, filter)
+        ),
+        tap( () => this.changeLoading(false) ),
+        share()
+      );
+
+    this.products$ = response
       .pipe(map(response => {
         if (response && Array.isArray(response.data)) {
           return response.data;
@@ -123,9 +130,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
         throw {
           message: 'incorrect data'
         };
-      }))
-      .pipe(tap( () => this.changeLoading(false) ))
-      .pipe(share());
+      }));
+
+    this.productsQuantity$ = response
+      .pipe(map(response => {
+        if (response && Number.isInteger(response.quantity)) {
+          return response.quantity;
+        }
+
+        throw {
+          message: 'incorrect data'
+        };
+      }));
   }
 
   ngOnDestroy() {

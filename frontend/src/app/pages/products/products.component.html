@@ -58,7 +58,9 @@
       </div>
 
       <button
+        *ngIf="(products$ | async)?.length < (productsQuantity$ | async)"
         class="load-more"
+        [class.load-more_hidden]="loading$ | async"
         (click)="loadMore()">
         <span class="load-more__circle"></span>
         <span class="load-more__circle"></span>

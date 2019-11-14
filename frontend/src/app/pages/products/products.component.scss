@@ -68,6 +68,10 @@ $gap: 30px;
   display: flex;
   justify-content: center;
 
+  &_hidden {
+    display: none;
+  }
+
   &:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
