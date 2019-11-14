@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  // TODO(tkatimulin): Rewrite this logic
   onClickMenuItem() {
     const closeButton = this.elRef.nativeElement.querySelector('.mobile-menu__btn');
     closeButton.click();
