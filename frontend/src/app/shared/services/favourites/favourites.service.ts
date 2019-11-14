@@ -5,7 +5,7 @@ import { CardProduct } from '../../models';
 import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 
-const localStorageFavouritesKey = 'FAVOURITES_ITEMS';
+import { localStorageFavouritesKey } from '../../constants/common.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class FavouritesService {
     this.init();
   }
 
-  private init() {
+  init() {
     const itemsFromLocalStorage = this.getItemsFromLocalStorage();
 
     if (itemsFromLocalStorage) {
