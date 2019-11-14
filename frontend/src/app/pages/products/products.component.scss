@@ -34,6 +34,7 @@ $gap: 30px;
 
   &__container {
     margin: 0 (-$gap / 2);
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -59,13 +60,15 @@ $gap: 30px;
     visibility: hidden;
   }
 
-  &__empty {
-    margin-top: 100px;
-    font-size: 30px;
+  &__empty, &__loading {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 200px;
   }
 
-  &__loading {
-    margin-top: 100px;
+  &__empty {
+    font-size: 30px;
   }
 }
 
