@@ -4,9 +4,6 @@ import { FavouritesService, LocalizationService, NotificationService} from '../'
 import { localStorageFavouritesKey } from '../../constants/common.constants';
 import { CardProduct } from '../../models'
 
-import {BrowserDynamicTestingModule, platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing'
-
-
 describe('FavouritesService', () => {
   const LocalizationServiceSpy = 
   jasmine.createSpyObj('LocalizationService', ['getNotificationServiceMessage']);
@@ -16,8 +13,6 @@ describe('FavouritesService', () => {
   LocalizationServiceSpy.getNotificationServiceMessage.and.returnValue(stubMessage);
 
   beforeEach(() => {
-    TestBed.resetTestEnvironment();
-    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
     TestBed.configureTestingModule({
       providers: [
         FavouritesService,
