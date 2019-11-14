@@ -93,7 +93,14 @@ export class ProductService {
   }
 
   async getCount(filter?: Filter): Promise<number> {
-    const query = this.productModel.count(null);
+    let query = null;
+    if (filter.search) {
+      query = this.productModel.count(
+        { $text: { $search: filter.search }}
+      );
+    } else {
+      query = this.productModel.count(null);
+    }
     if (filter) {
       if (filter.category) {
         query.where('category').equals(filter.category);
