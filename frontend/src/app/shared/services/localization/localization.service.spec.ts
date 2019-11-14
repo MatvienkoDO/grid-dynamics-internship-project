@@ -26,8 +26,6 @@ describe('LocalizationService', () => {
       ]
     });
     localStorage.clear();
-
-    spyOn(location, 'reload').and.callFake(function(){});
   });
 
   it('LocalizationService should be created', () => {
@@ -55,31 +53,11 @@ describe('LocalizationService', () => {
     expect(locale).toBe('en');
   });
 
-  it('#setLocale should set new locale', () => {
-    const localizationService = TestBed.get(LocalizationService);
-    const newLocale = 'ru';
-    localizationService.setLocale(newLocale);
-    expect(localizationService.getLocale()).toBe(newLocale);
-  });
-
-  it('#setLocale should set new locale in localStorage', () => {
-    const localizationService = TestBed.get(LocalizationService);
-    const newLocale = 'ru';
-    localizationService.setLocale(newLocale);
-    expect(localStorage.getItem(localStorageLocaleKey)).toBe(newLocale);
-  });
-
   it('#getNotificationServiceMessage should return correct value', () => {
     const localizationService = TestBed.get(LocalizationService);
     let message = localizationService.getNotificationServiceMessage('addToCart');
     expect(message).toBe('has been added');
     message = localizationService.getNotificationServiceMessage('deleteFromCart');
     expect(message).toBe('has been removed');
-    const newLocale = 'ru';
-    localizationService.setLocale(newLocale);
-    message = localizationService.getNotificationServiceMessage('addToCart');
-    expect(message).toBe('в корзине');
-    message = localizationService.getNotificationServiceMessage('deleteFromCart');
-    expect(message).toBe('удален из корзины');
   });
 });
