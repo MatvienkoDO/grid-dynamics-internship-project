@@ -154,7 +154,8 @@ export class ProductService {
       dbProduct.price,
       dbProduct.sizes,
       dbProduct.colors,
-      dbProduct.images
+      dbProduct.images,
+      dbProduct.sliderImage
     );
   }
 
