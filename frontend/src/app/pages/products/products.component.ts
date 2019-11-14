@@ -8,9 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { switchMap, debounceTime, map, share, tap } from 'rxjs/operators';
 
-import { Filter, Product } from 'src/app/shared/models';
+import { Filter, Paging, Product } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
 import { ProductsService } from 'src/app/shared/services';
+
+interface Query {
+  filter: Filter;
+  paging: Paging;
+};
 
 @Component({
   selector: 'app-products',
@@ -81,7 +86,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public readonly loading$ = new BehaviorSubject<boolean>(true);
 
   private readonly subscriptions: Subscription[] = [];
-  private readonly filter = new BehaviorSubject<Filter>({});
+  private readonly query = new BehaviorSubject<Query>({
+    filter: {},
+    paging: {
+      limit: 9
+    }
+  });
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -92,21 +102,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe(({ search }) => {
         if (search) {
-          const newFilter = {
-            ...this.filter.value,
-            search
-          };
-
-          this.filter.next(newFilter);
+          const newQuery = this.query.value;
+          newQuery.filter.search = search;
+          this.query.next(newQuery);
         }
       })
     );
 
-    this.products$ = this.filter
+    this.products$ = this.query
       .pipe(tap( () => this.changeLoading(true) ))
       .pipe(debounceTime(1000))
-      .pipe(switchMap((filter: Filter) =>
-        this.productsService.getProductsByFilters(0, 0, filter)
+      .pipe(switchMap(({ paging, filter }) =>
+        this.productsService.getProductsByFilters(paging.skip, paging.limit, filter)
       ))
       .pipe(map(response => {
         if (response && Array.isArray(response.data)) {
@@ -128,44 +135,45 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public readonly newCategory = ([category]: string[]) => {
-    const newFilter = {
-      ...this.filter.value,
-      category
-    };
+    const newQuery = this.query.value;
 
-    if (!category) {
-      delete newFilter.category;
+    if (category) {
+      newQuery.filter.category = category;
+    } else {
+      delete newQuery.filter.category;
     }
 
-    this.filter.next(newFilter);
+    this.query.next(newQuery);
   }
 
   public readonly newPriceRange = ([minPrice, maxPrice]: number[]) => {
-    const newFilter = {
-      ...this.filter.value,
-      minPrice,
-      maxPrice
-    };
+    const newQuery = this.query.value;
+    newQuery.filter.minPrice = minPrice;
+    newQuery.filter.maxPrice = maxPrice;
 
-    this.filter.next(newFilter);
+    this.query.next(newQuery);
   }
 
   public readonly newSizes = (sizes: string[]) => {
-    const newFilter = {
-      ...this.filter.value,
-      sizes
-    };
+    const newQuery = this.query.value;
+    newQuery.filter.sizes = sizes;
 
-    this.filter.next(newFilter);
+    this.query.next(newQuery);
   }
 
   public readonly newBrands = (brands: string[]) => {
-    const newFilter = {
-      ...this.filter.value,
-      brands
-    };
+    const newQuery = this.query.value;
+    newQuery.filter.brands = brands;
 
-    this.filter.next(newFilter);
+    this.query.next(newQuery);
+  }
+
+  public readonly loadMore = () => {
+    const newQuery = this.query.value;
+    const limit = newQuery.paging.limit || 0;
+    newQuery.paging.limit = limit + 3;
+
+    this.query.next(newQuery); 
   }
 
   private changeLoading(newValue: boolean) {
