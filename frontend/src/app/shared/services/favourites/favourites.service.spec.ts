@@ -167,7 +167,7 @@ describe('FavouritesService', () => {
     cartService.addToFavourites(cardProduct1);
     cartService.addToFavourites(cardProduct2);
     cartService.deleteFromFavourites(cardProduct1);
-    expect(JSON.parse(localStorage.getItem(localStorageFavouritesKey))).toEqual([cardProduct2]);
+    expect(localStorage.getItem(localStorageFavouritesKey)).toEqual(JSON.stringify([cardProduct2]));
     cartService.items$.subscribe(value => {
       expect(value.length).toBe(1);
       expect(value[0]).toEqual(cardProduct2);

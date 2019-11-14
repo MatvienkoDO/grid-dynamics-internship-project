@@ -159,7 +159,7 @@ describe('CartService', () => {
     cartService.addToCart(cardProduct1);
     cartService.addToCart(cardProduct2);
     cartService.deleteFromCart(cardProduct1);
-    expect(JSON.parse(localStorage.getItem(localStorageCartKey))).toEqual([cardProduct2]);
+    expect(localStorage.getItem(localStorageCartKey)).toEqual(JSON.stringify([cardProduct2]));
     cartService.items$.subscribe(value => {
       expect(value.length).toBe(1);
       expect(value[0]).toEqual(cardProduct2);
