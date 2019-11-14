@@ -4,10 +4,36 @@
 @import 'fonts';
 @import 'button';
 
+$gap: 30px;
+
 .container {
   @include container;
 }
 
 .products {
   padding: 120px 0;
+  display: flex;
+}
+
+.filters {
+  width: 268px;
+
+  &__filter {
+    width: 100%;
+    margin-bottom: $gap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cards {
+  margin-left: $gap;
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 }
