@@ -170,7 +170,7 @@ describe('FavouritesService', () => {
     });
   });
 
-  xit('#clearFavourites should clear cart with 0 item', (done) => {
+  it('#clearFavourites should clear cart with 0 item', (done) => {
     const cartService = TestBed.get(FavouritesService);
     cartService.clearFavourites();
     expect(localStorage.getItem(localStorageFavouritesKey)).toEqual('[]');
@@ -180,7 +180,7 @@ describe('FavouritesService', () => {
     });
   });
 
-  xit('#clearFavourites should clear cart with 2 item', (done) => {
+  it('#clearFavourites should clear cart with 2 item', (done) => {
     const cardProduct1: CardProduct = {
       id: '1',
       title: 'Title',
