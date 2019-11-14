@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import { MockTranslatePipe } from '../../testing/mock-translate.pipe'
+import { MockTranslatePipe } from '../../testing/test/mock-translate.pipe'
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
