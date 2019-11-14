@@ -25,7 +25,7 @@ export class ProductService {
     let query = null;
     if (filter.search) {
       query = this.productModel.find(
-        { $text: { $search: "Reebok tracket jacket" }},
+        { $text: { $search: filter.search }},
         { score: { $meta: "textScore" } },
         { skip, limit }
       );
