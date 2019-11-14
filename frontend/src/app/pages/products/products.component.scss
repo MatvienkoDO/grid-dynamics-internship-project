@@ -33,17 +33,30 @@ $gap: 30px;
   flex-grow: 1;
 
   &__container {
+    margin: 0 (-$gap / 2);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+
+    &::after {
+      content: '';
+      flex-grow: 1;
+    }
+  }
+
+  &__element, &__trick-block {
+    margin: 0 ($gap / 2);
+    width: 250px;
   }
 
   &__element {
-    width: 250px;
-
     &_hidden {
       display: none;
     }
+  }
+
+  &__trick-block {
+    visibility: hidden;
   }
 
   &__empty {

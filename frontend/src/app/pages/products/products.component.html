@@ -55,6 +55,11 @@
           [sizes]="product.sizes"
           [colors]="product.colors">
         </app-card-product>
+
+        <div
+          *ngFor="let product of products$ | async"
+          class="cards__trick-block">
+        </div>
       </div>
 
       <button
