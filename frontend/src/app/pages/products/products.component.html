@@ -33,14 +33,21 @@
 
     <div class="cards">
       <div class="cards__container">
+        <app-loading-indicator
+          *ngIf="loading$ | async"
+          class="cards__loading">
+        </app-loading-indicator>
+
         <span
-          *ngIf="(products$ | async)?.length === 0"
+          *ngIf="(products$ | async)?.length === 0 && !(loading$ | async)"
           class="cards__empty">
           No items
         </span>
+
         <app-card-product
           *ngFor="let product of products$ | async"
           class="cards__element"
+          [class.cards__element_hidden]="loading$ | async"
           [id]="product.id"
           [image-url]="product.images[0]"
           [title]="product.name"

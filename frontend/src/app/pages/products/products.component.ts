@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
-import { switchMap, debounceTime, map, share } from 'rxjs/operators';
+import { switchMap, debounceTime, map, share, tap } from 'rxjs/operators';
 
 import { Filter, Product } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
@@ -78,6 +78,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ];
 
   public products$: Observable<Product[]>;
+  public readonly loading$ = new BehaviorSubject<boolean>(true);
 
   private readonly subscriptions: Subscription[] = [];
   private readonly filter = new BehaviorSubject<Filter>({});
@@ -102,6 +103,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     );
 
     this.products$ = this.filter
+      .pipe(tap( () => this.changeLoading(true) ))
       .pipe(debounceTime(1000))
       .pipe(switchMap((filter: Filter) =>
         this.productsService.getProductsByFilters(0, 0, filter)
@@ -115,6 +117,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
           message: 'incorrect data'
         };
       }))
+      .pipe(tap( () => this.changeLoading(false) ))
       .pipe(share());
   }
 
@@ -163,6 +166,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     };
 
     this.filter.next(newFilter);
+  }
+
+  private changeLoading(newValue: boolean) {
+    if (this.loading$.value !== newValue) {
+      this.loading$.next(newValue);
+    }
   }
 
 }
