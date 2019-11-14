@@ -55,3 +55,29 @@ $gap: 30px;
     margin-top: 100px;
   }
 }
+
+.load-more {
+  border: none;
+  background: none;
+
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &__circle {
+    display: block;
+    margin: 0 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $primary-color;
+  }
+}
