@@ -14,7 +14,7 @@
     </div>
     <ul class="favourites__product-list">
       <li class="favourites__product-item" *ngFor="let product of products$ | async">
-          <img class="favourites__product-image" src="/assets/images/Product_Img-jasket3-mini.png" alt="product's content">
+          <img class="favourites__product-image" src="{{imageUrl}}" alt="product's content">
         {{ product.title }}
         <button class="button button_delete" (click)="deleteFromFavourites(product)">
           <i class="material-icons">
