@@ -4,10 +4,84 @@
 @import 'fonts';
 @import 'button';
 
+$gap: 30px;
+
 .container {
   @include container;
 }
 
 .products {
   padding: 120px 0;
+  display: flex;
+}
+
+.filters {
+  width: 268px;
+
+  &__filter {
+    width: 100%;
+    margin-bottom: $gap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cards {
+  margin-left: $gap;
+  flex-grow: 1;
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  &__element {
+    width: 250px;
+
+    &_hidden {
+      display: none;
+    }
+  }
+
+  &__empty {
+    margin-top: 100px;
+    font-size: 30px;
+  }
+
+  &__loading {
+    margin-top: 100px;
+  }
+}
+
+.load-more {
+  border: none;
+  background: none;
+
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+
+  &_hidden {
+    display: none;
+  }
+
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &__circle {
+    display: block;
+    margin: 0 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $primary-color;
+  }
 }

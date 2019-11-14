@@ -21,14 +21,16 @@ export class RangeSelectComponent implements OnInit {
   @Input() ceil = 10000;
   @Input() set initialLow(value: number) {
     this.lowValue = value;
+    this.highValue = this.highValue || 0;
   }
   @Input() set initialHigh(value: number) {
     this.highValue = value;
+    this.lowValue = this.lowValue || 0;
   }
 
   @Output() value = new EventEmitter<number[]>();
 
-  private lowValue = 100;
+  private lowValue?: number = undefined;
   public set low(value: number) {
     if (this.lowValue !== value) {
       this.lowValue = value;
@@ -36,10 +38,10 @@ export class RangeSelectComponent implements OnInit {
     }
   }
   public get low() {
-    return this.lowValue;
+    return this.lowValue || 0;
   }
 
-  private highValue = 1000;
+  private highValue?: number = undefined;
   public set high(value: number) {
     if (this.highValue !== value) {
       this.highValue = value;
@@ -47,7 +49,7 @@ export class RangeSelectComponent implements OnInit {
     }
   }
   public get high() {
-    return this.highValue;
+    return this.highValue || 0;
   }
 
   public readonly options: Options;
@@ -62,7 +64,9 @@ export class RangeSelectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.emitValues();
+    if (this.lowValue !== undefined && this.highValue !== undefined) {
+      this.emitValues();
+    }
   }
 
   private emitValues() {

@@ -1,5 +1,72 @@
 <div class="container">
   <div class="products">
+    <div class="filters">
+      <app-list-select
+        class="filters__filter"
+        title="categories"
+        [options]="categoryOptions"
+        (values)="newCategory($event)">
+      </app-list-select>
+      
+      <app-range-select
+        class="filters__filter"
+        title="price filtter"
+        (value)="newPriceRange($event)">
+      </app-range-select>
+
+      <app-list-select
+        class="filters__filter"
+        title="sizes"
+        [one-of-many]="false"
+        [options]="sizesOptions"
+        (values)="newSizes($event)">
+      </app-list-select>
+
+      <app-list-select
+        class="filters__filter"
+        title="brands"
+        [one-of-many]="false"
+        [options]="brandsOptions"
+        (values)="newBrands($event)">
+      </app-list-select>
+    </div>
+
+    <div class="cards">
+      <div class="cards__container">
+        <app-loading-indicator
+          *ngIf="loading$ | async"
+          class="cards__loading">
+        </app-loading-indicator>
+
+        <span
+          *ngIf="(products$ | async)?.length === 0 && !(loading$ | async)"
+          class="cards__empty">
+          No items
+        </span>
+
+        <app-card-product
+          *ngFor="let product of products$ | async"
+          class="cards__element"
+          [class.cards__element_hidden]="loading$ | async"
+          [id]="product.id"
+          [image-url]="product.images[0]"
+          [title]="product.name"
+          [price]="product.price"
+          [sizes]="product.sizes"
+          [colors]="product.colors">
+        </app-card-product>
+      </div>
+
+      <button
+        *ngIf="(products$ | async)?.length < (productsQuantity$ | async)"
+        class="load-more"
+        [class.load-more_hidden]="loading$ | async"
+        (click)="loadMore()">
+        <span class="load-more__circle"></span>
+        <span class="load-more__circle"></span>
+        <span class="load-more__circle"></span>
+      </button>
+    </div>
   </div>
   <app-news-letter></app-news-letter>
 </div>
