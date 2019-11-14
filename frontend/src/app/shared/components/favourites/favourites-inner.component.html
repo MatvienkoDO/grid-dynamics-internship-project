@@ -1,10 +1,20 @@
 <div class="button-container">
   <div class="favourites__content">
-    <h3 class="title-medium">
+      <div class="favourites__content-head">
+    <h3 class="title-medium favourites-title">
       Favourites
     </h3>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">
+          <i class="material-icons">
+              close
+            </i>
+      </button>
+    </div>
+    </div>
     <ul class="favourites__product-list">
       <li class="favourites__product-item" *ngFor="let product of products$ | async">
+          <img class="favourites__product-image" src="/assets/images/Product_Img-jasket3-mini.png" alt="product's content">
         {{ product.title }}
         <button class="button button_delete" (click)="deleteFromFavourites(product)">
           <i class="material-icons">
@@ -14,8 +24,5 @@
       </li>
       <button class="button button_delete-all" (click)="clearCart()">Delete All</button>
     </ul>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Close</button>
-    </div>
   </div>
 </div>
