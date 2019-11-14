@@ -21,8 +21,6 @@ describe('LocalizationService', () => {
   translateServiceSpy.getLangs.and.returnValue(stubLangs);
 
   beforeEach(() => {
-    TestBed.resetTestEnvironment();
-    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
     TestBed.configureTestingModule({
       providers: [
         LocalizationService,
@@ -30,6 +28,8 @@ describe('LocalizationService', () => {
       ]
     });
     localStorage.clear();
+
+    spyOn(location, 'reload').and.callFake(function(){});
   });
 
   it('LocalizationService should be created', () => {
