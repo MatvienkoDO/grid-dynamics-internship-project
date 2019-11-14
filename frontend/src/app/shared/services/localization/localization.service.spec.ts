@@ -70,4 +70,18 @@ describe('LocalizationService', () => {
     localizationService.setLocale(newLocale);
     expect(localStorage.getItem(localStorageLocaleKey)).toBe(newLocale);
   });
+
+  it('#getNotificationServiceMessage should return correct value', () => {
+    const localizationService = TestBed.get(LocalizationService);
+    let message = localizationService.getNotificationServiceMessage('addToCart');
+    expect(message).toBe('has been added');
+    message = localizationService.getNotificationServiceMessage('deleteFromCart');
+    expect(message).toBe('has been removed');
+    const newLocale = 'ru';
+    localizationService.setLocale(newLocale);
+    message = localizationService.getNotificationServiceMessage('addToCart');
+    expect(message).toBe('в корзине');
+    message = localizationService.getNotificationServiceMessage('deleteFromCart');
+    expect(message).toBe('удален из корзины');
+  });
 });
