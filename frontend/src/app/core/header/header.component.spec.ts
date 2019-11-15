@@ -32,7 +32,7 @@ describe('HeaderComponent', () => {
   //   nativeElement: jasmine.createSpyObj('nativeElement', ['querySelector'])
   // });
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
       declarations: [MockTranslatePipe],
@@ -42,9 +42,6 @@ describe('HeaderComponent', () => {
         { provide: ElementRef, useValue: ElementRefSpy },
       ],
     }).compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
