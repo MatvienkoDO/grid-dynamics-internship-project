@@ -55,10 +55,15 @@
           [sizes]="product.sizes"
           [colors]="product.colors">
         </app-card-product>
+
+        <div
+          *ngFor="let product of products$ | async"
+          class="cards__trick-block">
+        </div>
       </div>
 
       <button
-        *ngIf="(products$ | async)?.length < (productsQuantity$ | async)"
+        *ngIf="(products$ | async)?.length < ((productsQuantity$ | async) || 0)"
         class="load-more"
         [class.load-more_hidden]="loading$ | async"
         (click)="loadMore()">
