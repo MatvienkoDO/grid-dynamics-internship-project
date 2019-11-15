@@ -25,7 +25,7 @@
           <p class="slider-container__desc">{{ 'price' | translate }} : ${{currentProduct.price}}</p>
           <button
             class="slider-container__button-container button-container"
-            (click)="orderProduct(currentProduct.id, currentProduct.name, currentProduct.price)">
+            (click)="orderProduct(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.images[0], currentProduct.sizes[0], currentProduct.colors[0])">
 
             <i class="button material-icons primary-color">
               add_shopping_cart
