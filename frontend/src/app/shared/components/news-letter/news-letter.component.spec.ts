@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NewsLetterComponent } from './news-letter.component';
 import { AppModule } from 'src/app/app.module';
 
-xdescribe('NewsLetterComponent', () => {
+describe('NewsLetterComponent', () => {
   let component: NewsLetterComponent;
   let fixture: ComponentFixture<NewsLetterComponent>;
 

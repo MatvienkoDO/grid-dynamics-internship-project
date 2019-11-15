@@ -22,8 +22,4 @@ describe('CardProductComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  xit('should change size', () => {
-
-  });
 });

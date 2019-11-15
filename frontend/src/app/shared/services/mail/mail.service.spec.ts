@@ -29,7 +29,7 @@ describe('MailService', () => {
     expect(service).toBeTruthy();
   });
 
-  xit('#get should return expected emails', (done) => {
+  it('#get should return expected emails', (done) => {
     const mailService = TestBed.get(MailService);
     mailService.get().subscribe(
       emails => expect(emails).toEqual(expectedEmails, 'expected emails'),
