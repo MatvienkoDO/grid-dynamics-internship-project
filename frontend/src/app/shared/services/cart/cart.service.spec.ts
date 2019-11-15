@@ -50,6 +50,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -67,6 +68,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -75,6 +77,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -95,6 +98,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -103,6 +107,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -125,6 +130,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -144,6 +150,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -152,6 +159,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -183,6 +191,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -191,6 +200,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -211,6 +221,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -219,6 +230,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 137,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -241,6 +253,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 2,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -249,6 +262,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 137,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -271,6 +285,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };

@@ -28,9 +28,6 @@ describe('HeaderComponent', () => {
       querySelector: jasmine.createSpy()
     }
   };
-  // jasmine.createSpyObj('ElementRef', {
-  //   nativeElement: jasmine.createSpyObj('nativeElement', ['querySelector'])
-  // });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
