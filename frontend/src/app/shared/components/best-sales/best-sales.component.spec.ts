@@ -49,7 +49,7 @@ describe('BestSalesComponent', () => {
     });
   });
 
-  xit('should navigate to pdp', () => {
+  it('should navigate to pdp', () => {
     const productInfo: CardProduct = {
       id: '1',
       title: 'Title',
@@ -58,11 +58,9 @@ describe('BestSalesComponent', () => {
       size: 'm',
       color: 'Red',
     };
-    
-    const spy = this.router.navigateByUrl as jasmine.Spy;
-    const navArgs = spy.calls.first().args[0];
-    const id = productInfo.id;
-    expect(navArgs).toBe('/product/' + id);
+
+    component.showDetails(productInfo);
+    expect(TestBed.get(Router).navigateByUrl).toHaveBeenCalledWith('/product/' + productInfo.id);
   });
 
   it('should be in cart', () => {

@@ -1,28 +1,35 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MockTranslatePipe } from '../../../testing/mock-translate.pipe';
+//import { MockTranslatePipe } from '../../../testing/mock-translate.pipe';
 import { AppModule } from 'src/app/app.module';
-import { CartComponent } from './cart.component';
+import { CartComponentInner } from './cart.component';
 import { CartService } from '../../services';
 import { CardProduct } from '../../models';
+import {  MatDialogRef } from '@angular/material/dialog';
+import { of } from 'rxjs';
 
-fdescribe('CartComponent', () => {
-  let component: CartComponent;
-  let fixture: ComponentFixture<CartComponent>;
+describe('CartComponentInner', () => {
+  let component: CartComponentInner;
+  let fixture: ComponentFixture<CartComponentInner>;
   const CartServiceSpy = jasmine.createSpyObj('CartService', ['deleteFromCart', 'clearCart']);
+  CartServiceSpy.deleteFromCart.and.returnValue({ subscribe: () => {} });
+  const MatDialogRefSpy = jasmine.createSpyObj('MatDialog', ['open']);
+
+  CartServiceSpy.items$ = of([]);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
-      declarations: [MockTranslatePipe],
+      //declarations: [MockTranslatePipe],
       providers: [
         { provide: CartService, useValue: CartServiceSpy },
+        { provide: MatDialogRef, useValue: MatDialogRefSpy },
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CartComponent);
+    fixture = TestBed.createComponent(CartComponentInner);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -31,7 +38,7 @@ fdescribe('CartComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should delete from cart', (done) => {
+  it('should delete from cart', () => {
     const existingCardProduct: CardProduct = {
       id: '1',
       title: 'Title',
@@ -40,11 +47,7 @@ fdescribe('CartComponent', () => {
       size: 'm',
       color: 'Red',
     };
-    const cartService = TestBed.get(CartService);
-    cartService.deleteFromCart(existingCardProduct);
-    cartService.items$.subscribe(value => {
-      expect(value.length).toBe(0);
-      done();
-    });
+    component.deleteFromCart(existingCardProduct);
+    expect(TestBed.get(CartService).deleteFromCart).toHaveBeenCalledWith(existingCardProduct);
   });
 });
