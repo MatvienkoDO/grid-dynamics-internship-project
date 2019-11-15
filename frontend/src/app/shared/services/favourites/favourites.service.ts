@@ -5,7 +5,7 @@ import { CardProduct } from '../../models';
 import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 
-const localStorageFavouritesKey = 'FAVOURITES_ITEMS';
+import { localStorageFavouritesKey } from '../../constants/common.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class FavouritesService {
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
   ) { 
-    this.items$ = this.items;
+    this.items$ = this.items.asObservable();
     this.init();
   }
 

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MockTranslatePipe } from '../../../testing/mock-translate.pipe';
+import { MockTranslatePipe } from '../../../testing/test/mock-translate.pipe';
 import { AppModule } from 'src/app/app.module';
 import { of } from 'rxjs';
 import { BestSalesComponent } from './best-sales.component';
@@ -18,7 +18,7 @@ describe('BestSalesComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
   const CartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
       declarations: [MockTranslatePipe],
@@ -30,7 +30,7 @@ describe('BestSalesComponent', () => {
     })
 
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BestSalesComponent);
@@ -55,6 +55,7 @@ describe('BestSalesComponent', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -69,6 +70,7 @@ describe('BestSalesComponent', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };

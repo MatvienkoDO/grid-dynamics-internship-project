@@ -16,7 +16,7 @@ describe('CartComponentInner', () => {
 
   CartServiceSpy.items$ = of([]);
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
       //declarations: [MockTranslatePipe],
@@ -26,7 +26,7 @@ describe('CartComponentInner', () => {
       ],
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CartComponentInner);
@@ -44,6 +44,7 @@ describe('CartComponentInner', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };

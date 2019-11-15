@@ -3,20 +3,20 @@
     <div class="filters">
       <app-list-select
         class="filters__filter"
-        title="categories"
+        title="{{ 'categories' | translate }}"
         [options]="categoryOptions"
         (values)="newCategory($event)">
       </app-list-select>
       
       <app-range-select
         class="filters__filter"
-        title="price filtter"
+        title="{{ 'price filter' | translate }}"
         (value)="newPriceRange($event)">
       </app-range-select>
 
       <app-list-select
         class="filters__filter"
-        title="sizes"
+        title="{{ 'sizes' | translate }}"
         [one-of-many]="false"
         [options]="sizesOptions"
         (values)="newSizes($event)">
@@ -24,7 +24,7 @@
 
       <app-list-select
         class="filters__filter"
-        title="brands"
+        title="{{ 'brands' | translate }}"
         [one-of-many]="false"
         [options]="brandsOptions"
         (values)="newBrands($event)">
@@ -41,7 +41,7 @@
         <span
           *ngIf="(products$ | async)?.length === 0 && !(loading$ | async)"
           class="cards__empty">
-          No items
+          {{ 'no items' | translate }}
         </span>
 
         <app-card-product
@@ -55,10 +55,15 @@
           [sizes]="product.sizes"
           [colors]="product.colors">
         </app-card-product>
+
+        <div
+          *ngFor="let product of products$ | async"
+          class="cards__trick-block">
+        </div>
       </div>
 
       <button
-        *ngIf="(products$ | async)?.length < (productsQuantity$ | async)"
+        *ngIf="(products$ | async)?.length < ((productsQuantity$ | async) || 0)"
         class="load-more"
         [class.load-more_hidden]="loading$ | async"
         (click)="loadMore()">

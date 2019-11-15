@@ -62,5 +62,15 @@
     "chooseQuantity": "Количество"
   },
 
-  "order now": "Оформить заказ"
+  "order now": "Оформить заказ",
+
+  "categories": "Категории",
+
+  "price filter": "Цена",
+
+  "sizes": "Размеры",
+
+  "brands": "Бренды",
+
+  "no items": "Товаров не найдено"
 }

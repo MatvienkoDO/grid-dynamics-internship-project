@@ -19,7 +19,6 @@ export class MailService {
   }
 
   post(data){
-    console.log(data);
     return this.http.post(this.url, data);
   }
 }

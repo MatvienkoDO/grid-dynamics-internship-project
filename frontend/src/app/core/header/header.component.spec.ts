@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { MockTranslatePipe } from '../../testing/mock-translate.pipe'
+import { MockTranslatePipe } from '../../testing/test/mock-translate.pipe'
 import { AppModule } from 'src/app/app.module';
 import { LocalizationService } from 'src/app/shared/services';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,7 +29,7 @@ describe('HeaderComponent', () => {
     }
   };
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
       declarations: [MockTranslatePipe],
@@ -39,9 +39,6 @@ describe('HeaderComponent', () => {
         { provide: ElementRef, useValue: ElementRefSpy },
       ],
     }).compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

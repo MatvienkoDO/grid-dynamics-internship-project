@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, combineLatest, Subscription, interval } from 'rxjs';
 import { map, share } from 'rxjs/operators';
@@ -23,6 +24,7 @@ export class SliderComponent implements OnInit, OnDestroy {
     private readonly productsService: ProductsService,
     private readonly cartService: CartService,
     private readonly router: Router,
+    private readonly sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit() {
@@ -60,16 +62,22 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.current$.next(newCurrent);
   }
 
-  public readonly orderProduct = (productId: string, productTitle: string, productPrice: number) => {
+  public readonly orderProduct = (productId: string, productTitle: string, productPrice: number, imageUrl: string, size: string, color: string) => {
     this.cartService.addToCart({
       id: productId,
       title: productTitle,
       price: productPrice,
       quantity: 1,
+      imageUrl: imageUrl,
+      size: size,
+      color: color,
     });
   }
 
   public readonly showDetails = (productId: string) => {
     this.router.navigateByUrl(`/product/${productId}`);
   }
+
+  public readonly trustStyle = (style: string) =>
+    this.sanitizer.bypassSecurityTrustStyle(style);
 }
