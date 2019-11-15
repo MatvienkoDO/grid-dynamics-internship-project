@@ -1,14 +1,10 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-
-import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { NotificationService, LocalizationService } from '../../shared/services';
-import { CartComponentInner } from '../../shared/components';
-import { FavouritesComponentInner } from '../../shared/components';
-
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material/icon';
+import { CartComponentInner, FavouritesComponentInner } from '../../shared/components';
 
 @Component({
   selector: 'app-header',
@@ -16,17 +12,19 @@ import { MatIconRegistry } from '@angular/material/icon';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  public searchForm = new FormGroup({
+    search: new FormControl(''),
+  });
 
   constructor(
     public readonly localizationService: LocalizationService,
+    public readonly dialog: MatDialog,
     private readonly notify: NotificationService,
-    public dialog: MatDialog,
-    private readonly elRef: ElementRef
+    private readonly elementRef: ElementRef,
+    private readonly router: Router,
   ) { }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() { }
 
   changeLanguage(value: string) {
     this.localizationService.setLocale(value);
@@ -36,24 +34,25 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(CartComponentInner, {
       width: '950px'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
   openFavourites() : void {
     const dialogRef = this.dialog.open(FavouritesComponentInner, {
       width: '550px'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
+  // TODO(tkatimulin): Rewrite this logic
   onClickMenuItem() {
-    const closeButton = this.elRef.nativeElement.querySelector('.mobile-menu__btn');
+    const closeButton = this.elementRef.nativeElement.querySelector('.mobile-menu__btn');
     closeButton.click();
+  }
+
+  submit() {
+    const search = this.searchForm['search'];
+
+    if (search) {
+      this.router.navigateByUrl(`/products?search=${search}`);
+    }
   }
 }

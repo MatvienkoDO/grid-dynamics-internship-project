@@ -4,4 +4,5 @@ export interface Filter {
   maxPrice?: number;
   sizes?: string[];
   brands?: string[];
+  search?: string;
 }

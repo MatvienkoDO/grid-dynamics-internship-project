@@ -22,7 +22,16 @@ export class ProductService {
     locale: String = 'en',
     filter?: Filter
   ): Promise<LocalizedProduct[]> {
-    const query = this.productModel.find(null, null, { skip, limit });
+    let query = null;
+    if (filter.search) {
+      query = this.productModel.find(
+        { $text: { $search: filter.search }},
+        { score: { $meta: "textScore" } },
+        { skip, limit }
+      );
+    } else {
+      query = this.productModel.find(null, null, { skip, limit });
+    }
     if (filter) {
       if (filter.category) {
         query.where('category').equals(filter.category);
@@ -38,6 +47,9 @@ export class ProductService {
       }
       if (filter.sizes) {
         query.where('sizes').elemMatch({ $in: filter.sizes });
+      }
+      if (filter.search) {
+        query.sort({ score: { $meta: "textScore" }});
       }
     }
     const products = await query;
@@ -81,7 +93,14 @@ export class ProductService {
   }
 
   async getCount(filter?: Filter): Promise<number> {
-    const query = this.productModel.count(null);
+    let query = null;
+    if (filter.search) {
+      query = this.productModel.count(
+        { $text: { $search: filter.search }}
+      );
+    } else {
+      query = this.productModel.count(null);
+    }
     if (filter) {
       if (filter.category) {
         query.where('category').equals(filter.category);
@@ -142,7 +161,8 @@ export class ProductService {
       dbProduct.price,
       dbProduct.sizes,
       dbProduct.colors,
-      dbProduct.images
+      dbProduct.images,
+      dbProduct.sliderImage
     );
   }
 

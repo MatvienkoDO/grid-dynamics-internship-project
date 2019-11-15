@@ -4,10 +4,136 @@
 @import 'fonts';
 @import 'button';
 
+$gap: 30px;
+
 .container {
   @include container;
 }
 
 .products {
   padding: 120px 0;
+  display: flex;
+}
+
+.filters {
+  $width: 268px;
+  width: $width;
+
+  &__filter {
+    width: $width;
+    margin-bottom: $gap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.cards {
+  margin-left: $gap;
+  flex-grow: 1;
+
+  &__container {
+    margin: 0 (-$gap / 2);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &::after {
+      content: '';
+      flex-grow: 1;
+    }
+  }
+
+  &__element, &__trick-block {
+    margin: 0 ($gap / 2);
+    width: 250px;
+  }
+
+  &__element {
+    &_hidden {
+      display: none;
+    }
+  }
+
+  &__trick-block {
+    visibility: hidden;
+  }
+
+  &__empty, &__loading {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 200px;
+  }
+
+  &__empty {
+    font-size: 30px;
+  }
+}
+
+.load-more {
+  border: none;
+  background: none;
+
+  height: 60px;
+  width: 100%;
+  background-color: white;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+
+  &_hidden {
+    display: none;
+  }
+
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &__circle {
+    display: block;
+    margin: 0 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: $primary-color;
+  }
+}
+
+@media (max-width: 1200px) {
+  .products {
+    flex-direction: column;
+  }
+
+  .cards {
+    margin-left: 0;
+    
+    &__container {
+      justify-content: center;  
+    }
+  }
+
+  .filters {
+    width: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin: -($gap / 2);
+    margin-bottom: $gap / 2;
+    &__filter {
+      min-width: 210px;
+      width: auto;
+
+      margin: $gap / 2;
+      &:last-child {
+        margin: $gap / 2;
+      }
+    }
+  }
 }

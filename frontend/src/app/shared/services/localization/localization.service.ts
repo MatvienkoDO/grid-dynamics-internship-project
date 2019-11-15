@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
-const localStorageCartKey = 'LOCALE';
+import { localStorageLocaleKey } from '../../constants/common.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +29,11 @@ export class LocalizationService {
   }
 
   private getLocaleFromLocalStorage() {
-    return localStorage.getItem(localStorageCartKey);
+    return localStorage.getItem(localStorageLocaleKey);
   }
 
   private saveLocaleToLocalStorage(): void {
-    localStorage.setItem(localStorageCartKey, this.locale.getValue());
+    localStorage.setItem(localStorageLocaleKey, this.locale.getValue());
   }
 
   public getLangs() {
@@ -51,8 +51,18 @@ export class LocalizationService {
     location.reload();
   }
 
-  public getNotificationServiceMessage(type: string) {
-    return notificationServiceMessages[type][this.locale.getValue()];
+  public getNotificationServiceMessage(type: string): string {
+    const message = notificationServiceMessages[type];
+    if (!message) {
+      return '';
+    }
+
+    const localizedMessage = message[this.locale.getValue()];
+    if (!localizedMessage) {
+      return '';
+    }
+
+    return localizedMessage;
   }
 }
 
@@ -80,5 +90,13 @@ const notificationServiceMessages = {
   clearFavourites: {
     en: 'Favourites has been cleared',
     ru: 'Список избранного очищен'
+  },
+  onlineNow: {
+    en: 'You are online now',
+    ru: 'Вы онлайн'
+  },
+  offlineNow: {
+    en: 'You are offline now',
+    ru: 'Вы офлайн'
   }
 };

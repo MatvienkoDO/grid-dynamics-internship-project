@@ -13,13 +13,15 @@
     </div>
     </div>
     <ul class="favourites__product-list">
-      <li class="favourites__product-item" *ngFor="let product of products$ | async">
-          <img class="favourites__product-image" src="{{imageUrl}}" alt="product's content">
+      <li
+        *ngFor="let product of products$ | async"
+        class="favourites__product-item"
+        (click)="toPdp(product.id)">
+
+        <img class="favourites__product-image" src="{{ product.imageUrl }}" alt="product's content">
         {{ product.title }}
         <button class="button button_delete" (click)="deleteFromFavourites(product)">
-          <i class="material-icons">
-            close
-          </i>
+          <i class="material-icons">close</i>
         </button>
       </li>
       <button class="button button_delete-all" (click)="clearCart()">Delete All</button>

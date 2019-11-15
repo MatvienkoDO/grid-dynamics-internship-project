@@ -60,8 +60,8 @@
       </nav>
     </div>
     <div class="header-navbar__right">
-      <form action="GET" class="search-container">
-        <input type="search" class="button button_search" />
+      <form action="GET" class="search-container" (ngSubmit)="submit()">
+        <input type="search" name="search" class="button button_search" [(ngModel)]="searchForm['search']" />
       </form>
       <button class="button button_account"></button>
       <app-favourites mat-button (click)="openFavourites()"></app-favourites>

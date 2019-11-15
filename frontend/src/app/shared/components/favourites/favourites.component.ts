@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 import { FavouritesService } from '../../services';
 import { CardProduct } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favourites',
@@ -38,6 +39,7 @@ export class FavouritesComponentInner implements OnInit {
   constructor(
     private readonly favouritesService: FavouritesService,
     public dialogRef: MatDialogRef<FavouritesComponentInner>,
+    private readonly router: Router,
   ) { }
 
   ngOnInit() {
@@ -55,6 +57,11 @@ export class FavouritesComponentInner implements OnInit {
     this.dialogRef.close();
   }
   onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  toPdp(id: string) {
+    this.router.navigateByUrl(`/product/${id}`);
     this.dialogRef.close();
   }
 

@@ -2,6 +2,10 @@
 @import 'mixins';
 @import 'icon';
 
+:host {
+  width: 270px;
+}
+
 .card-product {
   display: flex;
   flex-direction: column;
@@ -10,7 +14,6 @@
   //padding: 37px 30px;
   position: relative;
   //margin: 0 35px 35px;
-  width: 270px;
   height: 365px;
   background: #fefefe;
   text-align: center;
@@ -216,7 +219,7 @@
         margin: 0;
         padding: 0;
         display: flex;
-        align-items: end;
+        align-items: flex-end;
       }
 
       &__item {

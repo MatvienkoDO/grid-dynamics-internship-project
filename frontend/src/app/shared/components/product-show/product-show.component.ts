@@ -103,7 +103,8 @@ export class ProductShowComponent implements OnInit {
       title: this.title,
       size: this.size$.value,
       quantity: this.quantity$.value,
-      price: this.price
+      price: this.price,
+      imageUrl: this.images[0]
     };
 
     return info;
