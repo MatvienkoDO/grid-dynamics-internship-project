@@ -62,5 +62,15 @@
     "chooseQuantity": "Choose Quantity"
   },
 
-  "order now": "order now"
+  "order now": "order now",
+
+  "categories": "Categories",
+
+  "price filter": "price filter",
+
+  "sizes": "sizes",
+
+  "brands": "brands",
+
+  "no items": "No items"
 }
