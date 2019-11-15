@@ -16,10 +16,8 @@ $gap: 30px;
 }
 
 .filters {
-  width: 268px;
-
   &__filter {
-    width: 100%;
+    width: 268px;
     margin-bottom: $gap;
 
     &:last-child {
@@ -99,5 +97,38 @@ $gap: 30px;
     height: 10px;
     border-radius: 50%;
     background-color: $primary-color;
+  }
+}
+
+@media (max-width: 1200px) {
+  .products {
+    flex-direction: column;
+  }
+
+  .cards {
+    margin-left: 0;
+    
+    &__container {
+      justify-content: center;  
+    }
+  }
+
+  .filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin: -($gap / 2);
+    margin-bottom: $gap / 2;
+    &__filter {
+      min-width: 210px;
+      width: auto;
+
+      margin: $gap / 2;
+      &:last-child {
+        margin: $gap / 2;
+      }
+    }
   }
 }
