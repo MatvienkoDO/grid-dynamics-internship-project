@@ -5,13 +5,14 @@
       <p class="news-letter__text">{{ 'news letter.description' | translate }}</p>
     </div>
     <div>
-      <form class="news-letter__form" action="" method="POST" (ngSubmit)="onSubmit($event)" #emailForm="ngForm">
+      <form class="news-letter__form" action="" method="POST" (ngSubmit)="onSubmit($event)" 
+      [formGroup]="newsLetterForm">
         <i class="icon material-icons primary-color news-letter__icon">
           mail_outline
         </i>
         <input type="email" name="email" class="news-letter__input" required
-          placeholder="{{ 'input.email placesholder' | translate }}" autocomplete="on" ngModel
-          [(ngModel)]="newsLetterForm['email']" />
+          placeholder="{{ 'input.email placesholder' | translate }}" autocomplete="on"
+          formControlName="email" />
         <button type="submit"
           class="news-letter__form-element news-letter__form-element_non-shrinkable button button_common"
           [class.spinner]="loading" [disabled]="!newsLetterForm.valid">{{ 'button.join us' | translate }}</button>
