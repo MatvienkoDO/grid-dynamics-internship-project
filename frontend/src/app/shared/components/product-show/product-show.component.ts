@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter
 import { BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models/card-product';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-product-show[id][title][sizes][price]',
