@@ -22,7 +22,7 @@
       </li>
       <li class="cart__product-item" *ngFor="let i = index; let product of products$ | async">
         <span class="cart__product-title">
-          <img class="cart__product-image" src="/assets/images/Product_Img-jasket3-mini.png" alt="product's content">
+          <img class="cart__product-image" src="{{ product.imageUrl }}" alt="product's content">
           {{ product.title }} </span>
         <span class="cart__product-size">{{ product.size }} </span>
         <span class="cart__product-color">{{ product.color }}</span>
