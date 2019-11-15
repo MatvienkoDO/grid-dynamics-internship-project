@@ -34,19 +34,11 @@ export class HeaderComponent implements OnInit {
     const dialogRef = this.dialog.open(CartComponentInner, {
       width: '950px'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
   openFavourites() : void {
     const dialogRef = this.dialog.open(FavouritesComponentInner, {
       width: '550px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

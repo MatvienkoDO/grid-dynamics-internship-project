@@ -4,13 +4,13 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subscription, Observable } from 'rxjs';
 import { switchMap, debounceTime, map, share, tap } from 'rxjs/operators';
 
-import { Filter, Paging, Product } from 'src/app/shared/models';
+import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
-import { ProductsService } from 'src/app/shared/services';
+import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
 
 interface Query {
   filter: Filter;
@@ -97,6 +97,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly productsService: ProductsService,
+    private readonly router: Router,
+    private readonly cartService: CartService,
+    private readonly favouritesService: FavouritesService,
   ) { }
 
   ngOnInit() {
@@ -190,6 +193,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
     newQuery.paging.limit = limit + 3;
 
     this.query.next(newQuery); 
+  }
+
+  public readonly showDetails = (productsId: string) => {
+    this.router.navigateByUrl(`/product/${productsId}`);
+  }
+
+  public readonly addToCart = (cardProduct: CardProduct) => {
+    this.cartService.addToCart(cardProduct);
+  }
+
+  public readonly addToFavourites = (cardProduct: CardProduct) => {
+    this.favouritesService.addToFavourites(cardProduct);
   }
 
   private changeLoading(newValue: boolean) {
