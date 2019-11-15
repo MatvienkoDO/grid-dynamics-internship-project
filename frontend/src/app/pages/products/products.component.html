@@ -53,7 +53,10 @@
           [title]="product.name"
           [price]="product.price"
           [sizes]="product.sizes"
-          [colors]="product.colors">
+          [colors]="product.colors"
+          (show-details)="showDetails(product.id)"
+          (add-to-cart)="addToCart($event)"
+          (add-to-favorite)="addToFavourites($event)">
         </app-card-product>
 
         <div
