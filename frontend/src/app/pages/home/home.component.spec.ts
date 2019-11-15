@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppModule } from 'src/app/app.module';
 import { HomeComponent } from './home.component';
+import { MockTranslatePipe } from '../../testing/mock-translate.pipe';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +9,10 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      imports: [AppModule],
+      declarations: [ MockTranslatePipe ],
+      providers: [
+      ],
     })
     .compileComponents();
   }));
