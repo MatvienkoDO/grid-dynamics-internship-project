@@ -107,7 +107,7 @@
     background: none;
     cursor: pointer;
     margin-left: 30px;
-    @include flex(end);
+    @include flex(flex-end);
     &:focus {
       outline: none;
     }
