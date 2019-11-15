@@ -53,6 +53,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -70,6 +71,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -78,6 +80,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -98,6 +101,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -106,6 +110,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -128,6 +133,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -147,6 +153,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -155,6 +162,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -186,6 +194,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };
@@ -194,6 +203,7 @@ describe('FavouritesService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
+      imageUrl: 'url',
       size: 'm',
       color: 'Red',
     };

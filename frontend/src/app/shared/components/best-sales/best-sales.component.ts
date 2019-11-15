@@ -19,6 +19,7 @@ export class BestSalesComponent implements OnInit, OnDestroy {
     private readonly productsService: ProductsService,
     private readonly cartService: CartService,
     private readonly router: Router,
+    
   ) { }
 
   ngOnInit() {
