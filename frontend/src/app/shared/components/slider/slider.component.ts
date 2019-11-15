@@ -62,12 +62,15 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.current$.next(newCurrent);
   }
 
-  public readonly orderProduct = (productId: string, productTitle: string, productPrice: number) => {
+  public readonly orderProduct = (productId: string, productTitle: string, productPrice: number, imageUrl: string, size: string, color: string) => {
     this.cartService.addToCart({
       id: productId,
       title: productTitle,
       price: productPrice,
       quantity: 1,
+      imageUrl: imageUrl,
+      size: size,
+      color: color,
     });
   }
 

@@ -1,19 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewArrivalsComponent } from './new-arrivals.component';
+import { AppModule } from 'src/app/app.module';
 
 describe('NewArrivalsComponent', () => {
   let component: NewArrivalsComponent;
   let fixture: ComponentFixture<NewArrivalsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewArrivalsComponent ]
+      imports: [AppModule],
     })
     .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(NewArrivalsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

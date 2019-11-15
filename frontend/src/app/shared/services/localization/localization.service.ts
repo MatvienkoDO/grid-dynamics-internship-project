@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
-const localStorageCartKey = 'LOCALE';
+import { localStorageLocaleKey } from '../../constants/common.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +29,11 @@ export class LocalizationService {
   }
 
   private getLocaleFromLocalStorage() {
-    return localStorage.getItem(localStorageCartKey);
+    return localStorage.getItem(localStorageLocaleKey);
   }
 
   private saveLocaleToLocalStorage(): void {
-    localStorage.setItem(localStorageCartKey, this.locale.getValue());
+    localStorage.setItem(localStorageLocaleKey, this.locale.getValue());
   }
 
   public getLangs() {

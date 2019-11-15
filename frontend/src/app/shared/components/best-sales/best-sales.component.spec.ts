@@ -1,19 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BestSalesComponent } from './best-sales.component';
+import { AppModule } from 'src/app/app.module';
 
 describe('BestSalesComponent', () => {
   let component: BestSalesComponent;
   let fixture: ComponentFixture<BestSalesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ BestSalesComponent ]
+      imports: [AppModule],
     })
     .compileComponents();
-  }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(BestSalesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

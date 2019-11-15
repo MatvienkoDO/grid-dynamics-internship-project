@@ -20,6 +20,8 @@ export class CardProductSmallComponent implements OnInit {
   @Input('image-url') public readonly imageUrl: string;
   @Input('title') public readonly title: string;
   @Input('price') public readonly price: string;
+  @Input('sizes') public readonly sizes: string[];
+  @Input('colors') public readonly colors: string[];
 
   @Input('image-alt') public readonly imageAlt: string | undefined;
   @Input('currency-sign') public readonly currencySign: string | undefined;
@@ -45,7 +47,10 @@ export class CardProductSmallComponent implements OnInit {
       id: this.id,
       title: this.title,
       quantity: 1,
-      price: Number(this.price)
+      price: Number(this.price),
+      imageUrl: this.imageUrl,
+      size: this.sizes[0],
+      color: this.colors[0],
     };
 
     return info;
