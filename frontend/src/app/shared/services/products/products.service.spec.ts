@@ -83,4 +83,10 @@ describe('ProductsService', () => {
     const response = service.getProductById('1');
     expect(httpClientSpy.get).toHaveBeenCalled();
   });
+
+  it('#getRelatedProducts should call Http get', () => {
+    const service: ProductsService = TestBed.get(ProductsService);
+    const response = service.getRelatedProducts('1');
+    expect(httpClientSpy.get).toHaveBeenCalled();
+  });
 });
