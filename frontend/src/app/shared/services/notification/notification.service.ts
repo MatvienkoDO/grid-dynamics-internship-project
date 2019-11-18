@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { NotifierService } from 'angular-notifier';
 
 @Injectable({
@@ -6,28 +7,20 @@ import { NotifierService } from 'angular-notifier';
 })
 export class NotificationService {
   constructor(private _service: NotifierService ) { }
-   success(msg: string) {
-    this._service.notify(
-      'success',
-      msg
-    )
+
+  success(msg: string) {
+    this._service.notify('success', msg);
   }
-    error(msg: string) {
-    this._service.notify(
-      'error',
-      msg
-    )
+
+  error(msg: string) {
+    this._service.notify('error', msg);
   }
-   warning(msg: string) {
-    this._service.notify(
-      'warning',
-      msg
-    )
+
+  warning(msg: string) {
+    this._service.notify('warning', msg);
   }
-   info(msg: string) {
-    this._service.notify(
-      'info',
-      msg
-    )
+
+  info(msg: string) {
+    this._service.notify('info', msg);
   }
 }
