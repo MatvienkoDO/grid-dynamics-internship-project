@@ -6,7 +6,7 @@ import { CardProduct } from '../../models';
 import { Router } from '@angular/router';
 import { CartService, FavouritesService, NotificationService } from '../../services';
 
-describe('NewArrivalsComponent', () => {
+xdescribe('NewArrivalsComponent', () => {
   let component: NewArrivalsComponent;
   let fixture: ComponentFixture<NewArrivalsComponent>;
 

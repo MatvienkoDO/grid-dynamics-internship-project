@@ -126,24 +126,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     this.products$ = response
       .pipe(map(response => {
-        if (response && Array.isArray(response.data)) {
-          return response.data;
-        }
+        //if (response && Array.isArray(response.data)) {
+          return response.data as Product[];
+        //}
 
-        throw {
-          message: 'incorrect data'
-        };
+        // throw {
+        //   message: 'incorrect data'
+        // };
       }));
 
     this.productsQuantity$ = response
       .pipe(map(response => {
-        if (response && Number.isInteger(response.quantity)) {
-          return response.quantity;
-        }
+        // if (response && Number.isInteger(response.quantity)) {
+          return response.quantity as number;
+        // }
 
-        throw {
-          message: 'incorrect data'
-        };
+        // throw {
+        //   message: 'incorrect data'
+        // };
       }));
   }
 

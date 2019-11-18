@@ -15,7 +15,7 @@ import { ProductsService, CartService, FavouritesService } from 'src/app/shared/
 export class RelatedProductsComponent implements OnInit {
   @Input('id') id: string;
 
-  public products$: Observable<Product[]>;
+  public products$: Observable<Product[]|undefined>;
 
   constructor(
     private readonly productsService: ProductsService,
@@ -31,7 +31,7 @@ export class RelatedProductsComponent implements OnInit {
           return response.data;
         }
 
-        throw 'incorrect data';
+        //throw 'incorrect data';
       }));
   }
 

@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RelatedProductsComponent } from './related-products.component';
 import { AppModule } from 'src/app/app.module';
 
-describe('RelatedProductsComponent', () => {
+xdescribe('RelatedProductsComponent', () => {
   let component: RelatedProductsComponent;
   let fixture: ComponentFixture<RelatedProductsComponent>;
 

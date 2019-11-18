@@ -26,9 +26,6 @@ describe('CartComponentInner', () => {
       ],
     })
     .compileComponents();
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(CartComponentInner);
     component = fixture.componentInstance;
     fixture.detectChanges();

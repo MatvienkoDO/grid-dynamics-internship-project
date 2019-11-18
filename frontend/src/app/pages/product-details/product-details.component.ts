@@ -37,11 +37,11 @@ export class ProductDetailsComponent implements OnInit {
 
         return this.productsService.getProductById(id)
           .pipe(map(response => {
-            if (response && !Array.isArray(response.data)) {
-              return response.data;
-            }
+            // if (response && !Array.isArray(response.data)) {
+              return response.data as Product;
+            // }
 
-            throw 'incorrect data';
+            //throw 'incorrect data';
           }));
       }), share());
   }

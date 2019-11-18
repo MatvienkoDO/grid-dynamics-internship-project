@@ -24,7 +24,7 @@ import {
 })
 export class NewArrivalsComponent implements OnInit {
   public products$: Observable<Product[]>;
-  public canLoadMore$: Observable<boolean>;
+  public canLoadMore$: Observable<boolean|undefined>;
 
   private readonly productsNumbers = new BehaviorSubject<number>(4);
 
@@ -44,11 +44,11 @@ export class NewArrivalsComponent implements OnInit {
       .pipe(share());
 
     this.products$ = productResponses.pipe(map(response => {
-      if (response && Array.isArray(response.data)) {
-        return response.data;
-      }
+      // if (response && Array.isArray(response.data)) {
+        return response.data as Product[];
+      // }
 
-      throw 'incorrect data';
+      // throw 'incorrect data';
     }));
 
     this.canLoadMore$ = productResponses.pipe(map(response => {
@@ -61,7 +61,7 @@ export class NewArrivalsComponent implements OnInit {
         }
       }
 
-      throw 'incorrect data';
+      //throw 'incorrect data';
     }));
   }
 

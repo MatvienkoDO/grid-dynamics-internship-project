@@ -30,11 +30,11 @@ export class SliderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.products$ = this.productsService.getProductsForSlider()
       .pipe(map(response => {
-        if (response && Array.isArray(response.data)) {
-          return response.data;
-        }
+        //if (response && Array.isArray(response.data)) {
+          return response.data as Product[];
+        //}
 
-        throw 'incorrect data';
+        //throw 'incorrect data';
       }))
       .pipe(share());
 
