@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NotificationService } from '../notification/notification.service';
-import { LocalizationService } from '../localization/localization.service';
-import { CartService } from './cart.service';
+import { NotificationService, LocalizationService, CartService } from '..';
 import { localStorageCartKey } from '../../constants/common.constants';
 import { CardProduct } from '../../models';
 
@@ -15,7 +13,7 @@ describe('CartService', () => {
   LocalizationServiceSpy.getNotificationServiceMessage.and.returnValue(stubMessage);
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ 
+    TestBed.configureTestingModule({
       providers: [
         CartService,
         { provide: LocalizationService, useValue: LocalizationServiceSpy },
