@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingIndicatorComponent } from './loading-indicator.component';
 import { AppModule } from 'src/app/app.module';

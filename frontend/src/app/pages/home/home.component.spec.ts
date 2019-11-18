@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
 import { HomeComponent } from './home.component';
 import { MockTranslatePipe } from '../../testing/test/mock-translate.pipe';

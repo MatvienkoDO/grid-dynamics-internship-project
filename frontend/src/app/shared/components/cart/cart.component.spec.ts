@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 //import { MockTranslatePipe } from '../../../testing/mock-translate.pipe';
 import { AppModule } from 'src/app/app.module';
 import { CartComponentInner } from './cart.component';

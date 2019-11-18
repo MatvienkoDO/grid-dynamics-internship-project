@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RangeSelectComponent } from './range-select.component';
 import { AppModule } from 'src/app/app.module';

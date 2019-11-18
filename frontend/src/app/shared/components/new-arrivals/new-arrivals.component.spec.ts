@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewArrivalsComponent } from './new-arrivals.component';
 import { AppModule } from 'src/app/app.module';

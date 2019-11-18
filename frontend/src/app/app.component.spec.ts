@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { FooterComponent, HeaderComponent } from './core';
@@ -7,11 +7,11 @@ import { CartComponent } from './shared/components';
 import { AppModule } from './app.module';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
     }).compileComponents();
-  }));
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
