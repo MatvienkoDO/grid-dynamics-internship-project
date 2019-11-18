@@ -8,7 +8,7 @@ export class NotificationService {
   constructor(private _service: NotifierService ) { }
    success(msg: string) {
     this._service.notify(
-      'sucess',
+      'success',
       msg
     )
   }
