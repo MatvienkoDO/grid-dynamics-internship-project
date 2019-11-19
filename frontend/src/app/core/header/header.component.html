@@ -68,7 +68,7 @@
       <app-cart mat-button (click)="openCart()"></app-cart>
     </div>
   </div>
-  <form action="GET" class="search-container_mobile">
-    <input type="search" class="button button_search" />
+  <form action="GET" class="search-container_mobile" (ngSubmit)="submit()">
+    <input type="search" name="search" class="button button_search button_search-mobile"  [(ngModel)]="searchForm['search']"/>
   </form>
 </header>
