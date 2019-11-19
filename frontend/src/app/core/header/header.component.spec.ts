@@ -72,11 +72,4 @@ describe('HeaderComponent', () => {
       expect(result).toBe('result');
     });
   });
-
-  it('should close by click on menu button', () => {
-    component.onClickMenuItem();
-    // FIX ME
-    //expect(TestBed.get(ElementRef).nativeElement.querySelector).toHaveBeenCalledWith('.mobile-menu__btn');
-  });
-
 });
