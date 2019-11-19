@@ -26,15 +26,19 @@ button[disabled] {
     &:hover {
       filter: invert(37%) sepia(51%) saturate(2878%);
     }
-    &:active {
-      filter: invert(37%) sepia(51%) saturate(2878%);
-    }
 
     @include for-phone-intermediate {
       margin: 0;
       height: auto;
       width: 100%;
     }
+  }
+
+  &_search-mobile {
+    @include icon (url(/assets/images/search-24px.svg), 21px, 21px, 0);
+    max-width: 1000px;
+    width: 100%;
+    padding: 0 0 0 30px;
   }
 
   &_account {

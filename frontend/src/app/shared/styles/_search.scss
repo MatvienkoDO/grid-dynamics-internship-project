@@ -1,10 +1,13 @@
 @import 'colors';
 
 .search-container {
-  .button_search[type=search]:hover {
+  input[type="search"] {
+    -webkit-appearance: textfield;
+  }
+  .button_search:hover {
     background-color: transparent;
   }
-  .button_search[type=search]:focus {
+  .button_search:focus {
     width: 400px;
     height: 24px;
     padding-left: 25px;
@@ -20,14 +23,14 @@
     display: none;
   }
   &_mobile {
+    input[type="search"] {
+      -webkit-appearance: textfield;
+    }
     display: none;
     border-bottom: 2px solid $primary-color;
     @include for-tablet-landscape-up {
       display: block;
       margin: 20px 10px;
-      .button_search[type=search]:focus {
-        background-image: unset;
-      }
     }
   }
 }
