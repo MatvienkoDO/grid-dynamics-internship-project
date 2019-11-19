@@ -9,8 +9,6 @@ import { of } from 'rxjs';
 import { CartComponentInner, FavouritesComponentInner } from 'src/app/shared/components';
 import { ElementRef } from '@angular/core';
 
-
-
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
@@ -71,12 +69,6 @@ describe('HeaderComponent', () => {
     matDialogRefSpy.afterClosed().subscribe((result) => {
       expect(result).toBe('result');
     });
-  });
-
-  it('should close by click on menu button', () => {
-    component.onClickMenuItem();
-    // FIX ME
-    //expect(TestBed.get(ElementRef).nativeElement.querySelector).toHaveBeenCalledWith('.mobile-menu__btn');
   });
 
 });
