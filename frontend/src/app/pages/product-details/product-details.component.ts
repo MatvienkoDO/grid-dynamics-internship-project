@@ -40,7 +40,6 @@ export class ProductDetailsComponent implements OnInit {
             if (response && !Array.isArray(response.data)) {
               return response.data;
             }
-            console.log(response);
             throw 'product details incorrect data';
           }));
       }), share());
