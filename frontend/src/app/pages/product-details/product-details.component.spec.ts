@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import {Type} from '@angular/core';
 import {ActivatedRoute,Route,ActivatedRouteSnapshot,UrlSegment,Params,Data, ParamMap } from '@angular/router';
 import { MockProductsService } from 'src/app/testing/test/products.service.mock';
+import { CardProduct } from 'src/app/shared/models';
 
 describe('ProductDetailsComponent', () => {
   let component: ProductDetailsComponent;
@@ -40,6 +41,36 @@ describe('ProductDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('addToCart should call cartService.addToCart', () => {
+    const stubCard: CardProduct = {
+      id: 'stub',
+      title: 'stub',
+      quantity: 1,
+      price: 100,
+      imageUrl: 'stub',
+      size: 'stub',
+      color: 'stub',
+    };
+    component.addToCart(stubCard);
+    expect(cartServiceSpy.addToCart).toHaveBeenCalled();
+    expect(cartServiceSpy.addToCart).toHaveBeenCalledWith(stubCard);
+  });
+
+  it('addToFavourites should call favouritesService.addToFavourites', () => {
+    const stubCard: CardProduct = {
+      id: 'stub',
+      title: 'stub',
+      quantity: 1,
+      price: 100,
+      imageUrl: 'stub',
+      size: 'stub',
+      color: 'stub',
+    };
+    component.addToFavourites(stubCard);
+    expect(favouritesServiceSpy.addToFavourites).toHaveBeenCalled();
+    expect(favouritesServiceSpy.addToFavourites).toHaveBeenCalledWith(stubCard);
   });
 });
 
