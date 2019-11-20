@@ -131,7 +131,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
 
         throw {
-          message: 'incorrect data'
+          message: '1incorrect data'
         };
       }));
 
@@ -142,7 +142,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
 
         throw {
-          message: 'incorrect data'
+          message: '2incorrect data'
         };
       }));
   }

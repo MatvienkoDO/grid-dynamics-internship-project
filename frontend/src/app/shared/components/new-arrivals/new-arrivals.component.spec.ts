@@ -10,10 +10,10 @@ describe('NewArrivalsComponent', () => {
   let component: NewArrivalsComponent;
   let fixture: ComponentFixture<NewArrivalsComponent>;
 
-  const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+  const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl', 'navigate']);
   const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
   const favouritesServiceSpy = jasmine.createSpyObj('FavouritesService', ['addToFavourites']);
-  const notificationServiceSpy = jasmine.createSpyObj('NotificationService', ['warning']);
+  const notificationServiceSpy = jasmine.createSpyObj('NotificationService', ['warning', 'error']);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
