@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
-import { ProductDetailsComponent } from './product-details.component';
+import { ProductDetailsComponent } from '..';
 import { AppModule } from 'src/app/app.module';
 import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
 import { Observable } from 'rxjs';
