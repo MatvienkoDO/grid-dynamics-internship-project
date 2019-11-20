@@ -70,5 +70,4 @@ describe('HeaderComponent', () => {
       expect(result).toBe('result');
     });
   });
-
 });
