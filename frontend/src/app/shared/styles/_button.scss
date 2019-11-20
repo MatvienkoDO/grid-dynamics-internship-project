@@ -20,14 +20,14 @@ button[disabled] {
   background-color: transparent;
 
   &_search {
-    @include fonts ($black, "Open Sans", 14px, 500);
-    @include icon (url(/assets/images/search-24px.svg), 21px, 21px, 34px);
+    @include fonts (transparent, "Open Sans", 14px, 500);
+    @include icon (url(/assets/images/search-24px.svg), 46px, 22px, 0);
     background-repeat: no-repeat;
     &:hover {
       filter: invert(37%) sepia(51%) saturate(2878%);
     }
-    &:active {
-      filter: invert(37%) sepia(51%) saturate(2878%);
+    &:focus {
+      @include fonts ($black, "Open Sans", 14px, 500);
     }
 
     @include for-phone-intermediate {
@@ -35,6 +35,14 @@ button[disabled] {
       height: auto;
       width: 100%;
     }
+  }
+
+  &_search-mobile {
+    @include fonts ($black, "Open Sans", 14px, 500);
+    @include icon (url(/assets/images/search-24px.svg), 21px, 21px, 0);
+    max-width: 1000px;
+    width: 100%;
+    padding: 0 0 0 30px;
   }
 
   &_account {

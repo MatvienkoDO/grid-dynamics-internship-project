@@ -15,12 +15,12 @@
   &__content-head {
     display: flex;
     justify-content: space-between;
-    align-items: end;
-    height: 64px;
+    align-items: flex-start;
+    height: 60px;
     .favourites-title {
       padding: 0;
       @include for-phone-intermediate {
-        line-height: 2;
+        line-height: 2.1;
       }
       @include for-phone {
         line-height: 2.3;
