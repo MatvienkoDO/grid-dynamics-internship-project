@@ -27,7 +27,7 @@ describe('NotificationService', () => {
     const stubMessage = 'stud';
     service.success(stubMessage);
     expect(notifierServiceSpy.notify).toHaveBeenCalled();
-    expect(notifierServiceSpy.notify).toHaveBeenCalledWith('sucess', stubMessage);
+    expect(notifierServiceSpy.notify).toHaveBeenCalledWith('success', stubMessage);
   });
 
   it('#error should call notify from NotifierService', () => {

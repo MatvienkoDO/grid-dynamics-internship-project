@@ -30,8 +30,7 @@ export class RelatedProductsComponent implements OnInit {
         if (response && Array.isArray(response.data)) {
           return response.data;
         }
-
-        throw 'incorrect data';
+        throw 'Product related incorrect data';
       }));
   }
 
