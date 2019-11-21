@@ -35,7 +35,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 80px 0;
-  @include for-tablet-intermediate {
+  @media (max-width: 880px) {
     justify-content: center;
   }
 
