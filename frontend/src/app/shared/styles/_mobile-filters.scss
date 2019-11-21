@@ -1,6 +1,8 @@
 @import 'colors';
+@import 'fonts';
 
-.filters_mobile-bar {
+
+.filters-mobile-bar {
   position: absolute;
   display: none;
   justify-content: center;
@@ -19,7 +21,10 @@
 }
 
 .filter-mobile {
-  &__btn {
+  &__title {
+    padding: 0 20px 0 0;
+  }
+  &__arrow {
     position: relative;
     padding: 5px;
     display: flex;
@@ -91,7 +96,8 @@
           transition-delay: 0s;
         }
 
-        &__btn {
+        &__arrow {
+          margin-left: auto;
           .filter-mobile__icon {
             background: transparent;
 

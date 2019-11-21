@@ -1,8 +1,9 @@
 <div class="container">
   <div class="products">
-    <div class="filters_mobile-bar">
+    <div class="filters-mobile-bar">
+        <p class="title-medium title-medium_primary-color filter-mobile__title">{{ 'filters' | translate }}</p>
         <input type="checkbox" id="checkbox-filter" class="filter-mobile__checkbox" (click)="toggleProductBlock()">
-        <label for="checkbox-filter" class="filter-mobile__btn bounce">
+        <label for="checkbox-filter" class="filter-mobile__arrow bounce">
           <div class="filter-mobile__icon"></div>
         </label>
         <div class="filter-mobile__container">
