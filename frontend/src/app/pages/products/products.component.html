@@ -7,20 +7,38 @@
       <div class="filter-mobile__icon"></div>
     </label>
     <div class="filter-mobile__container">
-      <app-list-select class="filters__filter" title="{{ 'categories' | translate }}" [options]="categoryOptions"
+        <app-list-select
+        class="filters__filter"
+        title="{{ 'categories' | translate }}"
+        [options]="categoryOptions"
+        [selected]="query.filter.category || []"
         (values)="newCategory($event)">
       </app-list-select>
-
-      <app-range-select class="filters__filter" title="{{ 'price filter' | translate }}"
+      
+      <app-range-select
+        class="filters__filter"
+        title="{{ 'price filter' | translate }}"
+        [initialLow]="query.filter.minPrice"
+        [initialHigh]="query.filter.maxPrice"
         (value)="newPriceRange($event)">
       </app-range-select>
 
-      <app-list-select class="filters__filter" title="{{ 'sizes' | translate }}" [one-of-many]="false"
-        [options]="sizesOptions" (values)="newSizes($event)">
+      <app-list-select
+        class="filters__filter"
+        title="{{ 'sizes' | translate }}"
+        [one-of-many]="false"
+        [options]="sizesOptions"
+        [selected]="query.filter.sizes || []"
+        (values)="newSizes($event)">
       </app-list-select>
 
-      <app-list-select class="filters__filter" title="{{ 'brands' | translate }}" [one-of-many]="false"
-        [options]="brandsOptions" (values)="newBrands($event)">
+      <app-list-select
+        class="filters__filter"
+        title="{{ 'brands' | translate }}"
+        [one-of-many]="false"
+        [options]="brandsOptions"
+        [selected]="query.filter.brands || []"
+        (values)="newBrands($event)">
       </app-list-select>
     </div>
   </div>
