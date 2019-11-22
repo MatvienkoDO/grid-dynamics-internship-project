@@ -1,38 +1,37 @@
 <div class="product-show-wrapper">
   <div class="product-show">
     <div class="product-list">
-      <div class="tabs-content" *ngIf="currentImage$ | async as currentImage">
+      <div class="tabs-content" *ngIf="{currentImage: currentImage$ | async} as data">
         <div class="tabs-content__products">
           <div class="slider-container" id="content1">
             <a
               class="slider-container__arrow left-arrow"
-              [class.slider-container__arrow_disabled]="currentImage === 0"
+              [class.slider-container__arrow_disabled]="data.currentImage === 0"
               (click)="prevImage()">
             </a>
             <picture class="picture-container">
               <img
                 class="picture-container__content"
-                [src]="images[currentImage]"
+                [src]="images[data.currentImage]"
                 alt="">
             </picture>
             <a
               class="slider-container__arrow right-arrow"
-              [class.slider-container__arrow_disabled]="currentImage === images.length - 1"
+              [class.slider-container__arrow_disabled]="data.currentImage === images.length - 1"
               (click)="nextImage()">
             </a>
           </div>
         </div>
         <div class="preview-container">
           <picture
-          *ngFor="let image of images; index as i"
-          class="tabs-content__wrapper-item"
-          [class.tabs-content__wrapper-item_active]="currentImage === i"
-          >
+            *ngFor="let image of images; index as i"
+            class="tabs-content__wrapper-item"
+            [class.tabs-content__wrapper-item_active]="data.currentImage === i">
+
             <img
-            class="tabs-content__item"
-            
-            [src]="image"
-            (click)="changeImage(i)">
+              class="tabs-content__item" 
+              [src]="image"
+              (click)="changeImage(i)">
           </picture>
         </div>
       </div>
