@@ -22,12 +22,18 @@
             </a>
           </div>
         </div>
-        <img
-          *ngFor="let image of images; index as i"
-          class="tabs-content__item"
-          [class.tabs-content__item_active]="data.currentImage === i"
-          [src]="image"
-          (click)="changeImage(i)">
+        <div class="preview-container">
+          <picture
+            *ngFor="let image of images; index as i"
+            class="tabs-content__wrapper-item"
+            [class.tabs-content__wrapper-item_active]="data.currentImage === i">
+
+            <img
+              class="tabs-content__item" 
+              [src]="image"
+              (click)="changeImage(i)">
+          </picture>
+        </div>
       </div>
     </div>
     <div class="product-details">
