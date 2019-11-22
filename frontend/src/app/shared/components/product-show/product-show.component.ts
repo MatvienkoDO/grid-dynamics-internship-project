@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { CardProduct } from '../../models/card-product';
+import { CardProduct } from '../../models';
 
 @Component({
   selector: 'app-product-show[id][title][sizes][price]',
@@ -26,7 +26,7 @@ export class ProductShowComponent implements OnInit {
 
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly quantity$ = new BehaviorSubject<number>(1);
-  public readonly currentImage$ = new BehaviorSubject(1);
+  public readonly currentImage$ = new BehaviorSubject(0);
 
   constructor() { }
 
