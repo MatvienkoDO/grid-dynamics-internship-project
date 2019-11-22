@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductsComponent } from './products.component';
+import { ProductsComponent, Query, UrlQuery } from './products.component';
 import { AppModule } from 'src/app/app.module';
 import { CartService, FavouritesService } from 'src/app/shared/services';
 import { CardProduct } from 'src/app/shared/models';
@@ -86,5 +86,36 @@ describe('ProductsComponent', () => {
     component.addToFavourites(stubCard);
     expect(favouritesServiceSpy.addToFavourites).toHaveBeenCalled();
     expect(favouritesServiceSpy.addToFavourites).toHaveBeenCalledWith(stubCard);
+  });
+
+  it('#createNewUrl should return string value', () => {
+    const query: Query = {
+      filter: {
+        search: 'stub'
+      },
+      paging: {}
+    };
+    const result = component.createNewUrl(query);
+    expect(result).toBe('/products?search=stub&');
+  });
+
+  it('#createQueryFromUrlQuery should return value', () => {
+    const urlQuery: UrlQuery = {
+      category: 'Stub'
+    };
+    const result = component.createQueryFromUrlQuery(urlQuery);
+    const expectedQuery: Query = {
+      filter: {
+        category: 'Stub'
+      },
+      paging: {
+        limit: 9
+      }
+    }
+    expect(result).toEqual(expectedQuery);
+  });
+
+  it('#toggleProductBlock', () => {
+    expect(component.toggleProductBlock()).toEqual(undefined);
   });
 });

@@ -37,7 +37,7 @@ describe('RangeSelectComponent', () => {
     expect(component.low).toBe(0);
     component.initialLow = 100;
     expect(component.low).toBe(100);
-    expect(component.high).toBe(0);
+    expect(component.high).toBe(100);
   });
 
   it('should return properly initialHigh', () => {

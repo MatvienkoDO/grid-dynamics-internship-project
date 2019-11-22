@@ -20,4 +20,8 @@ describe('ListSelectComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('click', () => {
+    expect(component.click('')).toEqual(undefined);
+  });
 });

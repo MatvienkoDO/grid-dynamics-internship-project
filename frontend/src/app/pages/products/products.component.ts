@@ -12,12 +12,12 @@ import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
 import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
 
-interface Query {
+export interface Query {
   filter: Filter;
   paging: Paging;
 };
 
-interface UrlQuery {
+export interface UrlQuery {
   skip?: string;
   limit?: string;
   category?: string;
@@ -171,7 +171,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       delete newQuery.filter.category;
     }
 
-    this.applyNewUrl(newQuery);
+    this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
 
   public readonly newPriceRange = ([minPrice, maxPrice]: number[]) => {
@@ -179,21 +179,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
     newQuery.filter.minPrice = minPrice;
     newQuery.filter.maxPrice = maxPrice;
 
-    this.applyNewUrl(newQuery);
+    this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
 
   public readonly newSizes = (sizes: string[]) => {
     const newQuery = this.query$.value;
     newQuery.filter.sizes = sizes;
 
-    this.applyNewUrl(newQuery);
+    this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
 
   public readonly newBrands = (brands: string[]) => {
     const newQuery = this.query$.value;
     newQuery.filter.brands = brands;
 
-    this.applyNewUrl(newQuery);
+    this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
 
   public readonly loadMore = () => {
@@ -201,7 +201,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const limit = newQuery.paging.limit || 0;
     newQuery.paging.limit = limit + 3;
 
-    this.applyNewUrl(newQuery);
+    this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
 
   public readonly showDetails = (productsId: string) => {
@@ -222,12 +222,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleProductBlock() {
+  public toggleProductBlock() {
     const checkBox = document.getElementById("checkbox-filter") as HTMLInputElement;
     const cardBlock = document.getElementById("cards") as HTMLElement;
     (checkBox.checked) ? cardBlock.style.display = "none" : cardBlock.style.display = "block";
   }
-  private createQueryFromUrlQuery(urlQuery: UrlQuery): Query {
+
+  public createQueryFromUrlQuery(urlQuery: UrlQuery): Query {
     const {
       skip,
       limit,
@@ -286,7 +287,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     return query;
   }
 
-  private applyNewUrl(query: Query) {
+  public createNewUrl(query: Query): string {
     let url = '/products?';
 
     for(const key in query.paging) {
@@ -304,7 +305,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.router.navigateByUrl(url);
+    return url;
   }
 
 }
