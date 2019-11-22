@@ -1,4 +1,6 @@
 .picture-container {
+  max-width: 220px;
+  max-height: 275px;
   display: block;
   &__content {
     object-fit: cover;
