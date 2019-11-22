@@ -1,6 +1,30 @@
 <div class="container">
   <div class="products">
-    <div class="filters" *ngIf="query$ | async as query">
+    <div class="filters-mobile-bar" *ngIf="query$ | async as query">
+    <p class="title-medium title-medium_primary-color filter-mobile__title">{{ 'filters' | translate }}</p>
+    <input type="checkbox" id="checkbox-filter" class="filter-mobile__checkbox" (click)="toggleProductBlock()">
+    <label for="checkbox-filter" class="filter-mobile__arrow bounce">
+      <div class="filter-mobile__icon"></div>
+    </label>
+    <div class="filter-mobile__container">
+      <app-list-select class="filters__filter" title="{{ 'categories' | translate }}" [options]="categoryOptions"
+        (values)="newCategory($event)">
+      </app-list-select>
+
+      <app-range-select class="filters__filter" title="{{ 'price filter' | translate }}"
+        (value)="newPriceRange($event)">
+      </app-range-select>
+
+      <app-list-select class="filters__filter" title="{{ 'sizes' | translate }}" [one-of-many]="false"
+        [options]="sizesOptions" (values)="newSizes($event)">
+      </app-list-select>
+
+      <app-list-select class="filters__filter" title="{{ 'brands' | translate }}" [one-of-many]="false"
+        [options]="brandsOptions" (values)="newBrands($event)">
+      </app-list-select>
+    </div>
+  </div>
+  <div class="filters" *ngIf="query$ | async as query">
       <app-list-select
         class="filters__filter"
         title="{{ 'categories' | translate }}"
@@ -36,7 +60,7 @@
       </app-list-select>
     </div>
 
-    <div class="cards">
+    <div class="cards" id="cards">
       <div class="cards__container">
         <app-loading-indicator
           *ngIf="loading$ | async"

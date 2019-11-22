@@ -222,6 +222,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
 
+  toggleProductBlock() {
+    const checkBox = document.getElementById("checkbox-filter") as HTMLInputElement;
+    const cardBlock = document.getElementById("cards") as HTMLElement;
+    (checkBox.checked) ? cardBlock.style.display = "none" : cardBlock.style.display = "block";
+  }
   private createQueryFromUrlQuery(urlQuery: UrlQuery): Query {
     const {
       skip,
