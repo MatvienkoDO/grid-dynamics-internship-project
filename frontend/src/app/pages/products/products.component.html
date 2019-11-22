@@ -39,16 +39,20 @@
       </div>
 
     <div class="filters">
+    <div class="filters" *ngIf="query$ | async as query">
       <app-list-select
         class="filters__filter"
         title="{{ 'categories' | translate }}"
         [options]="categoryOptions"
+        [selected]="query.filter.category || []"
         (values)="newCategory($event)">
       </app-list-select>
       
       <app-range-select
         class="filters__filter"
         title="{{ 'price filter' | translate }}"
+        [initialLow]="query.filter.minPrice"
+        [initialHigh]="query.filter.maxPrice"
         (value)="newPriceRange($event)">
       </app-range-select>
 
@@ -57,6 +61,7 @@
         title="{{ 'sizes' | translate }}"
         [one-of-many]="false"
         [options]="sizesOptions"
+        [selected]="query.filter.sizes || []"
         (values)="newSizes($event)">
       </app-list-select>
 
@@ -65,6 +70,7 @@
         title="{{ 'brands' | translate }}"
         [one-of-many]="false"
         [options]="brandsOptions"
+        [selected]="query.filter.brands || []"
         (values)="newBrands($event)">
       </app-list-select>
     </div>

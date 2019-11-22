@@ -19,13 +19,18 @@ export class RangeSelectComponent implements OnInit {
   @Input() currency = '$';
   @Input() floor = 0;
   @Input() ceil = 10000;
-  @Input() set initialLow(value: number) {
-    this.lowValue = value;
-    this.highValue = this.highValue || 0;
+  @Input() set initialLow(value: number | undefined) {
+    if (value !== undefined) {
+      this.lowValue = value;
+      this.highValue = Math.max(this.highValue || 0, value);
+    }
   }
-  @Input() set initialHigh(value: number) {
-    this.highValue = value;
-    this.lowValue = this.lowValue || 0;
+
+  @Input() set initialHigh(value: number | undefined) {
+    if (value !== undefined) {
+      this.highValue = value;
+      this.lowValue = Math.min(this.lowValue || 0, value); 
+    }
   }
 
   @Output() value = new EventEmitter<number[]>();

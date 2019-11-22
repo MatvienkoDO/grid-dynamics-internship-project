@@ -5,6 +5,8 @@ import {
   Input,
   Output,
   EventEmitter,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -14,10 +16,11 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./list-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListSelectComponent implements OnInit {
+export class ListSelectComponent implements OnInit, OnChanges {
   @Input() title = '';
   @Input() options: ListSelectComponent.Options = [];
   @Input('one-of-many') oneOfMany = true;
+  @Input() selected: string | string[] = [];
 
   @Output() values = new EventEmitter<string[]>();
 
@@ -26,6 +29,25 @@ export class ListSelectComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.selected) {
+      const rawSelected = changes.selected.currentValue;
+      const notFilteredSelected = Array.isArray(rawSelected)
+        ? rawSelected
+        : [rawSelected];
+
+      const options = changes.options
+        ? changes.options.currentValue
+        : this.options;
+
+      const optionsValues = options.map(({value}) => value);
+
+      const selected = notFilteredSelected.filter(value => optionsValues.includes(value));
+
+      this.selected$.next(selected);
+    }
+  }
 
   click(value: string) {
     if (this.oneOfMany) {
