@@ -4,6 +4,7 @@
 @import 'fonts';
 @import 'button';
 @import 'icon';
+@import 'picture';
 
 .product-show-wrapper {
   background-color: $white;
@@ -37,7 +38,7 @@
 
       &__item {
         display: block;
-        width: 95px;
+        max-width: 95px;
         height: 69px;
         background-color: #f4f6f8;
         margin: 0;

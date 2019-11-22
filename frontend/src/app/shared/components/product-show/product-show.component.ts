@@ -26,7 +26,7 @@ export class ProductShowComponent implements OnInit {
 
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly quantity$ = new BehaviorSubject<number>(1);
-  public readonly currentImage$ = new BehaviorSubject(0);
+  public readonly currentImage$ = new BehaviorSubject(1);
 
   constructor() { }
 
