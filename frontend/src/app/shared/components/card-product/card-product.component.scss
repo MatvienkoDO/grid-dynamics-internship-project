@@ -23,9 +23,9 @@
   transition-property: box-shadow, -webkit-box-shadow;
   -webkit-transition-duration: .3s;
   transition-duration: .3s;
-  margin-bottom: 30px;
+  margin: 10px;
   @include for-tablet-intermediate {
-    margin: 0 25px 25px;
+    //margin: 0 25px 25px;
   }
   @include for-phone {
     margin: 0 0 20px 0;
@@ -45,8 +45,8 @@
   }
 
   &__img {
-    width: 159px;
-    height: 214px;
+    max-width: 159px;
+    max-height: 214px;
   }
 
   &__title {
@@ -67,7 +67,7 @@
     left: 0;
     background-color: #fff;
     transition: .2s;
-    padding: 35px 50px 30px 50px;
+    padding: 35px 35px 30px 35px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     @include for-phone-intermediate {
@@ -81,8 +81,8 @@
     }
 
     &__img {
-      width: 70px;
-      height: 87px;
+      max-width: 70px;
+      max-height: 87px;
     }
 
     &__body {
