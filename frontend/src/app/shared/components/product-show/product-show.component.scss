@@ -4,6 +4,7 @@
 @import 'fonts';
 @import 'button';
 @import 'icon';
+@import 'picture';
 
 .product-show-wrapper {
   background-color: $white;
@@ -18,9 +19,10 @@
   }
 
   .product-list {
+    display: flex;
+    justify-content: center;
+    width: 40%;
     @include for-tablet-portrait-up {
-      display: flex;
-      justify-content: center;
       width: 100%;
     }
 
@@ -35,8 +37,9 @@
         height: auto;
       }
 
-      &__item {
+      &__wrapper-item {
         display: block;
+        padding: 10px;
         width: 95px;
         height: 69px;
         background-color: #f4f6f8;
@@ -48,7 +51,6 @@
         cursor: pointer;
         background-repeat: no-repeat;
         background-position: center;
-
         @include for-500px {
           display: none;
         }
@@ -60,6 +62,14 @@
         &_active {
           background-color: $primary-color;
         }
+      }
+
+      &__item {
+        display: flex;
+        margin: auto;
+        width: auto;
+        height: 100%;
+
       }
 
       &__products {
@@ -278,4 +288,11 @@
   &_active {
     color: $primary-color;
   }
+}
+
+.preview-container {
+  display: flex;
+  width: 250px;
+  justify-content: space-between;
+  align-items: center;
 }

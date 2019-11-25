@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { CardProduct } from '../../models/card-product';
+import { CardProduct } from '../../models';
 
 @Component({
   selector: 'app-product-show[id][title][sizes][price]',

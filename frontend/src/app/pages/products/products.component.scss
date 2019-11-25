@@ -3,6 +3,7 @@
 @import 'variables';
 @import 'fonts';
 @import 'button';
+@import 'mobile-filters';
 
 $gap: 30px;
 
@@ -11,8 +12,13 @@ $gap: 30px;
 }
 
 .products {
+  position: relative;
   padding: 120px 0;
   display: flex;
+  min-height: 820px;
+  @media (max-width: 615px) {
+    min-height: 1500px;
+  }
 }
 
 .filters {
@@ -27,6 +33,9 @@ $gap: 30px;
       margin-bottom: 0;
     }
   }
+  @media (max-width: 950px) {
+    display: none;
+  }
 }
 
 .cards {
@@ -40,6 +49,10 @@ $gap: 30px;
     flex-wrap: wrap;
     justify-content: space-between;
 
+    @include for-tablet-portrait-up {
+      margin: 0;
+    }
+
     &::after {
       content: '';
       flex-grow: 1;
@@ -48,7 +61,7 @@ $gap: 30px;
 
   &__element, &__trick-block {
     margin: 0 ($gap / 2);
-    width: 250px;
+    width: 260px;
   }
 
   &__element {
@@ -105,7 +118,7 @@ $gap: 30px;
 
 @media (max-width: 1200px) {
   .products {
-    flex-direction: column;
+    //flex-direction: column;
   }
 
   .cards {
@@ -117,18 +130,18 @@ $gap: 30px;
   }
 
   .filters {
-    width: auto;
+    width: 300px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    //display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-wrap: wrap;
 
     margin: -($gap / 2);
     margin-bottom: $gap / 2;
     &__filter {
       min-width: 210px;
-      width: auto;
+      //width: auto;
 
       margin: $gap / 2;
       &:last-child {

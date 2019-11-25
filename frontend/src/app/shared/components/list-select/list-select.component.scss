@@ -3,6 +3,9 @@
   user-select: none;
   padding: 40px 40px 35px;
   background-color: white;
+    @media (max-width: 945px) {
+    padding: 20px;
+  }
 }
 
 .list-select {
@@ -23,6 +26,7 @@
     margin-top: 25px;
     padding: 5px 0;
     cursor: pointer;
+    outline: none;
     font-weight: 600;
     font-size: 16px;
 
