@@ -5,7 +5,10 @@
   user-select: none;
   padding: 40px 40px 35px;
   background-color: white;
-    @media (max-width: 945px) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 945px) {
     padding: 20px;
   }
 }
