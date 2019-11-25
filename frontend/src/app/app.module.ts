@@ -52,6 +52,7 @@ import {
   ListSelectComponent,
   RangeSelectComponent,
   FavouritesComponentInner,
+  SearchRequestComponent,
 } from './shared/components';
 
 const translateModuleConfig = {
@@ -87,6 +88,7 @@ const translateModuleConfig = {
     ListSelectComponent,
     RangeSelectComponent,
     FavouritesComponentInner,
+    SearchRequestComponent,
   ],
   imports: [
     BrowserModule,
