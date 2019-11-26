@@ -1,4 +1,4 @@
-enum Mode {
+export enum Mode {
   Development,
   Production
 }
@@ -8,13 +8,17 @@ const startedInProdMode = (process.env.NODE_ENV || '')
   .toLowerCase()
   .startsWith('prod');
 
-const mode = startedInProdMode ? Mode.Production : Mode.Development;
+export const mode = startedInProdMode ? Mode.Production : Mode.Development;
+
 
 const databaseUserPasswordVariableName = 'PROD_DB_USER_PASSWORD';
-const databasePassword = process.env[databaseUserPasswordVariableName] || '';
+export const databasePassword = process.env[databaseUserPasswordVariableName] || '';
 
-export {
-  Mode,
-  mode,
-  databasePassword
-}
+
+const jwtSecretKey = 'JWT_SECRET';
+const productionJwtSecret = process.env[jwtSecretKey] || '';
+const developmentJwtSecret = 'DEVELOPMENT_JWT_SECRET';
+
+export const jwtSecret = mode === Mode.Production
+  ? productionJwtSecret
+  : developmentJwtSecret;
