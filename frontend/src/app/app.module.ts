@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppComponent } from './app.component';
 
@@ -52,6 +53,7 @@ import {
 } from './shared/components';
 import { LocalizationService } from './shared/services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccountComponent } from './shared/components/account/account.component';
 
 const translateModuleConfig = {
   loader: {
@@ -86,6 +88,7 @@ const translateModuleConfig = {
     ListSelectComponent,
     RangeSelectComponent,
     FavouritesComponentInner,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +105,7 @@ const translateModuleConfig = {
     MatInputModule,
     MatIconModule,
     MatTableModule,
+    MatTabsModule,
   ],
   providers: [
     LocalizationInterceptor.provider,
@@ -113,6 +117,7 @@ const translateModuleConfig = {
     CartComponentInner,
     FavouritesComponent,
     FavouritesComponentInner,
+    AccountComponent,
   ]
 })
 export class AppModule { }

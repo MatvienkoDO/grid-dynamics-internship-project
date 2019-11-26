@@ -75,3 +75,23 @@ app-range-select .ng5-slider {
     }
   }
 }
+
+// material tab
+.mat-tab-labels {
+  justify-content: space-evenly;
+ }
+ .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #ff5912;
+}
+.mat-tab-header {
+  border-bottom: unset;
+}
+.mat-tab-label .mat-tab-label-content {
+  font-family:  "Open Sans";
+  font-size: 24px;
+  font-weight: 600;
+  color: #000000;
+}
+.mat-tab-body-wrapper {
+  padding-top: 20px;
+}

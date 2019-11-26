@@ -63,7 +63,7 @@
       <form action="GET" class="search-container" (ngSubmit)="submit()">
         <input type="search" name="search" class="button button_search" [(ngModel)]="searchForm['search']" />
       </form>
-      <button class="button button_account"></button>
+      <button class="button button_account" (click)="openAccount()"></button>
       <app-favourites mat-button (click)="openFavourites()"></app-favourites>
       <app-cart mat-button (click)="openCart()"></app-cart>
     </div>

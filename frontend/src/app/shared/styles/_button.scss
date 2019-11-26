@@ -11,6 +11,10 @@ button[disabled] {
 
 .button-container {
   position: relative;
+  &_end {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .button {
