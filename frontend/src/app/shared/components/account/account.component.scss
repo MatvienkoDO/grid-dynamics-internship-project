@@ -14,6 +14,9 @@ $gray-light: #a0b3b0;
 
 .account-form {
   padding: 0 40px 20px;
+  @include for-500px {
+    padding: 0 0 20px;
+  }
 
   &__label {
     @include fonts (#34404b, "Open Sans", 12px, 400);
