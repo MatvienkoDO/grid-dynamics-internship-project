@@ -47,6 +47,7 @@ button[disabled] {
 
   &_account {
     @include icon (url(/assets/images/person-24px.svg), 20px, 21px, 29px);
+    background-repeat: no-repeat;
     &:hover {
       filter: invert(37%) sepia(51%) saturate(2878%);
     }
