@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { NotificationService, LocalizationService, CartService } from '..';
-import { localStorageCartKey } from '../../constants/common.constants';
+import { localStorageCartKey } from '../../constants';
 import { CardProduct } from '../../models';
 
 describe('CartService', () => {

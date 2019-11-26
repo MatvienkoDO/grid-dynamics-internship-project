@@ -1,9 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-
 import { TranslateService } from '@ngx-translate/core';
 
 import { LocalizationService } from './localization.service';
-import { localStorageLocaleKey } from '../../constants/common.constants';
 
 describe('LocalizationService', () => {
   const translateServiceSpy = 
