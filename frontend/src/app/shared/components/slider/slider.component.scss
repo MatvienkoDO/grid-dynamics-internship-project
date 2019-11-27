@@ -85,6 +85,7 @@
   &__desc {
     margin: 0;
     padding-bottom: 6px;
+    width: 105px;
     @include fonts (#3c4751, "Open Sans", 18px, 500);
     line-height: 29.97px;
     @include for-phone-intermediate {
@@ -107,7 +108,7 @@
     background: none;
     cursor: pointer;
     margin-left: 30px;
-    @include flex(flex-end);
+    @include flex(flex-start);
     &:focus {
       outline: none;
     }

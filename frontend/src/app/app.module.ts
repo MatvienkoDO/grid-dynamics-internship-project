@@ -12,6 +12,7 @@ import {
   MatInputModule,
   MatIconModule,
   MatTableModule,
+  MatTabsModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -53,6 +54,7 @@ import {
   RangeSelectComponent,
   FavouritesComponentInner,
   SearchRequestComponent,
+  AccountComponent,
 } from './shared/components';
 
 const translateModuleConfig = {
@@ -88,6 +90,7 @@ const translateModuleConfig = {
     ListSelectComponent,
     RangeSelectComponent,
     FavouritesComponentInner,
+    AccountComponent,
     SearchRequestComponent,
   ],
   imports: [
@@ -105,6 +108,7 @@ const translateModuleConfig = {
     MatInputModule,
     MatIconModule,
     MatTableModule,
+    MatTabsModule,
   ],
   providers: [
     LocalizationInterceptor.provider,
@@ -116,6 +120,7 @@ const translateModuleConfig = {
     CartComponentInner,
     FavouritesComponent,
     FavouritesComponentInner,
+    AccountComponent,
   ]
 })
 export class AppModule { }
