@@ -56,6 +56,7 @@ import {
   SearchRequestComponent,
   AccountComponent,
 } from './shared/components';
+import { WelcomeModalComponent } from './shared/components/welcome-modal/welcome-modal.component';
 
 const translateModuleConfig = {
   loader: {
@@ -92,6 +93,7 @@ const translateModuleConfig = {
     FavouritesComponentInner,
     AccountComponent,
     SearchRequestComponent,
+    WelcomeModalComponent,
   ],
   imports: [
     BrowserModule,

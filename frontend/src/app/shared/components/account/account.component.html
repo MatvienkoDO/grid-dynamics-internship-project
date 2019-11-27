@@ -6,7 +6,7 @@
   </button>
 </div>
 <div class="account-form">
-  <mat-tab-group class="tab-group">
+  <mat-tab-group class="tab-group" animationDuration="0ms">
     <mat-tab label="Sign Up" class="tab">
       <div id="signup">
         <form action="/" method="post" class="signup-form" (ngSubmit)="onSubmitSignupForm($event)" 
@@ -54,7 +54,7 @@
               <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
           </div>
           </div>
-          <button type="submit" class="button button_delete-all">Get Started</button>
+          <button type="submit" class="button button_form-account">Get Started</button>
         </form>
       </div>
     </mat-tab>
@@ -77,7 +77,7 @@
             formControlName="password"/>
           </div>
           <p class="forgot"><a class="forgot__link" href="#">Forgot Password?</a></p>
-          <button class="button button_delete-all" [disabled]="!loginForm.valid">Log In</button>
+          <button class="button button_form-account" [disabled]="!loginForm.valid">Log In</button>
         </form>
       </div>
     </mat-tab>
