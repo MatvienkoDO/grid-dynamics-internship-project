@@ -15,10 +15,10 @@ const databaseUserPasswordVariableName = 'PROD_DB_USER_PASSWORD';
 export const databasePassword = process.env[databaseUserPasswordVariableName] || '';
 
 
-const jwtSecretKey = 'JWT_SECRET';
-const productionJwtSecret = process.env[jwtSecretKey] || '';
-const developmentJwtSecret = 'DEVELOPMENT_JWT_SECRET';
+const cookieSigningSecretKey = 'COOKIE_SIGNING_SECRET';
+const productionSecret = process.env[cookieSigningSecretKey] || '';
+const developmentSecret = 'DEVELOPMENT_COOKIE_SIGNING_SECRET';
 
-export const jwtSecret = mode === Mode.Production
-  ? productionJwtSecret
-  : developmentJwtSecret;
+export const cookieSigningSecret = mode === Mode.Production
+  ? productionSecret
+  : developmentSecret;
