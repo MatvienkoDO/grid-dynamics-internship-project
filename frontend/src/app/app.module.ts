@@ -54,9 +54,8 @@ import {
   RangeSelectComponent,
   FavouritesComponentInner,
   SearchRequestComponent,
+  AccountComponent,
 } from './shared/components';
-
-import { AccountComponent } from './shared/components/account/account.component';
 
 const translateModuleConfig = {
   loader: {
