@@ -79,8 +79,9 @@ app-range-select .ng5-slider {
 // material tab
 .mat-tab-labels {
   justify-content: space-evenly;
- }
- .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+}
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: #ff5912;
 }
 .mat-tab-header {
