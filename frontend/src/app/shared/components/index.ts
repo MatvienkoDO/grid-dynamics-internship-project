@@ -14,3 +14,4 @@ export * from './favourites/favourites.component';
 export * from './list-select/list-select.component';
 export * from './range-select/range-select.component';
 export * from './account/account.component';
+export * from './search-request/search-request.component';
