@@ -7,7 +7,7 @@
       <div class="filter-mobile__icon"></div>
     </label>
     <div class="filter-mobile__container">
-        <app-list-select
+      <app-list-select
         class="filters__filter"
         title="{{ 'categories' | translate }}"
         [options]="categoryOptions"
@@ -40,9 +40,23 @@
         [selected]="query.filter.brands || []"
         (values)="newBrands($event)">
       </app-list-select>
+
+      <app-search-request
+        *ngIf="query.filter.search"
+        [search-query]="query.filter.search"
+        (reset)="resetSearchQuery()"
+        class="filters__filter">
+      </app-search-request>
     </div>
   </div>
   <div class="filters" *ngIf="query$ | async as query">
+      <app-search-request
+        *ngIf="query.filter.search"
+        [search-query]="query.filter.search"
+        (reset)="resetSearchQuery()"
+        class="filters__filter">
+      </app-search-request>
+
       <app-list-select
         class="filters__filter"
         title="{{ 'categories' | translate }}"

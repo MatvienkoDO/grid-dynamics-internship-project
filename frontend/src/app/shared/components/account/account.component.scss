@@ -1,0 +1,93 @@
+@import 'mixins';
+@import 'fonts';
+@import 'icon';
+@import 'picture';
+@import 'button';
+
+
+$main-account-color: $primary-color;
+$main-account-color-light: lighten($main-account-color, 5%);
+$main-account-color-dark: darken($main-account-color, 5%);
+
+$gray-light: #a0b3b0;
+
+
+.account-form {
+  padding: 0 40px 20px;
+  @include for-500px {
+    padding: 0 0 20px;
+  }
+
+  &__label {
+    @include fonts (#34404b, "Open Sans", 12px, 400);
+    pointer-events: none;
+
+    .req {
+      margin: 2px;
+      color: $main-account-color;
+    }
+  }
+
+  &__input {
+    font-size: 22px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    @include fonts (#34404b, "Open Sans", 14px, 400);
+    background: none;
+    background-image: none;
+    border: 1px solid $gray-light;
+    border-radius: 0;
+    transition: border-color .25s ease, box-shadow .25s ease;
+
+    &:focus {
+      outline: 0;
+      border-color: $main-account-color;
+    }
+  }
+}
+
+
+.field-wrap {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.top-row {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  >div {
+    float: left;
+    width: 48%;
+    margin-right: 4%;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+
+.forgot {
+  text-align: right;
+
+  &__link {
+    text-decoration: none;
+    color: $main-account-color;
+    transition: .5s ease;
+
+    &:hover {
+      color: $main-account-color-dark;
+    }
+  }
+}
+
+.invalid-feedback {
+  @include fonts (#f44336, "Open Sans", 12px, 400);
+  font-style: italic;
+}

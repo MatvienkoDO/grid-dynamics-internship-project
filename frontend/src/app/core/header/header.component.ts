@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { NotificationService, LocalizationService } from '../../shared/services';
-import { CartComponentInner, FavouritesComponentInner } from '../../shared/components';
+import { CartComponentInner, FavouritesComponentInner, AccountComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-header',
@@ -38,6 +38,12 @@ export class HeaderComponent implements OnInit {
 
   openFavourites() : void {
     const dialogRef = this.dialog.open(FavouritesComponentInner, {
+      width: '550px'
+    });
+  }
+
+  openAccount() : void {
+    const dialogRef = this.dialog.open(AccountComponent, {
       width: '550px'
     });
   }

@@ -308,4 +308,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
     return url;
   }
 
+  public readonly resetSearchQuery = () => {
+    const newQuery = this.query$.value;
+    delete newQuery.filter.search;
+
+    this.router.navigateByUrl(this.createNewUrl(newQuery));
+  }
+
 }
