@@ -48,8 +48,7 @@ export class CardProductSmallComponent implements OnInit {
       title: this.title,
       quantity: 1,
       price: Number(this.price),
-      imageUrl: this.image['1_1'],
-      // TODO
+      image: this.image,
       size: this.sizes[0],
       color: this.colors[0],
     };

@@ -61,8 +61,7 @@ export class CardProductComponent implements OnInit {
         price: this.price,
         size,
         color,
-        imageUrl: this.image["1_1"],
-        // TODO
+        image: this.image,
       };
 
       sender.emit(data);

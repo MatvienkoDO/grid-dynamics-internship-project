@@ -9,12 +9,6 @@
               [class.slider-container__arrow_disabled]="data.currentImage === 0"
               (click)="prevImage()">
             </a>
-            <!-- <picture class="picture-container">
-              <img
-                class="picture-container__content"
-                [src]="images[data.currentImage]"
-                alt="">
-            </picture> -->
             <picture class="picture-container">
               <source class="picture-container__content"
               media="(max-width: 767px)"
@@ -42,16 +36,6 @@
           </div>
         </div>
         <div class="preview-container">
-          <!-- <picture
-            *ngFor="let image of images; index as i"
-            class="tabs-content__wrapper-item"
-            [class.tabs-content__wrapper-item_active]="data.currentImage === i">
-
-            <img
-              class="tabs-content__item" 
-              [src]="image"
-              (click)="changeImage(i)">
-          </picture> -->
           <picture
             *ngFor="let image of images; index as i"
             class="tabs-content__wrapper-item"

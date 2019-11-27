@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, combineLatest, Subscription, interval } fr
 import { map, share } from 'rxjs/operators';
 
 import { ProductsService, CartService } from '../../services';
-import { Product } from '../../models';
+import { Product, Image } from '../../models';
 
 @Component({
   selector: 'app-slider',
@@ -62,13 +62,13 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.current$.next(newCurrent);
   }
 
-  public readonly orderProduct = (productId: string, productTitle: string, productPrice: number, imageUrl: string, size: string, color: string) => {
+  public readonly orderProduct = (productId: string, productTitle: string, productPrice: number, image: Image, size: string, color: string) => {
     this.cartService.addToCart({
       id: productId,
       title: productTitle,
       price: productPrice,
       quantity: 1,
-      imageUrl: imageUrl,
+      image: image,
       size: size,
       color: color,
     });
