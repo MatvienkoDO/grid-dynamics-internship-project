@@ -11,7 +11,7 @@ import { NewsLetterModule } from './modules/news-letter/news-letter.module';
   imports: [
     MongooseModule.forRoot(databaseUri),
     ProductModule,
-    NewsLetterModule
+    NewsLetterModule,
   ],
   controllers: [AppController],
   providers: [AppService],
