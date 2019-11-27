@@ -50,6 +50,7 @@ import {
   ListSelectComponent,
   RangeSelectComponent,
   FavouritesComponentInner,
+  SearchRequestComponent,
 } from './shared/components';
 import { LocalizationService } from './shared/services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -89,6 +90,7 @@ const translateModuleConfig = {
     RangeSelectComponent,
     FavouritesComponentInner,
     AccountComponent,
+    SearchRequestComponent,
   ],
   imports: [
     BrowserModule,
