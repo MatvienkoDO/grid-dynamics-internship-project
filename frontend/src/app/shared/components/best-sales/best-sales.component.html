@@ -17,7 +17,7 @@
     <app-card-product-small
       *ngFor="let product of products$ | async"
       [id]="product.id"
-      [image-url]="product.images[0]"
+      [image]="product.images[0]"
       [title]="product.name"
       [price]="product.price"
       [sizes]="product.sizes"

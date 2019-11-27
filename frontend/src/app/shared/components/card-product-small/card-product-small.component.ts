@@ -7,17 +7,17 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { CardProduct } from '../../models';
+import { CardProduct, Image } from '../../models';
 
 @Component({
-  selector: 'app-card-product-small[id][image-url][title][price]',
+  selector: 'app-card-product-small[id][image][title][price]',
   templateUrl: './card-product-small.component.html',
   styleUrls: ['./card-product-small.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardProductSmallComponent implements OnInit {
   @Input('id') public readonly id: string;
-  @Input('image-url') public readonly imageUrl: string;
+  @Input('image') public readonly image: Image;
   @Input('title') public readonly title: string;
   @Input('price') public readonly price: string;
   @Input('sizes') public readonly sizes: string[];
@@ -48,7 +48,8 @@ export class CardProductSmallComponent implements OnInit {
       title: this.title,
       quantity: 1,
       price: Number(this.price),
-      imageUrl: this.imageUrl,
+      imageUrl: this.image['1_1'],
+      // TODO
       size: this.sizes[0],
       color: this.colors[0],
     };

@@ -9,11 +9,30 @@
               [class.slider-container__arrow_disabled]="data.currentImage === 0"
               (click)="prevImage()">
             </a>
-            <picture class="picture-container">
+            <!-- <picture class="picture-container">
               <img
                 class="picture-container__content"
                 [src]="images[data.currentImage]"
                 alt="">
+            </picture> -->
+            <picture class="picture-container">
+              <source class="picture-container__content"
+              media="(max-width: 767px)"
+              sizes="(max-width: 1230px) 100vw, 1230px"
+              srcset="{{ images[data.currentImage]['1_1'] }}">
+              <source class="picture-container__content"
+              media="(min-width: 768px) and (max-width: 991px)"
+              sizes="(max-width: 1757px) 70vw, 1230px"
+              srcset="{{ images[data.currentImage]['4_3'] }}">
+              <source class="picture-container__content"
+              media="(min-width: 992px) and (max-width: 1199px)"
+              sizes="(max-width: 2050px) 60vw, 1230px"
+              srcset="{{ images[data.currentImage]['16_9'] }}">
+              <img class="picture-container__content"
+              sizes="(max-width: 3075px) 40vw, 1230px"
+              srcset="{{ images[data.currentImage]['scale'] }}"
+              src="{{ images[data.currentImage]['default'] }}"
+              alt="">
             </picture>
             <a
               class="slider-container__arrow right-arrow"
@@ -23,7 +42,7 @@
           </div>
         </div>
         <div class="preview-container">
-          <picture
+          <!-- <picture
             *ngFor="let image of images; index as i"
             class="tabs-content__wrapper-item"
             [class.tabs-content__wrapper-item_active]="data.currentImage === i">
@@ -32,6 +51,32 @@
               class="tabs-content__item" 
               [src]="image"
               (click)="changeImage(i)">
+          </picture> -->
+          <picture
+            *ngFor="let image of images; index as i"
+            class="tabs-content__wrapper-item"
+            [class.tabs-content__wrapper-item_active]="data.currentImage === i">
+            <source class="tabs-content__item"
+            media="(max-width: 767px)"
+            sizes="(max-width: 1230px) 100vw, 1230px"
+            srcset="{{ image['1_1'] }}"
+            (click)="changeImage(i)">
+            <source class="tabs-content__item"
+            media="(min-width: 768px) and (max-width: 991px)"
+            sizes="(max-width: 1757px) 70vw, 1230px"
+            srcset="{{ image['4_3'] }}"
+            (click)="changeImage(i)">
+            <source class="tabs-content__item"
+            media="(min-width: 992px) and (max-width: 1199px)"
+            sizes="(max-width: 2050px) 60vw, 1230px"
+            srcset="{{ image['16_9'] }}"
+            (click)="changeImage(i)">
+            <img class="tabs-content__item"
+            sizes="(max-width: 3075px) 40vw, 1230px"
+            srcset="{{ image['scale'] }}"
+            src="{{ image['default'] }}"
+            alt=""
+            (click)="changeImage(i)">
           </picture>
         </div>
       </div>

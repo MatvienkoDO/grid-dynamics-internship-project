@@ -1,17 +1,17 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { CardProduct } from '../../models';
+import { CardProduct, Image } from '../../models';
 
 @Component({
-  selector: 'app-card-product[id][image-url][title][price][sizes][colors]',
+  selector: 'app-card-product[id][image][title][price][sizes][colors]',
   templateUrl: './card-product.component.html',
   styleUrls: ['./card-product.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardProductComponent implements OnInit {
   @Input('id') public readonly id: string;
-  @Input('image-url') public readonly imageUrl: string;
+  @Input('image') public readonly image: Image;
   @Input('title') public readonly title: string;
   @Input('price') public readonly price: number;
   @Input('sizes') public readonly sizes: string[];
@@ -61,7 +61,8 @@ export class CardProductComponent implements OnInit {
         price: this.price,
         size,
         color,
-        imageUrl: this.imageUrl,
+        imageUrl: this.image["1_1"],
+        // TODO
       };
 
       sender.emit(data);
