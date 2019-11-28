@@ -8,6 +8,14 @@ export interface Product {
   price: number;
   sizes: string[];
   colors: string[];
-  images: string[];
+  images: Image[];
   sliderImage?: string;
+}
+
+export interface Image {
+  "1_1": string,
+  "4_3": string,
+  "16_9": string,
+  "scale": string,
+  "default": string
 }

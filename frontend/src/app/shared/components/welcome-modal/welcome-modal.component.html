@@ -1,0 +1,11 @@
+<div mat-dialog-actions class="button-container button-container_end">
+ <button mat-button (click)="onNoClick()">
+   <i class="material-icons">
+     close
+   </i>
+ </button>
+</div>
+<h3 class="title-medium cart-title">
+  welcome <span class="title-medium title-medium_primary-color cart-title" *ngFor="let user of users"> {{user.username}} </span>
+</h3>
+<button class="button button_form-account button_form-log-out">Log Out</button>

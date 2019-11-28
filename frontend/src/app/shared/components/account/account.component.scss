@@ -3,6 +3,7 @@
 @import 'icon';
 @import 'picture';
 @import 'button';
+@import 'spinner';
 
 
 $main-account-color: $primary-color;
@@ -32,7 +33,6 @@ $gray-light: #a0b3b0;
     font-size: 22px;
     display: block;
     width: 100%;
-    height: 100%;
     padding: 5px 10px;
     @include fonts (#34404b, "Open Sans", 14px, 400);
     background: none;
@@ -90,4 +90,10 @@ $gray-light: #a0b3b0;
 .invalid-feedback {
   @include fonts (#f44336, "Open Sans", 12px, 400);
   font-style: italic;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
 }
