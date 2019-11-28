@@ -43,13 +43,13 @@ export class HeaderComponent implements OnInit {
   }
 
   openAccount() : void {
-    // const dialogRef = this.dialog.open(AccountComponent, {
-    //   width: '550px',
-    //   height: '580px',
-    // });
-    const dialogR = this.dialog.open(WelcomeModalComponent, {
+    const dialogRef = this.dialog.open(AccountComponent, {
       width: '550px',
+      height: '580px',
     });
+    // const dialogR = this.dialog.open(WelcomeModalComponent, {
+    //   width: '550px',
+    // });
   }
 
   // TODO(tkatimulin): Rewrite this logic
