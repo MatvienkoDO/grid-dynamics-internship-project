@@ -26,11 +26,6 @@ export class WelcomeModalComponent implements OnInit {
     this.loadAllUsers();
   }
 
-  ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
-    this.currentUserSubscription.unsubscribe();
-}
-
   private loadAllUsers() {
     this.userService.getAll().pipe(first()).subscribe(users => {
       this.users = users;
