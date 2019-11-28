@@ -150,6 +150,7 @@ button[disabled] {
     }
   }
   &_form-account {
+    position: relative;
     @include flex;
     justify-content: center;
     margin-top: auto;
@@ -166,5 +167,8 @@ button[disabled] {
     &:hover {
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
+  }
+  &_form-log-out {
+    margin-bottom: 10px;
   }
 }

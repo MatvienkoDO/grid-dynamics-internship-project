@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+
+import { User } from '../../models/user';
+import { UserService } from '../../services/user/user.service';
+
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-welcome-modal',
@@ -6,10 +13,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome-modal.component.scss']
 })
 export class WelcomeModalComponent implements OnInit {
+  currentUser: User;
+  currentUserSubscription: Subscription;
+  users: User[] = [];
 
-  constructor() { }
+  constructor(
+    public dialogR: MatDialogRef<WelcomeModalComponent>,
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
+    this.loadAllUsers();
+  }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.currentUserSubscription.unsubscribe();
+}
+
+  private loadAllUsers() {
+    this.userService.getAll().pipe(first()).subscribe(users => {
+      this.users = users;
+  });
+  }
+
+  onNoClick(): void {
+    this.dialogR.close();
   }
 
 }

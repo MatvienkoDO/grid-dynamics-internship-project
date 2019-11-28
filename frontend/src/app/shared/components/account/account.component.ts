@@ -3,6 +3,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MustMatch } from '../../helpers/must-match.validator';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { NotificationService } from '../../services/notification/notification.service';
+import { UserService } from '../../services/user/user.service';
 
 
 @Component({
@@ -11,8 +15,8 @@ import { MustMatch } from '../../helpers/must-match.validator';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  registerForm: FormGroup;
   submitted = false;
+  loading = false;
 
   signupForm = new FormGroup({
     firstName: new FormControl(''),
@@ -30,7 +34,11 @@ export class AccountComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AccountComponent>,
     private formBuilder: FormBuilder,
-  ) { }
+    private router: Router,
+    private readonly notificationService: NotificationService,
+    private userService: UserService,
+  ) { 
+  }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -60,6 +68,7 @@ export class AccountComponent implements OnInit {
     if (this.signupForm.invalid) {
         return;
     }
+    this.loading = true;
     console.log(JSON.stringify(this.signupForm.value, null, 4));
     this.signupForm.reset();
   }
@@ -69,6 +78,7 @@ export class AccountComponent implements OnInit {
     if (this.loginForm.invalid) {
         return;
     }
+    this.loading = true;
     console.log(JSON.stringify(this.loginForm.value, null, 4));
     this.loginForm.reset();
   }

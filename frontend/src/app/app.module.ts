@@ -55,8 +55,8 @@ import {
   FavouritesComponentInner,
   SearchRequestComponent,
   AccountComponent,
+  WelcomeModalComponent,
 } from './shared/components';
-import { WelcomeModalComponent } from './shared/components/welcome-modal/welcome-modal.component';
 
 const translateModuleConfig = {
   loader: {
@@ -123,6 +123,7 @@ const translateModuleConfig = {
     FavouritesComponent,
     FavouritesComponentInner,
     AccountComponent,
+    WelcomeModalComponent,
   ]
 })
 export class AppModule { }
