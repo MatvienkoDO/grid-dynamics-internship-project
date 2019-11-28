@@ -6,12 +6,14 @@ import { AppService } from './app.service';
 import { ProductModule } from './modules/product/product.module';
 import { databaseUri } from './database'
 import { NewsLetterModule } from './modules/news-letter/news-letter.module';
+import { AuthenticationModule } from './modules/authentication/authentication.module';
 
 @Module({
   imports: [
     MongooseModule.forRoot(databaseUri),
     ProductModule,
-    NewsLetterModule
+    NewsLetterModule,
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

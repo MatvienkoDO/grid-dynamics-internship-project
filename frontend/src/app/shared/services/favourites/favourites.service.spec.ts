@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FavouritesService, LocalizationService, NotificationService} from '../';
-import { localStorageFavouritesKey } from '../../constants/common.constants';
+import { FavouritesService, LocalizationService, NotificationService } from '..';
+import { localStorageFavouritesKey } from '../../constants';
 import { CardProduct } from '../../models'
 
 describe('FavouritesService', () => {

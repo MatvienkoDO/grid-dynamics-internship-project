@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models';
-import { NotificationService } from '../notification/notification.service';
-import { LocalizationService } from '../localization/localization.service';
-
-import { localStorageCartKey } from '../../constants/common.constants'
+import { NotificationService, LocalizationService } from '..';
+import { localStorageCartKey } from '../../constants'
 
 @Injectable({
   providedIn: 'root'
