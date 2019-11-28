@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { NotificationService, LocalizationService } from '../../shared/services';
 import { CartComponentInner, FavouritesComponentInner, AccountComponent, WelcomeModalComponent } from '../../shared/components';
+import { AccountModalService } from 'src/app/shared/services/account-modal/account-modal.service';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
     private readonly notify: NotificationService,
     private readonly elementRef: ElementRef,
     private readonly router: Router,
+    private readonly accountModal: AccountModalService
   ) { }
 
   ngOnInit() { }
@@ -43,13 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openAccount() : void {
-    const dialogRef = this.dialog.open(AccountComponent, {
-      width: '550px',
-      height: '580px',
-    });
-    // const dialogR = this.dialog.open(WelcomeModalComponent, {
-    //   width: '550px',
-    // });
+    this.accountModal.openAccountModal();
   }
 
   // TODO(tkatimulin): Rewrite this logic

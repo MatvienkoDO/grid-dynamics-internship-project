@@ -1,0 +1,51 @@
+import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { AccountComponent, WelcomeModalComponent } from '../../components';
+import { AuthenticationService } from '../authentication/authentication.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AccountModalService {
+  private dialogStack: MatDialogRef<any, any>[] = [];
+
+  constructor(
+    public readonly dialog: MatDialog,
+    public readonly authService: AuthenticationService,
+  ) { }
+
+  public openAccountModal() {
+    this.authService.currentUser.subscribe(
+      currentUser => {
+        if (currentUser) {
+          this.openWelcomeDialog();
+        } else {
+          this.openLoginSignup();
+        }
+      }
+    )
+  }
+
+  public openLoginSignup() {
+    const dialogRef = this.dialog.open(AccountComponent, {
+      width: '550px',
+      height: '580px',
+    });
+    this.dialogStack.push(dialogRef);
+  }
+
+  public openWelcomeDialog() {
+    const dialogRef = this.dialog.open(WelcomeModalComponent, {
+      width: '550px',
+      height: '230px',
+    });
+    this.dialogStack.push(dialogRef);
+  }
+
+  public closeCurrentDialog() {
+    const dialog = this.dialogStack.pop();
+    if (dialog) {
+      dialog.close();
+    }
+  }
+}

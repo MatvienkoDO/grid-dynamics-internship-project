@@ -14,13 +14,13 @@ export class AuthController {
   async signUp(@Body() body: UserSignupDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidSignupDto(body);
     if (body && !isValid) {
-      response.status(401);
+      response.status(200);
       response.type('application/json');
       response.send({ status: 'error', message: 'Invalid form' });
     }
     const isUnique = await this.userService.isUnique(body);
     if (!isUnique) {
-      response.status(401);
+      response.status(200);
       response.type('application/json');
       response.send({ status: 'error', message: 'Email is not unique' });
     }
@@ -40,7 +40,7 @@ export class AuthController {
   async login(@Body() body: UserLoginDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidLoginDto(body);
     if (body && !isValid) {
-      response.status(401);
+      response.status(200);
       response.send({ status: 'error', message: 'Invalid email/password' });
     }
     const user = await this.userService.findBy(body);
@@ -58,6 +58,7 @@ export class AuthController {
   @Post('logout') 
   async logout(@Response() response: express.Response) {
     response.clearCookie(userIdCookieKey);
-    response.send();
+    response.status(200);
+    response.send({ status: 'ok', message: 'ok' });
   }
 }

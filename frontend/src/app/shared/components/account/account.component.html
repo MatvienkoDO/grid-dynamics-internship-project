@@ -67,7 +67,7 @@
             <label class="account-form__label">
               Email Address<span class="req">*</span>
             </label>
-            <input class="account-form__input" type="email" name="email" required
+            <input class="account-form__input" type="email" name="email" required autocomplete="email"
             formControlName="email"/>
           </div>
           <div class="field-wrap">
@@ -78,6 +78,7 @@
             formControlName="password"/>
           </div>
           <p class="forgot"><a class="forgot__link" href="#">Forgot Password?</a></p>
+          <p>{{ errorMessage$ | async }}</p>
           <button class="button button_form-account" [disabled]="!loginForm.valid"
           [class.spinner]="loading">Log In</button>
         </form>
