@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Response, Request } from '@nestjs/common';
+import { Controller, Post, Body, Response, Request, Get } from '@nestjs/common';
 import * as express from 'express';
 
 import { userIdCookieKey, userIdCookieOptions } from '../../common';
@@ -24,5 +24,18 @@ export class AuthController {
     response.cookie(userIdCookieKey, userId, userIdCookieOptions);
     response.type('application/json');
     response.send({ status: 'ok', success: true });
+  }
+
+  @Get('check')
+  check(
+    @Request() request: express.Request,
+    @Response() response: express.Response,
+  ) {
+    const result = !!request.signedCookies[userIdCookieKey];
+
+    response.send({
+      success: true,
+      result,
+    });
   }
 }
