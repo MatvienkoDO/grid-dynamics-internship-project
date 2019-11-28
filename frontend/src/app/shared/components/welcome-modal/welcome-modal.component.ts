@@ -22,8 +22,8 @@ export class WelcomeModalComponent implements OnInit {
   users: User[] = [];
 
   constructor(
-    public dialogR: MatDialogRef<WelcomeModalComponent>,
-    private userService: UserService,
+    private readonly dialogRef: MatDialogRef<WelcomeModalComponent>,
+    private readonly userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class WelcomeModalComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogR.close();
+    this.dialogRef.close();
   }
 
 }
