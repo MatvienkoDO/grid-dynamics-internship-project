@@ -11,6 +11,11 @@ button[disabled] {
 
 .button-container {
   position: relative;
+  &_end {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 15px;
+  }
 }
 
 .button {
@@ -47,6 +52,7 @@ button[disabled] {
 
   &_account {
     @include icon (url(/assets/images/person-24px.svg), 20px, 21px, 29px);
+    background-repeat: no-repeat;
     &:hover {
       filter: invert(37%) sepia(51%) saturate(2878%);
     }

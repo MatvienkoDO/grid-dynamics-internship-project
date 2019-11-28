@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { localStorageLocaleKey } from '../../constants/common.constants';
+import { localStorageLocaleKey } from '../../constants';
 
 @Injectable({
   providedIn: 'root'

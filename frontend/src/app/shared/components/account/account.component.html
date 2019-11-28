@@ -1,0 +1,85 @@
+<div mat-dialog-actions class="button-container button-container_end">
+  <button mat-button (click)="onNoClick()">
+    <i class="material-icons">
+      close
+    </i>
+  </button>
+</div>
+<div class="account-form">
+  <mat-tab-group class="tab-group">
+    <mat-tab label="Sign Up" class="tab">
+      <div id="signup">
+        <form action="/" method="post" class="signup-form" (ngSubmit)="onSubmitSignupForm($event)" 
+        [formGroup]="signupForm">
+          <div class="field-wrap">
+            <label class="account-form__label">
+              First Name<span class="req">*</span>
+            </label>
+            <input class="account-form__input" type="text" name="text" required
+            formControlName="firstName"/>
+          </div>
+          <div class="field-wrap">
+            <label class="account-form__label">
+              Last Name<span class="req">*</span>
+            </label>
+            <input class="account-form__input" type="text" name="text" required
+            formControlName="lastName"/>
+          </div>
+          <div class="field-wrap">
+            <label class="account-form__label">
+              Email Address<span class="req">*</span>
+            </label>
+            <input class="account-form__input" type="email" name="email" required
+            formControlName="email"/>
+          </div>
+          <div class="field-wrap">
+            <label class="account-form__label">
+              Password<span class="req">*</span>
+            </label>
+            <input class="account-form__input" type="password" name="password" required
+            formControlName="password"
+            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+          </div>
+          <div class="field-wrap">
+            <label class="account-form__label">
+              Repeat password<span class="req">*</span>
+            </label>
+            <input class="account-form__input" type="password" name="password" required
+            formControlName="confirmPassword"
+            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+          </div>
+          </div>
+          <button type="submit" class="button button_delete-all">Get Started</button>
+        </form>
+      </div>
+    </mat-tab>
+    <mat-tab label="Log In" class="tab">
+      <div id="login">
+        <form action="/" method="post" class="login-form" (ngSubmit)="onSubmitLoginForm($event)" 
+        [formGroup]="loginForm">
+          <div class="field-wrap">
+            <label class="account-form__label">
+              Email Address<span class="req">*</span>
+            </label>
+            <input class="account-form__input" type="email" name="email" required
+            formControlName="email"/>
+          </div>
+          <div class="field-wrap">
+            <label class="account-form__label">
+              Password<span class="req">*</span>
+            </label>
+            <input class="account-form__input" type="password" name="password" required
+            formControlName="password"/>
+          </div>
+          <p class="forgot"><a class="forgot__link" href="#">Forgot Password?</a></p>
+          <button class="button button_delete-all" [disabled]="!loginForm.valid">Log In</button>
+        </form>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
