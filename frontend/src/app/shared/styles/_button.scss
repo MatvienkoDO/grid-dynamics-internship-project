@@ -171,4 +171,9 @@ button[disabled] {
   &_form-log-out {
     margin-bottom: 10px;
   }
+  &_like {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
 }
