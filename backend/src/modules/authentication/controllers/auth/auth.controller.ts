@@ -1,7 +1,8 @@
-import { Controller, Post, Body, Response, Request, Get } from '@nestjs/common';
+import { Controller, Post, Body, Response, Request, Get, UseGuards } from '@nestjs/common';
 import * as express from 'express';
 
 import { userIdCookieKey, userIdCookieOptions } from '../../common';
+import { AuthGuard } from '../../guards/auth/auth.guard';
 
 @Controller('api/auth')
 export class AuthController {
@@ -36,6 +37,14 @@ export class AuthController {
     response.send({
       success: true,
       result,
+    });
+  }
+
+  @Get('user-is-authenticated')
+  @UseGuards(AuthGuard)
+  checkForAuthentication(@Response() response: express.Response) {
+    response.send({
+      success: true,
     });
   }
 }
