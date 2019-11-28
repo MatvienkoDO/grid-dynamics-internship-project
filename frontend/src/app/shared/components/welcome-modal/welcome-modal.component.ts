@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 
 import { User } from '../../models/user';
-import { UserService } from '../../services/user/user.service';
-
-import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { apiHost } from 'src/environments/environment'
 
 @Component({
   selector: 'app-welcome-modal',
@@ -18,26 +16,20 @@ export class WelcomeModalComponent implements OnInit {
   }
 
   currentUser: User;
-  currentUserSubscription: Subscription;
   users: User[] = [];
 
   constructor(
     private readonly dialogRef: MatDialogRef<WelcomeModalComponent>,
-    private readonly userService: UserService,
+    private readonly http: HttpClient,
   ) { }
 
   ngOnInit() {
-    this.loadAllUsers();
-  }
-
-  private loadAllUsers() {
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
-  });
+    this.http
+      .get(`${apiHost}/api/auth/user-is-authenticated`)
+      .subscribe();
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
