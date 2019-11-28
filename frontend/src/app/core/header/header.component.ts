@@ -18,8 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public readonly localizationService: LocalizationService,
-    public readonly dialog: MatDialog,
-    private readonly notify: NotificationService,
+    private readonly dialog: MatDialog,
     private readonly elementRef: ElementRef,
     private readonly router: Router,
   ) { }
@@ -43,10 +42,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openAccount() : void {
-    const dialogRef = this.dialog
-      .open(AccountComponent, AccountComponent.dialogConfig);
-    // const dialogR = this.dialog
-    // .open(WelcomeModalComponent, WelcomeModalComponent.dialogConfig);
+    this.dialog.open(WelcomeModalComponent, WelcomeModalComponent.dialogConfig);
   }
 
   // TODO(tkatimulin): Rewrite this logic
