@@ -47,6 +47,11 @@ export class FavouritesService {
     }
   }
 
+  getListOfFavourites(){
+    const list = this.items.value;
+    return list;
+  }
+
   addToCart(cardProduct: CardProduct) {
     const updatedItems = this.items.value;
 
