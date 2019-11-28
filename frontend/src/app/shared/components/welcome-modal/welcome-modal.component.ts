@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/user/user.service';
@@ -13,6 +13,10 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./welcome-modal.component.scss']
 })
 export class WelcomeModalComponent implements OnInit {
+  public static readonly dialogConfig: MatDialogConfig = {
+    width: '550px',
+  }
+
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];

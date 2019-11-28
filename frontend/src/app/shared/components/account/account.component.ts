@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MustMatch } from '../../helpers/must-match.validator';
@@ -15,6 +15,11 @@ import { UserService } from '../../services/user/user.service';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
+  public static readonly dialogConfig: MatDialogConfig = {
+    width: '550px',
+    height: '580px',
+  }
+
   submitted = false;
   loading = false;
 
