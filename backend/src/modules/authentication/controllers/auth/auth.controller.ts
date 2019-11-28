@@ -18,12 +18,14 @@ export class AuthController {
       response.status(401);
       response.type('application/json');
       response.send({ status: 'error', message: 'Invalid form' });
+      return;
     }
     const isUnique = await this.userService.isUnique(body);
     if (!isUnique) {
       response.status(401);
       response.type('application/json');
       response.send({ status: 'error', message: 'Email is not unique' });
+      return;
     }
 
     const newUser = await this.userService.createUser(body);
