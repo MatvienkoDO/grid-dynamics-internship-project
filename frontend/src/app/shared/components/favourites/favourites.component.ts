@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { FavouritesService, CartService } from '../../services';
-import { CardProduct } from '../../models';
+import { CardProduct, Image } from '../../models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -67,6 +67,6 @@ export class FavouritesComponentInner implements OnInit {
   }
 
   addToCartFromFav(cardProduct: CardProduct) {
-    this.favouritesService.addToCart(cardProduct);
+    this.cartService.addToCart(cardProduct);
   }
 }
