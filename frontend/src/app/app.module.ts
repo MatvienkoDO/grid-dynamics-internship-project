@@ -55,6 +55,7 @@ import {
   FavouritesComponentInner,
   SearchRequestComponent,
   AccountComponent,
+  WelcomeModalComponent,
 } from './shared/components';
 
 const translateModuleConfig = {
@@ -92,6 +93,7 @@ const translateModuleConfig = {
     FavouritesComponentInner,
     AccountComponent,
     SearchRequestComponent,
+    WelcomeModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +123,7 @@ const translateModuleConfig = {
     FavouritesComponent,
     FavouritesComponentInner,
     AccountComponent,
+    WelcomeModalComponent,
   ]
 })
 export class AppModule { }

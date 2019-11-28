@@ -1,6 +1,24 @@
 <div class="card-product">
   <div class="card-product__header">
-    <img class="card-product__img" src="{{imageUrl}}" alt="product1">
+    <picture>
+      <source class="card-product__img"
+      media="(max-width: 767px)"
+      sizes="(max-width: 1230px) 100vw, 1230px"
+      srcset="{{ image['1_1'] }}">
+      <source class="card-product__img"
+      media="(min-width: 768px) and (max-width: 991px)"
+      sizes="(max-width: 1757px) 70vw, 1230px"
+      srcset="{{ image['4_3'] }}">
+      <source class="card-product__img"
+      media="(min-width: 992px) and (max-width: 1199px)"
+      sizes="(max-width: 2050px) 60vw, 1230px"
+      srcset="{{ image['16_9'] }}">
+      <img class="card-product__img"
+      sizes="(max-width: 3075px) 40vw, 1230px"
+      srcset="{{ image['scale'] }}"
+      src="{{ image['default'] }}"
+      alt="">
+    </picture>
   </div>
   <div class="card-product__body">
     <div class="card-product__title">{{title}}</div>
@@ -8,7 +26,25 @@
   </div>
   <div class="card-product-hover">
     <div class="card-product-hover__header">
-      <img class="card-product-hover__img" src="{{imageUrl}}" alt="min-product">
+      <picture>
+        <source class="card-product-hover__img"
+        media="(max-width: 767px)"
+        sizes="(max-width: 1230px) 100vw, 1230px"
+        srcset="{{ image['1_1'] }}">
+        <source class="card-product-hover__img"
+        media="(min-width: 768px) and (max-width: 991px)"
+        sizes="(max-width: 1757px) 70vw, 1230px"
+        srcset="{{ image['4_3'] }}">
+        <source class="card-product-hover__img"
+        media="(min-width: 992px) and (max-width: 1199px)"
+        sizes="(max-width: 2050px) 60vw, 1230px"
+        srcset="{{ image['16_9'] }}">
+        <img class="card-product-hover__img"
+        sizes="(max-width: 3075px) 40vw, 1230px"
+        srcset="{{ image['scale'] }}"
+        src="{{ image['default'] }}"
+        alt="">
+      </picture>
     </div>
     <div class="card-product-hover__body">
       <a

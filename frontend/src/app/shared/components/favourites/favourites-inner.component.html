@@ -18,7 +18,26 @@
         class="favourites__product-item"
         (click)="toPdp(product.id)">
 
-        <img class="favourites__product-image" src="{{ product.imageUrl }}" alt="product's content">
+        <!-- <img class="favourites__product-image" src="{{ product.imageUrl }}" alt="product's content"> -->
+        <picture>
+          <source class="favourites__product-image"
+          media="(max-width: 767px)"
+          sizes="(max-width: 1230px) 100vw, 1230px"
+          srcset="{{ product.image['1_1'] }}">
+          <source class="favourites__product-image"
+          media="(min-width: 768px) and (max-width: 991px)"
+          sizes="(max-width: 1757px) 70vw, 1230px"
+          srcset="{{ product.image['4_3'] }}">
+          <source class="favourites__product-image"
+          media="(min-width: 992px) and (max-width: 1199px)"
+          sizes="(max-width: 2050px) 60vw, 1230px"
+          srcset="{{ product.image['16_9'] }}">
+          <img class="favourites__product-image"
+          sizes="(max-width: 3075px) 40vw, 1230px"
+          srcset="{{ product.image['scale'] }}"
+          src="{{ product.image['default'] }}"
+          alt="product's content">
+        </picture>
         {{ product.title }}
         <button class="button button_delete" (click)="deleteFromFavourites(product)">
           <i class="material-icons">close</i>

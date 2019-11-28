@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { NotificationService, LocalizationService } from '../../shared/services';
-import { CartComponentInner, FavouritesComponentInner, AccountComponent } from '../../shared/components';
+import { CartComponentInner, FavouritesComponentInner, AccountComponent, WelcomeModalComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-header',
@@ -44,8 +44,12 @@ export class HeaderComponent implements OnInit {
 
   openAccount() : void {
     const dialogRef = this.dialog.open(AccountComponent, {
-      width: '550px'
+      width: '550px',
+      height: '580px',
     });
+    // const dialogR = this.dialog.open(WelcomeModalComponent, {
+    //   width: '550px',
+    // });
   }
 
   // TODO(tkatimulin): Rewrite this logic

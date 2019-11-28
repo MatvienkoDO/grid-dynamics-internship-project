@@ -12,7 +12,13 @@ export class MockProductsService {
     price: 100,
     sizes: ['test1'],
     colors: ['test1'],
-    images: ['test1'],
+    images: [{
+      "1_1": 'test1',
+      "4_3": 'test1',
+      "16_9": 'test1',
+      "scale": 'test1',
+      "default": 'test1'
+    }],
     sliderImage: 'slider1 image url',
   };
   product2: Product = {
@@ -25,7 +31,13 @@ export class MockProductsService {
     price: 100,
     sizes: ['test2'],
     colors: ['test2'],
-    images: ['test2'],
+    images: [{
+      "1_1": 'test2',
+      "4_3": 'test2',
+      "16_9": 'test2',
+      "scale": 'test2',
+      "default": 'test2'
+    }],
     sliderImage: 'slider2 image url'
   };
   stubProductResponse = new ProductResponse(this.product1, 1);
