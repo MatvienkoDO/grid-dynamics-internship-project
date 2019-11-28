@@ -18,7 +18,13 @@ export const ProductSchema = new Schema({
   price: Number,
   sizes: [String],
   colors: [String],
-  images: [String],
+  images: [{
+    "1_1": String,
+    "4_3": String,
+    "16_9": String,
+    "scale": String,
+    "default": String
+  }],
   sliderImage: String,
 });
 

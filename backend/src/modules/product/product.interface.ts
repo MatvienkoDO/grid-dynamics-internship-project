@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import { Image } from './localizedProduct.model';
 
 export interface Product extends Document {
   id: string;
@@ -19,6 +20,6 @@ export interface Product extends Document {
   price: number;
   sizes: string[];
   colors: string[];
-  images: string[];
+  images: Image[];
   sliderImage?: string;
 }

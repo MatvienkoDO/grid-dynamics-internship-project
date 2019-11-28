@@ -1,9 +1,11 @@
+import { Image } from './product';
+
 export interface CardProduct {
   id: string;
   title: string;
   quantity: number;
   price: number;
-  imageUrl: string;
+  image: Image;
   size?: string;
   color?: string;
 }

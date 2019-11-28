@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { CardProduct } from '../../models';
+import { CardProduct, Image } from '../../models';
 
 @Component({
   selector: 'app-product-show[id][title][sizes][price]',
@@ -18,7 +18,7 @@ export class ProductShowComponent implements OnInit {
   @Input('short-description') shortDescription = '';
   @Input('description') description = '';
   @Input('currency') currency = '$';
-  @Input('images') images: string[] = [];
+  @Input('images') images: Image[] = [];
 
   @Output('share') share = new EventEmitter<CardProduct>();
   @Output('add-to-cart') addToCart = new EventEmitter<CardProduct>();
@@ -104,7 +104,7 @@ export class ProductShowComponent implements OnInit {
       size: this.size$.value,
       quantity: this.quantity$.value,
       price: this.price,
-      imageUrl: this.images[0]
+      image: this.images[0]
     };
 
     return info;
