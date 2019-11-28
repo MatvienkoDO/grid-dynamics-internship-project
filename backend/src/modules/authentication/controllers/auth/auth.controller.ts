@@ -15,11 +15,13 @@ export class AuthController {
     const isValid = await this.userService.isValidSignupDto(body);
     if (body && !isValid) {
       response.status(401);
+      response.type('application/json');
       response.send({ status: 'error', message: 'Invalid form' });
     }
     const isUnique = await this.userService.isUnique(body);
     if (!isUnique) {
       response.status(401);
+      response.type('application/json');
       response.send({ status: 'error', message: 'Email is not unique' });
     }
 

@@ -27,34 +27,20 @@ export class UserService {
       email: loginDto.email,
       password: loginDto.password
     });
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
+    return !!user;
   }
 
   public async isValidSignupDto(signupDto: UserSignupDto): Promise<boolean> {
-    if (
-      signupDto.firstName &&
+    return !!(signupDto.firstName &&
       signupDto.lastName &&
       signupDto.email &&
-      signupDto.password
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+      signupDto.password);
   }
 
   public async isUnique(signupDto: UserSignupDto) {
     const user = await this.userModel.findOne({
       email: signupDto.email
     });
-    if (user) {
-      return false;
-    } else {
-      return true;
-    }
+    return !user;
   }
 }
