@@ -53,6 +53,11 @@
     width: 40px;
     height: 40px;
   }
+  &__product-title {
+    &:hover {
+      color: $primary-color;
+    }
+  }
 }
 .mat-button {
   font-family: "Open Sans"

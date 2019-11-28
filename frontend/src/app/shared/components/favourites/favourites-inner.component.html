@@ -16,7 +16,7 @@
       <li
         *ngFor="let product of products$ | async"
         class="favourites__product-item"
-        (click)="toPdp(product.id)">
+        >
 
         <!-- <img class="favourites__product-image" src="{{ product.imageUrl }}" alt="product's content"> -->
         <picture>
@@ -38,7 +38,7 @@
           src="{{ product.image['default'] }}"
           alt="product's content">
         </picture>
-        {{ product.title }}
+        <p (click)="toPdp(product.id)" class="text favourites__product-title">{{ product.title }}</p>
         <a class="card-product-small__add button_favor-to-cart"
          (click)="addToCartFromFav(product)">
           <i class="icon material-icons icon__add-to-cart_right">
