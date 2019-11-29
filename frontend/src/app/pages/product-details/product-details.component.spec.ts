@@ -50,7 +50,7 @@ describe('ProductDetailsComponent', () => {
       title: 'stub',
       quantity: 1,
       price: 100,
-      imageUrl: 'stub',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'stub',
       color: 'stub',
     };
@@ -65,7 +65,7 @@ describe('ProductDetailsComponent', () => {
       title: 'stub',
       quantity: 1,
       price: 100,
-      imageUrl: 'stub',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'stub',
       color: 'stub',
     };

@@ -68,7 +68,7 @@ describe('ProductsComponent', () => {
       title: 'title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
     };
     component.addToCart(stubCard);
     expect(cartServiceSpy.addToCart).toHaveBeenCalled();
@@ -81,7 +81,7 @@ describe('ProductsComponent', () => {
       title: 'title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
     };
     component.addToFavourites(stubCard);
     expect(favouritesServiceSpy.addToFavourites).toHaveBeenCalled();
