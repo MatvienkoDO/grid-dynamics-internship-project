@@ -45,6 +45,7 @@ export class AuthController {
     if (body && !isValid) {
       response.status(401);
       response.send({ status: 'error', message: 'Invalid email/password' });
+      return;
     }
     const user = await this.userService.findBy(body);
     
