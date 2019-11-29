@@ -37,7 +37,7 @@ export class AccountModalService {
   public openWelcomeDialog() {
     const dialogRef = this.dialog.open(WelcomeModalComponent, {
       width: '550px',
-      height: '230px',
+      height: '270px',
     });
     this.dialogStack.push(dialogRef);
   }
@@ -46,6 +46,14 @@ export class AccountModalService {
     const dialog = this.dialogStack.pop();
     if (dialog) {
       dialog.close();
+    }
+  }
+
+  public emptyDialogStack() {
+    let dialog = this.dialogStack.pop();
+    while (dialog) {
+      dialog.close();
+      dialog = this.dialogStack.pop();
     }
   }
 }

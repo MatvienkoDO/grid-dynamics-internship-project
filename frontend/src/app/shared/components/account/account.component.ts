@@ -66,14 +66,25 @@ export class AccountComponent implements OnInit {
 
   get f() { return this.signupForm.controls; }
 
-  onSubmitSignupForm(event: Event): void {
+  onSubmitSignupForm(event: Event) {
     event.preventDefault();
     this.submitted = true;
     if (this.signupForm.invalid) {
         return;
     }
     this.loading = true;
-    console.log(JSON.stringify(this.signupForm.value, null, 4));
+    this.authenticationService.signup(this.signupForm.value)
+        .pipe(first())
+        .subscribe(
+          responseBody => {
+            this.loading = false;
+            if (responseBody && responseBody.status === 'error') {
+              this.errorMessageSubject.next(responseBody.message);
+            } else {
+              this.accountModalService.emptyDialogStack();
+              this.accountModalService.openWelcomeDialog();
+            }
+        });
     this.signupForm.reset();
   }
 
@@ -91,7 +102,7 @@ export class AccountComponent implements OnInit {
             if (responseBody && responseBody.status === 'error') {
               this.errorMessageSubject.next(responseBody.message);
             } else {
-              this.accountModalService.closeCurrentDialog();
+              this.accountModalService.emptyDialogStack();
               this.accountModalService.openWelcomeDialog();
             }
         });

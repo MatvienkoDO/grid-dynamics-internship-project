@@ -52,8 +52,9 @@
             [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
             <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
               <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+            </div>
           </div>
-          </div>
+          <p>{{ errorMessage$ | async }}</p>
           <button type="submit" class="button button_form-account" [disabled]="loading"
           [class.spinner]="loading">Get Started</button>
         </form>

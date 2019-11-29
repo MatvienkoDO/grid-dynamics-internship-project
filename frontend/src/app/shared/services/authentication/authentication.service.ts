@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User } from '../../models';
 import { apiHost } from 'src/environments/environment';
+import { signupDto } from '../../models/dto/signup.dto';
+import { encryptPassword } from '../../utils';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +50,23 @@ export class AuthenticationService {
           this.currentUserSubject.next(null);
         });
       // remove user from local storage to log user out
+  }
+
+  public signup(signupDto: signupDto) {
+    return this.http.post<any>(`${apiHost}/api/auth/signup`, {
+      firstName: signupDto.firstName,
+      lastName: signupDto.lastName,
+      email: signupDto.email,
+      password: signupDto.password
+      }).pipe(map(user => {
+              // login successful if there's a jwt token in the response
+              if (user) {
+                  // store user details and jwt token in local storage to keep user logged in between page refreshes
+                  localStorage.setItem('currentUser', JSON.stringify(user));
+                  this.currentUserSubject.next(user);
+              }
+
+              return user;
+          }));
   }
 }
