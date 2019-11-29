@@ -14,21 +14,21 @@ export class AuthController {
   async signUp(@Body() body: UserSignupDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidSignupDto(body);
     if (body && !isValid) {
-      response.status(401);
+      response.status(200);
       response.type('application/json');
-      response.send({ status: 'error', message: 'Invalid form' });
+      return response.send({ status: 'error', message: 'Invalid form' });
     }
     const isUnique = await this.userService.isUnique(body);
     if (!isUnique) {
-      response.status(401);
+      response.status(200);
       response.type('application/json');
-      response.send({ status: 'error', message: 'Email is not unique' });
+      return response.send({ status: 'error', message: 'Email is not unique' });
     }
 
     const newUser = await this.userService.createUser(body);
     response.cookie(userIdCookieKey, newUser.password, userIdCookieOptions);
     response.type('application/json');
-    response.send({
+    return response.send({
       id: newUser.id,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
@@ -40,14 +40,14 @@ export class AuthController {
   async login(@Body() body: UserLoginDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidLoginDto(body);
     if (body && !isValid) {
-      response.status(401);
-      response.send({ status: 'error', message: 'Invalid email/password' });
+      response.status(200);
+      return response.send({ status: 'error', message: 'Invalid email/password' });
     }
     const user = await this.userService.findBy(body);
     
     response.cookie(userIdCookieKey, user.password, userIdCookieOptions);
     response.type('application/json');
-    response.send({
+    return response.send({
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -58,6 +58,7 @@ export class AuthController {
   @Post('logout') 
   async logout(@Response() response: express.Response) {
     response.clearCookie(userIdCookieKey);
-    response.send();
+    response.status(200);
+    return response.send({ status: 'ok', message: 'ok' });
   }
 }

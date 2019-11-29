@@ -52,8 +52,9 @@
             [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
             <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
               <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+            </div>
           </div>
-          </div>
+          <p>{{ errorMessage$ | async }}</p>
           <button type="submit" class="button button_form-account" [disabled]="loading"
           [class.spinner]="loading">Get Started</button>
         </form>
@@ -67,7 +68,7 @@
             <label class="account-form__label">
               Email Address<span class="req">*</span>
             </label>
-            <input class="account-form__input" type="email" name="email" required
+            <input class="account-form__input" type="email" name="email" required autocomplete="email"
             formControlName="email"/>
           </div>
           <div class="field-wrap">
@@ -78,6 +79,7 @@
             formControlName="password"/>
           </div>
           <p class="forgot"><a class="forgot__link" href="#">Forgot Password?</a></p>
+          <p>{{ errorMessage$ | async }}</p>
           <button class="button button_form-account" [disabled]="!loginForm.valid"
           [class.spinner]="loading">Log In</button>
         </form>
