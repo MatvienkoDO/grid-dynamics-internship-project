@@ -15,16 +15,24 @@ export class AuthController {
   async signUp(@Body() body: UserSignupDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidSignupDto(body);
     if (body && !isValid) {
-      response.status(401);
+      response.status(400);
       response.type('application/json');
-      response.send({ status: 'error', message: 'Invalid form' });
+      response.send({
+        success: false,
+        status: 'signup_invalid_form',
+        message: 'Invalid form',
+      });
       return;
     }
     const isUnique = await this.userService.isUnique(body);
     if (!isUnique) {
-      response.status(401);
+      response.status(400);
       response.type('application/json');
-      response.send({ status: 'error', message: 'Email is not unique' });
+      response.send({
+        success: false,
+        status: 'email_is_not_unique',
+        message: 'Email is not unique',
+      });
       return;
     }
 

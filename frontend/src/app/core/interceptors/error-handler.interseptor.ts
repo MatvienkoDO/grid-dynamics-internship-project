@@ -49,6 +49,14 @@ export class ErrorInterceptor implements HttpInterceptor {
           this.notificationService.warning(
             this.getNotificationServiceMessage('youAreNotAuthenticated'));
 
+        } else if (info.status === constants.signupInvalidForm) {
+          this.notificationService.error(
+            this.getNotificationServiceMessage('signupInvalidForm'));
+
+        } else if (info.status === constants.emailIsNotUnique) {
+          this.notificationService.error(
+            this.getNotificationServiceMessage('emailIsNotUnique'));
+
         } else if (error.status >= 500 && error.status < 600) {
           this.notificationService.error(
             this.getNotificationServiceMessage('serverError'));
@@ -108,4 +116,12 @@ const errorMessages = {
     en: 'You are not authenticated',
     ru: 'Вы не аутентифицированы',
   },
+  signupInvalidForm: {
+    en: 'Invalid form data',
+    ru: 'Данные формы некорректны',
+  },
+  emailIsNotUnique: {
+    en: 'Email is not unique',
+    ru: 'Данный e-mail уже используется',
+  }
 };
