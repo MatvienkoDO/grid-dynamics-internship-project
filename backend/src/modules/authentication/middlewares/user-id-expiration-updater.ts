@@ -7,7 +7,7 @@ export function userIdExpirationUpdater(request: Request, response: Response, ne
   
   if (userIdCookieValue) {
     response.cookie(userIdCookieKey, userIdCookieValue, userIdCookieOptions);
-  } else {
+  } else if (userIdCookieValue === false) {
     response.clearCookie(userIdCookieKey);
   }
 
