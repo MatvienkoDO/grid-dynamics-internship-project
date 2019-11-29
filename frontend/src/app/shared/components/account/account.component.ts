@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { NotificationService } from '../../services/notification/notification.service';
 import { UserService } from '../../services/user/user.service';
-
+import { HttpClient } from '@angular/common/http';
+import { apiHost } from 'src/environments/environment';
 
 @Component({
   selector: 'app-account',
@@ -42,6 +43,7 @@ export class AccountComponent implements OnInit {
     private router: Router,
     private readonly notificationService: NotificationService,
     private userService: UserService,
+    private readonly http: HttpClient,
   ) { 
   }
 
@@ -74,8 +76,17 @@ export class AccountComponent implements OnInit {
         return;
     }
     this.loading = true;
-    console.log(JSON.stringify(this.signupForm.value, null, 4));
-    this.signupForm.reset();
+
+    this.http
+      .post(`${apiHost}/api/auth/signup`, this.signupForm.value)
+      .subscribe({
+        next: () => {
+          this.dialogRef.close();
+        },
+        error: () => {
+          this.resetSignUpForm();
+        },
+      });
   }
 
   onSubmitLoginForm(event: Event): void {
@@ -86,5 +97,10 @@ export class AccountComponent implements OnInit {
     this.loading = true;
     console.log(JSON.stringify(this.loginForm.value, null, 4));
     this.loginForm.reset();
+  }
+
+  private resetSignUpForm() {
+    this.signupForm.reset();
+    this.loading = false;
   }
 }
