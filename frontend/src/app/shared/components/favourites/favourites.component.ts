@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { FavouritesService } from '../../services';
-import { CardProduct } from '../../models';
+import { FavouritesService, CartService } from '../../services';
+import { CardProduct, Image } from '../../models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -40,6 +40,7 @@ export class FavouritesComponentInner implements OnInit {
     private readonly favouritesService: FavouritesService,
     public dialogRef: MatDialogRef<FavouritesComponentInner>,
     private readonly router: Router,
+    private readonly cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -65,4 +66,7 @@ export class FavouritesComponentInner implements OnInit {
     this.dialogRef.close();
   }
 
+  addToCartFromFav(cardProduct: CardProduct) {
+    this.cartService.addToCart(cardProduct);
+  }
 }

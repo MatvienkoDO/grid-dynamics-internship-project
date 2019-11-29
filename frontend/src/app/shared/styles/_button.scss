@@ -131,6 +131,10 @@ button[disabled] {
     }
   }
 
+  &_delete-favor {
+    margin-left: unset;
+  }
+
   &_delete-all {
     @include flex;
     justify-content: center;
@@ -170,5 +174,13 @@ button[disabled] {
   }
   &_form-log-out {
     margin-bottom: 10px;
+  }
+  &_like {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+  &_favor-to-cart {
+    margin-left: auto;
   }
 }

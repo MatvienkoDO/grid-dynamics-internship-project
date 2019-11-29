@@ -16,3 +16,4 @@ export * from './range-select/range-select.component';
 export * from './account/account.component';
 export * from './search-request/search-request.component';
 export * from './welcome-modal/welcome-modal.component';
+export * from './favourite-button/favourite-button.component';
