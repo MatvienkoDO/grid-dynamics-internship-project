@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { User } from '../../models/user';
-import { UserService } from '../../services/user/user.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-import { Subscription } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { User } from '../../models/user';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-welcome-modal',
@@ -13,27 +12,30 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./welcome-modal.component.scss']
 })
 export class WelcomeModalComponent implements OnInit {
-  currentUser: User;
-  currentUserSubscription: Subscription;
-  users: User[] = [];
+  currentUserSubject: BehaviorSubject<User|null>;
+  currentUser$: Observable<User|null>;
 
   constructor(
-    public dialogR: MatDialogRef<WelcomeModalComponent>,
-    private userService: UserService,
-  ) { }
-
-  ngOnInit() {
-    this.loadAllUsers();
+    public readonly dialogR: MatDialogRef<WelcomeModalComponent>,
+    public readonly authService: AuthenticationService,
+  ) {
+    this.currentUserSubject = new BehaviorSubject<User|null>(this.getUserFromLocalStorage());
+    this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
-  private loadAllUsers() {
-    this.userService.getAll().pipe(first()).subscribe(users => {
-      this.users = users;
-  });
+  ngOnInit() {}
+
+  private getUserFromLocalStorage(): User | null {
+    const localStorageUserValue = localStorage.getItem('currentUser');
+    return localStorageUserValue ? JSON.parse(localStorageUserValue) : null;
   }
 
   onNoClick(): void {
     this.dialogR.close();
   }
 
+  public logOut() {
+    this.authService.logout();
+    this.onNoClick();
+  }
 }

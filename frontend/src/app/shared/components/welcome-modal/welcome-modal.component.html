@@ -6,6 +6,6 @@
  </button>
 </div>
 <h3 class="title-medium cart-title">
-  welcome <span class="title-medium title-medium_primary-color cart-title" *ngFor="let user of users"> {{user.username}} </span>
+  welcome <span class="title-medium title-medium_primary-color cart-title"> {{ (currentUser$ | async)?.firstName + ' ' + (currentUser$ | async)?.lastName }} </span>
 </h3>
-<button class="button button_form-account button_form-log-out">Log Out</button>
+<button class="button button_form-account button_form-log-out" (click)="logOut()">Log Out</button>

@@ -13,6 +13,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { NotificationService } from '../../shared/services';
+import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -24,6 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(
     private readonly notificationService: NotificationService,
     private readonly router: Router,
+    private readonly authenticationService: AuthenticationService
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -32,6 +34,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.status === 0) {
           this.notificationService.error(
             this.getNotificationServiceMessage('noInternet'));
+        } else if (error.status === 401) {
+          this.authenticationService.logout();
+          console.log(error);
         } else if (error.status === 404) {
           this.notificationService.error(
             this.getNotificationServiceMessage('notFound'));
