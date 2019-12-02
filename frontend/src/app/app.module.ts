@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Ng5SliderModule } from 'ng5-slider';
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import {
   MatButtonModule,
   MatDialogModule,
@@ -113,6 +114,7 @@ const translateModuleConfig = {
     MatIconModule,
     MatTableModule,
     MatTabsModule,
+    ShowHidePasswordModule,
   ],
   providers: [
     LocalizationInterceptor.provider,

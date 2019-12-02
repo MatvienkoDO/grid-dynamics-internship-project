@@ -30,6 +30,7 @@ $gray-light: #a0b3b0;
   }
 
   &__input {
+    position: relative;
     font-size: 22px;
     display: block;
     width: 100%;
@@ -43,7 +44,7 @@ $gray-light: #a0b3b0;
 
     &:focus {
       outline: 0;
-      border-color: $main-account-color;
+      //border-color: $main-account-color;
     }
   }
 }
@@ -96,4 +97,13 @@ $gray-light: #a0b3b0;
   display: flex;
   flex-direction: column;
   height: 400px;
+}
+
+.ng-valid,
+.ng-valid.required {
+  border-color: #2fb759;
+}
+
+.ng-invalid:not(form) {
+  border-color: $gray-light;
 }

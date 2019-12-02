@@ -48,7 +48,7 @@ export class AccountComponent implements OnInit {
     this.signupForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
     },
@@ -56,7 +56,7 @@ export class AccountComponent implements OnInit {
         validator: MustMatch('password', 'confirmPassword')
       });
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -108,4 +108,9 @@ export class AccountComponent implements OnInit {
         });
     this.loginForm.reset();
   }
+  // getErrorMessage() {
+  //   return this.loginForm.hasError('required') ? 'You must enter a value' :
+  //       this.loginForm.hasError('email') ? 'Not a valid email' :
+  //           '';
+  // }
 }
