@@ -36,9 +36,11 @@
             <label class="account-form__label">
               Password<span class="req">*</span>
             </label>
-            <input class="account-form__input" type="password" name="password" required
-            formControlName="password"
-            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+              <input class="account-form__input" type="password" name="password" required
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            </show-hide-password>
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
           </div>
@@ -47,9 +49,11 @@
             <label class="account-form__label">
               Repeat password<span class="req">*</span>
             </label>
-            <input class="account-form__input" type="password" name="password" required
+            <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+              <input class="account-form__input" type="password" name="password" required
             formControlName="confirmPassword"
             [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            </show-hide-password>
             <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
               <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
             </div>
