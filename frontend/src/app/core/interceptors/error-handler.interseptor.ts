@@ -14,6 +14,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { NotificationService } from '../../shared/services';
+import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
 import { AccountComponent } from 'src/app/shared/components';
 import * as constants from '../../shared/constants';
 
@@ -28,6 +29,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     private readonly notificationService: NotificationService,
     private readonly router: Router,
     private readonly dialog: MatDialog,
+    private readonly authenticationService: AuthenticationService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -56,6 +58,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else if (info.status === constants.emailIsNotUnique) {
           this.notificationService.error(
             this.getNotificationServiceMessage('emailIsNotUnique'));
+
+        } else if (error.status === 401) {	
+          this.authenticationService.logout();	
+          console.log(error);
 
         } else if (error.status >= 500 && error.status < 600) {
           this.notificationService.error(
