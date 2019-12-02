@@ -47,6 +47,29 @@ export class FavouritesService {
     }
   }
 
+  getListOfFavourites(){
+    const list = this.items.value;
+    return list;
+  }
+
+  addToCart(cardProduct: CardProduct) {
+    const updatedItems = this.items.value;
+
+    const idx = this.indexOf(cardProduct);
+    if (idx !== -1) {
+      updatedItems[idx].quantity += cardProduct.quantity;
+    } else {
+      updatedItems.push(cardProduct);
+    }
+
+    this.saveItemsToLocalStorage(updatedItems);
+
+    this.items.next(updatedItems);
+
+    const message = this.localizationService.getNotificationServiceMessage('addToCart');
+    this.notificationService.info(`${cardProduct.title} ${message}`);
+  }
+
   private indexOf(cardProduct: CardProduct) {
     for (let i = 0; i < this.items.value.length; i++) {
       const item = this.items.value[i];

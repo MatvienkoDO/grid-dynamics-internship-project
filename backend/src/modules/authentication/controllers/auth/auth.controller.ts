@@ -39,7 +39,7 @@ export class AuthController {
     const newUser = await this.userService.createUser(body);
     response.cookie(userIdCookieKey, newUser.password, userIdCookieOptions);
     response.type('application/json');
-    response.send({
+    return response.send({
       id: newUser.id,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
@@ -59,7 +59,7 @@ export class AuthController {
     
     response.cookie(userIdCookieKey, user.password, userIdCookieOptions);
     response.type('application/json');
-    response.send({
+    return response.send({
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -70,7 +70,8 @@ export class AuthController {
   @Post('logout') 
   async logout(@Response() response: express.Response) {
     response.clearCookie(userIdCookieKey);
-    response.send();
+    response.status(200);
+    return response.send({ status: 'ok', message: 'ok' });
   }
 
   @Get('check')
