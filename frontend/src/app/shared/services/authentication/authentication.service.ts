@@ -26,29 +26,29 @@ export class AuthenticationService {
   }
 
   public get currentUserValue(): User|null {
-      return this.currentUserSubject.value;
+    return this.currentUserSubject.value;
   }
 
   public login(email: string, password: string) {
-      return this.http.post<any>(`${apiHost}/api/auth/login`, { email, password })
-          .pipe(map(user => {
-              // login successful if there's a jwt token in the response
-              if (user) {
-                  // store user details and jwt token in local storage to keep user logged in between page refreshes
-                  localStorage.setItem('currentUser', JSON.stringify(user));
-                  this.currentUserSubject.next(user);
-              }
+    return this.http.post<any>(`${apiHost}/api/auth/login`, { email, password })
+      .pipe(map(user => {
+        // login successful if there's a jwt token in the response
+        if (user) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        }
 
-              return user;
-          }));
+        return user;
+      }));
   }
 
   public logout() {
     return this.http.post<any>(`${apiHost}/api/auth/logout`, {})
-        .subscribe(v => {
-          localStorage.removeItem('currentUser');
-          this.currentUserSubject.next(null);
-        });
+      .subscribe(v => {
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+      });
       // remove user from local storage to log user out
   }
 
@@ -62,9 +62,9 @@ export class AuthenticationService {
         if (user.status === 'error') {
           return user;
         } else if (user) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
         }
         return user;
       }));
