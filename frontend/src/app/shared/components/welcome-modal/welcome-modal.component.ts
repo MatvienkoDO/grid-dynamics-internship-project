@@ -32,7 +32,7 @@ export class WelcomeModalComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogR.close();
   }
 
   public logOut() {
