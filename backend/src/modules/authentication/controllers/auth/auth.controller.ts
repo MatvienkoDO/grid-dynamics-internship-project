@@ -71,7 +71,12 @@ export class AuthController {
   async logout(@Response() response: express.Response) {
     response.clearCookie(userIdCookieKey);
     response.status(200);
-    return response.send({ status: 'ok', message: 'ok' });
+    response.send({
+      success: true,
+      status: 'ok',
+      message: 'ok',
+    });
+    return;
   }
 
   @Get('check')
