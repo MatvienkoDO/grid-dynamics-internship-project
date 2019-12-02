@@ -25,7 +25,7 @@ export class WelcomeModalComponent implements OnInit {
 
   ngOnInit() {
     this.http
-      .get(`${apiHost}/api/auth/user-is-authenticated`)
+      .get(`${apiHost}/api/auth/user-is-authenticated`, {withCredentials: true})
       .subscribe();
   }
 

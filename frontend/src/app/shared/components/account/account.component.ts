@@ -78,7 +78,7 @@ export class AccountComponent implements OnInit {
     this.loading = true;
 
     this.http
-      .post(`${apiHost}/api/auth/signup`, this.signupForm.value)
+      .post(`${apiHost}/api/auth/signup`, this.signupForm.value, {withCredentials: true})
       .subscribe({
         next: () => {
           this.dialogRef.close();
