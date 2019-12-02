@@ -51,7 +51,7 @@ export class AuthController {
   async login(@Body() body: UserLoginDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidLoginDto(body);
     if (body && !isValid) {
-      response.status(401);
+      response.status(400);
       response.send({ status: 'error', message: 'Invalid email/password' });
       return;
     }

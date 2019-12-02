@@ -5,14 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { MustMatch } from '../../helpers/must-match.validator';
-import { Router } from '@angular/router';
-import { NotificationService } from '../../services/notification/notification.service';
-import { UserService } from '../../services/user/user.service';
-import { HttpClient } from '@angular/common/http';
-import { apiHost } from 'src/environments/environment';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
-
 
 @Component({
   selector: 'app-account',
@@ -46,10 +40,6 @@ export class AccountComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<AccountComponent>,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private readonly notificationService: NotificationService,
-    private userService: UserService,
-    private readonly http: HttpClient,
     private readonly authenticationService: AuthenticationService,
     private readonly accountModalService: AccountModalService,
   ) {
