@@ -8,19 +8,16 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { LocalizationService } from '../../shared/services';
-
 @Injectable()
 export class LocalizationInterceptor implements HttpInterceptor {
 
   public static readonly provider = {
     provide: HTTP_INTERCEPTORS,
     useClass: LocalizationInterceptor,
-    multi: true
+    multi: true,
   };
 
-  constructor(
-  ) { }
+  constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const locale = localStorage.getItem('LOCALE');

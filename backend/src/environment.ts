@@ -22,3 +22,10 @@ const developmentSecret = 'DEVELOPMENT_COOKIE_SIGNING_SECRET';
 export const cookieSigningSecret = mode === Mode.Production
   ? productionSecret
   : developmentSecret;
+
+
+const frontendAddressKey = 'FE_ADDRESS';
+const frontendAddress = process.env[frontendAddressKey] || '';
+export const corsAllowedWebOrigin = mode === Mode.Production
+  ? frontendAddress
+  : 'http://localhost:4200';
