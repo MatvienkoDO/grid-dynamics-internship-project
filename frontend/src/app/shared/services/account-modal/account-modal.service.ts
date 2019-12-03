@@ -35,10 +35,7 @@ export class AccountModalService {
   }
 
   public openWelcomeDialog() {
-    const dialogRef = this.dialog.open(WelcomeModalComponent, {
-      width: '550px',
-      height: '270px',
-    });
+    const dialogRef = this.dialog.open(WelcomeModalComponent, WelcomeModalComponent.config);
     this.dialogStack.push(dialogRef);
   }
 

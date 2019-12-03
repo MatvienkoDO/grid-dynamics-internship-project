@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User } from '../../models/user';
@@ -11,6 +11,10 @@ import { AuthenticationService } from '../../services/authentication/authenticat
   styleUrls: ['./welcome-modal.component.scss']
 })
 export class WelcomeModalComponent implements OnInit {
+  public static readonly config: MatDialogConfig<WelcomeModalComponent> = {
+    width: '550px',
+  };
+
   currentUserSubject: BehaviorSubject<User|null>;
   currentUser$: Observable<User|null>;
 
