@@ -50,21 +50,27 @@ export class AuthController {
   @Post('login')
   async login(@Body() body: UserLoginDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidLoginDto(body);
-    if (body && !isValid) {
+    if (!isValid) {
       response.status(400);
-      response.send({ status: 'error', message: 'Invalid email/password' });
+      response.send({
+        success: false,
+        status: 'error',
+        message: 'Invalid email/password',
+      });
       return;
     }
+
     const user = await this.userService.findBy(body);
     
-    response.cookie(userIdCookieKey, user.password, userIdCookieOptions);
+    response.cookie(userIdCookieKey, user.id, userIdCookieOptions);
     response.type('application/json');
-    return response.send({
+    response.send({
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       role: user.role
     });
+    return;
   }
 
   @Post('logout') 
