@@ -60,20 +60,24 @@ export class AuthenticationService {
   }
 
   public signup(signupDto: signupDto) {
-    return this.http.post<any>(`${apiHost}/api/auth/signup`, {
+    const url = `${apiHost}/api/auth/signup`;
+    const body = {
       firstName: signupDto.firstName,
       lastName: signupDto.lastName,
       email: signupDto.email,
-      password: signupDto.password
-      }, { withCredentials: true }).pipe(map(user => {
-        if (user.status === 'error') {
-          return user;
-        } else if (user) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-        }
+      password: signupDto.password,
+    };
+    const options = { withCredentials: true };
+
+    return this.http.post<any>(url, body, options).pipe(map(user => {
+      if (user.status === 'error') {
         return user;
-      }));
+      } else if (user) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+      }
+      return user;
+    }));
   }
 }
