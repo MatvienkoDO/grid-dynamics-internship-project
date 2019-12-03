@@ -30,7 +30,11 @@ export class AuthenticationService {
   }
 
   public login(email: string, password: string) {
-    return this.http.post<any>(`${apiHost}/api/auth/login`, { email, password })
+    const address = `${apiHost}/api/auth/login`;
+    const body = { email, password };
+    const options = { withCredentials: true };
+
+    return this.http.post<any>(address, body, options)
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user) {
@@ -44,7 +48,10 @@ export class AuthenticationService {
   }
 
   public logout() {
-    return this.http.post<any>(`${apiHost}/api/auth/logout`, {})
+    const address = `${apiHost}/api/auth/logout`;
+    const options = { withCredentials: true };
+
+    return this.http.post<any>(address, {}, options)
       .subscribe(v => {
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
