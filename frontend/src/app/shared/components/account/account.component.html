@@ -58,7 +58,7 @@
               <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
             </div>
           </div>
-          <p>{{ errorMessage$ | async }}</p>
+          <p class="text text_invalid">{{ errorMessage$ | async }}</p>
           <button type="submit" class="button button_form-account" 
           [disabled]="!signupForm.valid"
           [class.spinner]="loading">Get Started</button>
