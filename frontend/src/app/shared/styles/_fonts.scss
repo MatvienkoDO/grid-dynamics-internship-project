@@ -64,4 +64,10 @@
   &_large {
     font-size: 20px;
   }
+
+  &_invalid {
+    padding: 10px 0;
+    color: #de1e1e;
+    font-style: italic;
+  }
 }
