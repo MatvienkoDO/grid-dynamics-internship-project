@@ -113,6 +113,11 @@ export class AccountComponent implements OnInit {
         });
     this.loginForm.reset();
   }
+  // getErrorMessage() {
+  //   return this.loginForm.hasError('required') ? 'You must enter a value' :
+  //       this.loginForm.hasError('email') ? 'Not a valid email' :
+  //           '';
+  // }
 
   private resetSignUpForm() {
     this.signupForm.reset();
