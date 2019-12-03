@@ -3,3 +3,10 @@
 @import 'icon';
 @import 'picture';
 @import 'button';
+
+.loading-indicator {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

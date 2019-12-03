@@ -15,26 +15,21 @@ export class WelcomeModalComponent implements OnInit {
     width: '550px',
   };
 
-  currentUserSubject: BehaviorSubject<User|null>;
+  private readonly currentUserSubject: BehaviorSubject<User|null>;
   currentUser$: Observable<User|null>;
 
   constructor(
-    public readonly dialogR: MatDialogRef<WelcomeModalComponent>,
-    public readonly authService: AuthenticationService,
+    private readonly dialogRef: MatDialogRef<WelcomeModalComponent>,
+    private readonly authService: AuthenticationService,
   ) {
-    this.currentUserSubject = new BehaviorSubject<User|null>(this.getUserFromLocalStorage());
+    this.currentUserSubject = new BehaviorSubject<User|null>(null);
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
   ngOnInit() {}
 
-  private getUserFromLocalStorage(): User | null {
-    const localStorageUserValue = localStorage.getItem('currentUser');
-    return localStorageUserValue ? JSON.parse(localStorageUserValue) : null;
-  }
-
   onNoClick(): void {
-    this.dialogR.close();
+    this.dialogRef.close();
   }
 
   public logOut() {
