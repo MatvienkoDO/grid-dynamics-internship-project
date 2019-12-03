@@ -36,9 +36,11 @@
             <label class="account-form__label">
               Password<span class="req">*</span>
             </label>
-            <input class="account-form__input" type="password" name="password" required
-            formControlName="password"
-            [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+              <input class="account-form__input" type="password" name="password" required
+              formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            </show-hide-password>
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
               <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
           </div>
@@ -47,41 +49,46 @@
             <label class="account-form__label">
               Repeat password<span class="req">*</span>
             </label>
-            <input class="account-form__input" type="password" name="password" required
+            <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+              <input class="account-form__input" type="password" name="password" required
             formControlName="confirmPassword"
             [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+            </show-hide-password>
             <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
               <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
             </div>
           </div>
-          <p>{{ errorMessage$ | async }}</p>
-          <button type="submit" class="button button_form-account" [disabled]="loading"
+          <p class="text text_invalid">{{ errorMessage$ | async }}</p>
+          <button type="submit" class="button button_form-account" 
+          [disabled]="!signupForm.valid"
           [class.spinner]="loading">Get Started</button>
         </form>
       </div>
     </mat-tab>
     <mat-tab label="Log In" class="tab">
       <div id="login">
-        <form action="/" method="post" class="login-form" (ngSubmit)="onSubmitLoginForm($event)" 
-        [formGroup]="loginForm">
+        <form action="/" method="post" class="login-form" (ngSubmit)="onSubmitLoginForm($event)"
+          [formGroup]="loginForm">
           <div class="field-wrap">
             <label class="account-form__label">
               Email Address<span class="req">*</span>
             </label>
             <input class="account-form__input" type="email" name="email" required autocomplete="email"
-            formControlName="email"/>
+              formControlName="email" />
           </div>
           <div class="field-wrap">
             <label class="account-form__label">
               Password<span class="req">*</span>
             </label>
-            <input class="account-form__input" type="password" name="password" required
-            formControlName="password"/>
+            <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+              <input class="account-form__input" type="password" name="password" required formControlName="password">
+            </show-hide-password>
           </div>
           <p class="forgot"><a class="forgot__link" href="#">Forgot Password?</a></p>
           <p>{{ errorMessage$ | async }}</p>
-          <button class="button button_form-account" [disabled]="!loginForm.valid"
-          [class.spinner]="loading">Log In</button>
+          <button type="submit" class="button button_form-account" [disabled]="!loginForm.valid"
+            [class.spinner]="loading">
+            Log In</button>
         </form>
       </div>
     </mat-tab>
