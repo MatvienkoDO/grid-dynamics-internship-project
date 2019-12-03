@@ -19,8 +19,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public readonly localizationService: LocalizationService,
-    public readonly dialog: MatDialog,
-    private readonly notify: NotificationService,
+    private readonly dialog: MatDialog,
     private readonly elementRef: ElementRef,
     private readonly router: Router,
     private readonly accountModal: AccountModalService

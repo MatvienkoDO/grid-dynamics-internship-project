@@ -88,7 +88,7 @@ describe('ProductShowComponent', () => {
   });
 
   it('nextImage should change current image', (done) => {
-    component.images = ['image 1', 'image 2'];
+    component.images = [{"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""}, {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""}];
     component.nextImage();
     component.currentImage$.subscribe(value => {
       expect(value).toBe(1);

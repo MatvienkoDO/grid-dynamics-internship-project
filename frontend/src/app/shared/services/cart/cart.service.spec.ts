@@ -48,7 +48,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -66,7 +66,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -75,7 +75,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -96,7 +96,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -105,7 +105,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -128,7 +128,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -148,7 +148,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -157,7 +157,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -189,7 +189,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -198,7 +198,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -219,7 +219,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -228,7 +228,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 137,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -251,7 +251,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 2,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -260,7 +260,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 137,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -283,7 +283,7 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };

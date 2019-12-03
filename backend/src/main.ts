@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module';
-import { mode, Mode, cookieSigningSecret } from './environment';
+import { mode, Mode, cookieSigningSecret, corsAllowedWebOrigin } from './environment';
 import { userIdExpirationUpdater } from './modules/authentication/middlewares/user-id-expiration-updater';
 
 async function bootstrap() {
@@ -12,7 +12,11 @@ async function bootstrap() {
   console.log(`App started in ${modeName} mode`);
 
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
+
+  app.enableCors({
+    origin: [corsAllowedWebOrigin],
+    credentials: true,
+  });
   app.use(cookieParser(cookieSigningSecret));
   app.use(userIdExpirationUpdater);
 

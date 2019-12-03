@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -8,13 +8,16 @@ import { MustMatch } from '../../helpers/must-match.validator';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
 
-
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
+  public static readonly dialogConfig: MatDialogConfig = {
+    width: '550px',
+    height: '580px',
+  }
   private errorMessageSubject: BehaviorSubject<string>;
   public errorMessage$: Observable<string>;
 
@@ -38,7 +41,7 @@ export class AccountComponent implements OnInit {
     public dialogRef: MatDialogRef<AccountComponent>,
     private formBuilder: FormBuilder,
     private readonly authenticationService: AuthenticationService,
-    private readonly accountModalService: AccountModalService, 
+    private readonly accountModalService: AccountModalService,
   ) {
     this.errorMessageSubject = new BehaviorSubject<string>('');
     this.errorMessage$ = this.errorMessageSubject.asObservable();
@@ -107,5 +110,10 @@ export class AccountComponent implements OnInit {
             }
         });
     this.loginForm.reset();
+  }
+
+  private resetSignUpForm() {
+    this.signupForm.reset();
+    this.loading = false;
   }
 }
