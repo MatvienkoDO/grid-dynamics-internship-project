@@ -61,7 +61,9 @@
     </div>
     <div class="header-navbar__right">
       <form action="GET" class="search-container" (ngSubmit)="submit()">
-        <input type="search" name="search" class="button button_search" [(ngModel)]="searchForm['search']" />
+        <input type="search" name="search" class="button button_search" 
+        [(ngModel)]="searchForm['search']" 
+        autocomplete="off" />
       </form>
       <button class="button button_account" (click)="openAccount()"></button>
       <app-favourites mat-button (click)="openFavourites()"></app-favourites>
@@ -69,6 +71,8 @@
     </div>
   </div>
   <form action="GET" class="search-container_mobile" (ngSubmit)="submit()">
-    <input type="search" name="search" class="button button_search button_search-mobile"  [(ngModel)]="searchForm['search']"/>
+    <input type="search" name="search" class="button button_search button_search-mobile"  
+    [(ngModel)]="searchForm['search']"
+    autocomplete="off" />
   </form>
 </header>

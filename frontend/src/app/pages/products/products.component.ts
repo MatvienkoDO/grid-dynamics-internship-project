@@ -5,12 +5,12 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Subscription, Observable } from 'rxjs';
+import { BehaviorSubject, Subscription, Observable, from } from 'rxjs';
 import { switchMap, debounceTime, map, share, tap } from 'rxjs/operators';
 
 import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
-import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
+import { ProductsService, CartService, FavouritesService, ProductFilterService } from 'src/app/shared/services';
 
 export interface Query {
   filter: Filter;
@@ -32,6 +32,7 @@ export interface UrlQuery {
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
+  providers: [ProductFilterService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit, OnDestroy {
