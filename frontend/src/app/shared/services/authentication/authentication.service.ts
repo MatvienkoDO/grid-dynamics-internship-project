@@ -26,47 +26,58 @@ export class AuthenticationService {
   }
 
   public get currentUserValue(): User|null {
-      return this.currentUserSubject.value;
+    return this.currentUserSubject.value;
   }
 
   public login(email: string, password: string) {
-      return this.http.post<any>(`${apiHost}/api/auth/login`, { email, password })
-          .pipe(map(user => {
-              // login successful if there's a jwt token in the response
-              if (user) {
-                  // store user details and jwt token in local storage to keep user logged in between page refreshes
-                  localStorage.setItem('currentUser', JSON.stringify(user));
-                  this.currentUserSubject.next(user);
-              }
+    const address = `${apiHost}/api/auth/login`;
+    const body = { email, password };
+    const options = { withCredentials: true };
 
-              return user;
-          }));
+    return this.http.post<any>(address, body, options)
+      .pipe(map(user => {
+        // login successful if there's a jwt token in the response
+        if (user) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        }
+
+        return user;
+      }));
   }
 
   public logout() {
-    return this.http.post<any>(`${apiHost}/api/auth/logout`, {})
-        .subscribe(v => {
-          localStorage.removeItem('currentUser');
-          this.currentUserSubject.next(null);
-        });
+    const address = `${apiHost}/api/auth/logout`;
+    const options = { withCredentials: true };
+
+    return this.http.post<any>(address, {}, options)
+      .subscribe(v => {
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+      });
       // remove user from local storage to log user out
   }
 
   public signup(signupDto: signupDto) {
-    return this.http.post<any>(`${apiHost}/api/auth/signup`, {
+    const url = `${apiHost}/api/auth/signup`;
+    const body = {
       firstName: signupDto.firstName,
       lastName: signupDto.lastName,
       email: signupDto.email,
-      password: signupDto.password
-      }, { withCredentials: true }).pipe(map(user => {
-        if (user.status === 'error') {
-          return user;
-        } else if (user) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-        }
+      password: signupDto.password,
+    };
+    const options = { withCredentials: true };
+
+    return this.http.post<any>(url, body, options).pipe(map(user => {
+      if (user.status === 'error') {
         return user;
-      }));
+      } else if (user) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+      }
+      return user;
+    }));
   }
 }
