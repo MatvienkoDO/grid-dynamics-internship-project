@@ -58,7 +58,7 @@ export class AuthenticationService {
       lastName: signupDto.lastName,
       email: signupDto.email,
       password: signupDto.password
-      }).pipe(map(user => {
+      }, { withCredentials: true }).pipe(map(user => {
         if (user.status === 'error') {
           return user;
         } else if (user) {

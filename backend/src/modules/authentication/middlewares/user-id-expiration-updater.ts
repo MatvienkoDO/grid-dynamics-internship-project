@@ -7,7 +7,9 @@ export function userIdExpirationUpdater(request: Request, response: Response, ne
   
   if (userIdCookieValue) {
     response.cookie(userIdCookieKey, userIdCookieValue, userIdCookieOptions);
-  } else {
+  } else if (userIdCookieValue === false) {
+    // It is case of incorrect signature
+    // Just clear the fake cookie away
     response.clearCookie(userIdCookieKey);
   }
 

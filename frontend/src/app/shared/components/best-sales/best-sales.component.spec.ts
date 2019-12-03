@@ -55,7 +55,7 @@ describe('BestSalesComponent', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };
@@ -70,7 +70,7 @@ describe('BestSalesComponent', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
-      imageUrl: 'url',
+      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
       size: 'm',
       color: 'Red',
     };

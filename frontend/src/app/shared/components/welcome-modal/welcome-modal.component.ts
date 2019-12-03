@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { User } from '../../models/user';
