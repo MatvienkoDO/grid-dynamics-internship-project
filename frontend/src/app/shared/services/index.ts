@@ -5,3 +5,4 @@ export * from './favourites/favourites.service';
 export * from './mail/mail.service';
 export * from './localization/localization.service';
 export * from './authentication/authentication.service';
+export * from './user/user.service';
