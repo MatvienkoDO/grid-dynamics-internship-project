@@ -60,9 +60,10 @@
       </nav>
     </div>
     <div class="header-navbar__right">
-      <form action="GET" class="search-container" (ngSubmit)="submit()">
+      <form class="search-container" (ngSubmit)="submit()"
+      [formGroup]="searchForm">
         <input type="search" name="search" class="button button_search" 
-        [(ngModel)]="searchForm['search']" 
+        formControlName="search"
         autocomplete="off" />
       </form>
       <button class="button button_account" (click)="openAccount()"></button>
@@ -70,9 +71,10 @@
       <app-cart mat-button (click)="openCart()"></app-cart>
     </div>
   </div>
-  <form action="GET" class="search-container_mobile" (ngSubmit)="submit()">
+  <form class="search-container_mobile" (ngSubmit)="submit()"
+  [formGroup]="searchForm">
     <input type="search" name="search" class="button button_search button_search-mobile"  
-    [(ngModel)]="searchForm['search']"
+    formControlName="search"
     autocomplete="off" />
   </form>
 </header>

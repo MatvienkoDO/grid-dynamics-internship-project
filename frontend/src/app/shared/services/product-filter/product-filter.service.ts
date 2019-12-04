@@ -27,15 +27,19 @@ export interface UrlQuery {
 })
 export class ProductFilterService {
 
-  private products$: Observable<Product[]>;
-  private productsQuantity$: Observable<number>;
-  private readonly loading$ = new BehaviorSubject<boolean>(true);
-  private readonly query$ = new BehaviorSubject<Query>({
+  private products = new BehaviorSubject<Product[]>([]);
+  private productsQuantity = new BehaviorSubject<number>(0);
+  private readonly loading = new BehaviorSubject<boolean>(true);
+  private readonly query = new BehaviorSubject<Query>({
     filter: {},
     paging: {
       limit: 9
     }
   });
+  public products$: Observable<Product[]>;
+  public productsQuantity$: Observable<number>;
+  public loading$: Observable<boolean>;
+  public query$: Observable<Query>;
   
   private readonly subscriptions: Subscription[] = [];
 
@@ -44,16 +48,19 @@ export class ProductFilterService {
     private readonly productsService: ProductsService,
     private readonly router: Router,
   ) { 
-    this.query$.asObservable;
-    this.loading$.asObservable;
+    this.products$ = this.products.asObservable();
+    this.productsQuantity$ = this.productsQuantity.asObservable();
+    this.query$ = this.query.asObservable();
+    this.loading$ = this.loading.asObservable();
+    this.init();
   }
 
-  ngOnInit() {
+  init() {
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe((urlQuery: UrlQuery) => {
         const newQuery = this.createQueryFromUrlQuery(urlQuery);
 
-        this.query$.next(newQuery);
+        this.query.next(newQuery);
       })
     );
 
@@ -91,9 +98,9 @@ export class ProductFilterService {
       }));
   }
 
-  private changeLoading(newValue: boolean) {
-    if (this.loading$.value !== newValue) {
-      this.loading$.next(newValue);
+  public changeLoading(newValue: boolean) {
+    if (this.loading.value !== newValue) {
+      this.loading.next(newValue);
     }
   }
 
@@ -178,7 +185,7 @@ export class ProductFilterService {
   }
 
   public readonly resetSearchQuery = () => {
-    const newQuery = this.query$.value;
+    const newQuery = this.query.value;
     delete newQuery.filter.search;
 
     this.router.navigateByUrl(this.createNewUrl(newQuery));

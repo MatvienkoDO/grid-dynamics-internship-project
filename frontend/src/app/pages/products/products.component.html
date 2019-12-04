@@ -1,6 +1,6 @@
 <div class="container">
   <div class="products">
-    <div class="filters-mobile-bar" *ngIf="query$ | async as query">
+    <div class="filters-mobile-bar" *ngIf="query">
     <p class="title-medium title-medium_primary-color filter-mobile__title">{{ 'filters' | translate }}</p>
     <input type="checkbox" id="checkbox-filter" class="filter-mobile__checkbox" (click)="toggleProductBlock()">
     <label for="checkbox-filter" class="filter-mobile__arrow bounce">
@@ -49,7 +49,7 @@
       </app-search-request>
     </div>
   </div>
-  <div class="filters" *ngIf="query$ | async as query">
+  <div class="filters" *ngIf="query">
       <app-search-request
         *ngIf="query.filter.search"
         [search-query]="query.filter.search"
@@ -95,20 +95,20 @@
     <div class="cards" id="cards">
       <div class="cards__container">
         <app-loading-indicator
-          *ngIf="loading$ | async"
+          *ngIf="loading"
           class="cards__loading">
         </app-loading-indicator>
 
         <span
-          *ngIf="(products$ | async)?.length === 0 && !(loading$ | async)"
+          *ngIf="products?.length === 0 && !loading"
           class="cards__empty">
           {{ 'no items' | translate }}
         </span>
 
         <app-card-product
-          *ngFor="let product of products$ | async"
+          *ngFor="let product of products"
           class="cards__element"
-          [class.cards__element_hidden]="loading$ | async"
+          [class.cards__element_hidden]="loading"
           [id]="product.id"
           [image]="product.images[0]"
           [title]="product.name"
@@ -121,15 +121,15 @@
         </app-card-product>
 
         <div
-          *ngFor="let product of products$ | async"
+          *ngFor="let product of products"
           class="cards__trick-block">
         </div>
       </div>
 
       <button
-        *ngIf="(products$ | async)?.length < ((productsQuantity$ | async) || 0)"
+        *ngIf="products?.length < (productsQuantity || 0)"
         class="load-more"
-        [class.load-more_hidden]="loading$ | async"
+        [class.load-more_hidden]="loading"
         (click)="loadMore()">
         <span class="load-more__circle"></span>
         <span class="load-more__circle"></span>
