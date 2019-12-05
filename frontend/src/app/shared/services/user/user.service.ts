@@ -16,7 +16,7 @@ export class UserService {
 
   getMe(): Observable<User> {
     const url = `${apiHost}/api/users/me`;
-    return this.http.get<User>(url);
+    return this.http.get<User>(url, { withCredentials: true });
   }
 
 }
