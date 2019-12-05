@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { userIdCookieKey, userIdCookieOptions } from '../common';
+import { userIdCookieKey, userIdCookieOptions } from 'src/shared/constants';
 
 export function userIdExpirationUpdater(request: Request, response: Response, next: NextFunction) {
   const userIdCookieValue = request.signedCookies[userIdCookieKey];

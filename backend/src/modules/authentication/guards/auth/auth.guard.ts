@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, HttpException } from '@nestjs/common';
 import { Request } from 'express';
 
-import { userIdCookieKey } from '../../common';
+import { userIdCookieKey, unauthenticatedStatus } from 'src/shared/constants';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
 
     throw new HttpException({
       success: false,
-      status: 'client_is_not_authorized',
+      status: unauthenticatedStatus,
     }, 401);
   }
 }
