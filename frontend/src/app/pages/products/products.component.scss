@@ -132,21 +132,20 @@ $gap: 30px;
   .filters {
     width: 300px;
 
-    //display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // flex-wrap: wrap;
-
     margin: -($gap / 2);
     margin-bottom: $gap / 2;
     &__filter {
       min-width: 210px;
-      //width: auto;
 
       margin: $gap / 2;
       &:last-child {
         margin: $gap / 2;
       }
     }
+  }
+}
+@media (max-width: 950px) {
+  .filters__filter {
+    width: auto;
   }
 }

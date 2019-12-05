@@ -21,6 +21,7 @@ $gray-light: #a0b3b0;
 
   &__label {
     @include fonts (#34404b, "Open Sans", 12px, 400);
+    text-transform: capitalize;
     pointer-events: none;
 
     .req {
@@ -44,7 +45,7 @@ $gray-light: #a0b3b0;
 
     &:focus {
       outline: 0;
-      //border-color: $main-account-color;
+      border-color: $main-account-color;
     }
   }
 }
@@ -80,7 +81,7 @@ $gray-light: #a0b3b0;
   &__link {
     text-decoration: none;
     color: $main-account-color;
-    transition: .5s ease;
+    text-transform: capitalize;
 
     &:hover {
       color: $main-account-color-dark;

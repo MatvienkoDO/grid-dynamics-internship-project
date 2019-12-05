@@ -7,86 +7,92 @@
 </div>
 <div class="account-form">
   <mat-tab-group class="tab-group" animationDuration="0ms">
-    <mat-tab label="Log In" class="tab">
+    <mat-tab class="tab" label="{{ 'log in.title' | translate }}">
         <div id="login">
           <form action="/" method="post" class="login-form" (ngSubmit)="onSubmitLoginForm($event)"
             [formGroup]="loginForm">
             <div class="field-wrap">
-              <label class="account-form__label">
-                Email Address<span class="req">*</span>
+              <label class="account-form__label">{{ 'log in.email address' | translate }}
+                <span class="req">*</span>
               </label>
               <input class="account-form__input" type="email" name="email" required autocomplete="email"
                 formControlName="email" 
                 [ngClass]="{ 'is-invalid': submitted && loginFormControls.email.errors }"/>
                 <div *ngIf="submitted && loginFormControls.email.errors" class="invalid-feedback">
                     <div *ngIf="loginFormControls.email.errors">
-                        Enter a valid email address
+                        {{ 'log in.error email' | translate }}
                     </div>
                 </div>
             </div>
             <div class="field-wrap">
-              <label class="account-form__label">
-                Password<span class="req">*</span>
+              <label class="account-form__label"> {{ 'log in.password' | translate }}
+                <span class="req">*</span>
               </label>
               <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
                 <input class="account-form__input" type="password" name="password" required formControlName="password">
               </show-hide-password>
               <div *ngIf="submitted && loginFormControls.password.errors" class="invalid-feedback">
-                  <div *ngIf="loginFormControls.password.errors">Enter your password</div>
-                  <div *ngIf="loginFormControls.password.errors.minlength">Password must be at least 6 characters</div>
+                  <div *ngIf="loginFormControls.password.errors">
+                      {{ 'log in.error password' | translate }}
+                    </div>
+                  <div *ngIf="loginFormControls.password.errors.minlength">
+                      {{ 'log in.error password length' | translate }}
+                      </div>
               </div>
             </div>
-            <p class="forgot"><a class="forgot__link" href="#">Forgot Password?</a></p>
+            <p class="forgot"><a class="forgot__link" href="#">{{ 'log in.forgot password' | translate }}?</a></p>
             <button type="submit" class="button button_form-account"
               [class.spinner]="loading">
-              Log In</button>
+              {{ 'log in.submit' | translate }}</button>
           </form>
         </div>
       </mat-tab>
-    <mat-tab label="Sign Up" class="tab">
+    <mat-tab label="{{ 'sign up.title' | translate }}" class="tab">
       <div id="signup">
         <form action="/" method="post" class="signup-form" (ngSubmit)="onSubmitSignupForm($event)" 
         [formGroup]="signupForm">
           <div class="field-wrap">
             <label class="account-form__label">
-              First Name<span class="req">*</span>
+                {{ 'sign up.first name' | translate }}<span class="req">*</span>
             </label>
             <input class="account-form__input" type="text" name="text" required
             formControlName="firstName"
             [ngClass]="{ 'is-invalid': submitted && signupFormControls.firstName.errors }"/>
             <div *ngIf="submitted && signupFormControls.firstName.errors" class="invalid-feedback">
                 <div *ngIf="signupFormControls.firstName.errors">
-                    Enter your name
+                    {{ 'sign up.error first name' | translate }}
                   </div>
             </div>
           </div>
           <div class="field-wrap">
             <label class="account-form__label">
-              Last Name<span class="req">*</span>
+                {{ 'sign up.last name' | translate }}<span class="req">*</span>
             </label>
             <input class="account-form__input" type="text" name="text" required
             formControlName="lastName"
             [ngClass]="{ 'is-invalid': submitted && signupFormControls.lastName.errors }"/>
             <div *ngIf="submitted && signupFormControls.lastName.errors" class="invalid-feedback">
                 <div *ngIf="signupFormControls.lastName.errors">
-                    Enter your last name
+                    {{ 'sign up.error last name' | translate }}
                   </div>
             </div>
           </div>
           <div class="field-wrap">
             <label class="account-form__label">
-              Email Address<span class="req">*</span>
+                {{ 'sign up.email address' | translate }}<span class="req">*</span>
             </label>
             <input class="account-form__input" type="email" name="email" required
             formControlName="email"
             [ngClass]="{ 'is-invalid': submitted && signupFormControls.email.errors }"/>
             <div *ngIf="submitted && signupFormControls.email.errors" class="invalid-feedback">
-                <div *ngIf="signupFormControls.email.errors">Enter a valid email address</div>
+                <div *ngIf="signupFormControls.email.errors">
+                    {{ 'sign up.error email' | translate }}
+                  </div>
             </div>
           </div>
           <div class="field-wrap">
             <label class="account-form__label">
-              Password<span class="req">*</span>
+                {{ 'sign up.password' | translate }}<span class="req">*</span>
             </label>
             <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
               <input class="account-form__input" type="password" name="password" required
@@ -95,14 +101,16 @@
             </show-hide-password>
             <div *ngIf="submitted && signupFormControls.password.errors" class="invalid-feedback">
                 <div *ngIf="signupFormControls.password.errors">
-                    Enter your password
+                  {{ 'sign up.error password' | translate }}
                   </div>
-              <div *ngIf="signupFormControls.password.errors.minlength">Password must be at least 6 characters</div>
+              <div *ngIf="signupFormControls.password.errors.minlength">
+                  {{ 'sign up.error password length' | translate }}
+                </div>
           </div>
           </div>
           <div class="field-wrap">
             <label class="account-form__label">
-              Repeat password<span class="req">*</span>
+                {{ 'sign up.repeat password' | translate }}<span class="req">*</span>
             </label>
             <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
               <input class="account-form__input" type="password" name="password" required
@@ -110,11 +118,13 @@
             [ngClass]="{ 'is-invalid': submitted && signupFormControls.confirmPassword.errors }"/>
             </show-hide-password>
             <div *ngIf="submitted && signupFormControls.confirmPassword.errors" class="invalid-feedback">
-              <div *ngIf="signupFormControls.confirmPassword.errors.mustMatch">Passwords must match</div>
+              <div *ngIf="signupFormControls.confirmPassword.errors.mustMatch">
+                  {{ 'sign up.error password match' | translate }}
+                </div>
             </div>
           </div>
           <button type="submit" class="button button_form-account" 
-          [class.spinner]="loading">Get Started</button>
+          [class.spinner]="loading">{{ 'sign up.submit' | translate }}</button>
         </form>
       </div>
     </mat-tab>

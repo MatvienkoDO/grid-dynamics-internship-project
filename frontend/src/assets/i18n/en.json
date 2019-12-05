@@ -72,5 +72,48 @@
 
   "brands": "brands",
 
-  "no items": "No items"
+  "no items": "No items",
+
+  "log in": {
+    "title": "log in",
+    "email address": "email address",
+    "password": "password",
+    "forgot password": "forgot password",
+    "submit": "log in",
+    "error email": "Enter a valid email address",
+    "error password": "Enter your password",
+    "error password length": "Password must be at least 6 characters"
+  },
+  "sign up": {
+    "title": "sign up",
+    "first name": "first name",
+    "last name": "last name",
+    "email address": "email address",
+    "password": "password",
+    "repeat password": "repeat password",
+    "submit": "submit",
+    "error first name": "Enter your name",
+    "error last name": "Enter your last name",
+    "error email": "Enter a valid email address",
+    "error password": "Enter your password",
+    "error password length": "Password must be at least 6 characters",
+    "error password match": "Passwords must match"
+  },
+
+  "favourites": {
+    "title": "favourites",
+    "button": "delete all"
+  },
+
+  "cart": {
+    "product": "product",
+    "cart": "cart",
+    "button": "delete all",
+    "title": "title",
+    "size": "size",
+    "color": "color",
+    "price": "price",
+    "quantity": "quantity",
+    "total cost": "total cost"
+  }
 }
