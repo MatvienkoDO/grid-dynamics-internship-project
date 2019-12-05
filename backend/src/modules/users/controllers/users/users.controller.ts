@@ -1,9 +1,9 @@
 import { Controller, Get, UseGuards, Request, Response } from '@nestjs/common';
 import * as express from 'express';
 
-import { AuthGuard } from 'src/modules/authentication/guards/auth/auth.guard';
+import { AuthGuard } from '../../../authentication/guards/auth/auth.guard';
 import { User } from '../../models/user';
-import { userIdCookieKey } from 'src/shared/constants';
+import { userIdCookieKey } from '../../../../shared/constants';
 import { UserService } from '../../services/user/user.service'
 
 @Controller('api/users')

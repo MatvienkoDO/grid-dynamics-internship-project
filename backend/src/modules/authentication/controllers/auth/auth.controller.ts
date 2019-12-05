@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Response, Request, Get, UseGuards } from '@nestjs/common';
 import * as express from 'express';
 
-import { userIdCookieKey, userIdCookieOptions } from 'src/shared/constants';
+import { userIdCookieKey, userIdCookieOptions } from '../../../../shared/constants';
 import { AuthGuard } from '../../guards/auth/auth.guard';
 import { UserService } from '../../services/user/user.service';
 import { UserLoginDto } from '../../models/dto/UserLogin.dto';
