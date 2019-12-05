@@ -13,7 +13,7 @@ export class UserService {
   ) { }
 
   async findById(id: string): Promise<User | null> {
-    const query = await this.userModel.findOne({ id });
+    const query = await this.userModel.findById(id);
     if (!query) {
       return null;
     }
