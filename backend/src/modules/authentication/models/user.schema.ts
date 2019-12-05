@@ -1,5 +1,7 @@
 import { Schema } from 'mongoose';
 
+export const userSchemaName = 'user_schema_924';
+
 export const UserSchema = new Schema({
   firstName: String,
   lastName: String,

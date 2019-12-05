@@ -5,10 +5,11 @@ import { Model } from 'mongoose';
 import { UserDocument } from '../../models/user-document.interface';
 import { UserLoginDto } from '../../models/dto/UserLogin.dto';
 import { UserSignupDto } from '../../models/dto/UserSignup.dto';
+import { userSchemaName } from '../../models/user.schema';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<UserDocument>) { }
+  constructor(@InjectModel(userSchemaName) private readonly userModel: Model<UserDocument>) { }
 
   public async findBy(filterObject) {
     return await this.userModel.findOne(filterObject);
