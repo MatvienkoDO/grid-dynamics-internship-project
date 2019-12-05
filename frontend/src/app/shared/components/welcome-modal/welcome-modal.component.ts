@@ -25,7 +25,7 @@ export class WelcomeModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentUser$ = this.userService.getUser();
+    this.currentUser$ = this.userService.getMe();
   }
 
   onNoClick(): void {
