@@ -2,18 +2,16 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import { Subscription } from 'rxjs';
 import { NotificationService, LocalizationService, ProductFilterService, UrlQuery, Query } from '../../shared/services';
 import { CartComponentInner, FavouritesComponentInner, AccountComponent, WelcomeModalComponent } from '../../shared/components';
 import { AccountModalService } from 'src/app/shared/services/account-modal/account-modal.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-
 export class HeaderComponent implements OnInit {
   public searchForm = new FormGroup({
     search: new FormControl(''),
@@ -42,6 +40,12 @@ export class HeaderComponent implements OnInit {
       }),
     )
    }
+
+   ngOnDestroy() {
+    this.subscriptions.forEach(subscription => {
+      subscription.unsubscribe();
+    });
+  }
 
   changeLanguage(value: string) {
     this.localizationService.setLocale(value);
