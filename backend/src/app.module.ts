@@ -8,6 +8,7 @@ import { databaseUri } from './database'
 import { NewsLetterModule } from './modules/news-letter/news-letter.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { UsersModule } from './modules/users/users.module';
+import { CartModule } from './modules/cart/cart.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UsersModule } from './modules/users/users.module';
     NewsLetterModule,
     AuthenticationModule,
     UsersModule,
+    CartModule,
   ],
   controllers: [AppController],
   providers: [AppService],
