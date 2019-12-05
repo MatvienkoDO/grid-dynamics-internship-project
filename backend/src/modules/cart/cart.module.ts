@@ -11,9 +11,8 @@ import { AuthGuard } from '../authentication/guards/auth/auth.guard';
     MongooseModule.forFeature([
       { name: cartSchemaName, schema: CartSchema }
     ]),
-    AuthenticationModule,
   ],
-  providers: [CartService, AuthGuard],
+  providers: [CartService],
   exports: [CartService],
   controllers: [CartController]
 })

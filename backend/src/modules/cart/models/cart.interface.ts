@@ -4,7 +4,6 @@ export interface CartItem {
   productId: string,
   size: string,
   color: string,
-  price: string,
   quantity: number
 }
 

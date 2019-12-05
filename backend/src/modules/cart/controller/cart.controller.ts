@@ -2,7 +2,7 @@ import * as express from 'express';
 import { Controller, Put, Get, UseGuards, Body, Request } from '@nestjs/common';
 
 import { CartService } from '../service/cart.service';
-import { AuthGuard } from 'src/modules/authentication/guards/auth/auth.guard';
+import { AuthGuard } from '../../../modules/authentication/guards/auth/auth.guard';
 import { CartItem } from '../models/cart.interface';
 import { userIdCookieKey } from '../../../shared/constants';
 

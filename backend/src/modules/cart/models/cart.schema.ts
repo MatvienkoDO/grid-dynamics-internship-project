@@ -8,7 +8,6 @@ export const CartSchema = new Schema({
     productId: String,
     size: String,
     color: String,
-    price: String,
     quantity: Number,
   }],
 });
