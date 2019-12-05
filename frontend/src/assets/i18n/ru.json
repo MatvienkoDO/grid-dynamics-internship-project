@@ -98,6 +98,22 @@
     "error password": "введите пароль",
     "error password length": "пароль должен состоять не менее, чем из 6 букв",
     "error password match": "пароль должен совпадать"
-  
+  },
+
+    "favourites": {
+    "title": "Избранное",
+    "button": "Удалить все"
+  },
+
+  "cart": {
+    "product": "",
+    "cart": "корзина",
+    "button": "Удалить все",
+    "title": "Наименование",
+    "size": "размер",
+    "color": "цвет",
+    "price": "цена",
+    "quantity": "количество",
+    "total cost": "общая стоимость"
   }
 }

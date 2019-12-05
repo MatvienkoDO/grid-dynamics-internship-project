@@ -2,7 +2,7 @@
   <div class="cart__content">
     <div class="cart__content-head">
       <h3 class="title-medium cart-title">
-        Product <span class="title-medium title-medium_primary-color cart-title"> Cart </span>
+          {{ 'cart.product' | translate }} <span class="title-medium title-medium_primary-color cart-title"> {{ 'cart.cart' | translate }} </span>
       </h3>
       <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">
@@ -14,11 +14,11 @@
     </div>
     <ul class="cart__product-list">
       <li class="cart__product-item cart__product-head">
-        <span class="cart__product-item_bold cart__product-title">Title</span>
-        <span class="cart__product-item_bold cart__product-size">Size</span>
-        <span class="cart__product-item_bold cart__product-color">Color</span>
-        <span class="cart__product-item_bold cart__product-price">Price</span>
-        <span class="cart__product-item_bold cart__product-quantity">Quantity</span>
+        <span class="cart__product-item_bold cart__product-title">{{ 'cart.title' | translate }}</span>
+        <span class="cart__product-item_bold cart__product-size">{{ 'cart.size' | translate }}</span>
+        <span class="cart__product-item_bold cart__product-color">{{ 'cart.color' | translate }}</span>
+        <span class="cart__product-item_bold cart__product-price">{{ 'cart.price' | translate }}</span>
+        <span class="cart__product-item_bold cart__product-quantity">{{ 'cart.quantity' | translate }}</span>
       </li>
       <li class="cart__product-item" *ngFor="let i = index; let product of products$ | async">
         <span class="cart__product-title">
@@ -63,7 +63,7 @@
         </button>
       </li>
       <li class="cart__product-item cart__product-head cart__product-item_last-child">
-        <span class="cart__product-item_bold cart__product-title">Total cost {{totalCost$ | async}}</span>
+        <span class="cart__product-item_bold cart__product-title">{{ 'cart.total cost' | translate }} {{totalCost$ | async}}</span>
       </li>
       <li class="cart__product-item_mobile" *ngFor="let product of products$ | async; index as i">
         <button class="button button_delete" (click)="deleteFromCart(product)">
@@ -92,24 +92,24 @@
           alt="product's content">
         </picture>
         <div class="">
-          <span class="cart__product-item_bold cart__product-title">Title</span>
+          <span class="cart__product-item_bold cart__product-title">{{ 'cart.title' | translate }}</span>
           <span class="cart__product-title">
             {{ product.title }} </span>
         </div>
         <div class="">
-          <span class="cart__product-item_bold cart__product-size">Size</span>
+          <span class="cart__product-item_bold cart__product-size">{{ 'cart.size' | translate }}</span>
           <span class="cart__product-size">{{ product.size }} </span>
         </div>
         <div class="">
-          <span class="cart__product-item_bold cart__product-color">Color</span>
+          <span class="cart__product-item_bold cart__product-color">{{ 'cart.color' | translate }}</span>
           <span class="cart__product-color">{{ product.color }}</span>
         </div>
         <div class="">
-          <span class="cart__product-item_bold cart__product-color">Price</span>
+          <span class="cart__product-item_bold cart__product-color">{{ 'cart.price' | translate }}</span>
           <span class="cart__product-color">{{ product.price }}</span>
         </div>
         <div class="">
-          <span class="cart__product-item_bold cart__product-color">Quantity</span>
+          <span class="cart__product-item_bold cart__product-color">{{ 'cart.quantity' | translate }}</span>
           <div class="product-details__quantity cart__product-quantity">
             <form class="form-selection">
               <span class="form-selection__max" (click)="increaseQuantity(i)">
@@ -124,9 +124,11 @@
         </div>
       </li>
       <li class="cart__product-item_mobile cart__product-item_mobile-head cart__product-item_last-child">
-        <span class="cart__product-item_bold cart__product-title">Total cost {{totalCost$ | async}}</span>
+        <span class="cart__product-item_bold cart__product-title">{{ 'cart.total cost' | translate }} {{totalCost$ | async}}</span>
       </li>
-      <button class="button button_delete-all" (click)="clearCart()">Delete All</button>
+      <button class="button button_delete-all" (click)="clearCart()">
+          {{ 'cart.button' | translate }}
+      </button>
     </ul>
   </div>
 </div>
