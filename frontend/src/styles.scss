@@ -113,3 +113,10 @@ app-range-select .ng5-slider {
   border: none;
   outline: none;
 }
+// material accordion
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: unset;
+}
+.mat-expansion-panel-header {
+  padding: 0 4px !important;
+}

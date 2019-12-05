@@ -14,6 +14,7 @@ import {
   MatIconModule,
   MatTableModule,
   MatTabsModule,
+  MatExpansionModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -114,6 +115,7 @@ const translateModuleConfig = {
     MatIconModule,
     MatTableModule,
     MatTabsModule,
+    MatExpansionModule,
     ShowHidePasswordModule,
   ],
   providers: [
