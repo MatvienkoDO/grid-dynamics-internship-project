@@ -17,6 +17,8 @@ import { NotificationService } from '../../shared/services';
 import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
 import { AccountComponent } from 'src/app/shared/components';
 import * as constants from '../../shared/constants';
+import { ErrorsService } from 'src/app/shared/services/errors/errors.service';
+import { Error } from '../../shared/models/error';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -30,20 +32,17 @@ export class ErrorInterceptor implements HttpInterceptor {
     private readonly router: Router,
     private readonly dialog: MatDialog,
     private readonly authenticationService: AuthenticationService,
+    private readonly errorsService: ErrorsService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         const info: any | null = error.error;
-
+        console.log(info);
         if (error.status === 0) {
           this.notificationService.error(
             this.getNotificationServiceMessage('noInternet'));
-
-        } else if (error.status === 404) {
-          this.notificationService.error(
-            this.getNotificationServiceMessage('notFound'));
 
         } else if (info.status === constants.authFailedMessage) {
           this.dialog.closeAll();
@@ -54,10 +53,25 @@ export class ErrorInterceptor implements HttpInterceptor {
         } else if (info.status === constants.signupInvalidForm) {
           this.notificationService.error(
             this.getNotificationServiceMessage('signupInvalidForm'));
+            this.errorsService.pushError(Error.Target.SignUp, info.message);
 
         } else if (info.status === constants.emailIsNotUnique) {
           this.notificationService.error(
             this.getNotificationServiceMessage('emailIsNotUnique'));
+            this.errorsService.pushError(Error.Target.SignUp, info.message);
+
+        } else if (info.status === 'error') {
+          // this.notificationService.error(
+          //   this.getNotificationServiceMessage('invalid Email/Password'));
+            this.errorsService.pushError(Error.Target.LogIn, info.message);
+
+        } else if (error.status === 400) {
+          this.notificationService.error(
+            this.getNotificationServiceMessage('notFound'));
+  
+        } else if (error.status === 404) {
+          this.notificationService.error(
+            this.getNotificationServiceMessage('notFound'));
 
         } else if (error.status === 401) {	
           this.authenticationService.logout();	
