@@ -28,11 +28,16 @@ $frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-
 /* You can add global styles to this file, and also import other style files */
 @import '_colors';
 .cdk-overlay-pane {
-  max-height: 600px;
+  max-height: 630px;
 
   @media (max-width: 415px) {
     max-height: 530px;
   }
+}
+
+#cdk-overlay-0,
+.cdk-overlay-pane {
+  height: auto !important;
 }
 
 @import "~angular-notifier/styles";
@@ -92,6 +97,7 @@ app-range-select .ng5-slider {
   font-size: 24px;
   font-weight: 600;
   color: #000000;
+  text-transform: capitalize;
   @media (max-width: 500px) {
     font-size: 16px;
   }
