@@ -5,12 +5,12 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Subscription, Observable } from 'rxjs';
+import { BehaviorSubject, Subscription, Observable, from } from 'rxjs';
 import { switchMap, debounceTime, map, share, tap } from 'rxjs/operators';
 
 import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
-import { ProductsService, CartService, FavouritesService } from 'src/app/shared/services';
+import { ProductsService, CartService, FavouritesService, ProductFilterService, Query } from 'src/app/shared/services';
 
 export interface Query {
   filter: Filter;
@@ -32,7 +32,7 @@ export interface UrlQuery {
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 
@@ -93,15 +93,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     },
   ];
 
-  public products$: Observable<Product[]>;
-  public productsQuantity$: Observable<number>;
-  public readonly loading$ = new BehaviorSubject<boolean>(true);
-  public readonly query$ = new BehaviorSubject<Query>({
-    filter: {},
-    paging: {
-      limit: 9
-    }
-  });
+  public products: Product[];
+  public productsQuantity: number;
+  public loading: boolean;
+  public query: Query;
   
   private readonly subscriptions: Subscription[] = [];
 
@@ -111,49 +106,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly cartService: CartService,
     private readonly favouritesService: FavouritesService,
+    private readonly productFilterService: ProductFilterService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.subscriptions.push(
-      this.activatedRoute.queryParams.subscribe((urlQuery: UrlQuery) => {
-        const newQuery = this.createQueryFromUrlQuery(urlQuery);
-
-        this.query$.next(newQuery);
-      })
-    );
-
-    const response = this.query$
-      .pipe(
-        tap( () => this.changeLoading(true) ),
-        debounceTime(1000),
-        switchMap(({ paging, filter }) =>
-          this.productsService.getProductsByFilters(paging.skip, paging.limit, filter)
-        ),
-        tap( () => this.changeLoading(false) ),
-        share()
-      );
-
-    this.products$ = response
-      .pipe(map(response => {
-        if (response && Array.isArray(response.data)) {
-          return response.data;
-        }
-
-        throw {
-          message: '1incorrect data'
-        };
-      }));
-
-    this.productsQuantity$ = response
-      .pipe(map(response => {
-        if (response && Number.isInteger(response.quantity)) {
-          return response.quantity;
-        }
-
-        throw {
-          message: '2incorrect data'
-        };
-      }));
+      this.productFilterService.products$.subscribe((products) =>
+        this.products = products
+      ),
+      this.productFilterService.productsQuantity$.subscribe((productsQuantity) =>
+        this.productsQuantity = productsQuantity
+      ),
+      this.productFilterService.loading$.subscribe((loading) =>
+        this.loading = loading
+      ),
+      this.productFilterService.query$.subscribe((query) =>
+        this.query = query
+      ),
+    )
   }
 
   ngOnDestroy() {
@@ -163,7 +133,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public readonly newCategory = ([category]: string[]) => {
-    const newQuery = this.query$.value;
+    const newQuery = this.query;
 
     if (category) {
       newQuery.filter.category = category;
@@ -175,7 +145,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public readonly newPriceRange = ([minPrice, maxPrice]: number[]) => {
-    const newQuery = this.query$.value;
+    const newQuery = this.query;
     newQuery.filter.minPrice = minPrice;
     newQuery.filter.maxPrice = maxPrice;
 
@@ -183,21 +153,21 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public readonly newSizes = (sizes: string[]) => {
-    const newQuery = this.query$.value;
+    const newQuery = this.query;
     newQuery.filter.sizes = sizes;
 
     this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
 
   public readonly newBrands = (brands: string[]) => {
-    const newQuery = this.query$.value;
+    const newQuery = this.query;
     newQuery.filter.brands = brands;
 
     this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
 
   public readonly loadMore = () => {
-    const newQuery = this.query$.value;
+    const newQuery = this.query;
     const limit = newQuery.paging.limit || 0;
     newQuery.paging.limit = limit + 3;
 
@@ -216,10 +186,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.favouritesService.addToFavourites(cardProduct);
   }
 
-  private changeLoading(newValue: boolean) {
-    if (this.loading$.value !== newValue) {
-      this.loading$.next(newValue);
-    }
+  public changeLoading(newValue: boolean) {
+    this.productFilterService.changeLoading(newValue);
   }
 
   public toggleProductBlock() {
@@ -228,91 +196,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
     (checkBox.checked) ? cardBlock.style.display = "none" : cardBlock.style.display = "block";
   }
 
-  public createQueryFromUrlQuery(urlQuery: UrlQuery): Query {
-    const {
-      skip,
-      limit,
-      category,
-      minPrice,
-      maxPrice,
-      sizes,
-      brands,
-      search,
-    } = urlQuery;
-
-    const query: Query = {
-      paging: {
-        limit: 9
-      },
-      filter: {
-      },
-    };
-
-    const skipNumber = Number(skip);
-    if (skipNumber) {
-      query.paging.skip = skipNumber;
-    }
-    const limitNumber = Number(limit);
-    if (limitNumber) {
-      query.paging.limit = limitNumber;
-    }
-
-    if (category) {
-      query.filter.category = category;
-    }
-    const min = Number(minPrice);
-    if (min) {
-      query.filter.minPrice = min;
-    }
-    const max = Number(maxPrice);
-    if (max) {
-      query.filter.maxPrice = max;
-    }
-    if (sizes) {
-      const sizesNormalized = Array.isArray(sizes)
-        ? sizes
-        : [sizes];
-      query.filter.sizes = sizesNormalized;
-    }
-    if (brands) {
-      const brandsNormalized = Array.isArray(brands)
-        ? brands
-        : [brands];
-      query.filter.brands = brandsNormalized;
-    }
-    if (search) {
-      query.filter.search = search;
-    }
-
-    return query;
+  public createQueryFromUrlQuery(urlQuery: UrlQuery) : Query {
+    return this.productFilterService.createQueryFromUrlQuery(urlQuery);
   }
 
   public createNewUrl(query: Query): string {
-    let url = '/products?';
-
-    for(const key in query.paging) {
-      url += `${key}=${query.paging[key]}&`;
-    }
-
-    for(const key in query.filter) {
-      const unnormalized = query.filter[key];
-      const values = Array.isArray(unnormalized)
-        ? unnormalized
-        : [unnormalized];
-
-      for(const value of values) {
-        url += `${key}=${value}&`;
-      }
-    }
-
-    return url;
+    return  this.productFilterService.createNewUrl(query);
   }
 
   public readonly resetSearchQuery = () => {
-    const newQuery = this.query$.value;
-    delete newQuery.filter.search;
-
-    this.router.navigateByUrl(this.createNewUrl(newQuery));
+    this.productFilterService.resetSearchQuery();
   }
 
 }

@@ -5,7 +5,14 @@
    </i>
  </button>
 </div>
-<h3 class="title-medium cart-title">
-  welcome <span class="title-medium title-medium_primary-color cart-title"> {{ (currentUser$ | async)?.firstName + ' ' + (currentUser$ | async)?.lastName }} </span>
-</h3>
-<button class="button button_form-account button_form-log-out" (click)="logOut()">Log Out</button>
+
+<ng-container *ngIf="currentUser$ | async as currentUser; else loading">
+  <h3 class="title-medium cart-title">
+    welcome <span class="title-medium title-medium_primary-color cart-title"> {{ currentUser?.firstName + ' ' + currentUser?.lastName }} </span>
+  </h3>
+  <button class="button button_form-account button_form-log-out" (click)="logOut()">Log Out</button>
+</ng-container>
+
+<ng-template #loading>
+  <app-loading-indicator class="loading-indicator"></app-loading-indicator>
+</ng-template>
