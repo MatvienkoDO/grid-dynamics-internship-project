@@ -6,6 +6,7 @@ export const CartSchema = new Schema({
   userId: String,
   items: [{
     productId: String,
+    productName: String,
     size: String,
     color: String,
     quantity: Number,

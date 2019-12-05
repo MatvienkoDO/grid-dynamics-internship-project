@@ -2,6 +2,7 @@ import { Document } from "mongoose";
 
 export interface CartItem {
   productId: string,
+  productName: string,
   size: string,
   color: string,
   quantity: number
