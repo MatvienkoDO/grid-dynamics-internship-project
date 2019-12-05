@@ -29,7 +29,7 @@ button[disabled] {
     @include icon (url(/assets/images/search-24px.svg), 46px, 22px, 0);
     background-repeat: no-repeat;
     &:hover {
-      filter: invert(37%) sepia(51%) saturate(2878%);
+      //filter: invert(37%) sepia(51%) saturate(2878%);
     }
     &:focus {
       @include fonts ($black, "Open Sans", 14px, 500);
@@ -40,6 +40,11 @@ button[disabled] {
       height: auto;
       width: 100%;
     }
+  }
+  input:-internal-autofill-selected {
+    background-color: inherit !important;
+    background-image: inherit !important;
+    color: inherit !important;
   }
 
   &_search-mobile {
