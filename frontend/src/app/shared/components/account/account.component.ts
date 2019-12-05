@@ -67,7 +67,8 @@ export class AccountComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  get f() { return this.signupForm.controls; }
+  get signupFormControls() { return this.signupForm.controls; }
+  get loginFormControls() { return this.loginForm.controls; }
 
   onSubmitSignupForm(event: Event) {
     event.preventDefault();
@@ -93,6 +94,7 @@ export class AccountComponent implements OnInit {
 
   onSubmitLoginForm(event: Event): void {
     event.preventDefault();
+    this.submitted = true;
     if (this.loginForm.invalid) {
         return;
     }

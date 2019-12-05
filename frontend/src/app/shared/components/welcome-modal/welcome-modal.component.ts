@@ -1,36 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 
-import { User } from '../../models/user';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { User } from '../../models';
+import { AuthenticationService, UserService } from '../../services';
 
 @Component({
   selector: 'app-welcome-modal',
   templateUrl: './welcome-modal.component.html',
-  styleUrls: ['./welcome-modal.component.scss']
+  styleUrls: ['./welcome-modal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WelcomeModalComponent implements OnInit {
-  currentUserSubject: BehaviorSubject<User|null>;
-  currentUser$: Observable<User|null>;
+  public static readonly config: MatDialogConfig<WelcomeModalComponent> = {
+    width: '550px',
+  };
+
+  public currentUser$: Observable<User>;
 
   constructor(
-    public readonly dialogR: MatDialogRef<WelcomeModalComponent>,
-    public readonly authService: AuthenticationService,
-  ) {
-    this.currentUserSubject = new BehaviorSubject<User|null>(this.getUserFromLocalStorage());
-    this.currentUser$ = this.currentUserSubject.asObservable();
-  }
+    private readonly dialogRef: MatDialogRef<WelcomeModalComponent>,
+    private readonly authService: AuthenticationService,
+    private readonly userService: UserService,
+  ) { }
 
-  ngOnInit() {}
-
-  private getUserFromLocalStorage(): User | null {
-    const localStorageUserValue = localStorage.getItem('currentUser');
-    return localStorageUserValue ? JSON.parse(localStorageUserValue) : null;
+  ngOnInit() {
+    this.currentUser$ = this.userService.getMe();
   }
 
   onNoClick(): void {
-    this.dialogR.close();
+    this.dialogRef.close();
   }
 
   public logOut() {

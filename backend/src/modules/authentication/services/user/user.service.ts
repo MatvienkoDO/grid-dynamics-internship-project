@@ -2,19 +2,20 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { User } from '../../models/user.interface';
+import { UserDocument } from '../../models/user-document.interface';
 import { UserLoginDto } from '../../models/dto/UserLogin.dto';
 import { UserSignupDto } from '../../models/dto/UserSignup.dto';
+import { userSchemaName } from '../../models/user.schema';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
+  constructor(@InjectModel(userSchemaName) private readonly userModel: Model<UserDocument>) { }
 
   public async findBy(filterObject) {
     return await this.userModel.findOne(filterObject);
   }
 
-  public async createUser(signupDto: UserSignupDto): Promise<User> {
+  public async createUser(signupDto: UserSignupDto): Promise<UserDocument> {
     if (!signupDto.role) {
       signupDto.role = 'user';
     }
