@@ -7,6 +7,7 @@ import { ProductModule } from './modules/product/product.module';
 import { databaseUri } from './database'
 import { NewsLetterModule } from './modules/news-letter/news-letter.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
     ProductModule,
     NewsLetterModule,
     AuthenticationModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
