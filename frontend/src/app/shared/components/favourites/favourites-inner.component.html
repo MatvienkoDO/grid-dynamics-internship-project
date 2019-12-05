@@ -2,7 +2,7 @@
   <div class="favourites__content">
       <div class="favourites__content-head">
     <h3 class="title-medium favourites-title">
-      Favourites
+        {{ 'favourites.title' | translate }}
     </h3>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">
@@ -15,10 +15,7 @@
     <ul class="favourites__product-list">
       <li
         *ngFor="let product of products$ | async"
-        class="favourites__product-item"
-        >
-
-        <!-- <img class="favourites__product-image" src="{{ product.imageUrl }}" alt="product's content"> -->
+        class="favourites__product-item">
         <picture>
           <source class="favourites__product-image"
           media="(max-width: 767px)"
@@ -49,7 +46,9 @@
           <i class="material-icons">close</i>
         </button>
       </li>
-      <button class="button button_delete-all" (click)="clearCart()">Delete All</button>
+      <button class="button button_delete-all" (click)="clearCart()">
+        {{ 'favourites.button' | translate }}
+      </button>
     </ul>
   </div>
 </div>

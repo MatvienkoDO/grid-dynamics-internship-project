@@ -72,5 +72,48 @@
 
   "brands": "Бренды",
 
-  "no items": "Товаров не найдено"
+  "no items": "Товаров не найдено",
+
+  "log in": {
+    "title": "войти",
+    "email address": "электронная почта",
+    "password": "пароль",
+    "forgot password": "забыли пароль",
+    "submit": "войти",
+    "error email": "введите верный адрес электронной почты",
+    "error password": "введите пароль",
+    "error password length": "пароль должен состоять не менее, чем из 6 букв"
+  },
+  "sign up": {
+    "title": "зарегистрироваться",
+    "first name": "имя",
+    "last name": "фамилия",
+    "email address": "электронная почта",
+    "password": "пароль",
+    "repeat password": "повторите пароль",
+    "submit": "зарегистрироваться",
+    "error first name": "введите имя",
+    "error last name": "введите фамилию",
+    "error email": "введите верный адрес электронной почты",
+    "error password": "введите пароль",
+    "error password length": "пароль должен состоять не менее, чем из 6 букв",
+    "error password match": "пароль должен совпадать"
+  },
+
+    "favourites": {
+    "title": "Избранное",
+    "button": "Удалить все"
+  },
+
+  "cart": {
+    "product": "",
+    "cart": "корзина",
+    "button": "Удалить все",
+    "title": "Наименование",
+    "size": "размер",
+    "color": "цвет",
+    "price": "цена",
+    "quantity": "количество",
+    "total cost": "общая стоимость"
+  }
 }

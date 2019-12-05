@@ -18,7 +18,7 @@ import { Error } from '../../models';
 export class AccountComponent implements OnInit {
   public static readonly dialogConfig: MatDialogConfig = {
     width: '550px',
-    height: '580px',
+    height: '630px',
   }
   private errorMessageSubject: BehaviorSubject<string>;
   public loginErrorMessage$: Observable<string>;
