@@ -109,8 +109,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
 const errorMessages = {
   noInternet: {
-    en: 'Cart has been cleared',
-    ru: 'Корзина очищена'
+    en: 'There is no Internet connection',
+    ru: 'Отсутствует Интернет соединение'
   },
   notFound: {
     en: 'Product not found',
