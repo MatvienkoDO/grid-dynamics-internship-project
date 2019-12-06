@@ -60,7 +60,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.getNotificationServiceMessage('emailIsNotUnique'));
             this.errorsService.pushError(Error.Target.SignUp, info.message);
 
-        } else if (info.status === 'error') {
+        } else if (info.status === constants.incorrectLoginPasswordPair) {
           // this.notificationService.error(
           //   this.getNotificationServiceMessage('invalid Email/Password'));
             this.errorsService.pushError(Error.Target.LogIn, info.message);

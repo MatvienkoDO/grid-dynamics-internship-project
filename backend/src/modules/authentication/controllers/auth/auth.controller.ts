@@ -54,7 +54,7 @@ export class AuthController {
       response.status(400);
       response.send({
         success: false,
-        status: 'error',
+        status: 'incorrect_login_password_pair',
         message: 'Invalid email/password',
       });
       return;
