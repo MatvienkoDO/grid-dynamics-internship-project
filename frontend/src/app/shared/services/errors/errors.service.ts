@@ -19,7 +19,6 @@ export class ErrorsService {
     };
 
     this.errors.next(newError);
-    this.errors.subscribe(er => console.log(er));
   }
 
   getErrors(target: Error.Target): Observable<string> {
