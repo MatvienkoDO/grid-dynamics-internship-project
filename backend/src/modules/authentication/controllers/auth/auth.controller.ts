@@ -37,7 +37,7 @@ export class AuthController {
     }
 
     const newUser = await this.userService.createUser(body);
-    response.cookie(userIdCookieKey, newUser.password, userIdCookieOptions);
+    response.cookie(userIdCookieKey, newUser.id, userIdCookieOptions);
     response.type('application/json');
     return response.send({
       id: newUser.id,
