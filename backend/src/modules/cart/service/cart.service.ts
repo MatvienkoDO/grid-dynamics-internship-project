@@ -16,7 +16,22 @@ export class CartService {
     return userCart ? userCart : {items: []};
   }
 
-  public async updateUserCart(userId: string, newItems: CartItem[]) {
+  public async updateUserCart(userId: string, items: CartItem[]) {
+    console.log('updating cart items');
+    console.log(items);
+    const cart = await this.cartModel.findOne({userId});
+
+    if (!cart) {
+      const newCart = new this.cartModel({userId, items});
+      return await newCart.save();
+    }
+    return await this.cartModel.findByIdAndUpdate(cart.id, { 
+      userId: cart.userId,
+      items: items,
+    })
+  }
+
+  public async addItemsToUserCart(userId: string, newItems: CartItem[]) {
     const cart = await this.cartModel.findOne({userId});
 
     if (!cart) {
@@ -34,7 +49,7 @@ export class CartService {
     const merged = [...oldItems];
     for (const oldItem of oldItems) {
       const filtered = newItems.filter(newItem => 
-        oldItem.productId === newItem.productId &&
+        oldItem.id === newItem.id &&
         oldItem.color === newItem.color &&
         oldItem.size === newItem.size
       );
@@ -44,7 +59,7 @@ export class CartService {
     }
     for (const newItem of newItems) {
       const filtered = oldItems.filter(oldItem => 
-        oldItem.productId === newItem.productId &&
+        oldItem.id === newItem.id &&
         oldItem.color === newItem.color &&
         oldItem.size === newItem.size
       );
