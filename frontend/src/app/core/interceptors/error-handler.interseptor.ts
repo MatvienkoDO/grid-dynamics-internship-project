@@ -39,7 +39,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         const info: any | null = error.error;
-        console.log(info);
+        
         if (error.status === 0) {
           this.notificationService.error(
             this.getNotificationServiceMessage('noInternet'));
