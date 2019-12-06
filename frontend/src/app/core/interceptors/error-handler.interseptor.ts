@@ -62,8 +62,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         } else if (info.status === constants.incorrectLoginPasswordPair) {
           const message = this.getNotificationServiceMessage('invalidLoginPasswordPair');
-          // this.notificationService.error(
-          //   this.getNotificationServiceMessage('invalid Email/Password'));
           this.errorsService.pushError(Error.Target.LogIn, message);
 
         } else if (error.status === 400) {
