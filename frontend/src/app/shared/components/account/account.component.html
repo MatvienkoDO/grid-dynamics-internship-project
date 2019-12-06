@@ -20,7 +20,8 @@
                 [ngClass]="{ 'is-invalid': submitted && loginFormControls.email.errors }"/>
                 <div *ngIf="submitted && loginFormControls.email.errors" class="invalid-feedback">
                     <div *ngIf="loginFormControls.email.errors">
-                        {{ 'log in.error email' | translate }}
+                      <div>{{ 'log in.error email' | translate }}</div>
+                      <div>{{ loginErrorMessage$ | async }}</div>
                     </div>
                 </div>
             </div>

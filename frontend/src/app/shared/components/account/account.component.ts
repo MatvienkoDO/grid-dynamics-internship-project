@@ -48,8 +48,8 @@ export class AccountComponent implements OnInit {
     private readonly errorsService: ErrorsService,
   ) {
     this.errorMessageSubject = new BehaviorSubject<string>('');
-    this.loginErrorMessage$ = this.errorsService.getErrors(Error.Target.LogIn);
-    this.signupErrorMessage$ = this.errorsService.getErrors(Error.Target.SignUp);
+    this.loginErrorMessage$ = this.errorsService.getCertainErrors(Error.Target.LogIn);
+    this.signupErrorMessage$ = this.errorsService.getCertainErrors(Error.Target.SignUp);
   }
 
   ngOnInit() {

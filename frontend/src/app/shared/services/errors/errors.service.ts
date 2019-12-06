@@ -8,9 +8,13 @@ import { Error } from '../../models';
   providedIn: 'root'
 })
 export class ErrorsService {
+  public readonly errors$: Observable<Error>;
+
   private readonly errors = new Subject<Error>();
 
-  constructor() { }
+  constructor() {
+    this.errors$ = this.errors.asObservable();
+  }
 
   pushError(target: Error.Target, message: string) {
     const newError: Error = {
@@ -19,10 +23,9 @@ export class ErrorsService {
     };
 
     this.errors.next(newError);
-    this.errors.subscribe(er => console.log(er));
   }
 
-  getErrors(target: Error.Target): Observable<string> {
+  getCertainErrors(target: Error.Target): Observable<string> {
     return this.errors.pipe(
       filter(({ target: currentTarget }) => currentTarget === target),
       map(({ message }) => message),
