@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'fonts';
+@import 'mixins';
 
 
 .filters-mobile-bar {
@@ -35,6 +36,9 @@
     cursor: pointer;
     transition: .4s;
     z-index: 8;
+    @include for-phone-intermediate {
+      width: 25px;
+    }
   }
 
   &__icon {
@@ -44,7 +48,7 @@
     position: relative;
     background: transparent;
     width: 90%;
-    height: 4px;
+    height: 3px;
     transition: .4s;
 
     &::after,
@@ -54,18 +58,24 @@
       position: absolute;
       background: $black;
       width: 100%;
-      height: 4px;
+      height: 3px;
       transition: .4s;
     }
 
     &::after {
       right: -7px;
       transform: rotate(-45deg);
+      @include for-phone-intermediate {
+        right: -5px;
+      }
     }
 
     &::before {
       left: -7px;
       transform: rotate(45deg);
+      @include for-phone-intermediate {
+        left: -3px;
+      }
     }
   }
 
@@ -73,6 +83,8 @@
     position: absolute;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
+    width: inherit;
     top: 0px;
     left: 0;
     z-index: 7;
