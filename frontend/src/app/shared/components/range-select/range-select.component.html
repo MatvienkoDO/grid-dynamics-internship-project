@@ -9,9 +9,19 @@
 <div class="range-select__boundaries">
   <span class="range-select__boundaries-label">From</span>
 
-  <input class="range-select__input" type="number" [(ngModel)]="low">
+  <input
+    #lowInput
+    class="range-select__input"
+    type="number"
+    [ngModel]="low"
+    (ngModelChange)="newLow($event, lowInput)">
 
   <span class="range-select__boundaries-label">To</span>
 
-  <input class="range-select__input" type="number" [(ngModel)]="high">
+  <input
+    #highInput
+    class="range-select__input"
+    type="number"
+    [ngModel]="high"
+    (ngModelChange)="newHigh($event, highInput)">
 </div>
