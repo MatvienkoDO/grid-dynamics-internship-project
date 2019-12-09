@@ -99,7 +99,7 @@ export class AccountComponent implements OnInit {
               this.accountModalService.openWelcomeDialog();
             }
         });
-    this.signupForm.reset();
+    //this.signupForm.reset();
   }
 
   onSubmitLoginForm(event: Event): void {
@@ -126,13 +126,8 @@ export class AccountComponent implements OnInit {
               this.accountModalService.openWelcomeDialog();
             }
         });
-    this.loginForm.reset();
+    //this.loginForm.reset();
   }
-  // getErrorMessage() {
-  //   return this.loginForm.hasError('required') ? 'You must enter a value' :
-  //       this.loginForm.hasError('email') ? 'Not a valid email' :
-  //           '';
-  // }
 
   private resetSignUpForm() {
     this.signupForm.reset();
