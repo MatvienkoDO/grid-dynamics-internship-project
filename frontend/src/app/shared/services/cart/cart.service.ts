@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models';
 import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
-import { localStorageCartKey } from '../../constants'
+import { localStorageCartKey } from '../../constants';
+import { apiHost } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +20,14 @@ export class CartService {
   
   constructor(
     private readonly localizationService: LocalizationService,
-    private readonly notificationService: NotificationService
+    private readonly notificationService: NotificationService,
+    private readonly http: HttpClient,
   ) {
     this.items$ = this.items;
     this.init();
   }
 
-  init() {
+  public init() {
     const itemsFromLocalStorage = this.getItemsFromLocalStorage();
 
     if (itemsFromLocalStorage) {
@@ -30,7 +35,7 @@ export class CartService {
     }
   }
 
-  addToCart(cardProduct: CardProduct) {
+  public addToCart(cardProduct: CardProduct) {
     const updatedItems = this.items.value;
 
     const idx = this.indexOf(cardProduct);
@@ -58,7 +63,7 @@ export class CartService {
     return -1;
   }
 
-  deleteFromCart(cardProduct: CardProduct) {
+  public deleteFromCart(cardProduct: CardProduct) {
     const updatedItems = [
       ...this.items.value.filter(el => el.id !== cardProduct.id)
     ];
@@ -71,7 +76,7 @@ export class CartService {
     this.notificationService.warning(`${cardProduct.title} ${message}`);
   }
 
-  clearCart() {
+  public clearCart() {
     const updatedItems = [];
 
     this.saveItemsToLocalStorage(updatedItems);
@@ -118,5 +123,37 @@ export class CartService {
       this.items.next(products);
       this.saveItemsToLocalStorage(products);
     }
+  }
+
+  public sendNewCartItems() {
+    const address = `${apiHost}/api/cart`;
+    const body = { newItems: this.items.getValue() };
+    const options = { withCredentials: true };
+
+    return this.http.patch<any>(address, body, options)
+      .subscribe(response => {
+        return response
+      });
+  }
+
+  public updateCartItems() {
+    const address = `${apiHost}/api/cart`;
+    const body = { items: this.items.getValue() };
+    const options = { withCredentials: true };
+
+    return this.http.put<any>(address, body, options)
+      .subscribe(response => {
+        return response;
+      });
+  }
+
+  public getCartItems() {
+    const address = `${apiHost}/api/cart`;
+    const options = { withCredentials: true };
+
+    return this.http.get<any>(address, options)
+      .subscribe(items => {
+        this.saveItemsToLocalStorage(items.items);
+      });
   }
 }

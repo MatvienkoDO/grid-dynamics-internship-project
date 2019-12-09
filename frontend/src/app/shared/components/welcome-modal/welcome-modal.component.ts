@@ -3,7 +3,7 @@ import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
 import { User } from '../../models';
-import { AuthenticationService, UserService } from '../../services';
+import { AuthenticationService, UserService, CartService } from '../../services';
 
 @Component({
   selector: 'app-welcome-modal',
@@ -22,6 +22,7 @@ export class WelcomeModalComponent implements OnInit {
     private readonly dialogRef: MatDialogRef<WelcomeModalComponent>,
     private readonly authService: AuthenticationService,
     private readonly userService: UserService,
+    private readonly cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -33,6 +34,8 @@ export class WelcomeModalComponent implements OnInit {
   }
 
   public logOut() {
+    this.cartService.updateCartItems();
+    this.cartService.clearCart();
     this.authService.logout();
     this.onNoClick();
   }

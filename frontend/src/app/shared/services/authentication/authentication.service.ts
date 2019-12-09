@@ -7,6 +7,8 @@ import { User } from '../../models';
 import { apiHost } from 'src/environments/environment';
 import { signupDto } from '../../models/dto/signup.dto';
 import { encryptPassword } from '../../utils';
+import { CartService } from '../cart/cart.service';
+import { MatGridTileHeaderCssMatStyler } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,9 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User|null>;
   public currentUser: Observable<User|null>;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+  ) {
     const userFromLocalStorage = localStorage.getItem('currentUser');
     if (userFromLocalStorage) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(userFromLocalStorage));  
