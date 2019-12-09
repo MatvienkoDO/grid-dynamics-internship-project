@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { hash, genSalt } from 'bcrypt';
 
 import { UserDocument } from '../../models/user-document.interface';
 import { UserLoginDto } from '../../models/dto/UserLogin.dto';
@@ -16,9 +17,10 @@ export class UserService {
   }
 
   public async createUser(signupDto: UserSignupDto): Promise<UserDocument> {
-    if (!signupDto.role) {
-      signupDto.role = 'user';
-    }
+    signupDto.password = await hash(signupDto.password, await genSalt());
+
+    signupDto.role = signupDto.role || 'user';
+
     const createdUser = new this.userModel(signupDto);
     return await createdUser.save();
   }
