@@ -6,7 +6,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../models';
 import { apiHost } from 'src/environments/environment';
 import { signupDto } from '../../models/dto/signup.dto';
-import { encryptPassword } from '../../utils';
 
 @Injectable({
   providedIn: 'root'
