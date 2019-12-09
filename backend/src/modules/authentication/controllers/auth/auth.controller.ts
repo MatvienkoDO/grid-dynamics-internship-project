@@ -6,6 +6,7 @@ import { AuthGuard } from '../../guards/auth/auth.guard';
 import { UserService } from '../../services/user/user.service';
 import { UserLoginDto } from '../../models/dto/UserLogin.dto';
 import { UserSignupDto } from '../../models/dto/UserSignup.dto';
+import { UserDocument } from '../../models/user-document.interface';
 
 @Controller('api/auth')
 export class AuthController {
@@ -49,8 +50,10 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() body: UserLoginDto, @Response() response: express.Response) {
-    const isValid = await this.userService.isValidLoginDto(body);
-    if (!isValid) {
+    const user: UserDocument | undefined = await this.userService
+      .getUserByLoginPassword(body.email, body.password);
+
+    if (!user) {
       response.status(400);
       response.send({
         success: false,
@@ -59,8 +62,6 @@ export class AuthController {
       });
       return;
     }
-
-    const user = await this.userService.findBy(body);
     
     response.cookie(userIdCookieKey, user.id, userIdCookieOptions);
     response.type('application/json');
