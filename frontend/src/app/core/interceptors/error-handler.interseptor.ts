@@ -61,8 +61,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.errorsService.pushError(Error.Target.SignUp, info.message);
 
         } else if (info.status === constants.incorrectLoginPasswordPair) {
-          const message = this.getNotificationServiceMessage('invalidLoginPasswordPair');
+          const message = this.getNotificationServiceMessage('incorrectLoginPasswordPair');
           this.errorsService.pushError(Error.Target.LogIn, message);
+          this.notificationService.error(message);
+
 
         } else if (error.status === 400) {
           this.notificationService.error(
@@ -142,7 +144,7 @@ const errorMessages = {
     en: 'Email is not unique',
     ru: 'Данный e-mail уже используется',
   },
-  invalidLoginPasswordPair: {
+  incorrectLoginPasswordPair: {
     en: 'Invalid login-password pair',
     ru: 'Неправильный логин и/или пароль',
   },
