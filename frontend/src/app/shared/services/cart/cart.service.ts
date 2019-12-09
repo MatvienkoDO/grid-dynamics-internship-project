@@ -154,6 +154,7 @@ export class CartService {
     return this.http.get<any>(address, options)
       .subscribe(items => {
         this.saveItemsToLocalStorage(items.items);
+        this.items.next(items.items);
       });
   }
 }
