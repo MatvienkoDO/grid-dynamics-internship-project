@@ -7,7 +7,7 @@ import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 import { localStorageCartKey } from '../../constants';
 import { apiHost } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map, debounceTime, switchMap, share } from 'rxjs/operators';
 import { stringify } from 'querystring';
 
 @Injectable({
@@ -114,6 +114,7 @@ export class CartService {
     products[index].quantity++;
     this.items.next(products);
     this.saveItemsToLocalStorage(products);
+    this.updateWithDebounce();
   }
 
   public readonly decreaseQuantity = (index: number) => {
@@ -122,6 +123,7 @@ export class CartService {
       products[index].quantity--;
       this.items.next(products);
       this.saveItemsToLocalStorage(products);
+      this.updateWithDebounce();
     }
   }
 
@@ -133,6 +135,24 @@ export class CartService {
     return this.http.patch<any>(address, body, options)
       .subscribe(response => {
         return response
+      });
+  }
+
+  public updateWithDebounce() {
+    const address = `${apiHost}/api/cart`;
+    const body = { items: this.items.getValue() };
+    const options = { withCredentials: true };
+
+    return this.http.put<any>(address, body, options)
+      .pipe(
+        debounceTime(1000),
+        switchMap(() =>
+          this.http.put<any>(address, { items: this.items.getValue() }, options)
+        ),
+        share()
+      )
+      .subscribe(response => {
+        return response;
       });
   }
 
