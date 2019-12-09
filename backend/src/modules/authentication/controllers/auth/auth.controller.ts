@@ -37,7 +37,7 @@ export class AuthController {
     }
 
     const newUser = await this.userService.createUser(body);
-    response.cookie(userIdCookieKey, newUser.password, userIdCookieOptions);
+    response.cookie(userIdCookieKey, newUser.id, userIdCookieOptions);
     response.type('application/json');
     return response.send({
       id: newUser.id,
@@ -54,7 +54,7 @@ export class AuthController {
       response.status(400);
       response.send({
         success: false,
-        status: 'error',
+        status: 'incorrect_login_password_pair',
         message: 'Invalid email/password',
       });
       return;
