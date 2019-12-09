@@ -99,7 +99,6 @@ export class AccountComponent implements OnInit {
               this.accountModalService.openWelcomeDialog();
             }
         });
-    //this.signupForm.reset();
   }
 
   onSubmitLoginForm(event: Event): void {
@@ -126,7 +125,6 @@ export class AccountComponent implements OnInit {
               this.accountModalService.openWelcomeDialog();
             }
         });
-    //this.loginForm.reset();
   }
 
   private resetSignUpForm() {
