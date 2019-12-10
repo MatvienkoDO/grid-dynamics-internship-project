@@ -133,12 +133,9 @@ export class ProductService {
     return query;
   }
 
-  private getLocalizedProducts(locale: String = 'en', dbProducts: Product[]): LocalizedProduct[] {
-    const result = [];
-    for (const dbProduct of dbProducts) {
-      result.push(this.getLocalizedProduct(locale, dbProduct));
-    }
-    return result;
+  private getLocalizedProducts(locale: string = 'en', dbProducts: Product[]): LocalizedProduct[] {
+    return dbProducts
+      .map(product => this.getLocalizedProduct(locale, product));
   }
 
   private getLocalizedProduct(locale: String = 'en', dbProduct: Product): LocalizedProduct {
