@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { Product } from './product.interface';
-import { LocalizedProduct } from './localizedProduct.model'
+import { LocalizedProduct } from './localizedProduct.model';
 import { ProductDto } from './dto/product.dto';
 import { Filter } from './filter.model';
 
@@ -26,7 +26,7 @@ export class ProductService {
       ? { $text: { $search: filter.search }}
       : null;
     const projection = filter.search
-      ? { score: { $meta: "textScore" } }
+      ? { score: { $meta: 'textScore' } }
       : null;
     const options = { skip, limit };
 
@@ -48,7 +48,7 @@ export class ProductService {
       query.where('sizes').elemMatch({ $in: filter.sizes });
     }
     if (filter.search) {
-      query.sort({ score: { $meta: "textScore" }});
+      query.sort({ score: { $meta: 'textScore' }});
     }
 
     const products = await query;
@@ -166,7 +166,7 @@ export class ProductService {
       dbProduct.sizes,
       dbProduct.colors,
       dbProduct.images,
-      dbProduct.sliderImage
+      dbProduct.sliderImage,
     );
   }
 
@@ -186,22 +186,22 @@ export class ProductService {
       {
         _id: { $ne: id },
         category,
-        brand
-      }
+        brand,
+      },
     );
     const sameCategory = this.productModel.find(
       {
         _id: { $ne: id },
         category,
         brand: { $ne: brand }
-      }
+      },
     );
     const sameBrand = this.productModel.find(
       {
         _id: { $ne: id },
         category: { $ne: category },
-        brand
-      }
+        brand,
+      },
     );
 
     const related = (await sameCategoryAndBrand).concat(await sameCategory, await sameBrand);
