@@ -23,8 +23,6 @@ export class CartService {
   }
 
   public async updateUserCart(userId: string, items: CartItem[]) {
-    console.log('updating cart items');
-    console.log(items);
     const cart = await this.cartModel.findOne({userId});
 
     if (!cart) {

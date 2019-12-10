@@ -9,6 +9,7 @@ import { NewsLetterModule } from './modules/news-letter/news-letter.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { UsersModule } from './modules/users/users.module';
 import { CartModule } from './modules/cart/cart.module';
+import { FavouriteModule } from './modules/favourite/favourite.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { CartModule } from './modules/cart/cart.module';
     AuthenticationModule,
     UsersModule,
     CartModule,
+    FavouriteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
