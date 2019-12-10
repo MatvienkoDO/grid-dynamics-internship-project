@@ -6,9 +6,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../models';
 import { apiHost } from 'src/environments/environment';
 import { signupDto } from '../../models/dto/signup.dto';
-import { encryptPassword } from '../../utils';
-import { CartService } from '../cart/cart.service';
-import { MatGridTileHeaderCssMatStyler } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
