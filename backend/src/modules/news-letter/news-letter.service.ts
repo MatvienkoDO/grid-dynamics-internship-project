@@ -17,11 +17,12 @@ export class NewsLetterService {
     return await this.newsLetterModel.find().exec();
   }
 
-  async update(id: string, updateNewsLetterDto: NewsLetterDto): Promise<NewsLetter> {
-    await this.newsLetterModel.findByIdAndUpdate(
-      id,
-      updateNewsLetterDto
-    );
-    return this.newsLetterModel.findById(id);
+  async update(id: string, updateNewsLetterDto: NewsLetterDto): Promise<NewsLetter | null> {
+    const options = {
+      new: true,
+    };
+
+    // 'await' here for triggering query
+    return await this.newsLetterModel.findByIdAndUpdate(id, updateNewsLetterDto, options);
   }
 }
