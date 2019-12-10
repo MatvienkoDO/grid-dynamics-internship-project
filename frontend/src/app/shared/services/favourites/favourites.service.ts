@@ -129,7 +129,7 @@ export class FavouritesService {
     localStorage.setItem(localStorageFavouritesKey, JSON.stringify(items));
   }
 
-  public sendNewCartItems() {
+  public sendNewFavouritesItems() {
     const address = `${apiHost}/api/favourites`;
     const body = { newItems: this.items.getValue() };
     const options = { withCredentials: true };
@@ -140,7 +140,7 @@ export class FavouritesService {
       });
   }
 
-  public updateCartItems() {
+  public updateFavouritesItems() {
     const address = `${apiHost}/api/favourites`;
     const body = { items: this.items.getValue() };
     const options = { withCredentials: true };
@@ -151,7 +151,7 @@ export class FavouritesService {
       });
   }
 
-  public getCartItems() {
+  public getFavouritesItems() {
     const address = `${apiHost}/api/favourites`;
     const options = { withCredentials: true };
 

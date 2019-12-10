@@ -54,21 +54,9 @@ export class FavouriteService {
 
   private mergeItems(oldItems: FavouriteItem[], newItems: FavouriteItem[]) {
     const merged = [...oldItems];
-    for (const oldItem of oldItems) {
-      const filtered = newItems.filter(newItem => 
-        oldItem.id === newItem.id &&
-        oldItem.color === newItem.color &&
-        oldItem.size === newItem.size
-      );
-      if (filtered.length) {
-        oldItem.quantity += filtered.reduce((acc, el: FavouriteItem) => acc + el.quantity, 0);
-      }
-    }
     for (const newItem of newItems) {
       const filtered = oldItems.filter(oldItem => 
-        oldItem.id === newItem.id &&
-        oldItem.color === newItem.color &&
-        oldItem.size === newItem.size
+        oldItem.id === newItem.id
       );
       if (!filtered.length) {
         merged.push(newItem);

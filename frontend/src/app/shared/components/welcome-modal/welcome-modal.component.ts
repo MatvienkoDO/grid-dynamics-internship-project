@@ -37,6 +37,7 @@ export class WelcomeModalComponent implements OnInit {
   public logOut() {
     this.cartService.updateCartItems();
     this.cartService.clearCart();
+    this.favouritesService.updateFavouritesItems();
     this.favouritesService.clearFavourites();
     this.authService.logout();
     this.onNoClick();

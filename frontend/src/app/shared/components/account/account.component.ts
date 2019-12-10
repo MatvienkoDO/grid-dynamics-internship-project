@@ -102,8 +102,8 @@ export class AccountComponent implements OnInit {
               this.accountModalService.openWelcomeDialog();
               this.cartService.sendNewCartItems();
               this.cartService.getCartItems();
-              this.favouritesService.sendNewCartItems();
-              this.favouritesService.getCartItems();
+              this.favouritesService.sendNewFavouritesItems();
+              this.favouritesService.getFavouritesItems();
             }
         });
   }
@@ -132,8 +132,8 @@ export class AccountComponent implements OnInit {
               this.accountModalService.openWelcomeDialog();
               this.cartService.sendNewCartItems();
               this.cartService.getCartItems();
-              this.favouritesService.sendNewCartItems();
-              this.favouritesService.getCartItems();
+              this.favouritesService.sendNewFavouritesItems();
+              this.favouritesService.getFavouritesItems();
             }
         });
   }
