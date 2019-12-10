@@ -2,11 +2,12 @@
   <div class="products">
     <div class="filters-mobile-bar" *ngIf="query">
     <p class="title-medium title-medium_primary-color filter-mobile__title">{{ 'filters' | translate }}</p>
-    <input type="checkbox" id="checkbox-filter" class="filter-mobile__checkbox" (click)="toggleProductBlock()">
+    <input type="checkbox" id="checkbox-filter" class="filter-mobile__checkbox"
+      [(ngModel)]="isProductsVisible" >
     <label for="checkbox-filter" class="filter-mobile__arrow bounce">
       <div class="filter-mobile__icon"></div>
     </label>
-    <div class="filter-mobile__container">
+    <div class="filter-mobile__container" *ngIf="!isProductsVisible">
       <app-list-select
         class="filters__filter"
         title="{{ 'categories' | translate }}"
@@ -92,7 +93,7 @@
       </app-list-select>
     </div>
 
-    <div class="cards" id="cards">
+    <div class="cards" id="cards" *ngIf="isProductsVisible" >
       <div class="cards__container">
         <app-loading-indicator
           *ngIf="loading"

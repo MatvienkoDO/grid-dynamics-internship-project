@@ -97,7 +97,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public productsQuantity: number;
   public loading: boolean;
   public query: Query;
-  
+  public isProductsVisible = true;
+
   private readonly subscriptions: Subscription[] = [];
 
   constructor(

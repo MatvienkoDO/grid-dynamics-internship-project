@@ -54,6 +54,15 @@ $gray-light: #a0b3b0;
 .field-wrap {
   position: relative;
   margin-bottom: 20px;
+
+  ::ng-deep .btn-primary {
+    position: absolute;
+    top: 26px;
+    right: 1px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
 }
 
 .top-row {
