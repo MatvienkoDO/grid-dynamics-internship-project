@@ -20,7 +20,7 @@ export class ProductService {
     skip: number = 0,
     limit: number = 4,
     locale: String = 'en',
-    filter?: Filter
+    filter: Filter = {}
   ): Promise<LocalizedProduct[]> {
     let query = null;
     if (filter.search) {
@@ -32,26 +32,26 @@ export class ProductService {
     } else {
       query = this.productModel.find(null, null, { skip, limit });
     }
-    if (filter) {
-      if (filter.category) {
-        query.where('category').equals(filter.category);
-      }
-      if (Number.isInteger(filter.minPrice)) {
-        query.where('price').gte(filter.minPrice);
-      }
-      if (Number.isInteger(filter.maxPrice)) {
-        query.where('price').lte(filter.maxPrice);
-      }
-      if (filter.brands) {
-        query.where('brand').in(filter.brands);
-      }
-      if (filter.sizes) {
-        query.where('sizes').elemMatch({ $in: filter.sizes });
-      }
-      if (filter.search) {
-        query.sort({ score: { $meta: "textScore" }});
-      }
+
+    if (filter.category) {
+      query.where('category').equals(filter.category);
     }
+    if (Number.isInteger(filter.minPrice)) {
+      query.where('price').gte(filter.minPrice);
+    }
+    if (Number.isInteger(filter.maxPrice)) {
+      query.where('price').lte(filter.maxPrice);
+    }
+    if (filter.brands) {
+      query.where('brand').in(filter.brands);
+    }
+    if (filter.sizes) {
+      query.where('sizes').elemMatch({ $in: filter.sizes });
+    }
+    if (filter.search) {
+      query.sort({ score: { $meta: "textScore" }});
+    }
+
     const products = await query;
     return this.getLocalizedProducts(locale, products);
   }
