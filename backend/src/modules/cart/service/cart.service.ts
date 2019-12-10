@@ -4,19 +4,40 @@ import { InjectModel } from '@nestjs/mongoose';
 
 
 import { CartItem, Cart } from '../models/cart.interface';
+import { Product } from 'src/modules/product/product.interface';
 
 @Injectable()
 export class CartService {
   constructor(
-    @InjectModel('Carts') private readonly cartModel: Model<Cart>
+    @InjectModel('Carts') private readonly cartModel: Model<Cart>,
+    @InjectModel('Product') private readonly productModel: Model<Product>
   ) {}
 
   public async getUserCart(userId: string) {
     const userCart = await this.cartModel.findOne({userId});
-    return userCart ? userCart : {items: []};
+    const responseCart: {userId, items} = {
+      userId: userId,
+      items: await this.getItemsWithPrice(userCart.items),
+    };
+    return userCart ? responseCart : {items: []};
   }
 
-  public async updateUserCart(userId: string, newItems: CartItem[]) {
+  public async updateUserCart(userId: string, items: CartItem[]) {
+    console.log('updating cart items');
+    console.log(items);
+    const cart = await this.cartModel.findOne({userId});
+
+    if (!cart) {
+      const newCart = new this.cartModel({userId, items});
+      return await newCart.save();
+    }
+    return await this.cartModel.findByIdAndUpdate(cart.id, { 
+      userId: cart.userId,
+      items: items,
+    })
+  }
+
+  public async addItemsToUserCart(userId: string, newItems: CartItem[]) {
     const cart = await this.cartModel.findOne({userId});
 
     if (!cart) {
@@ -34,7 +55,7 @@ export class CartService {
     const merged = [...oldItems];
     for (const oldItem of oldItems) {
       const filtered = newItems.filter(newItem => 
-        oldItem.productId === newItem.productId &&
+        oldItem.id === newItem.id &&
         oldItem.color === newItem.color &&
         oldItem.size === newItem.size
       );
@@ -44,7 +65,7 @@ export class CartService {
     }
     for (const newItem of newItems) {
       const filtered = oldItems.filter(oldItem => 
-        oldItem.productId === newItem.productId &&
+        oldItem.id === newItem.id &&
         oldItem.color === newItem.color &&
         oldItem.size === newItem.size
       );
@@ -53,5 +74,23 @@ export class CartService {
       }
     }
     return merged;
+  }
+
+  private async getItemsWithPrice(items: CartItem[]) {
+    const result = [];
+    for (const item of items) {
+      const price = await this.productModel.findById(item.id);
+      result.push({
+        id: item.id,
+        title: item.title, 
+        size: item.size,
+        color: item.color,
+        quantity: item.quantity,
+        image: item.image,
+        price: price.price
+      });
+    }
+
+    return result;
   }
 }

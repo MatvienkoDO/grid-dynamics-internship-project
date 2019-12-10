@@ -39,7 +39,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         const info: any | null = error.error;
-        console.log(info);
+
         if (error.status === 0) {
           this.notificationService.error(
             this.getNotificationServiceMessage('noInternet'));
@@ -60,10 +60,11 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.getNotificationServiceMessage('emailIsNotUnique'));
             this.errorsService.pushError(Error.Target.SignUp, info.message);
 
-        } else if (info.status === 'error') {
-          // this.notificationService.error(
-          //   this.getNotificationServiceMessage('invalid Email/Password'));
-            this.errorsService.pushError(Error.Target.LogIn, info.message);
+        } else if (info.status === constants.incorrectLoginPasswordPair) {
+          const message = this.getNotificationServiceMessage('incorrectLoginPasswordPair');
+          this.errorsService.pushError(Error.Target.LogIn, message);
+          this.notificationService.error(message);
+
 
         } else if (error.status === 400) {
           this.notificationService.error(
@@ -75,7 +76,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         } else if (error.status === 401) {	
           this.authenticationService.logout();	
-          console.log(error);
 
         } else if (error.status >= 500 && error.status < 600) {
           this.notificationService.error(
@@ -109,8 +109,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
 const errorMessages = {
   noInternet: {
-    en: 'Cart has been cleared',
-    ru: 'Корзина очищена'
+    en: 'There is no Internet connection',
+    ru: 'Отсутствует Интернет соединение'
   },
   notFound: {
     en: 'Product not found',
@@ -143,5 +143,9 @@ const errorMessages = {
   emailIsNotUnique: {
     en: 'Email is not unique',
     ru: 'Данный e-mail уже используется',
-  }
+  },
+  incorrectLoginPasswordPair: {
+    en: 'Invalid login-password pair',
+    ru: 'Неправильный логин и/или пароль',
+  },
 };

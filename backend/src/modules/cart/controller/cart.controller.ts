@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { Controller, Put, Get, UseGuards, Body, Request } from '@nestjs/common';
+import { Controller, Put, Patch, Get, UseGuards, Body, Request } from '@nestjs/common';
 
 import { CartService } from '../service/cart.service';
 import { AuthGuard } from '../../../modules/authentication/guards/auth/auth.guard';
@@ -12,16 +12,23 @@ export class CartController {
     private readonly cartService: CartService,
   ) {}
 
+  @Patch()
+  @UseGuards(AuthGuard)
+  async addNewItems(@Request() request: express.Request, @Body() body: {newItems: CartItem[]}) {
+    const userId = request.signedCookies[userIdCookieKey];
+    return await this.cartService.addItemsToUserCart(userId, body.newItems);
+  }
+
   @Put()
   @UseGuards(AuthGuard)
-  async create(@Request() request: express.Request, @Body() body: {newItems: CartItem[]}) {
+  async updateItems(@Request() request: express.Request, @Body() body: {items: CartItem[]}) {
     const userId = request.signedCookies[userIdCookieKey];
-    return await this.cartService.updateUserCart(userId, body.newItems);
+    return await this.cartService.updateUserCart(userId, body.items);
   }
 
   @Get()
   @UseGuards(AuthGuard)
-  async findAll(@Request() request: express.Request) {
+  async getItems(@Request() request: express.Request) {
     const userId = request.signedCookies[userIdCookieKey];
     return await this.cartService.getUserCart(userId);
   }
