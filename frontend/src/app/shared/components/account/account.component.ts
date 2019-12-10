@@ -9,6 +9,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
 import { ErrorsService } from '../../services/errors/errors.service';
 import { Error } from '../../models';
+import { CartService } from '../../services';
 
 @Component({
   selector: 'app-account',
@@ -46,6 +47,7 @@ export class AccountComponent implements OnInit {
     private readonly authenticationService: AuthenticationService,
     private readonly accountModalService: AccountModalService,
     private readonly errorsService: ErrorsService,
+    private readonly cartService: CartService,
   ) {
     this.errorMessageSubject = new BehaviorSubject<string>('');
     this.loginErrorMessage$ = this.errorsService.getCertainErrors(Error.Target.LogIn);
@@ -97,6 +99,8 @@ export class AccountComponent implements OnInit {
             } else {
               this.accountModalService.emptyDialogStack();
               this.accountModalService.openWelcomeDialog();
+              this.cartService.sendNewCartItems();
+              this.cartService.getCartItems();
             }
         });
   }
@@ -123,6 +127,8 @@ export class AccountComponent implements OnInit {
             } else {
               this.accountModalService.emptyDialogStack();
               this.accountModalService.openWelcomeDialog();
+              this.cartService.sendNewCartItems();
+              this.cartService.getCartItems();
             }
         });
   }
