@@ -55,8 +55,13 @@ export class ProductService {
     return this.getLocalizedProducts(locale, products);
   }
 
-  async findById(id: string, locale: string = 'en'): Promise<LocalizedProduct> {
-    return this.getLocalizedProduct(locale, await this.productModel.findById(id));
+  async findById(id: string, locale: string = 'en'): Promise<LocalizedProduct | null> {
+    const product: Product | null = await this.productModel.findById(id);
+    if (!product) {
+      return null;
+    }
+
+    return this.getLocalizedProduct(locale, product);
   }
 
   async findAllBestSales(skip: number = 0, limit: number = 3, locale: string = 'en'): Promise<LocalizedProduct[]> {
