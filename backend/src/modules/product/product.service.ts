@@ -22,24 +22,23 @@ export class ProductService {
     locale: String = 'en',
     filter: Filter = {}
   ): Promise<LocalizedProduct[]> {
-    let query = null;
-    if (filter.search) {
-      query = this.productModel.find(
-        { $text: { $search: filter.search }},
-        { score: { $meta: "textScore" } },
-        { skip, limit }
-      );
-    } else {
-      query = this.productModel.find(null, null, { skip, limit });
-    }
+    const conditions = filter.search
+      ? { $text: { $search: filter.search }}
+      : null;
+    const projection = filter.search
+      ? { score: { $meta: "textScore" } }
+      : null;
+    const options = { skip, limit };
+
+    const query = this.productModel.find(conditions, projection, options);
 
     if (filter.category) {
       query.where('category').equals(filter.category);
     }
-    if (Number.isInteger(filter.minPrice)) {
+    if (filter.minPrice !== undefined && Number.isInteger(filter.minPrice)) {
       query.where('price').gte(filter.minPrice);
     }
-    if (Number.isInteger(filter.maxPrice)) {
+    if (filter.maxPrice !== undefined && Number.isInteger(filter.maxPrice)) {
       query.where('price').lte(filter.maxPrice);
     }
     if (filter.brands) {
