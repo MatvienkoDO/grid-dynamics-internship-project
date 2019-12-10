@@ -7,7 +7,7 @@
     <label for="checkbox-filter" class="filter-mobile__arrow bounce">
       <div class="filter-mobile__icon"></div>
     </label>
-    <div class="filter-mobile__container" *ngIf="!isProductsVisible">
+    <div class="filter-mobile__container" *ngIf="isProductsVisible">
       <app-list-select
         class="filters__filter"
         title="{{ 'categories' | translate }}"
@@ -93,7 +93,7 @@
       </app-list-select>
     </div>
 
-    <div class="cards" id="cards" *ngIf="isProductsVisible" >
+    <div class="cards" id="cards" *ngIf="!isProductsVisible" >
       <div class="cards__container">
         <app-loading-indicator
           *ngIf="loading"

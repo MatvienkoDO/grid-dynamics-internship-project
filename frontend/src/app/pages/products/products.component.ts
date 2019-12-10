@@ -2,15 +2,13 @@ import {
   Component,
   OnInit,
   OnDestroy,
-  ChangeDetectionStrategy,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Subscription, Observable, from } from 'rxjs';
-import { switchMap, debounceTime, map, share, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
-import { ProductsService, CartService, FavouritesService, ProductFilterService, Query } from 'src/app/shared/services';
+import { CartService, FavouritesService, ProductFilterService, Query } from 'src/app/shared/services';
 
 export interface Query {
   filter: Filter;
@@ -32,7 +30,6 @@ export interface UrlQuery {
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 
@@ -97,20 +94,18 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public productsQuantity: number;
   public loading: boolean;
   public query: Query;
-  public isProductsVisible = true;
+  public isProductsVisible = false;
 
   private readonly subscriptions: Subscription[] = [];
 
   constructor(
-    private readonly activatedRoute: ActivatedRoute,
-    private readonly productsService: ProductsService,
     private readonly router: Router,
     private readonly cartService: CartService,
     private readonly favouritesService: FavouritesService,
     private readonly productFilterService: ProductFilterService,
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.subscriptions.push(
       this.productFilterService.products$.subscribe((products) =>
         this.products = products
@@ -124,7 +119,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.productFilterService.query$.subscribe((query) =>
         this.query = query
       ),
-    )
+    );
   }
 
   ngOnDestroy() {
@@ -189,12 +184,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   public changeLoading(newValue: boolean) {
     this.productFilterService.changeLoading(newValue);
-  }
-
-  public toggleProductBlock() {
-    const checkBox = document.getElementById("checkbox-filter") as HTMLInputElement;
-    const cardBlock = document.getElementById("cards") as HTMLElement;
-    (checkBox.checked) ? cardBlock.style.display = "none" : cardBlock.style.display = "block";
   }
 
   public createQueryFromUrlQuery(urlQuery: UrlQuery) : Query {
