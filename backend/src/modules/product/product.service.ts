@@ -104,32 +104,32 @@ export class ProductService {
     return this.getLocalizedProduct(locale, updatedProduct);
   }
 
-  async getCount(filter?: Filter): Promise<number> {
-    let query = null;
-    if (filter.search) {
-      query = this.productModel.count(
-        { $text: { $search: filter.search }}
-      );
-    } else {
-      query = this.productModel.count(null);
+  async getCount(filter: Filter = {}): Promise<number> {
+    const searchConditions = {
+      $text: {
+        $search: filter.search,
+      },
+    };
+    const conditions = filter.search ? searchConditions : null;
+
+    const query = this.productModel.count(conditions);
+
+    if (filter.category) {
+      query.where('category').equals(filter.category);
     }
-    if (filter) {
-      if (filter.category) {
-        query.where('category').equals(filter.category);
-      }
-      if (Number.isInteger(filter.minPrice)) {
-        query.where('price').gte(filter.minPrice);
-      }
-      if (Number.isInteger(filter.maxPrice)) {
-        query.where('price').lte(filter.maxPrice);
-      }
-      if (filter.brands) {
-        query.where('brand').in(filter.brands);
-      }
-      if (filter.sizes) {
-        query.where('sizes').elemMatch({ $in: filter.sizes });
-      }
+    if (filter.minPrice !== undefined && Number.isInteger(filter.minPrice)) {
+      query.where('price').gte(filter.minPrice);
     }
+    if (filter.maxPrice !== undefined && Number.isInteger(filter.maxPrice)) {
+      query.where('price').lte(filter.maxPrice);
+    }
+    if (filter.brands) {
+      query.where('brand').in(filter.brands);
+    }
+    if (filter.sizes) {
+      query.where('sizes').elemMatch({ $in: filter.sizes });
+    }
+
     return query;
   }
 
