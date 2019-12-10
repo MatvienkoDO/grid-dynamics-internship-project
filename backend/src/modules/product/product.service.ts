@@ -148,33 +148,29 @@ export class ProductService {
       .map(product => this.getLocalizedProduct(locale, product));
   }
 
-  private getLocalizedProduct(locale: string = 'en', dbProduct: Product): LocalizedProduct {
-    let localeName = null;
-    for (const elem of dbProduct.name) {
-      if (elem.locale === locale) {
-        localeName = elem.value;
-        break;
-      }
-    }
-    let localeSubtitle = null;
-    for (const elem of dbProduct.subtitle) {
-      if (elem.locale === locale) {
-        localeSubtitle = elem.value;
-        break;
-      }
-    }
-    let localeDescription = null;
-    for (const elem of dbProduct.description) {
-      if (elem.locale === locale) {
-        localeDescription = elem.value;
-        break;
-      }
-    }
+  private getLocalizedProduct(requiredLocale: string = 'en', dbProduct: Product): LocalizedProduct {
+
+    const bySpecifiedLocale = ({ locale }) => locale === requiredLocale;
+    const byDefaultLocale = ({ locale }) => locale === 'en';
+    const defaultValue = '';
+
+    const name = dbProduct.name.find(bySpecifiedLocale)?.value
+      ?? dbProduct.name.find(byDefaultLocale)?.value
+      ?? defaultValue;
+
+    const subtitle = dbProduct.subtitle.find(bySpecifiedLocale)?.value
+      ?? dbProduct.subtitle.find(byDefaultLocale)?.value
+      ?? defaultValue;
+
+    const description = dbProduct.description.find(bySpecifiedLocale)?.value
+      ?? dbProduct.description.find(byDefaultLocale)?.value
+      ?? defaultValue;
+
     return new LocalizedProduct(
       dbProduct.id,
-      localeName,
-      localeSubtitle,
-      localeDescription,
+      name,
+      subtitle,
+      description,
       dbProduct.category,
       dbProduct.brand,
       dbProduct.price,
@@ -208,7 +204,7 @@ export class ProductService {
       {
         _id: { $ne: id },
         category,
-        brand: { $ne: brand }
+        brand: { $ne: brand },
       },
     );
     const sameBrand = this.productModel.find(
