@@ -1,4 +1,5 @@
-<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+<mat-expansion-panel 
+[expanded]="panelOpenState">
   <mat-expansion-panel-header>
     <span class="list-select__title">{{title}}</span>
   </mat-expansion-panel-header>
