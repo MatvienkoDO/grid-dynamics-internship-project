@@ -87,13 +87,21 @@ export class ProductService {
   async update(
     id: string,
     locale: string = 'en',
-    updateProductDto: ProductDto
-  ): Promise<LocalizedProduct> {
-    await this.productModel.findByIdAndUpdate(
-      id,
-      updateProductDto
-    );
-    return this.getLocalizedProduct(locale, await this.productModel.findById(id));
+    updateProductDto: ProductDto,
+  ): Promise<LocalizedProduct | null> {
+
+    const options = {
+      new: true,
+    };
+
+    const updatedProduct = await this.productModel
+      .findByIdAndUpdate(id, updateProductDto, options);
+
+    if (!updatedProduct) {
+      return null;
+    }
+
+    return this.getLocalizedProduct(locale, updatedProduct);
   }
 
   async getCount(filter?: Filter): Promise<number> {
