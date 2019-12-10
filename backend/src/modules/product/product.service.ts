@@ -64,23 +64,33 @@ export class ProductService {
     return this.getLocalizedProduct(locale, product);
   }
 
-  async findAllBestSales(skip: number = 0, limit: number = 3, locale: string = 'en'): Promise<LocalizedProduct[]> {
-    const bestSalesProducts = await this.productModel.find(
-      null,
-      null,
-      { skip, limit }
-    );
+  async findAllBestSales(
+    skip: number = 0,
+    limit: number = 3,
+    locale: string = 'en',
+  ): Promise<LocalizedProduct[]> {
+
+    const bestSalesProducts = await this.productModel.find(null, null, { skip, limit });
     return this.getLocalizedProducts(locale, bestSalesProducts);
   }
 
-  async findAllSliders(skip: number = 0, limit: number = 3, locale: string = 'en'): Promise<LocalizedProduct[]> {
-    const productsForSlider = await this.productModel.find(
-      {
-        sliderImage: { $ne: null }
+  async findAllSliders(
+    skip: number = 0,
+    limit: number = 3,
+    locale: string = 'en',
+  ): Promise<LocalizedProduct[]> {
+
+    const conditions = {
+      sliderImage: {
+        $ne: null,
       },
-      null,
-      { skip, limit }
-    );
+    };
+    const options = {
+      skip,
+      limit,
+    };
+
+    const productsForSlider = await this.productModel.find(conditions, null, options);
     return this.getLocalizedProducts(locale, productsForSlider);
   }
 
