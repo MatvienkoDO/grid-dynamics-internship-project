@@ -166,8 +166,17 @@ export class ProductService {
     );
   }
 
-  async findRelatedProducts(id: string, locale: string = 'en') {
-    const { category, brand } = await this.productModel.findById(Types.ObjectId(id));
+  async findRelatedProducts(
+    id: string,
+    locale: string = 'en',
+  ): Promise<LocalizedProduct[] | null> {
+    const product: Product | null = await this.productModel.findById(Types.ObjectId(id));
+
+    if (!product) {
+      return null;
+    }
+
+    const { category, brand } = product;
 
     const sameCategoryAndBrand = this.productModel.find(
       {
