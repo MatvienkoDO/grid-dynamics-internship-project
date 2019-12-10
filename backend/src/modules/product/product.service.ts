@@ -19,8 +19,8 @@ export class ProductService {
   async findAll(
     skip: number = 0,
     limit: number = 4,
-    locale: String = 'en',
-    filter: Filter = {}
+    locale: string = 'en',
+    filter: Filter = {},
   ): Promise<LocalizedProduct[]> {
     const conditions = filter.search
       ? { $text: { $search: filter.search }}
@@ -138,7 +138,7 @@ export class ProductService {
       .map(product => this.getLocalizedProduct(locale, product));
   }
 
-  private getLocalizedProduct(locale: String = 'en', dbProduct: Product): LocalizedProduct {
+  private getLocalizedProduct(locale: string = 'en', dbProduct: Product): LocalizedProduct {
     let localeName = null;
     for (const elem of dbProduct.name) {
       if (elem.locale === locale) {
