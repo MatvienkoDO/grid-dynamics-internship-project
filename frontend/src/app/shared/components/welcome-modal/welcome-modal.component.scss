@@ -10,6 +10,10 @@ $main-account-color-light: lighten($main-account-color, 5%);
 $main-account-color-dark: darken($main-account-color, 5%);
 $gray-light: #a0b3b0;
 
+.fieldset {
+  border: none;
+}
+
 .profile-form {
   padding: 0 40px 20px;
   @include for-500px {
@@ -53,7 +57,7 @@ $gray-light: #a0b3b0;
 
   ::ng-deep .btn-primary {
     position: absolute;
-    top: 28px;
+    top: 30px;
     right: 1px;
     background-color: transparent;
     border: none;

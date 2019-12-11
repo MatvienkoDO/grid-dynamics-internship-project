@@ -1,12 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 import { User } from '../../models';
 import { AuthenticationService, UserService, CartService } from '../../services';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../../helpers/must-match.validator';
 import { catchError } from 'rxjs/operators';
+import { AccountModalService } from '../../services/account-modal/account-modal.service';
 
 @Component({
   selector: 'app-welcome-modal',
@@ -18,11 +19,11 @@ export class WelcomeModalComponent implements OnInit {
   public static readonly config: MatDialogConfig<WelcomeModalComponent> = {
     width: '550px',
   };
-
+  private errorMessageSubject: BehaviorSubject<string>;
   public currentUser$: Observable<User>;
 
   public submitted = false;
-  public loading = false;
+  public isDisabled = true;
 
   profileForm = new FormGroup({
     firstName: new FormControl(''),
@@ -38,7 +39,10 @@ export class WelcomeModalComponent implements OnInit {
     private readonly userService: UserService,
     private readonly cartService: CartService,
     private formBuilder: FormBuilder,
-  ) { }
+    private readonly accountModalService: AccountModalService,
+  ) {
+    this.errorMessageSubject = new BehaviorSubject<string>('');
+  }
 
   ngOnInit() {
     this.currentUser$ = this.userService.getMe();
@@ -66,34 +70,34 @@ export class WelcomeModalComponent implements OnInit {
     this.onNoClick();
   }
 
-  get profileFormFormControls() { return this.profileForm.controls; }
+  get profileFormControls() { return this.profileForm.controls; }
 
   onSubmitprofileForm(event: Event) {
     event.preventDefault();
     this.submitted = true;
     if (this.profileForm.invalid) {
-        return;
+      return;
     }
-    this.loading = true;
     this.authService.signup(this.profileForm.value)
-        .pipe(
-          catchError(er => {
-            this.loading = false;
-            return of();
-          }),
-        )
-        .subscribe(
-          responseBody => {
-            this.loading = false;
-            if (responseBody && responseBody.status === 'error') {
-              // this.errorMessageSubject.next(responseBody.message);
-            } else {
-              // this.accountModalService.emptyDialogStack();
-              // this.accountModalService.openWelcomeDialog();
-              this.cartService.sendNewCartItems();
-              this.cartService.getCartItems();
-            }
+      .pipe(
+        catchError(er => {
+          return of();
+        }),
+      )
+      .subscribe(
+        responseBody => {
+          if (responseBody && responseBody.status === 'error') {
+            this.errorMessageSubject.next(responseBody.message);
+          } else {
+            this.accountModalService.emptyDialogStack();
+            this.cartService.sendNewCartItems();
+            this.cartService.getCartItems();
+          }
         });
+  }
+
+  formEnable(): void {
+    this.isDisabled = false;
   }
 
 }
