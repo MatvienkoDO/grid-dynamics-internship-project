@@ -4,7 +4,7 @@
 @import 'picture';
 @import 'button';
 @import 'spinner';
-@import 'colors';
+@import '_colors';
 
 $main-account-color: $primary-color;
 $main-account-color-light: lighten($main-account-color, 5%);
