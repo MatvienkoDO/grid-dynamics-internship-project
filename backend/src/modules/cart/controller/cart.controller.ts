@@ -3,7 +3,7 @@ import { Controller, Put, Patch, Get, UseGuards, Body, Request } from '@nestjs/c
 
 import { CartService } from '../service/cart.service';
 import { AuthGuard } from '../../../modules/authentication/guards/auth/auth.guard';
-import { CartItem } from '../models/cart.interface';
+import { CartItem, PricedCartItem } from '../models/cart.interface';
 import { userIdCookieKey } from '../../../shared/constants';
 
 @Controller('api/cart')
@@ -30,6 +30,11 @@ export class CartController {
   @UseGuards(AuthGuard)
   async getItems(@Request() request: express.Request) {
     const userId = request.signedCookies[userIdCookieKey];
-    return await this.cartService.getUserCart(userId);
+
+    const items: PricedCartItem[] = await this.cartService.getUserCartItems(userId) ?? [];
+
+    return {
+      items,
+    };
   }
 }
