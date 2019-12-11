@@ -1,3 +1,6 @@
 export class NewsLetterDto {
-  readonly email: string;
+
+  constructor(
+    readonly email: string,
+  ) { }
 }
