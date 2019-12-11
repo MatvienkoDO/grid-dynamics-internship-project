@@ -76,21 +76,27 @@ export class CartService {
     return merged;
   }
 
-  private async getItemsWithPrice(items: CartItem[]) {
-    const result = [];
-    for (const item of items) {
-      const price = await this.productModel.findById(item.id);
-      result.push({
-        id: item.id,
-        title: item.title, 
-        size: item.size,
-        color: item.color,
-        quantity: item.quantity,
-        image: item.image,
-        price: price.price
-      });
-    }
+  private async getPricedItems(items: CartItem[]): Promise<PricedCartItem[]> {
+    const itemsIds = items.map(({ id }) => id);
 
-    return result;
+    const conditions = {
+      id: {
+        $in: itemsIds,
+      },
+    };
+    const products = await this.productModel.find(conditions);
+
+    const itemProductPairs: Pairs<CartItem, Product> = innerJoin(
+      items,
+      products,
+      (item, product) => item.id === product.id,
+    );
+
+    const priced: PricedCartItem[] = itemProductPairs.map(([item, product]) => ({
+      ...item,
+      price: product.price,
+    }));
+
+    return priced;
   }
 }
