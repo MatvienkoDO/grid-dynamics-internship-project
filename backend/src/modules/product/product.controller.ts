@@ -47,32 +47,32 @@ export class ProductController {
 
   @Get('by-id/:id')
   async findById(@Headers() headers, @Param('id') id: string) {
-    const product = this.productService.findById(id, headers.locale);
-    try {
-      return new ProductResponse(await product);
-    } catch (err) {
-      // Mongoose returns an error with name CastError when document not found
-      if (err.name === 'CastError') {
-        throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
-      }
+    const product = await this.productService.findById(id, headers.locale);
 
-      throw err;
+    if (!product) {
+      throw new HttpException({
+        status: constants.incorrectIdStatus,
+      }, HttpStatus.BAD_REQUEST);
     }
+
+    return new ProductResponse(product);
   }
 
   @Patch(':id')
-  async update(@Headers() headers, @Param('id') id: string, @Body() updateProductDto: ProductDto) {
-    try {
-      const data = await this.productService.update(id, headers.locale, updateProductDto);
-      return new ProductResponse(data);
-    } catch (err) {
-      // Mongoose returns an error with name CastError when document not found
-      if (err.name === 'CastError') {
-        throw new HttpException('Resource not found', HttpStatus.NOT_FOUND);
-      }
-      
-      throw err;
+  async update(
+    @Headers() headers,
+    @Param('id') id: string,
+    @Body() updateProductDto: ProductDto,
+  ) {
+    const updatedProduct = await this.productService.update(id, headers.locale, updateProductDto);
+
+    if (!updatedProduct) {
+      throw new HttpException({
+        status: constants.incorrectIdStatus,
+      }, HttpStatus.BAD_REQUEST);
     }
+
+    return new ProductResponse(updatedProduct);
   }
 
   @Get('best-sales')
@@ -90,7 +90,8 @@ export class ProductController {
 
   @Get('related/:id')
   async findRelatedProducts(@Headers() headers, @Param('id') id: string) {
-    const data = await this.productService.findRelatedProducts(id, headers.locale);
-    return new ProductResponse(data);
+    const related = await this.productService.findRelatedProducts(id, headers.locale);
+
+    return new ProductResponse(related ?? []);
   }
 }
