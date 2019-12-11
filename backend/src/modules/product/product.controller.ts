@@ -37,8 +37,11 @@ export class ProductController {
       query.brands,
       query.search,
     );
-    const products = this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale, filter);
+
     const quantity = this.productService.getCount(filter);
+    const products = this.productService
+      .findAll(Number(query.skip), Number(query.limit), headers.locale, filter);
+
     return new ProductResponse(await products, await quantity);
   }
 
