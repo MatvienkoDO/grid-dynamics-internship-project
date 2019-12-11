@@ -1,5 +1,5 @@
-import { Document } from "mongoose";
-import { Image } from "src/modules/product/localizedProduct.model";
+import { Document } from 'mongoose';
+import { Image } from 'src/modules/product/localizedProduct.model';
 
 export interface CartItem {
   id: string;

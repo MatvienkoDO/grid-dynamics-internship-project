@@ -10,11 +10,12 @@ export class NewsLetterService {
 
   async create(createNewsLetterDto: NewsLetterDto): Promise<NewsLetter> {
     const creatednNewsLetter = new this.newsLetterModel(createNewsLetterDto);
-    return await creatednNewsLetter.save();
+
+    return creatednNewsLetter.save();
   }
 
   async findAll(): Promise<NewsLetter[]> {
-    return await this.newsLetterModel.find().exec();
+    return this.newsLetterModel.find().exec();
   }
 
   async update(id: string, updateNewsLetterDto: NewsLetterDto): Promise<NewsLetter | null> {
@@ -22,7 +23,6 @@ export class NewsLetterService {
       new: true,
     };
 
-    // 'await' here for triggering query
-    return await this.newsLetterModel.findByIdAndUpdate(id, updateNewsLetterDto, options);
+    return this.newsLetterModel.findByIdAndUpdate(id, updateNewsLetterDto, options).exec();
   }
 }

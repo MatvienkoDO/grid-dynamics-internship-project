@@ -24,6 +24,7 @@ export class ProductController {
   @Post()
   async create(@Headers() headers, @Body() createProductDto: ProductDto) {
     const data = await this.productService.create(createProductDto, headers.locale);
+
     return new ProductResponse(data);
   }
 
