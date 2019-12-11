@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, of, BehaviorSubject } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { User } from '../../models';
 import { AuthenticationService, UserService, CartService } from '../../services';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../../helpers/must-match.validator';
-import { catchError } from 'rxjs/operators';
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
 
 @Component({

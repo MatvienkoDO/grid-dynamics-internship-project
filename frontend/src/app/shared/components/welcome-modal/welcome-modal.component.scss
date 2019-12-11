@@ -4,6 +4,7 @@
 @import 'picture';
 @import 'button';
 @import 'spinner';
+@import 'colors';
 
 $main-account-color: $primary-color;
 $main-account-color-light: lighten($main-account-color, 5%);
@@ -21,7 +22,7 @@ $gray-light: #a0b3b0;
   }
 
   &__label {
-    @include fonts (#34404b, "Open Sans", 12px, 400);
+    @include fonts ($form-input-color, "Open Sans", 12px, 400);
     text-transform: capitalize;
     pointer-events: none;
 
@@ -37,7 +38,7 @@ $gray-light: #a0b3b0;
     display: block;
     width: 100%;
     padding: 5px 10px;
-    @include fonts (#34404b, "Open Sans", 14px, 400);
+    @include fonts ($form-input-color, "Open Sans", 14px, 400);
     background: none;
     background-image: none;
     border: 1px solid $gray-light;
@@ -84,13 +85,13 @@ $gray-light: #a0b3b0;
 }
 
 .invalid-feedback {
-  @include fonts (#f44336, "Open Sans", 12px, 400);
+  @include fonts ($error-color, "Open Sans", 12px, 400);
   font-style: italic;
 }
 
 .ng-valid,
 .ng-valid.required {
-  border-color: #2fb759;
+  border-color: $sucess-color;
 }
 
 .ng-invalid:not(form) {
