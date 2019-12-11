@@ -10,18 +10,19 @@ export class NewsLetterService {
 
   async create(createNewsLetterDto: NewsLetterDto): Promise<NewsLetter> {
     const creatednNewsLetter = new this.newsLetterModel(createNewsLetterDto);
-    return await creatednNewsLetter.save();
+
+    return creatednNewsLetter.save();
   }
 
   async findAll(): Promise<NewsLetter[]> {
-    return await this.newsLetterModel.find().exec();
+    return this.newsLetterModel.find().exec();
   }
 
-  async update(id: string, updateNewsLetterDto: NewsLetterDto): Promise<NewsLetter> {
-    await this.newsLetterModel.findByIdAndUpdate(
-      id,
-      updateNewsLetterDto
-    );
-    return this.newsLetterModel.findById(id);
+  async update(id: string, updateNewsLetterDto: NewsLetterDto): Promise<NewsLetter | null> {
+    const options = {
+      new: true,
+    };
+
+    return this.newsLetterModel.findByIdAndUpdate(id, updateNewsLetterDto, options).exec();
   }
 }

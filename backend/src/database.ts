@@ -10,5 +10,5 @@ const clusterAddress = mode === Mode.Production
 const databaseUri = `${clusterAddress}/${databaseName}`;
 
 export {
-  databaseUri
-}
+  databaseUri,
+};
