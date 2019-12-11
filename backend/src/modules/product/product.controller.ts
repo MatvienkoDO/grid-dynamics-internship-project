@@ -1,9 +1,21 @@
-import { Controller, Post, Get, Patch, Body, Query, Headers, Param, HttpStatus, HttpException } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Body,
+  Query,
+  Headers,
+  Param,
+  HttpStatus,
+  HttpException,
+} from '@nestjs/common';
 
 import { ProductService } from './product.service';
 import { ProductDto } from './dto/product.dto';
 import { ProductResponse } from './product.response';
 import { Filter } from './filter.model';
+import * as constants from '../../shared/constants';
 
 @Controller('api/products')
 export class ProductController {
@@ -23,7 +35,7 @@ export class ProductController {
       Number(query.maxPrice),
       query.sizes,
       query.brands,
-      query.search
+      query.search,
     );
     const products = this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale, filter);
     const quantity = this.productService.getCount(filter);
@@ -67,7 +79,8 @@ export class ProductController {
 
   @Get('for-slider')
   async findForSlider(@Headers() headers, @Query() query) {
-    const products = this.productService.findAllSliders(Number(query.skip), Number(query.limit), headers.locale);
+    const products = this.productService
+      .findAllSliders(Number(query.skip), Number(query.limit), headers.locale);
 
     return new ProductResponse(await products);
   }
