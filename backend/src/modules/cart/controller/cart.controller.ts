@@ -10,20 +10,22 @@ import { userIdCookieKey } from '../../../shared/constants';
 export class CartController {
   constructor(
     private readonly cartService: CartService,
-  ) {}
+  ) { }
 
   @Patch()
   @UseGuards(AuthGuard)
-  async addNewItems(@Request() request: express.Request, @Body() body: {newItems: CartItem[]}) {
+  async addNewItems(@Request() request: express.Request, @Body() body: { newItems: CartItem[] }) {
     const userId = request.signedCookies[userIdCookieKey];
-    return await this.cartService.addItemsToUserCart(userId, body.newItems);
+
+    return this.cartService.addItemsToUserCart(userId, body.newItems);
   }
 
   @Put()
   @UseGuards(AuthGuard)
-  async updateItems(@Request() request: express.Request, @Body() body: {items: CartItem[]}) {
+  async updateItems(@Request() request: express.Request, @Body() body: { items: CartItem[] }) {
     const userId = request.signedCookies[userIdCookieKey];
-    return await this.cartService.updateUserCart(userId, body.items);
+
+    return this.cartService.updateUserCart(userId, body.items);
   }
 
   @Get()

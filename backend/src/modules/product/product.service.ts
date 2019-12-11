@@ -13,6 +13,7 @@ export class ProductService {
 
   async create(createProductDto: ProductDto, locale: string = 'en'): Promise<LocalizedProduct> {
     const createdProduct = new this.productModel(createProductDto);
+
     return this.getLocalizedProduct(locale, await createdProduct.save());
   }
 
@@ -52,6 +53,7 @@ export class ProductService {
     }
 
     const products = await query;
+
     return this.getLocalizedProducts(locale, products);
   }
 
@@ -71,6 +73,7 @@ export class ProductService {
   ): Promise<LocalizedProduct[]> {
 
     const bestSalesProducts = await this.productModel.find(null, null, { skip, limit });
+
     return this.getLocalizedProducts(locale, bestSalesProducts);
   }
 
@@ -91,6 +94,7 @@ export class ProductService {
     };
 
     const productsForSlider = await this.productModel.find(conditions, null, options);
+
     return this.getLocalizedProducts(locale, productsForSlider);
   }
 
@@ -216,6 +220,7 @@ export class ProductService {
     );
 
     const related = (await sameCategoryAndBrand).concat(await sameCategory, await sameBrand);
+
     return this.getLocalizedProducts(locale, related);
   }
 }
