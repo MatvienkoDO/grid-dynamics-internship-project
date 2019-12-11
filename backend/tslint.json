@@ -18,7 +18,13 @@
     "prefer-const": true,
     "object-literal-shorthand": true,
     "no-string-throw": true,
-    "no-invalid-template-strings": true
+    "no-invalid-template-strings": true,
+    "no-return-await": true,
+    "arrow-return-shorthand": true,
+    "no-unnecessary-callback-wrapper": true,
+    "return-undefined": true,
+    "newline-before-return": true,
+    "no-object-literal-type-assertion": true
   },
   "rulesDirectory": []
 }
