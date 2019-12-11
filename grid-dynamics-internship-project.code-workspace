@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "path": "frontend"
+    },
+    {
+      "path": "backend"
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "angular.ng-template",
+      "johnpapa.angular2",
+      "syler.sass-indented",
+      "ms-vscode.vscode-typescript-tslint-plugin",
+      "gruntfuggly.todo-tree",
+    ]
+  }
+}

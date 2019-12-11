@@ -4,16 +4,16 @@ import { Image } from './localizedProduct.model';
 export interface Product extends Document {
   id: string;
   name: {
-      locale: string,
-      value: string
+    locale: string,
+    value: string,
   }[];
   subtitle: {
     locale: string,
-    value: string
+    value: string,
   }[];
   description: {
     locale: string,
-    value: string
+    value: string,
   }[];
   category: string;
   brand: string;

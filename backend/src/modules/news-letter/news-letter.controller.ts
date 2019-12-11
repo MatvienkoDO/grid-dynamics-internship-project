@@ -1,8 +1,18 @@
-import { Controller, Post, Get, Patch, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Patch,
+  Body,
+  Param,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 
 import { NewsLetterService } from './news-letter.service';
 import { NewsLetterDto } from './dto/newsLetter.dto';
 import { NewsLetter } from './news-letter.interface';
+import * as constants from '../../shared/constants';
 
 @Controller('api/news-letter')
 export class NewsLetterController {
@@ -19,10 +29,19 @@ export class NewsLetterController {
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
-    @Body() updateNewsLetterDto: NewsLetterDto
+    @Body() updateNewsLetterDto: NewsLetterDto,
   ): Promise<NewsLetter> {
-    return this.newsLetterService.update(id, updateNewsLetterDto);
+
+    const updateResult = await this.newsLetterService.update(id, updateNewsLetterDto);
+
+    if (!updateResult) {
+      throw new HttpException({
+        status: constants.incorrectIdStatus,
+      }, HttpStatus.BAD_REQUEST);
+    }
+
+    return updateResult;
   }
 }
