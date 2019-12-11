@@ -29,7 +29,6 @@ export class AccountModalService {
   public openLoginSignup() {
     const dialogRef = this.dialog.open(AccountComponent, {
       width: '550px',
-      height: 'auto',
     });
     this.dialogStack.push(dialogRef);
   }

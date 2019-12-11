@@ -26,7 +26,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
 
   public readonly selected$ = new BehaviorSubject<string[]>([]);
 
-   private panelOpenState = false;
+  private panelOpenState = false;
 
   constructor() { }
 

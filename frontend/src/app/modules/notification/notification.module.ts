@@ -3,7 +3,7 @@ import { NotifierOptions, NotifierModule } from 'angular-notifier';
 import { customNotifierOptions } from '../../shared/constants';
 @NgModule({
   imports: [
-    NotifierModule.withConfig(customNotifierOptions as NotifierOptions)
+    NotifierModule.withConfig(customNotifierOptions as any as NotifierOptions)
   ],
   exports: [NotifierModule]
 })

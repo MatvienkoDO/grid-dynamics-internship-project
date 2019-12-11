@@ -8,19 +8,19 @@ import { NotifierService } from 'angular-notifier';
 export class NotificationService {
   constructor(private service: NotifierService ) { }
 
-  success(msg: string) {
-    this.service.notify('success', msg);
+  success(message: string) {
+    this.service.notify('success', message);
   }
 
-  error(msg: string) {
-    this.service.notify('error', msg);
+  error(message: string) {
+    this.service.notify('error', message);
   }
 
-  warning(msg: string) {
-    this.service.notify('warning', msg);
+  warning(message: string) {
+    this.service.notify('warning', message);
   }
 
-  info(msg: string) {
-    this.service.notify('info', msg);
+  info(message: string) {
+    this.service.notify('info', message);
   }
 }
