@@ -22,7 +22,6 @@
     "no-return-await": true,
     "arrow-return-shorthand": true,
     "no-unnecessary-callback-wrapper": true,
-    "return-undefined": true,
     "newline-before-return": true,
     "no-object-literal-type-assertion": true
   },
