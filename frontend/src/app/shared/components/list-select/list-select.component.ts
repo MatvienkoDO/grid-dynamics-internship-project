@@ -26,11 +26,15 @@ export class ListSelectComponent implements OnInit, OnChanges {
 
   public readonly selected$ = new BehaviorSubject<string[]>([]);
 
-  panelOpenState = false;
+   private panelOpenState: boolean = false;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    if (this.areOptionsSelected()) {
+      this.panelOpenState = true; 
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selected) {
@@ -57,6 +61,10 @@ export class ListSelectComponent implements OnInit, OnChanges {
     } else {
       this.aFewOfManyClick(value);
     }
+  }
+
+  private areOptionsSelected(): boolean {
+    return (Array.isArray(this.selected) && this.selected.length > 0) || (typeof(this.selected) === "string" && this.selected !== "");
   }
 
   private oneOfManyClick(value: string) {

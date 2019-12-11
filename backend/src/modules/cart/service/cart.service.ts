@@ -4,16 +4,22 @@ import { InjectModel } from '@nestjs/mongoose';
 
 
 import { CartItem, Cart } from '../models/cart.interface';
+import { Product } from 'src/modules/product/product.interface';
 
 @Injectable()
 export class CartService {
   constructor(
-    @InjectModel('Carts') private readonly cartModel: Model<Cart>
+    @InjectModel('Carts') private readonly cartModel: Model<Cart>,
+    @InjectModel('Product') private readonly productModel: Model<Product>
   ) {}
 
   public async getUserCart(userId: string) {
     const userCart = await this.cartModel.findOne({userId});
-    return userCart ? userCart : {items: []};
+    const responseCart: {userId, items} = {
+      userId: userId,
+      items: await this.getItemsWithPrice(userCart.items),
+    };
+    return userCart ? responseCart : {items: []};
   }
 
   public async updateUserCart(userId: string, items: CartItem[]) {
@@ -68,5 +74,23 @@ export class CartService {
       }
     }
     return merged;
+  }
+
+  private async getItemsWithPrice(items: CartItem[]) {
+    const result = [];
+    for (const item of items) {
+      const price = await this.productModel.findById(item.id);
+      result.push({
+        id: item.id,
+        title: item.title, 
+        size: item.size,
+        color: item.color,
+        quantity: item.quantity,
+        image: item.image,
+        price: price.price
+      });
+    }
+
+    return result;
   }
 }
