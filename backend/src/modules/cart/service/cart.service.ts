@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
-
-import { CartItem, Cart } from '../models/cart.interface';
+import { CartItem, Cart, PricedCartItem } from '../models/cart.interface';
 import { Product } from 'src/modules/product/product.interface';
+import { innerJoin, Pairs } from '../../../shared/utils';
 
 @Injectable()
 export class CartService {
