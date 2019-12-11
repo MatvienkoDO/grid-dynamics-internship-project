@@ -13,13 +13,13 @@ export class CartService {
     @InjectModel('Product') private readonly productModel: Model<Product>,
   ) {}
 
-  public async getUserCart(userId: string) {
-    const userCart = await this.cartModel.findOne({userId});
-    const responseCart: {userId, items} = {
-      userId: userId,
-      items: await this.getItemsWithPrice(userCart.items),
-    };
-    return userCart ? responseCart : {items: []};
+  public async getUserCartItems(userId: string): Promise<PricedCartItem[] | null> {
+    const userCart = await this.cartModel.findOne({ userId });
+    if (!userCart) {
+      return null;
+    }
+
+    return this.getPricedItems(userCart.items);
   }
 
   public async updateUserCart(userId: string, items: CartItem[]) {
