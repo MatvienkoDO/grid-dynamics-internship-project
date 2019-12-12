@@ -97,12 +97,10 @@ export class UserService {
     if (userDto.newPassword) {
       userDto.newPassword = await hash(userDto.newPassword, await genSalt());
     }
-    console.log(userDto);
     const result = await this.userModel.updateOne(
       {_id: userDto.id},
       { ...userDto, password: userDto.newPassword }
     );
-    console.log(result);
 
     return {
       success: true,
