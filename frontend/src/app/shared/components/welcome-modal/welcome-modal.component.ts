@@ -72,18 +72,18 @@ export class WelcomeModalComponent implements OnInit {
 
   get profileFormControls() { return this.profileForm.controls; }
 
-  onSubmitprofileForm(event: Event) {
+  onSubmitProfileForm(event: Event) {
     event.preventDefault();
     this.submitted = true;
     if (this.profileForm.invalid) {
       return;
     }
-    this.authService.signup(this.profileForm.value)
-      .pipe(
-        catchError(er => {
-          return of();
-        }),
-      )
+    this.userService.updateUserData(this.profileForm.value)
+        .pipe(
+          catchError(er => {
+            return of();
+          }),
+        )
       .subscribe(
         responseBody => {
           if (responseBody && responseBody.status === 'error') {
