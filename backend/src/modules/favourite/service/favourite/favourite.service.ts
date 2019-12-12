@@ -4,50 +4,55 @@ import { Model } from 'mongoose';
 
 import { Favourite, FavouriteItem } from '../../models/favourite.interface';
 import { Product } from 'src/modules/product/product.interface';
-
+import { PricedCartItem } from '../../../cart/models/cart.interface';
 
 @Injectable()
 export class FavouriteService {
   constructor(
     @InjectModel('Favourites') private readonly favouriteModel: Model<Favourite>,
-    @InjectModel('Product') private readonly productModel: Model<Product>
-  ) {}
+    @InjectModel('Product') private readonly productModel: Model<Product>,
+  ) { }
 
   public async getUserFavourites(userId: string) {
-    const userFavourites = await this.favouriteModel.findOne({userId});
+    const userFavourites = await this.favouriteModel.findOne({ userId });
     if (userFavourites) {
-      const responseCart: {userId, items} = {
-        userId: userId,
+      const responseCart: { userId, items } = {
+        userId,
         items: await this.getItemsWithPrice(userFavourites.items),
       };
+
       return responseCart;
     }
-    return {items: []};
+
+    return { items: [] };
   }
 
   public async updateUserFavourites(userId: string, items: FavouriteItem[]) {
-    const favourites = await this.favouriteModel.findOne({userId});
+    const favourites = await this.favouriteModel.findOne({ userId });
 
     if (!favourites) {
-      const newFavourites = new this.favouriteModel({userId, items});
-      return await newFavourites.save();
+      const newFavourites = new this.favouriteModel({ userId, items });
+
+      return newFavourites.save();
     }
     await this.favouriteModel.updateOne(
-      { _id: favourites.id},
-      { 
+      { _id: favourites.id },
+      {
         userId: favourites.userId,
-        items: items,
-      }
+        items,
+      },
     );
-    return await this.favouriteModel.findById(favourites.id);
+
+    return this.favouriteModel.findById(favourites.id).exec();
   }
 
   public async addItemsToUserFavourites(userId: string, newItems: FavouriteItem[]) {
-    const favourites = await this.favouriteModel.findOne({userId});
+    const favourites = await this.favouriteModel.findOne({ userId });
 
     if (!favourites) {
-      const newCart = new this.favouriteModel({userId, newItems});
-      return await newCart.save();
+      const newCart = new this.favouriteModel({ userId, newItems });
+
+      return newCart.save();
     }
     const oldItems = favourites.items;
     await this.favouriteModel.updateOne(
