@@ -8,6 +8,11 @@ import { userSchemaName } from '../../../authentication/models/user.schema';
 import { EditUserDto } from '../../models/edit-user.dto';
 import { hash, genSalt, compare } from 'bcrypt';
 
+interface FormError {
+  property: string;
+  message: string;
+}
+
 @Injectable()
 export class UserService {
   constructor(
