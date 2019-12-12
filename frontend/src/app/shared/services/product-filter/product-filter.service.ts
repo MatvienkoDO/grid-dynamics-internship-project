@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { Product, Paging, Filter } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { tap, debounceTime, switchMap, share, map } from 'rxjs/operators';
+
+import { Product, Paging, Filter } from '../../models';
 import { ProductsService } from '..';
 import { UrlQuery } from 'src/app/pages';
-import { tap, debounceTime, switchMap, share, map } from 'rxjs/operators';
 
 export interface Query {
   filter: Filter;
