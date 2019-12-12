@@ -49,18 +49,18 @@
         }
   
         .logo-text {
+          @include fonts (#46505a, "Open Sans", 11px, 400);
           margin: 0;
           padding: 0;
           opacity: 0.8;
-          @include fonts (#46505a, "Open Sans", 11px, 400);
           line-height: 1;
           letter-spacing: 2px;
   
           &_large {
+            @include fonts (#46505a, "Titillium Web", 34px, 700);
             margin: 0;
             padding: 0;
             opacity: 0.8;
-            @include fonts (#46505a, "Titillium Web", 34px, 700);
             text-transform: uppercase;
             line-height: 1;
             letter-spacing: 1.2px;
@@ -128,9 +128,9 @@
       }
 
       &__title {
+        @include fonts (#ff5912, "Open Sans", 16px, 600);
         margin: 0;
         padding-bottom: 20px;
-        @include fonts (#ff5912, "Open Sans", 16px, 600);
         line-height: 30px;
       }
 

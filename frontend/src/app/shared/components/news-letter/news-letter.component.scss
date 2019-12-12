@@ -34,9 +34,9 @@
   }
 
   &__title {
+    @include fonts ($primary-color, "Open Sans", 18px, 600);
     margin: 0;
     margin-right: 24px;
-    @include fonts ($primary-color, "Open Sans", 18px, 600);
     text-transform: uppercase;
     @include for-phone-intermediate {
       margin-right: 0;
@@ -44,8 +44,8 @@
   }
 
   &__text {
-    margin: 0;
     @include fonts ($text-color, "Open Sans", 14px);
+    margin: 0;
     font-style: italic;
     @include for-phone-intermediate {
       text-align: center;
@@ -74,11 +74,11 @@
   }
 
   &__input {
+    @include fonts ($black, "Open Sans", 14px);
     width: 250px;
     margin-right: 20px;
     border: none;
     border-bottom: 2px solid transparent;
-    @include fonts ($black, "Open Sans", 14px);
     @media (max-width: 1100px) {
       width: 150px;
     }

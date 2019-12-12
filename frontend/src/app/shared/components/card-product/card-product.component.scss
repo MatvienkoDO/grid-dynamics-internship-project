@@ -45,8 +45,8 @@
   }
 
   &__title {
-    padding-bottom: 15px;
     @include fonts (#34404b, "Open Sans", 18px, 600);
+    padding-bottom: 15px;
   }
 
   &__price {
@@ -90,8 +90,8 @@
     }
 
     &__title {
-      display: block;
       @include fonts (#34404b, "Open Sans", 16px, 600);
+      display: block;
       text-decoration: none;
       padding-top: 10px;
       padding-bottom: 10px;
@@ -104,10 +104,10 @@
     }
 
     .list-sizes {
+      @include fonts (#34404b, "Open Sans", 14px, 400);
       margin: 0;
       display: flex;
       justify-content: center;
-      @include fonts (#34404b, "Open Sans", 14px, 400);
       padding-bottom: 20px;
 
       &__title {

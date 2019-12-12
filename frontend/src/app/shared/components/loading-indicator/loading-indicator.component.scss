@@ -63,10 +63,10 @@ $duration: 1.4s;
 }
 
 .error-message {
+  @include fonts(red, "Open Sans", 34px, 500);
   max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
-  @include fonts(red, "Open Sans", 34px, 500);
   text-align: center;
   text-transform: capitalize;
 }
