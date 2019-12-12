@@ -147,7 +147,8 @@ export class FavouritesService {
 
     return this.http.put<any>(address, body, options)
       .subscribe(response => {
-        return response;
+        this.saveItemsToLocalStorage(response.items);
+        this.items.next(response.items);
       });
   }
 

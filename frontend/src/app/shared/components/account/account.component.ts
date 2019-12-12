@@ -103,7 +103,6 @@ export class AccountComponent implements OnInit {
               this.cartService.sendNewCartItems();
               this.cartService.getCartItems();
               this.favouritesService.sendNewFavouritesItems();
-              this.favouritesService.getFavouritesItems();
             }
         });
   }
@@ -133,7 +132,6 @@ export class AccountComponent implements OnInit {
               this.cartService.sendNewCartItems();
               this.cartService.getCartItems();
               this.favouritesService.sendNewFavouritesItems();
-              this.favouritesService.getFavouritesItems();
             }
         });
   }
