@@ -60,12 +60,13 @@ export class UsersController {
     userDto.id = userId;
     const validateResult = await this.usersService.validate(userDto);
     if (validateResult.errors) {
-      response.status(400);
+      response.status(HttpStatus.BAD_REQUEST);
       response.send({
         success: false,
-        status: 'invalid_form',
+        status: 'invalid_edit_user_form',
         errors: validateResult.errors,
       });
+      
       return;
     }
     const updatedUser = await this.usersService.update(userDto);
