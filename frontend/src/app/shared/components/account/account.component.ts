@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { first, catchError } from 'rxjs/operators';
 
-import { MustMatch } from '../../helpers/must-match.validator';
+import { mustMatch } from '../../helpers/must-match.validator';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
 import { ErrorsService } from '../../services/errors/errors.service';
@@ -62,7 +62,7 @@ export class AccountComponent implements OnInit {
       confirmPassword: ['', Validators.required],
     },
       {
-        validator: MustMatch('password', 'confirmPassword')
+        validator: mustMatch('password', 'confirmPassword')
       });
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
