@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
   Output,
@@ -13,26 +12,21 @@ import { CardProduct, Image } from '../../models';
   selector: 'app-card-product-small[id][image][title][price]',
   templateUrl: './card-product-small.component.html',
   styleUrls: ['./card-product-small.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardProductSmallComponent implements OnInit {
-  @Input('id') public readonly id: string;
-  @Input('image') public readonly image: Image;
-  @Input('title') public readonly title: string;
-  @Input('price') public readonly price: string;
-  @Input('sizes') public readonly sizes: string[];
-  @Input('colors') public readonly colors: string[];
+export class CardProductSmallComponent {
+  @Input() public readonly id: string;
+  @Input() public readonly image: Image;
+  @Input() public readonly title: string;
+  @Input() public readonly price: string;
+  @Input() public readonly sizes: string[];
+  @Input() public readonly colors: string[];
 
   @Input('image-alt') public readonly imageAlt: string | undefined;
   @Input('currency-sign') public readonly currencySign: string | undefined;
 
   @Output('show-details') public readonly showDetails = new EventEmitter<CardProduct>();
   @Output('add-to-cart') public readonly addToCart = new EventEmitter<CardProduct>();
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   public readonly showDetailsCb = () => {
     this.showDetails.emit(this.generateCardProduct());
