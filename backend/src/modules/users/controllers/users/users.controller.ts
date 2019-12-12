@@ -50,7 +50,7 @@ export class UsersController {
   }
 
   @UseGuards(AuthGuard)
-  @Patch()
+  @Patch('me')
   async editUser(
     @Body() userDto: EditUserDto,
     @Request() request: express.Request,
