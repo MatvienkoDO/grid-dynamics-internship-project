@@ -5,7 +5,12 @@ import { catchError } from 'rxjs/operators';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { User } from '../../models';
-import { AuthenticationService, UserService, CartService } from '../../services';
+import {
+  AuthenticationService,
+  UserService,
+  CartService,
+  FavouritesService
+} from '../../services';
 import { MustMatch } from '../../helpers/must-match.validator';
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
 
@@ -38,6 +43,7 @@ export class WelcomeModalComponent implements OnInit {
     private readonly authService: AuthenticationService,
     private readonly userService: UserService,
     private readonly cartService: CartService,
+    private readonly favouritesService: FavouritesService,
     private formBuilder: FormBuilder,
     private readonly accountModalService: AccountModalService,
   ) {
@@ -66,6 +72,8 @@ export class WelcomeModalComponent implements OnInit {
   public logOut() {
     this.cartService.updateCartItems();
     this.cartService.clearCart();
+    this.favouritesService.updateFavouritesItems();
+    this.favouritesService.clearFavourites();
     this.authService.logout();
     this.onNoClick();
   }
