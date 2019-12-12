@@ -45,7 +45,7 @@ export class UserService {
   public async validate(userDto: EditUserDto) {
     const errors: FormError[] = [];
     const user = await this.userModel.findById(userDto.id);
-    
+
     // Checks if first name is not empty
     if (userDto.firstName && userDto.firstName.length === 0) {
       errors.push({
@@ -73,7 +73,7 @@ export class UserService {
     // Checks if database password and client password is equal
     if (
       userDto.oldPassword &&
-      !(await compare(userDto.oldPassword, user.password))
+      !(await compare(userDto.oldPassword, user?.password ?? ''))
     ) {
       errors.push({
         property: 'oldPassword',
