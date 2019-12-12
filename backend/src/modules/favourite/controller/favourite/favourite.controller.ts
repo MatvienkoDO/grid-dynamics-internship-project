@@ -16,20 +16,20 @@ export class FavouriteController {
   @UseGuards(AuthGuard)
   async addNewItems(@Request() request: express.Request, @Body() body: {newItems: FavouriteItem[]}) {
     const userId = request.signedCookies[userIdCookieKey];
-    return await this.favouriteService.addItemsToUserFavourites(userId, body.newItems);
+    return this.favouriteService.addItemsToUserFavourites(userId, body.newItems);
   }
 
   @Put()
   @UseGuards(AuthGuard)
   async updateItems(@Request() request: express.Request, @Body() body: {items: FavouriteItem[]}) {
     const userId = request.signedCookies[userIdCookieKey];
-    return await this.favouriteService.updateUserFavourites(userId, body.items);
+    return this.favouriteService.updateUserFavourites(userId, body.items);
   }
 
   @Get()
   @UseGuards(AuthGuard)
   async getItems(@Request() request: express.Request) {
     const userId = request.signedCookies[userIdCookieKey];
-    return await this.favouriteService.getUserFavourites(userId);
+    return this.favouriteService.getUserFavourites(userId);
   }
 }

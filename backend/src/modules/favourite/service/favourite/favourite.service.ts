@@ -32,10 +32,14 @@ export class FavouriteService {
       const newFavourites = new this.favouriteModel({userId, items});
       return await newFavourites.save();
     }
-    return await this.favouriteModel.findByIdAndUpdate(favourites.id, { 
-      userId: favourites.userId,
-      items: items,
-    })
+    await this.favouriteModel.updateOne(
+      { _id: favourites.id},
+      { 
+        userId: favourites.userId,
+        items: items,
+      }
+    );
+    return await this.favouriteModel.findById(favourites.id);
   }
 
   public async addItemsToUserFavourites(userId: string, newItems: FavouriteItem[]) {
@@ -46,10 +50,14 @@ export class FavouriteService {
       return await newCart.save();
     }
     const oldItems = favourites.items;
-    return await this.favouriteModel.findByIdAndUpdate(favourites.id, { 
-      userId: favourites.userId,
-      items: this.mergeItems(oldItems, newItems),
-    })
+    await this.favouriteModel.updateOne(
+      { _id: favourites.id},
+      { 
+        userId: favourites.userId,
+        items: this.mergeItems(oldItems, newItems),
+      }
+    );
+    return await this.favouriteModel.findById(favourites.id);
   }
 
   private mergeItems(oldItems: FavouriteItem[], newItems: FavouriteItem[]) {
