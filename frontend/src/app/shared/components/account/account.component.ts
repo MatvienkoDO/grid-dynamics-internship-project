@@ -2,7 +2,7 @@ import { Component, OnInit, } from '@angular/core';
 import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { first, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { mustMatch } from '../../helpers/must-match.validator';
 import { AuthenticationService } from '../../services/authentication/authentication.service';

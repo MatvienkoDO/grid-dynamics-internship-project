@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { CardProduct } from '../../models';
-import { FavouritesService } from 'src/app/shared/services';
 
 @Component({
   selector: 'app-favourite-button',

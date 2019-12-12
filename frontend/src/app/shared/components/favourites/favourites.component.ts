@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { FavouritesService, CartService } from '../../services';
-import { CardProduct, Image } from '../../models';
+import { CardProduct } from '../../models';
 import { Router } from '@angular/router';
 
 @Component({
