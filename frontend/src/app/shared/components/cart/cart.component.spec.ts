@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-//import { MockTranslatePipe } from '../../../testing/mock-translate.pipe';
 import { AppModule } from 'src/app/app.module';
 import { CartComponentInner, CartComponent } from './cart.component';
 import { CartService } from '../../services';
@@ -24,8 +23,7 @@ describe('CartComponentInner', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
-      //declarations: [MockTranslatePipe],
+      imports: [AppModule]
       providers: [
         { provide: CartService, useValue: CartServiceSpy },
         { provide: MatDialogRef, useValue: dialogRefSpy },

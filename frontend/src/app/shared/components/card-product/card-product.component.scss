@@ -11,9 +11,7 @@
   flex-direction: column;
   justify-content: center;
   background-color: #fff;
-  //padding: 37px 30px;
   position: relative;
-  //margin: 0 35px 35px;
   height: 365px;
   background: #fefefe;
   text-align: center;
@@ -24,9 +22,6 @@
   -webkit-transition-duration: .3s;
   transition-duration: .3s;
   margin: 10px;
-  @include for-tablet-intermediate {
-    //margin: 0 25px 25px;
-  }
   @include for-phone {
     margin: 0 0 20px 0;
     width: 250px;
