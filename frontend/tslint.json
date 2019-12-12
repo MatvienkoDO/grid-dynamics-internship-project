@@ -94,7 +94,9 @@
     "arrow-return-shorthand": true,
     "no-unnecessary-callback-wrapper": true,
     "newline-before-return": true,
-    "no-object-literal-type-assertion": true
+    "no-object-literal-type-assertion": true,
+    "no-unused-expression": true,
+    "no-unused-variable": true
   },
   "rulesDirectory": [
     "codelyzer"
