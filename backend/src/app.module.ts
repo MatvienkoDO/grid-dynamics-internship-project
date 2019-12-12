@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -11,9 +11,14 @@ import { UsersModule } from './modules/users/users.module';
 import { CartModule } from './modules/cart/cart.module';
 import { FavouriteModule } from './modules/favourite/favourite.module';
 
+const mongoConfig: MongooseModuleOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
+
 @Module({
   imports: [
-    MongooseModule.forRoot(databaseUri),
+    MongooseModule.forRoot(databaseUri, mongoConfig),
     ProductModule,
     NewsLetterModule,
     AuthenticationModule,
