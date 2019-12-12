@@ -33,7 +33,6 @@ $gray-light: #a0b3b0;
   &__input {
     @include fonts (#34404b, "Open Sans", 14px, 400);
     position: relative;
-    font-size: 22px;
     display: block;
     width: 100%;
     padding: 5px 10px;
