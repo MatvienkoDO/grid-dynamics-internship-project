@@ -5,6 +5,8 @@ import { CardProduct } from '../../models';
 import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 import { localStorageFavouritesKey } from '../../constants';
+import { apiHost } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class FavouritesService {
   constructor(
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
+    private readonly http: HttpClient,
   ) { 
     this.items$ = this.items.asObservable();
     this.init();
@@ -124,5 +127,39 @@ export class FavouritesService {
 
   private saveItemsToLocalStorage(items: CardProduct[]): void {
     localStorage.setItem(localStorageFavouritesKey, JSON.stringify(items));
+  }
+
+  public sendNewFavouritesItems() {
+    const address = `${apiHost}/api/favourites`;
+    const body = { newItems: this.items.getValue() };
+    const options = { withCredentials: true };
+
+    return this.http.patch<any>(address, body, options)
+      .subscribe(response => {
+        return response
+      });
+  }
+
+  public updateFavouritesItems() {
+    const address = `${apiHost}/api/favourites`;
+    const body = { items: this.items.getValue() };
+    const options = { withCredentials: true };
+
+    return this.http.put<any>(address, body, options)
+      .subscribe(response => {
+        this.saveItemsToLocalStorage(response.items);
+        this.items.next(response.items);
+      });
+  }
+
+  public getFavouritesItems() {
+    const address = `${apiHost}/api/favourites`;
+    const options = { withCredentials: true };
+
+    return this.http.get<any>(address, options)
+      .subscribe(items => {
+        this.saveItemsToLocalStorage(items.items);
+        this.items.next(items.items);
+      });
   }
 }
