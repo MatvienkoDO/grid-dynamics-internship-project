@@ -15,10 +15,7 @@ $gap: 30px;
   position: relative;
   padding: 120px 0;
   display: flex;
-  min-height: 820px;
-  @media (max-width: 615px) {
-    min-height: 1500px;
-  }
+  min-height: 1380px;
 }
 
 .filters {

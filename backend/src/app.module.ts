@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductModule } from './modules/product/product.module';
-import { databaseUri } from './database'
+import { databaseUri } from './database';
 import { NewsLetterModule } from './modules/news-letter/news-letter.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { UsersModule } from './modules/users/users.module';
@@ -24,4 +24,4 @@ import { FavouriteModule } from './modules/favourite/favourite.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

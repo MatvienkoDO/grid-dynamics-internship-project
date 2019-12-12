@@ -22,7 +22,7 @@ export class LocalizedProduct {
     sizes: string[],
     colors: string[],
     images: Image[],
-    sliderImage?: string
+    sliderImage?: string,
   ) {
     this.id = id;
     this.name = name;
@@ -39,9 +39,9 @@ export class LocalizedProduct {
 }
 
 export interface Image {
-  "1_1": string,
-  "4_3": string,
-  "16_9": string,
-  "scale": string,
-  "default": string
+  '1_1': string;
+  '4_3': string;
+  '16_9': string;
+  'scale': string;
+  'default': string;
 }

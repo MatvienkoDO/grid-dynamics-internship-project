@@ -8,11 +8,11 @@ import { UserService } from './services/user/user.service';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: userSchemaName, schema: UserSchema }
+      { name: userSchemaName, schema: UserSchema },
     ]),
   ],
   exports: [],
   controllers: [AuthController],
-  providers: [UserService]
+  providers: [UserService],
 })
-export class AuthenticationModule {}
+export class AuthenticationModule { }
