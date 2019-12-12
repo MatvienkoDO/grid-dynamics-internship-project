@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Response, Request, Get, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Response,
+  Request,
+  Get,
+  UseGuards,
+  HttpStatus,
+} from '@nestjs/common';
 import * as express from 'express';
 
 import { userIdCookieKey, userIdCookieOptions } from '../../../../shared/constants';
@@ -16,35 +25,38 @@ export class AuthController {
   async signUp(@Body() body: UserSignupDto, @Response() response: express.Response) {
     const isValid = await this.userService.isValidSignupDto(body);
     if (body && !isValid) {
-      response.status(400);
+      response.status(HttpStatus.BAD_REQUEST);
       response.type('application/json');
       response.send({
         success: false,
         status: 'signup_invalid_form',
         message: 'Invalid form',
       });
+
       return;
     }
     const isUnique = await this.userService.isUnique(body);
     if (!isUnique) {
-      response.status(400);
+      response.status(HttpStatus.BAD_REQUEST);
       response.type('application/json');
       response.send({
         success: false,
         status: 'email_is_not_unique',
         message: 'Email is not unique',
       });
+
       return;
     }
 
     const newUser = await this.userService.createUser(body);
     response.cookie(userIdCookieKey, newUser.id, userIdCookieOptions);
     response.type('application/json');
+
     return response.send({
       id: newUser.id,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
-      role: newUser.role
+      role: newUser.role,
     });
   }
 
@@ -54,35 +66,38 @@ export class AuthController {
       .getUserByLoginPassword(body.email, body.password);
 
     if (!user) {
-      response.status(400);
+      response.status(HttpStatus.BAD_REQUEST);
       response.send({
         success: false,
         status: 'incorrect_login_password_pair',
         message: 'Invalid email/password',
       });
+
       return;
     }
-    
+
     response.cookie(userIdCookieKey, user.id, userIdCookieOptions);
     response.type('application/json');
     response.send({
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
-      role: user.role
+      role: user.role,
     });
+
     return;
   }
 
-  @Post('logout') 
+  @Post('logout')
   async logout(@Response() response: express.Response) {
     response.clearCookie(userIdCookieKey);
-    response.status(200);
+    response.status(HttpStatus.OK);
     response.send({
       success: true,
       status: 'ok',
       message: 'ok',
     });
+
     return;
   }
 

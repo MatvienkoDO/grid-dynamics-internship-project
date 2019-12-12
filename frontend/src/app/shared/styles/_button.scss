@@ -16,6 +16,10 @@ button[disabled] {
     justify-content: flex-end;
     padding-bottom: 15px;
   }
+  &__account {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .button {
@@ -179,6 +183,19 @@ button[disabled] {
   }
   &_form-log-out {
     margin-bottom: 10px;
+  }
+  &_form-edit {
+    width: 48%;
+    margin-bottom: 10px;
+    background-color: $black;
+  }
+  &_form-save {
+    width: 48%;
+    margin-bottom: 10px;
+    background-color: #a5a5a5;
+    &:hover {
+      background-color: #ff5912;
+    }
   }
   &_like {
     background-color: transparent;

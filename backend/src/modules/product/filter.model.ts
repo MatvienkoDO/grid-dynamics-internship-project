@@ -4,7 +4,7 @@ export class Filter {
   maxPrice?: number;
   sizes?: string[];
   brands?: string[];
-  search?: string
+  search?: string;
 
   constructor(
     category?: string,
@@ -12,13 +12,13 @@ export class Filter {
     maxPrice?: number,
     sizes?: string[],
     brands?: string[],
-    search?: string
+    search?: string,
   ) {
     this.category = category;
     this.minPrice = minPrice,
     this.maxPrice = maxPrice,
     this.sizes = sizes,
     this.brands = brands,
-    this.search = search
+    this.search = search;
   }
 }

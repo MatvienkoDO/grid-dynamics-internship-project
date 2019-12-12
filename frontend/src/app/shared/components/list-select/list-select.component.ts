@@ -26,13 +26,13 @@ export class ListSelectComponent implements OnInit, OnChanges {
 
   public readonly selected$ = new BehaviorSubject<string[]>([]);
 
-   private panelOpenState: boolean = false;
+  public panelOpenState = false;
 
   constructor() { }
 
-  ngOnInit() { 
+  ngOnInit() {
     if (this.areOptionsSelected()) {
-      this.panelOpenState = true; 
+      this.panelOpenState = true;
     }
   }
 
@@ -47,7 +47,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
         ? changes.options.currentValue
         : this.options;
 
-      const optionsValues = options.map(({value}) => value);
+      const optionsValues = options.map(({ value }) => value);
 
       const selected = notFilteredSelected.filter(value => optionsValues.includes(value));
 
@@ -64,7 +64,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
   }
 
   private areOptionsSelected(): boolean {
-    return (Array.isArray(this.selected) && this.selected.length > 0) || (typeof(this.selected) === "string" && this.selected !== "");
+    return (Array.isArray(this.selected) && this.selected.length > 0) || (typeof (this.selected) === "string" && this.selected !== "");
   }
 
   private oneOfManyClick(value: string) {
@@ -73,7 +73,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
     const newValues = current === value
       ? []
       : [value];
-    
+
     this.selected$.next(newValues);
     this.values.emit(newValues);
   }
@@ -95,6 +95,6 @@ export namespace ListSelectComponent {
     title: string;
     value: string;
   }
-  
+
   export type Options = Option[];
 }
