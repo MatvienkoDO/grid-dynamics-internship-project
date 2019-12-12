@@ -15,9 +15,8 @@
     <fieldset [disabled]="isDisabled" class="fieldset">
       <div class="field-wrap">
         <label class="profile-form__label">
-          first name<span class="req">*</span>
         </label>
-        <input class="profile-form__input" type="text" name="text" required formControlName="firstName"
+        <input class="profile-form__input" type="text" name="text" formControlName="firstName"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.firstName.errors }"
           value="{{ currentUser?.firstName }}" />
         <div *ngIf="submitted && profileFormControls.firstName.errors" class="invalid-feedback">
@@ -28,9 +27,9 @@
       </div>
       <div class="field-wrap">
         <label class="profile-form__label">
-          last name<span class="req">*</span>
+          last name
         </label>
-        <input class="profile-form__input" type="text" name="text" required formControlName="lastName"
+        <input class="profile-form__input" type="text" name="text" formControlName="lastName"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.lastName.errors }"
           value="{{ currentUser?.lastName }}" />
         <div *ngIf="submitted && profileFormControls.lastName.errors" class="invalid-feedback">
@@ -41,9 +40,9 @@
       </div>
       <div class="field-wrap">
         <label class="profile-form__label">
-          email address<span class="req">*</span>
+          email address
         </label>
-        <input class="profile-form__input" type="email" name="email" required formControlName="email"
+        <input class="profile-form__input" type="email" name="email" formControlName="email"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.email.errors }"
           value="{{ currentUser?.email }}" />
         <div *ngIf="submitted && profileFormControls.email.errors" class="invalid-feedback">
