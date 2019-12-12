@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.component.html',
-  styleUrls: ['./favourites.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./favourites.component.scss']
 })
 export class FavouritesComponent implements OnInit {
   public productsNumber$: Observable<number>;
@@ -30,7 +29,7 @@ export class FavouritesComponent implements OnInit {
   selector: 'favourites-inner',
   templateUrl: './favourites-inner.component.html',
   styleUrls: ['./favourites.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FavouritesComponentInner implements OnInit {
   public products$: Observable<CardProduct[]>;
