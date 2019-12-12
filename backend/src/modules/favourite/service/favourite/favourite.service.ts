@@ -56,40 +56,41 @@ export class FavouriteService {
     }
     const oldItems = favourites.items;
     await this.favouriteModel.updateOne(
-      { _id: favourites.id},
-      { 
+      { _id: favourites.id },
+      {
         userId: favourites.userId,
         items: this.mergeItems(oldItems, newItems),
-      }
+      },
     );
-    return await this.favouriteModel.findById(favourites.id);
+
+    return this.favouriteModel.findById(favourites.id).exec();
   }
 
   private mergeItems(oldItems: FavouriteItem[], newItems: FavouriteItem[]) {
     const merged = [...oldItems];
     for (const newItem of newItems) {
-      const filtered = oldItems.filter(oldItem => 
-        oldItem.id === newItem.id
-      );
+      const filtered = oldItems.filter(oldItem => oldItem.id === newItem.id);
+
       if (!filtered.length) {
         merged.push(newItem);
       }
     }
+
     return merged;
   }
 
   private async getItemsWithPrice(items: FavouriteItem[]) {
-    const result = [];
+    const result: PricedCartItem[] = [];
     for (const item of items) {
       const price = await this.productModel.findById(item.id);
       result.push({
         id: item.id,
-        title: item.title, 
+        title: item.title,
         size: item.size,
         color: item.color,
         quantity: item.quantity,
         image: item.image,
-        price: price.price
+        price: price?.price ?? 0,
       });
     }
 
