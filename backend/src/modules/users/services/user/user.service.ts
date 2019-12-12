@@ -43,7 +43,7 @@ export class UserService {
   }
 
   public async validate(userDto: EditUserDto) {
-    const errors = [];
+    const errors: FormError[] = [];
     const user = await this.userModel.findById(userDto.id);
     
     // Checks if first name is not empty
@@ -82,10 +82,8 @@ export class UserService {
     }
 
     // Checks if new password is equal or more than 6 symbols
-    if (
-      userDto.newPassword &&
-      userDto.newPassword.length < 6
-    ) {
+    const minPasswordLength = 6;
+    if (userDto.newPassword && userDto.newPassword.length < minPasswordLength) {
       errors.push({
         property: 'newPassord',
         message: 'Password should be more or equal than 6 symbols',
