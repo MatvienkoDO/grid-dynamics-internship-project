@@ -3,6 +3,100 @@
 @import 'icon';
 @import 'picture';
 @import 'button';
+@import 'spinner';
+@import '_colors';
+
+$main-account-color: $primary-color;
+$main-account-color-light: lighten($main-account-color, 5%);
+$main-account-color-dark: darken($main-account-color, 5%);
+$gray-light: #a0b3b0;
+
+.fieldset {
+  border: none;
+}
+
+.profile-form {
+  padding: 0 40px 20px;
+  @include for-500px {
+    padding: 0 0 20px;
+  }
+
+  &__label {
+    @include fonts ($form-input-color, "Open Sans", 12px, 400);
+    text-transform: capitalize;
+    pointer-events: none;
+
+    .req {
+      margin: 2px;
+      color: $main-account-color;
+    }
+  }
+
+  &__input {
+    position: relative;
+    font-size: 22px;
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    @include fonts ($form-input-color, "Open Sans", 14px, 400);
+    background: none;
+    background-image: none;
+    border: 1px solid $gray-light;
+    border-radius: 0;
+    transition: border-color .25s ease, box-shadow .25s ease;
+
+    &:focus {
+      outline: 0;
+      border-color: $main-account-color;
+    }
+  }
+}
+
+.field-wrap {
+  position: relative;
+  margin-bottom: 20px;
+
+  ::ng-deep .btn-primary {
+    position: absolute;
+    top: 30px;
+    right: 1px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+}
+
+.top-row {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  >div {
+    float: left;
+    width: 48%;
+    margin-right: 4%;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+
+.invalid-feedback {
+  @include fonts ($error-color, "Open Sans", 12px, 400);
+  font-style: italic;
+}
+
+.ng-valid,
+.ng-valid.required {
+  border-color: $sucess-color;
+}
+
+.ng-invalid:not(form) {
+  border-color: $gray-light;
+}
 
 .loading-indicator {
   display: inline-block;
