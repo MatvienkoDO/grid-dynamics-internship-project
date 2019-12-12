@@ -1,10 +1,17 @@
-import { Controller, Get, UseGuards, Request, Response } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  UseGuards,
+  Request,
+  Response,
+  HttpStatus,
+} from '@nestjs/common';
 import * as express from 'express';
 
 import { AuthGuard } from '../../../authentication/guards/auth/auth.guard';
 import { User } from '../../models/user';
 import { userIdCookieKey } from '../../../../shared/constants';
-import { UserService } from '../../services/user/user.service'
+import { UserService } from '../../services/user/user.service';
 
 @Controller('api/users')
 export class UsersController {
@@ -31,7 +38,7 @@ export class UsersController {
       });
     } else {
       response.clearCookie(userIdCookieKey);
-      response.status(400);
+      response.status(HttpStatus.BAD_REQUEST);
       response.send({
         success: false,
         status: 'user_not_found',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 
 import { User } from '../../models';
 import { apiHost } from 'src/environments';
@@ -27,8 +27,29 @@ export class UserService {
         throw {
           message: 'incorrect response',
           payload: response,
-        }
+        };
       }));
+  }
+
+  updateUserData(user: User): Observable<User> {
+    const url = `${apiHost}/api/users/me`;
+    const body = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+    const options = { withCredentials: true };
+
+    return this.http.patch<any>(url, body, options).pipe(map(response => {
+      if (response && response.payload) {
+        return response.payload;
+      }
+
+      throw {
+        message: 'incorrect response',
+        payload: response,
+      };
+    }));
   }
 
 }

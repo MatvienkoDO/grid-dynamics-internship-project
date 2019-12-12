@@ -4,7 +4,7 @@ import { userIdCookieKey, userIdCookieOptions } from '../../../shared/constants'
 
 export function userIdExpirationUpdater(request: Request, response: Response, next: NextFunction) {
   const userIdCookieValue = request.signedCookies[userIdCookieKey];
-  
+
   if (userIdCookieValue) {
     response.cookie(userIdCookieKey, userIdCookieValue, userIdCookieOptions);
   } else if (userIdCookieValue === false) {

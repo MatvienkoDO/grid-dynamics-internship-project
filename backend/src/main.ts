@@ -6,20 +6,21 @@ import { mode, Mode, cookieSigningSecret, corsAllowedWebOrigin } from './environ
 import { userIdExpirationUpdater } from './modules/authentication/middlewares/user-id-expiration-updater';
 
 async function bootstrap() {
-  const modeName = mode === Mode.Production
-    ? 'production'
-    : 'development';
-  console.log(`App started in ${modeName} mode`);
+  const modeName = mode === Mode.Production ? 'production' : 'development';
+  const developmentPort = 3000;
+  const port = process.env.PORT ?? developmentPort;
+
+  console.log(`App started in ${modeName} mode. Port: ${port}`);
 
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: [corsAllowedWebOrigin],
+    origin: [ corsAllowedWebOrigin ],
     credentials: true,
   });
   app.use(cookieParser(cookieSigningSecret));
   app.use(userIdExpirationUpdater);
 
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(port);
 }
 bootstrap();

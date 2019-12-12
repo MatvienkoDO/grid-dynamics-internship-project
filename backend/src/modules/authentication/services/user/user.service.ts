@@ -13,7 +13,7 @@ export class UserService {
   constructor(@InjectModel(userSchemaName) private readonly userModel: Model<UserDocument>) { }
 
   public async findBy(filterObject) {
-    return await this.userModel.findOne(filterObject);
+    return this.userModel.findOne(filterObject).exec();
   }
 
   public async createUser(signupDto: UserSignupDto): Promise<UserDocument> {
@@ -22,14 +22,16 @@ export class UserService {
     signupDto.role = signupDto.role || 'user';
 
     const createdUser = new this.userModel(signupDto);
-    return await createdUser.save();
+
+    return createdUser.save();
   }
 
   public async isValidLoginDto(loginDto: UserLoginDto): Promise<boolean> {
     const user = await this.userModel.findOne({
       email: loginDto.email,
-      password: loginDto.password
+      password: loginDto.password,
     });
+
     return !!user;
   }
 
@@ -42,8 +44,9 @@ export class UserService {
 
   public async isUnique(signupDto: UserSignupDto) {
     const user = await this.userModel.findOne({
-      email: signupDto.email
+      email: signupDto.email,
     });
+
     return !user;
   }
 

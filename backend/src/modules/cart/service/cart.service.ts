@@ -2,39 +2,41 @@ import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
-
-import { CartItem, Cart } from '../models/cart.interface';
+import { CartItem, Cart, PricedCartItem } from '../models/cart.interface';
 import { Product } from 'src/modules/product/product.interface';
+import { innerJoin, Pairs } from '../../../shared/utils';
 
 @Injectable()
 export class CartService {
   constructor(
     @InjectModel('Carts') private readonly cartModel: Model<Cart>,
-    @InjectModel('Product') private readonly productModel: Model<Product>
+    @InjectModel('Product') private readonly productModel: Model<Product>,
   ) {}
 
-  public async getUserCart(userId: string) {
-    const userCart = await this.cartModel.findOne({userId});
-    const responseCart: {userId, items} = {
-      userId: userId,
-      items: await this.getItemsWithPrice(userCart.items),
-    };
-    return userCart ? responseCart : {items: []};
+  public async getUserCartItems(userId: string): Promise<PricedCartItem[] | null> {
+    const userCart = await this.cartModel.findOne({ userId });
+    if (!userCart) {
+      return null;
+    }
+
+    return this.getPricedItems(userCart.items);
   }
 
   public async updateUserCart(userId: string, items: CartItem[]) {
-    console.log('updating cart items');
-    console.log(items);
     const cart = await this.cartModel.findOne({userId});
 
     if (!cart) {
       const newCart = new this.cartModel({userId, items});
-      return await newCart.save();
+
+      return newCart.save();
     }
-    return await this.cartModel.findByIdAndUpdate(cart.id, { 
+
+    const update = {
       userId: cart.userId,
-      items: items,
-    })
+      items,
+    };
+
+    return this.cartModel.findByIdAndUpdate(cart.id, update).exec();
   }
 
   public async addItemsToUserCart(userId: string, newItems: CartItem[]) {
@@ -42,55 +44,66 @@ export class CartService {
 
     if (!cart) {
       const newCart = new this.cartModel({userId, newItems});
-      return await newCart.save();
+
+      return newCart.save();
     }
     const oldItems = cart.items;
-    return await this.cartModel.findByIdAndUpdate(cart.id, { 
+
+    const update = {
       userId: cart.userId,
       items: this.mergeItems(oldItems, newItems),
-    })
+    };
+
+    return this.cartModel.findByIdAndUpdate(cart.id, update).exec();
   }
 
   private mergeItems(oldItems: CartItem[], newItems: CartItem[]) {
     const merged = [...oldItems];
     for (const oldItem of oldItems) {
-      const filtered = newItems.filter(newItem => 
+      const filtered = newItems.filter(newItem =>
         oldItem.id === newItem.id &&
         oldItem.color === newItem.color &&
-        oldItem.size === newItem.size
+        oldItem.size === newItem.size,
       );
       if (filtered.length) {
         oldItem.quantity += filtered.reduce((acc, el: CartItem) => acc + el.quantity, 0);
       }
     }
     for (const newItem of newItems) {
-      const filtered = oldItems.filter(oldItem => 
+      const filtered = oldItems.filter(oldItem =>
         oldItem.id === newItem.id &&
         oldItem.color === newItem.color &&
-        oldItem.size === newItem.size
+        oldItem.size === newItem.size,
       );
       if (!filtered.length) {
         merged.push(newItem);
       }
     }
+
     return merged;
   }
 
-  private async getItemsWithPrice(items: CartItem[]) {
-    const result = [];
-    for (const item of items) {
-      const price = await this.productModel.findById(item.id);
-      result.push({
-        id: item.id,
-        title: item.title, 
-        size: item.size,
-        color: item.color,
-        quantity: item.quantity,
-        image: item.image,
-        price: price.price
-      });
-    }
+  private async getPricedItems(items: CartItem[]): Promise<PricedCartItem[]> {
+    const itemsIds = items.map(({ id }) => id);
 
-    return result;
+    const conditions = {
+      id: {
+        $in: itemsIds,
+      },
+    };
+    const products = await this.productModel.find(conditions);
+
+    const itemProductPairs: Pairs<CartItem, Product> = innerJoin(
+      items,
+      products,
+      (item, product) => item.id === product.id,
+    );
+
+    const priced: PricedCartItem[] = itemProductPairs.map(([item, product]) => ({
+      ...item,
+      price: product.price,
+    }));
+
+    return priced;
   }
 }
