@@ -1,15 +1,92 @@
 <div mat-dialog-actions class="button-container button-container_end">
- <button mat-button (click)="onNoClick()">
-   <i class="material-icons">
-     close
-   </i>
- </button>
+  <button mat-button (click)="onNoClick()">
+    <i class="material-icons">
+      close
+    </i>
+  </button>
 </div>
 
 <ng-container *ngIf="currentUser$ | async as currentUser; else loading">
   <h3 class="title-medium cart-title">
-    welcome <span class="title-medium title-medium_primary-color cart-title"> {{ currentUser?.firstName + ' ' + currentUser?.lastName }} </span>
+    user <span class="title-medium title-medium_primary-color cart-title">profile</span>
   </h3>
+  <form action="/" method="post" class="profile-form" [formGroup]="profileForm"
+    (ngSubmit)="onSubmitprofileForm($event)">
+    <fieldset [disabled]="isDisabled" class="fieldset">
+      <div class="field-wrap">
+        <label class="profile-form__label">
+          first name<span class="req">*</span>
+        </label>
+        <input class="profile-form__input" type="text" name="text" required formControlName="firstName"
+          [ngClass]="{ 'is-invalid': submitted && profileFormControls.firstName.errors }"
+          value="{{ currentUser?.firstName }}" />
+        <div *ngIf="submitted && profileFormControls.firstName.errors" class="invalid-feedback">
+          <div *ngIf="profileFormControls.firstName.errors">
+            Enter valid name
+          </div>
+        </div>
+      </div>
+      <div class="field-wrap">
+        <label class="profile-form__label">
+          last name<span class="req">*</span>
+        </label>
+        <input class="profile-form__input" type="text" name="text" required formControlName="lastName"
+          [ngClass]="{ 'is-invalid': submitted && profileFormControls.lastName.errors }"
+          value="{{ currentUser?.lastName }}" />
+        <div *ngIf="submitted && profileFormControls.lastName.errors" class="invalid-feedback">
+          <div *ngIf="profileFormControls.lastName.errors">
+            Enter valid last name
+          </div>
+        </div>
+      </div>
+      <div class="field-wrap">
+        <label class="profile-form__label">
+          email address<span class="req">*</span>
+        </label>
+        <input class="profile-form__input" type="email" name="email" required formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && profileFormControls.email.errors }"
+          value="{{ currentUser?.email }}" />
+        <div *ngIf="submitted && profileFormControls.email.errors" class="invalid-feedback">
+          <div *ngIf="profileFormControls.email.errors">
+            Enter a valid email address
+          </div>
+        </div>
+      </div>
+      <div class="field-wrap">
+        <label class="profile-form__label">
+          password<span class="req">*</span>
+        </label>
+        <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+          <input class="profile-form__input" type="password" name="password" required formControlName="password"
+            [ngClass]="{ 'is-invalid': submitted && profileFormControls.password.errors }" />
+        </show-hide-password>
+        <div *ngIf="submitted && profileFormControls.password.errors" class="invalid-feedback">
+          <div *ngIf="profileFormControls.password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="field-wrap">
+        <label class="profile-form__label">
+          repeat password<span class="req">*</span>
+        </label>
+        <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+          <input class="profile-form__input" type="password" name="password" required formControlName="confirmPassword"
+            [ngClass]="{ 'is-invalid': submitted && profileFormControls.confirmPassword.errors }" />
+        </show-hide-password>
+        <div *ngIf="submitted && profileFormControls.confirmPassword.errors" class="invalid-feedback">
+          <div *ngIf="profileFormControls.confirmPassword.errors.mustMatch">
+            Passwords must match
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="button-container button-container__account">
+        <button class="button button_form-account button_form-edit"
+           (click)="formEnable()">Edit</button>
+        <button type="submit" class="button button_form-account button_form-save">Save</button>
+      </div>
+  </form>
   <button class="button button_form-account button_form-log-out" (click)="logOut()">Log Out</button>
 </ng-container>
 
