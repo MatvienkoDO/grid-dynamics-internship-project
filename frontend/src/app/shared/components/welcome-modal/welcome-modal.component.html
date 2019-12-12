@@ -11,13 +11,12 @@
     user <span class="title-medium title-medium_primary-color cart-title">profile</span>
   </h3>
   <form action="/" method="post" class="profile-form" [formGroup]="profileForm"
-    (ngSubmit)="onSubmitprofileForm($event)">
+    (ngSubmit)="onSubmitProfileForm($event)">
     <fieldset [disabled]="isDisabled" class="fieldset">
       <div class="field-wrap">
         <label class="profile-form__label">
-          first name<span class="req">*</span>
         </label>
-        <input class="profile-form__input" type="text" name="text" required formControlName="firstName"
+        <input class="profile-form__input" type="text" name="text" formControlName="firstName"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.firstName.errors }"
           value="{{ currentUser?.firstName }}" />
         <div *ngIf="submitted && profileFormControls.firstName.errors" class="invalid-feedback">
@@ -28,9 +27,9 @@
       </div>
       <div class="field-wrap">
         <label class="profile-form__label">
-          last name<span class="req">*</span>
+          last name
         </label>
-        <input class="profile-form__input" type="text" name="text" required formControlName="lastName"
+        <input class="profile-form__input" type="text" name="text" formControlName="lastName"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.lastName.errors }"
           value="{{ currentUser?.lastName }}" />
         <div *ngIf="submitted && profileFormControls.lastName.errors" class="invalid-feedback">
@@ -41,9 +40,9 @@
       </div>
       <div class="field-wrap">
         <label class="profile-form__label">
-          email address<span class="req">*</span>
+          email address
         </label>
-        <input class="profile-form__input" type="email" name="email" required formControlName="email"
+        <input class="profile-form__input" type="email" name="email" formControlName="email"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.email.errors }"
           value="{{ currentUser?.email }}" />
         <div *ngIf="submitted && profileFormControls.email.errors" class="invalid-feedback">
@@ -54,10 +53,10 @@
       </div>
       <div class="field-wrap">
         <label class="profile-form__label">
-          password<span class="req">*</span>
+          password
         </label>
         <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
-          <input class="profile-form__input" type="password" name="password" required formControlName="password"
+          <input class="profile-form__input" type="password" name="password" formControlName="password"
             [ngClass]="{ 'is-invalid': submitted && profileFormControls.password.errors }" />
         </show-hide-password>
         <div *ngIf="submitted && profileFormControls.password.errors" class="invalid-feedback">
@@ -68,10 +67,10 @@
       </div>
       <div class="field-wrap">
         <label class="profile-form__label">
-          repeat password<span class="req">*</span>
+          repeat password
         </label>
         <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
-          <input class="profile-form__input" type="password" name="password" required formControlName="confirmPassword"
+          <input class="profile-form__input" type="password" name="password" formControlName="confirmPassword"
             [ngClass]="{ 'is-invalid': submitted && profileFormControls.confirmPassword.errors }" />
         </show-hide-password>
         <div *ngIf="submitted && profileFormControls.confirmPassword.errors" class="invalid-feedback">

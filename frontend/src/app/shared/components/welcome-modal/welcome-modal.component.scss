@@ -13,23 +13,16 @@ $gray-light: #a0b3b0;
 
 .fieldset {
   border: none;
+  padding: 0;
 }
 
 .profile-form {
-  padding: 0 40px 20px;
-  @include for-500px {
-    padding: 0 0 20px;
-  }
 
   &__label {
     @include fonts ($form-input-color, "Open Sans", 12px, 400);
     text-transform: capitalize;
     pointer-events: none;
 
-    .req {
-      margin: 2px;
-      color: $main-account-color;
-    }
   }
 
   &__input {
