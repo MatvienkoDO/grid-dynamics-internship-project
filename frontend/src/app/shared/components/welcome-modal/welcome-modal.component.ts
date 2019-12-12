@@ -51,8 +51,8 @@ export class WelcomeModalComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       email: ['', [Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
+      password: ['', [Validators.minLength(6)]],
+      confirmPassword: [''],
     },
       {
         validator: MustMatch('password', 'confirmPassword')
@@ -85,7 +85,7 @@ export class WelcomeModalComponent implements OnInit {
           }),
         )
       .subscribe(
-        responseBody => {
+        (responseBody: any) => {
           if (responseBody && responseBody.status === 'error') {
             this.errorMessageSubject.next(responseBody.message);
           } else {
