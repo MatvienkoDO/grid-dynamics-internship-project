@@ -126,7 +126,7 @@ export class ProductService {
     };
     const conditions = filter.search ? searchConditions : null;
 
-    const query = this.productModel.count(conditions);
+    const query = this.productModel.countDocuments(conditions);
 
     if (filter.category) {
       query.where('category').equals(filter.category);

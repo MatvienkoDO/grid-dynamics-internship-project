@@ -5,9 +5,16 @@ import { catchError } from 'rxjs/operators';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { User } from '../../models';
-import { AuthenticationService, UserService, CartService } from '../../services';
+import {
+  AuthenticationService,
+  UserService,
+  CartService,
+  FavouritesService
+} from '../../services';
 import { MustMatch } from '../../helpers/must-match.validator';
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
+import { HttpClient } from '@angular/common/http';
+import { apiHost } from 'src/environments';
 
 @Component({
   selector: 'app-welcome-modal',
@@ -19,7 +26,12 @@ export class WelcomeModalComponent implements OnInit {
   public static readonly config: MatDialogConfig<WelcomeModalComponent> = {
     width: '550px',
   };
-  private errorMessageSubject: BehaviorSubject<string>;
+  private errorMessageSubject: BehaviorSubject<[]>;
+  public errorMessage$: Observable<[]>;
+  private errorEmailMessage: BehaviorSubject<string> = new BehaviorSubject('');
+  public errorEmailMessage$: Observable<string>;
+  private errorCurrentPasswordMessage: BehaviorSubject<string> = new BehaviorSubject('');
+  public errorCurrentPasswordMessage$: Observable<string>;
   public currentUser$: Observable<User>;
 
   public submitted = false;
@@ -29,6 +41,7 @@ export class WelcomeModalComponent implements OnInit {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl(''),
+    oldPassword: new FormControl(''),
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
   });
@@ -38,10 +51,15 @@ export class WelcomeModalComponent implements OnInit {
     private readonly authService: AuthenticationService,
     private readonly userService: UserService,
     private readonly cartService: CartService,
+    private readonly favouritesService: FavouritesService,
     private formBuilder: FormBuilder,
     private readonly accountModalService: AccountModalService,
+    private readonly http: HttpClient,
   ) {
-    this.errorMessageSubject = new BehaviorSubject<string>('');
+    this.errorMessageSubject = new BehaviorSubject<[]>([]);
+    this.errorMessage$ = this.errorMessageSubject.asObservable();
+    this.errorEmailMessage$ = this.errorEmailMessage.asObservable();
+    this.errorCurrentPasswordMessage$ = this.errorCurrentPasswordMessage.asObservable();
   }
 
   ngOnInit() {
@@ -51,6 +69,7 @@ export class WelcomeModalComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       email: ['', [Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
+      oldPassword: ['', [Validators.minLength(6)]],
       password: ['', [Validators.minLength(6)]],
       confirmPassword: [''],
     },
@@ -66,6 +85,8 @@ export class WelcomeModalComponent implements OnInit {
   public logOut() {
     this.cartService.updateCartItems();
     this.cartService.clearCart();
+    this.favouritesService.updateFavouritesItems();
+    this.favouritesService.clearFavourites();
     this.authService.logout();
     this.onNoClick();
   }
@@ -78,20 +99,43 @@ export class WelcomeModalComponent implements OnInit {
     if (this.profileForm.invalid) {
       return;
     }
-    this.userService.updateUserData(this.profileForm.value)
+    const requestBody = {};
+    for (const prop in this.profileForm.value) {
+      if (this.profileForm.value.hasOwnProperty(prop)) {
+        const element = this.profileForm.value[prop];
+        if (element) {
+          requestBody[prop] = element;
+        }
+      }
+    }
+    if (this.profileForm.value.password) {
+      requestBody['newPassword'] = this.profileForm.value.password;
+    }
+    console.log(requestBody);
+    const url = `${apiHost}/api/users`;
+    const options = { withCredentials: true };
+    this.http.patch<any>(url, requestBody, options)
         .pipe(
           catchError(er => {
+            for (const error of er.error.errors) {
+              if (error.property === 'currentPassword') {
+                this.errorCurrentPasswordMessage.next(error.message);
+              }
+              if (error.property === 'email') {
+                this.errorEmailMessage.next(error.message);
+              }
+            }
             return of();
           }),
         )
       .subscribe(
         (responseBody: any) => {
-          if (responseBody && responseBody.status === 'error') {
-            this.errorMessageSubject.next(responseBody.message);
+          if (responseBody && responseBody.success === false) {
+            this.errorMessageSubject.next(responseBody.errors);
           } else {
-            this.accountModalService.emptyDialogStack();
-            this.cartService.sendNewCartItems();
-            this.cartService.getCartItems();
+            this.currentUser$ = responseBody.payload;
+            this.errorCurrentPasswordMessage.next('');
+            this.errorEmailMessage.next('');
           }
         });
   }

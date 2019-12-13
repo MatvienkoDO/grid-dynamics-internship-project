@@ -30,26 +30,4 @@ export class UserService {
         };
       }));
   }
-
-  updateUserData(user: User): Observable<User> {
-    const url = `${apiHost}/api/users/me`;
-    const body = {
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-    };
-    const options = { withCredentials: true };
-
-    return this.http.patch<any>(url, body, options).pipe(map(response => {
-      if (response && response.payload) {
-        return response.payload;
-      }
-
-      throw {
-        message: 'incorrect response',
-        payload: response,
-      };
-    }));
-  }
-
 }

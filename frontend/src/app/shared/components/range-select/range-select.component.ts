@@ -29,7 +29,7 @@ export class RangeSelectComponent implements OnInit {
   @Input() set initialHigh(value: number | undefined) {
     if (value !== undefined) {
       this.highValue = value;
-      this.lowValue = Math.min(this.lowValue || 0, value); 
+      this.lowValue = Math.min(this.lowValue || 0, value);
     }
   }
 
@@ -37,7 +37,7 @@ export class RangeSelectComponent implements OnInit {
 
   private lowValue?: number = undefined;
   public set low(value: number) {
-    if (this.lowValue !== value && value < this.high) {
+    if (this.lowValue !== value && value <= this.high) {
       this.lowValue = value;
       this.emitValues();
     }
@@ -52,7 +52,7 @@ export class RangeSelectComponent implements OnInit {
 
   private highValue?: number = undefined;
   public set high(value: number) {
-    if (this.highValue !== value && value > this.low) {
+    if (this.highValue !== value && value >= this.low) {
       this.highValue = value;
       this.emitValues();
     }
@@ -79,6 +79,13 @@ export class RangeSelectComponent implements OnInit {
   ngOnInit() {
     if (this.lowValue !== undefined && this.highValue !== undefined) {
       this.emitValues();
+    }
+
+    if (this.lowValue === undefined) {
+      this.lowValue = this.floor;
+    }
+    if (this.highValue === undefined) {
+      this.highValue = this.ceil;
     }
   }
 

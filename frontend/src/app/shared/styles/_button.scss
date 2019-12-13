@@ -13,8 +13,13 @@ button[disabled] {
   position: relative;
   &_end {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: flex-start;
     padding-bottom: 15px;
+    line-height: 1.2;
+    @media (max-width: 725px) {
+      line-height: 1.7;
+    }
   }
   &__account {
     display: flex;

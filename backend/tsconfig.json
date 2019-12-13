@@ -10,8 +10,8 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
+    // "strictNullChecks": true,
+    // "strictPropertyInitialization": true,
   },
   "exclude": ["node_modules", "dist"]
 }
