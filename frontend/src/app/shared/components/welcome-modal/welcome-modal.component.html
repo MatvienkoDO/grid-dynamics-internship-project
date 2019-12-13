@@ -1,4 +1,7 @@
 <div mat-dialog-actions class="button-container button-container_end">
+    <h3 class="title-medium cart-title profile-title">
+        user <span class="title-medium title-medium_primary-color cart-title">profile</span>
+      </h3>
   <button mat-button (click)="onNoClick()">
     <i class="material-icons">
       close
@@ -7,14 +10,13 @@
 </div>
 
 <ng-container *ngIf="currentUser$ | async as currentUser; else loading">
-  <h3 class="title-medium cart-title">
-    user <span class="title-medium title-medium_primary-color cart-title">profile</span>
-  </h3>
+
   <form action="/" method="post" class="profile-form" [formGroup]="profileForm"
     (ngSubmit)="onSubmitProfileForm($event)">
     <fieldset [disabled]="isDisabled" class="fieldset">
       <div class="field-wrap">
         <label class="profile-form__label">
+          first name
         </label>
         <input class="profile-form__input" type="text" name="text" formControlName="firstName"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.firstName.errors }"
@@ -50,7 +52,27 @@
             Enter a valid email address
           </div>
         </div>
+        <div *ngIf="errorEmailMessage$ | async" class="invalid-feedback">
+          {{ errorEmailMessage$ | async }}
+        </div>
       </div>
+      <div class="field-wrap">
+          <label class="profile-form__label">
+            current password
+          </label>
+          <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+            <input class="profile-form__input" type="password" name="oldPassword" formControlName="oldPassword"
+              [ngClass]="{ 'is-invalid': submitted && profileFormControls.oldPassword.errors }" />
+          </show-hide-password>
+          <div *ngIf="submitted && profileFormControls.oldPassword.errors" class="invalid-feedback">
+            <div *ngIf="profileFormControls.oldPassword.errors.minlength">
+              Password must be at least 6 characters
+            </div>
+          </div>
+          <div *ngIf="errorCurrentPasswordMessage$ | async" class="invalid-feedback">
+            {{ errorCurrentPasswordMessage$ | async }}
+          </div>
+        </div>
       <div class="field-wrap">
         <label class="profile-form__label">
           password
@@ -81,7 +103,7 @@
       </div>
     </fieldset>
     <div class="button-container button-container__account">
-        <button class="button button_form-account button_form-edit"
+        <button type="button" class="button button_form-account button_form-edit"
            (click)="formEnable()">Edit</button>
         <button type="submit" class="button button_form-account button_form-save">Save</button>
       </div>

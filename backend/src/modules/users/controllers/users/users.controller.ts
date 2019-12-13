@@ -13,7 +13,7 @@ import * as express from 'express';
 import { AuthGuard } from '../../../authentication/guards/auth/auth.guard';
 import { User } from '../../models/user';
 import { userIdCookieKey } from '../../../../shared/constants';
-import { UserService } from '../../services/user/user.service'
+import { UserService } from '../../services/user/user.service';
 import { EditUserDto } from '../../models/edit-user.dto';
 
 @Controller('api/users')
@@ -66,14 +66,13 @@ export class UsersController {
         status: 'invalid_edit_user_form',
         errors: validateResult.errors,
       });
-      
+
       return;
     }
-    const updatedUser = await this.usersService.update(userDto);
 
     return response.send({
       success: true,
-      payload: updatedUser,
+      payload: validateResult.user,
     });
   }
 }

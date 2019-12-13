@@ -33,36 +33,36 @@ export class UserService {
   public update(userDto: EditUserDto) {
     return this.userModel.findByIdAndUpdate(
       userDto.id,
-      userDto
+      userDto,
     );
   }
 
   public async validate(userDto: EditUserDto) {
     const errors = [];
     const user = await this.userModel.findById(userDto.id);
-    
+
     // Checks if first name is not empty
     if (userDto.firstName && userDto.firstName.length === 0) {
       errors.push({
         property: 'firstName',
         message: 'First name should not be empty',
-      })
+      });
     }
 
     // Checks if last name is not empty
     if (userDto.lastName && userDto.lastName.length === 0) {
       errors.push({
         property: 'lastName',
-        message: 'Last name should not be empty'
-      })
+        message: 'Last name should not be empty',
+      });
     }
 
     // Checks if email is not empty and is unique
-    if (userDto.email && !(await this.isUnique(userDto.email))) {
+    if (userDto.email && userDto.email !== user.email && !(await this.isUnique(userDto.email))) {
       errors.push({
         property: 'email',
-        message: 'Email already exists'
-      })
+        message: 'Email already exists',
+      });
     }
 
     // Checks if database password and client password is equal
@@ -71,9 +71,9 @@ export class UserService {
       !(await compare(userDto.oldPassword, user.password))
     ) {
       errors.push({
-        property: 'oldPassword',
-        message: 'Old password is not valid'
-      })
+        property: 'currentPassword',
+        message: 'Current password is not valid',
+      });
     }
 
     // Checks if new password is equal or more than 6 symbols
@@ -83,35 +83,38 @@ export class UserService {
     ) {
       errors.push({
         property: 'newPassord',
-        message: 'Password should be more or equal than 6 symbols'
-      })
+        message: 'Password should be more or equal than 6 symbols',
+      });
     }
 
     if (errors.length) {
       return {
         success: false,
-        errors: errors,
-      }
+        errors,
+      };
     }
 
+    const updateDto = { ...userDto };
     if (userDto.newPassword) {
-      userDto.newPassword = await hash(userDto.newPassword, await genSalt());
+      updateDto['password'] = await hash(userDto.newPassword, await genSalt());
     }
-    const result = await this.userModel.updateOne(
-      {_id: userDto.id},
-      { ...userDto, password: userDto.newPassword }
+
+    await this.userModel.updateOne(
+      {_id: updateDto.id},
+      { updateDto },
     );
 
     return {
       success: true,
-      user: result,
-    }
+      user: await this.userModel.findOne({_id: updateDto.id}),
+    };
   }
 
   private async isUnique(email: string): Promise<boolean> {
     const user = await this.userModel.findOne({
-      email: email
+      email,
     });
+
     return !user;
   }
 }
