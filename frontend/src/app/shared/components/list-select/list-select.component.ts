@@ -28,8 +28,6 @@ export class ListSelectComponent implements OnInit, OnChanges {
 
   public panelOpenState = false;
 
-  constructor() { }
-
   ngOnInit() {
     if (this.areOptionsSelected()) {
       this.panelOpenState = true;
@@ -64,7 +62,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
   }
 
   private areOptionsSelected(): boolean {
-    return (Array.isArray(this.selected) && this.selected.length > 0) || (typeof (this.selected) === "string" && this.selected !== "");
+    return (Array.isArray(this.selected) && this.selected.length > 0) || (typeof (this.selected) === 'string' && this.selected !== '');
   }
 
   private oneOfManyClick(value: string) {

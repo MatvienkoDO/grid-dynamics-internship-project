@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { CardProduct, Image } from '../../models';
@@ -10,24 +17,22 @@ import { CardProduct, Image } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardProductComponent implements OnInit {
-  @Input('id') public readonly id: string;
-  @Input('image') public readonly image: Image;
-  @Input('title') public readonly title: string;
-  @Input('price') public readonly price: number;
-  @Input('sizes') public readonly sizes: string[];
-  @Input('colors') public readonly colors: string[];
+  @Input() public readonly id: string;
+  @Input() public readonly image: Image;
+  @Input() public readonly title: string;
+  @Input() public readonly price: number;
+  @Input() public readonly sizes: string[];
+  @Input() public readonly colors: string[];
 
   @Input('currency-sign') public readonly currencySign: string = '$';
 
   @Output('show-details') public readonly showDetails = new EventEmitter<CardProduct>();
   @Output('add-to-cart') public readonly addToCart = new EventEmitter<CardProduct>();
   @Output('add-to-favorite') public readonly addToFavorite = new EventEmitter<CardProduct>();
-  @Output('error') public readonly error = new EventEmitter<string>();
+  @Output() public readonly error = new EventEmitter<string>();
 
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly color$ = new BehaviorSubject<string | undefined>(undefined);
-
-  constructor() { }
 
   ngOnInit() {
     const initialSize = this.sizes[0];
@@ -72,6 +77,6 @@ export class CardProductComponent implements OnInit {
         (color ? '' : 'Color is not specified');
 
       this.error.emit(message);
-    }  
+    }
   }
 }
