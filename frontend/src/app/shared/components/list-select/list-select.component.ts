@@ -28,8 +28,6 @@ export class ListSelectComponent implements OnInit, OnChanges {
 
   public panelOpenState = false;
 
-  constructor() { }
-
   ngOnInit() {
     if (this.areOptionsSelected()) {
       this.panelOpenState = true;

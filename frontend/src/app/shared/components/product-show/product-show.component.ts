@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { CardProduct, Image } from '../../models';
@@ -10,25 +17,23 @@ import { CardProduct, Image } from '../../models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductShowComponent implements OnInit {
-  @Input('id') id: string;
-  @Input('title') title: string;
-  @Input('sizes') sizes: string[];
-  @Input('price') price: number;
+  @Input() id: string;
+  @Input() title: string;
+  @Input() sizes: string[];
+  @Input() price: number;
 
   @Input('short-description') shortDescription = '';
-  @Input('description') description = '';
-  @Input('currency') currency = '$';
-  @Input('images') images: Image[] = [];
+  @Input() description = '';
+  @Input() currency = '$';
+  @Input() images: Image[] = [];
 
-  @Output('share') share = new EventEmitter<CardProduct>();
+  @Output() share = new EventEmitter<CardProduct>();
   @Output('add-to-cart') addToCart = new EventEmitter<CardProduct>();
   @Output('add-to-favorite') addToFavorite = new EventEmitter<CardProduct>();
 
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly quantity$ = new BehaviorSubject<number>(1);
   public readonly currentImage$ = new BehaviorSubject(0);
-
-  constructor() { }
 
   ngOnInit() {
     const initialSize = this.sizes[0];
@@ -83,7 +88,7 @@ export class ProductShowComponent implements OnInit {
 
   public readonly prevImage = () => {
     const previous = this.currentImage$.value - 1;
-    
+
     if (previous >= 0) {
       this.currentImage$.next(previous);
     }
@@ -91,7 +96,7 @@ export class ProductShowComponent implements OnInit {
 
   public readonly nextImage = () => {
     const next = this.currentImage$.value + 1;
-    
+
     if (next < this.images.length) {
       this.currentImage$.next(next);
     }

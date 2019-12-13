@@ -17,13 +17,11 @@ export class LocalizationInterceptor implements HttpInterceptor {
     multi: true,
   };
 
-  constructor() { }
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const locale = localStorage.getItem('LOCALE');
 
     if (!locale) {
-      return next.handle(request);  
+      return next.handle(request);
     }
 
     const requestUpdate = {

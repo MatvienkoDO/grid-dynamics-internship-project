@@ -1,10 +1,18 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { LocalizationService, ProductFilterService, Query } from '../../shared/services';
-import { CartComponentInner, FavouritesComponentInner } from '../../shared/components';
+
+import {
+  LocalizationService,
+  ProductFilterService,
+  Query,
+} from '../../shared/services';
+import {
+  CartComponentInner,
+  FavouritesComponentInner,
+} from '../../shared/components';
 import { AccountModalService } from 'src/app/shared/services/account-modal/account-modal.service';
 
 @Component({
@@ -12,7 +20,7 @@ import { AccountModalService } from 'src/app/shared/services/account-modal/accou
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public searchForm = new FormGroup({
     search: new FormControl(''),
   });
