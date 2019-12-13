@@ -1,3 +1,5 @@
+import { NotifierOptions } from 'angular-notifier';
+
 export const localStorageCartKey = 'CART_ITEMS';
 export const localStorageFavouritesKey = 'FAVOURITES_ITEMS';
 export const localStorageLocaleKey = 'LOCALE';
@@ -8,7 +10,7 @@ export const emailIsNotUnique = 'email_is_not_unique';
 export const incorrectLoginPasswordPair = 'incorrect_login_password_pair';
 export const invalidEmailPassword = 'Invalid email/password';
 
-export const customNotifierOptions = {
+export const customNotifierOptions: NotifierOptions = {
  position: {
   horizontal: {
    position: 'right',

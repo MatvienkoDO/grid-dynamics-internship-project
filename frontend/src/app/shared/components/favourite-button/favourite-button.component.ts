@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-favourite-button',
   templateUrl: './favourite-button.component.html',
-  styleUrls: ['./favourite-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./favourite-button.component.scss']
 })
 export class FavouriteButtonComponent implements OnInit {
 
