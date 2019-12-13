@@ -24,6 +24,7 @@
 .filter-mobile {
   &__title {
     padding: 0 20px 0 0;
+    z-index: 10;
   }
   &__arrow {
     position: relative;
@@ -76,6 +77,7 @@
       @include for-phone-intermediate {
         left: -3px;
       }
+      
     }
   }
 
@@ -88,7 +90,6 @@
     top: 0px;
     left: 0;
     z-index: 7;
-    height: 0;
     opacity: 1;
     transition: .5s;
     transition-delay: .2s;
@@ -102,12 +103,6 @@
 
     &:checked~ {
       .filter-mobile {
-
-        &__container {
-          height: auto;
-          transition-delay: 0s;
-        }
-
         &__arrow {
           margin-left: auto;
           .filter-mobile__icon {

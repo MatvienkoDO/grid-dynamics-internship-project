@@ -12,15 +12,9 @@ describe('ProductsComponent', () => {
   let component: ProductsComponent;
   let fixture: ComponentFixture<ProductsComponent>;
 
-  let route;
-
   const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl', 'navigate']);
   const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
   const favouritesServiceSpy = jasmine.createSpyObj('FavouritesService', ['addToFavourites']);
-  // const activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', ['queryParams']);
-  // activatedRouteSpy.queryParams.and.returnValue(of({
-  //   search: 'adadad'
-  // }));
 
   const activatedRouteSpy = {
     queryParams: of({
@@ -30,12 +24,6 @@ describe('ProductsComponent', () => {
 
 
   beforeEach(() => {
-    // /route = new MockActivatedRoute();
-    // route.params = new Observable(subscriber => 
-    //   subscriber.next({'id': '1'})
-    // );
-    // route.root = new MockActivatedRoute();
-    // console.log(route);
     TestBed.configureTestingModule({
       imports: [AppModule],
       providers: [

@@ -71,7 +71,6 @@ export class ListSelectComponent implements OnInit, OnChanges {
     const newValues = current === value
       ? []
       : [value];
-
     this.selected$.next(newValues);
     this.values.emit(newValues);
   }

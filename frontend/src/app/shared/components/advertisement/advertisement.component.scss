@@ -75,8 +75,8 @@
   }
 
   &__size {
-    margin-top: 7px;
     @include fonts ($secondary-color, "Open Sans", 12px, 400);
+    margin-top: 7px;
     opacity: 0.4;
     letter-spacing: 7.2px;
   }

@@ -35,10 +35,6 @@ $frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-
   }
 }
 
-#cdk-overlay-0,
-.cdk-overlay-pane {
-  height: auto !important;
-}
 
 @import "~angular-notifier/styles";
 
@@ -75,7 +71,8 @@ app-range-select .ng5-slider {
   .ng5-slider-bubble {
     color: $secondary-color;
 
-    &.ng5-slider-floor, &.ng5-slider-ceil {
+    &.ng5-slider-floor, 
+    &.ng5-slider-ceil {
       display: none;
     }
   }
@@ -113,30 +110,24 @@ app-range-select .ng5-slider {
 }
 
 @media (max-width: 500px) {
-  .mat-dialog-container {
-    padding: 0 14px !important;
+  .cdk-overlay-pane .mat-dialog-container {
+    padding: 0 14px;
   }
 }
 
-.btn-primary {
-  position: absolute;
-  top: 26px;
-  right: 1px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
+
 // material accordion
 .mat-expansion-panel:not([class*=mat-elevation-z]) {
   box-shadow: unset;
 }
-.mat-expansion-panel-header {
-  padding: 0 2px 0 0 !important;
-}
-.mat-expansion-panel-header {
-  font-family: "Open Sans";
+
+.mat-tab-labels
+.mat-tab-label {
+  padding: 0 14px;
 }
 
-.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
-  display: none !important;
+.mat-expansion-panel
+.mat-expansion-panel-header {
+  padding: 0 2px 0 0;
+  font-family: "Open Sans";
 }

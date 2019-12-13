@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 
@@ -8,8 +8,7 @@ import { Product, CardProduct, ProductResponse } from 'src/app/shared/models';
 @Component({
   selector: 'app-best-sales',
   templateUrl: './best-sales.component.html',
-  styleUrls: ['./best-sales.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./best-sales.component.scss']
 })
 export class BestSalesComponent implements OnInit, OnDestroy {
   public readonly products$ = new Subject<Product[]>();
@@ -19,7 +18,7 @@ export class BestSalesComponent implements OnInit, OnDestroy {
     private readonly productsService: ProductsService,
     private readonly cartService: CartService,
     private readonly router: Router,
-    
+
   ) { }
 
   ngOnInit() {
@@ -32,7 +31,7 @@ export class BestSalesComponent implements OnInit, OnDestroy {
         if (products && Array.isArray(products.data)) {
           this.products$.next(products.data);
         } else {
-          throw 'incorrect data';
+          throw new Error('incorrect data');
         }
       }
     });

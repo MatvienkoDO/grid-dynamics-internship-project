@@ -1,17 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { FavouritesService, CartService } from '../../services';
-import { CardProduct, Image } from '../../models';
+import { CardProduct } from '../../models';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.component.html',
-  styleUrls: ['./favourites.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./favourites.component.scss']
 })
 export class FavouritesComponent implements OnInit {
   public productsNumber$: Observable<number>;
@@ -30,7 +29,7 @@ export class FavouritesComponent implements OnInit {
   selector: 'favourites-inner',
   templateUrl: './favourites-inner.component.html',
   styleUrls: ['./favourites.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FavouritesComponentInner implements OnInit {
   public products$: Observable<CardProduct[]>;

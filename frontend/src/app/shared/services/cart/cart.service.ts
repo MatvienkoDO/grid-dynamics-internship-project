@@ -7,8 +7,7 @@ import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 import { localStorageCartKey } from '../../constants';
 import { apiHost } from 'src/environments/environment';
-import { map, debounceTime, switchMap, share } from 'rxjs/operators';
-import { stringify } from 'querystring';
+import { debounceTime, switchMap, share } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

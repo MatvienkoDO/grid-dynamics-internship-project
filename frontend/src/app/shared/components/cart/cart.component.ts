@@ -10,8 +10,7 @@ import { CardProduct } from '../../models';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
   public productsNumber$: Observable<number>;
