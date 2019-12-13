@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/cli": "^6.9.0",
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
     "@nestjs/mongoose": "^6.1.2",
@@ -34,7 +35,6 @@
     "typescript": "3.7.3"
   },
   "devDependencies": {
-    "@nestjs/cli": "^6.9.0",
     "@nestjs/schematics": "^6.7.0",
     "@nestjs/testing": "^6.7.1",
     "@types/bcrypt": "^3.0.0",

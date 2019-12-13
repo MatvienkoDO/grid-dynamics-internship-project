@@ -1,5 +1,5 @@
 #!/bin/bash
 
 cd backend
-npm install --production=false
+npm install
 npm run build
