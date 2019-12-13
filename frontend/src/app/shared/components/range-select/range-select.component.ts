@@ -37,7 +37,7 @@ export class RangeSelectComponent implements OnInit {
 
   private lowValue?: number = undefined;
   public set low(value: number) {
-    if (this.lowValue !== value && value < this.high) {
+    if (this.lowValue !== value && value <= this.high) {
       this.lowValue = value;
       this.emitValues();
     }
@@ -52,7 +52,7 @@ export class RangeSelectComponent implements OnInit {
 
   private highValue?: number = undefined;
   public set high(value: number) {
-    if (this.highValue !== value && value > this.low) {
+    if (this.highValue !== value && value >= this.low) {
       this.highValue = value;
       this.emitValues();
     }
