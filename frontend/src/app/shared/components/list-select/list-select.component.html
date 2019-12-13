@@ -1,8 +1,9 @@
-<mat-expansion-panel 
-[expanded]="panelOpenState">
+<mat-expansion-panel [expanded]="panelOpenState">
+
   <mat-expansion-panel-header>
     <span class="list-select__title">{{title}}</span>
   </mat-expansion-panel-header>
+
   <ng-container *ngIf="selected$ | async as selected">
     <a *ngFor="let option of options" title="" tabindex="0" class="list-select__item"
       [class.list-select__item_multiselect]="!oneOfMany"
@@ -10,4 +11,5 @@
       {{option.title}}
     </a>
   </ng-container>
+
 </mat-expansion-panel>

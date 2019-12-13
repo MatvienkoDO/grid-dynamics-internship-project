@@ -26,7 +26,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
 
   public readonly selected$ = new BehaviorSubject<string[]>([]);
 
-  private panelOpenState = false;
+  public panelOpenState = false;
 
   constructor() { }
 
@@ -47,7 +47,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
         ? changes.options.currentValue
         : this.options;
 
-      const optionsValues = options.map(({value}) => value);
+      const optionsValues = options.map(({ value }) => value);
 
       const selected = notFilteredSelected.filter(value => optionsValues.includes(value));
 
@@ -64,7 +64,7 @@ export class ListSelectComponent implements OnInit, OnChanges {
   }
 
   private areOptionsSelected(): boolean {
-    return (Array.isArray(this.selected) && this.selected.length > 0) || (typeof(this.selected) === 'string' && this.selected !== '');
+    return (Array.isArray(this.selected) && this.selected.length > 0) || (typeof (this.selected) === "string" && this.selected !== "");
   }
 
   private oneOfManyClick(value: string) {
@@ -94,6 +94,6 @@ export namespace ListSelectComponent {
     title: string;
     value: string;
   }
-  
+
   export type Options = Option[];
 }
