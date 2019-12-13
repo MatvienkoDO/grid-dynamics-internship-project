@@ -10,6 +10,7 @@ $main-account-color: $primary-color;
 $main-account-color-light: lighten($main-account-color, 5%);
 $main-account-color-dark: darken($main-account-color, 5%);
 $gray-light: #a0b3b0;
+$form-disabled: #e5e5e5;
 
 .profile-title {
   padding-bottom: 20px;
@@ -40,7 +41,7 @@ $gray-light: #a0b3b0;
     background-image: none;
     border: 1px solid $gray-light;
     border-radius: 0;
-    transition: border-color .25s ease, box-shadow .25s ease;
+    transition: opacity 1s;
 
     &:focus {
       outline: 0;
@@ -100,4 +101,11 @@ $gray-light: #a0b3b0;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.profile-form__input_active {
+  border-color: $gray-light;
+  background-color: $form-disabled;
+  opacity: 0.6;
+  transition: opacity 1s;
 }

@@ -1,7 +1,7 @@
 <div mat-dialog-actions class="button-container button-container_end">
-    <h3 class="title-medium cart-title profile-title">
-        user <span class="title-medium title-medium_primary-color cart-title">profile</span>
-      </h3>
+  <h3 class="title-medium cart-title profile-title">
+    user <span class="title-medium title-medium_primary-color cart-title">profile</span>
+  </h3>
   <button mat-button (click)="onNoClick()">
     <i class="material-icons">
       close
@@ -18,7 +18,7 @@
         <label class="profile-form__label">
           first name
         </label>
-        <input class="profile-form__input" type="text" name="text" formControlName="firstName"
+        <input class="profile-form__input" [class.profile-form__input_active]="isDisabled"                    type="text" name="text" formControlName="firstName"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.firstName.errors }"
           value="{{ currentUser?.firstName }}" />
         <div *ngIf="submitted && profileFormControls.firstName.errors" class="invalid-feedback">
@@ -31,7 +31,8 @@
         <label class="profile-form__label">
           last name
         </label>
-        <input class="profile-form__input" type="text" name="text" formControlName="lastName"
+        <input class="profile-form__input" [class.profile-form__input_active]="isDisabled" 
+          type="text" name="text" formControlName="lastName"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.lastName.errors }"
           value="{{ currentUser?.lastName }}" />
         <div *ngIf="submitted && profileFormControls.lastName.errors" class="invalid-feedback">
@@ -44,7 +45,8 @@
         <label class="profile-form__label">
           email address
         </label>
-        <input class="profile-form__input" type="email" name="email" formControlName="email"
+        <input class="profile-form__input" [class.profile-form__input_active]="isDisabled"
+          type="email" name="email" formControlName="email"
           [ngClass]="{ 'is-invalid': submitted && profileFormControls.email.errors }"
           value="{{ currentUser?.email }}" />
         <div *ngIf="submitted && profileFormControls.email.errors" class="invalid-feedback">
@@ -57,28 +59,30 @@
         </div>
       </div>
       <div class="field-wrap">
-          <label class="profile-form__label">
-            current password
-          </label>
-          <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
-            <input class="profile-form__input" type="password" name="oldPassword" formControlName="oldPassword"
-              [ngClass]="{ 'is-invalid': submitted && profileFormControls.oldPassword.errors }" />
-          </show-hide-password>
-          <div *ngIf="submitted && profileFormControls.oldPassword.errors" class="invalid-feedback">
-            <div *ngIf="profileFormControls.oldPassword.errors.minlength">
-              Password must be at least 6 characters
-            </div>
-          </div>
-          <div *ngIf="errorCurrentPasswordMessage$ | async" class="invalid-feedback">
-            {{ errorCurrentPasswordMessage$ | async }}
+        <label class="profile-form__label">
+          current password
+        </label>
+        <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
+          <input class="profile-form__input" [class.profile-form__input_active]="isDisabled"
+            type="password" name="oldPassword" formControlName="oldPassword"
+            [ngClass]="{ 'is-invalid': submitted && profileFormControls.oldPassword.errors }" />
+        </show-hide-password>
+        <div *ngIf="submitted && profileFormControls.oldPassword.errors" class="invalid-feedback">
+          <div *ngIf="profileFormControls.oldPassword.errors.minlength">
+            Password must be at least 6 characters
           </div>
         </div>
+        <div *ngIf="errorCurrentPasswordMessage$ | async" class="invalid-feedback">
+          {{ errorCurrentPasswordMessage$ | async }}
+        </div>
+      </div>
       <div class="field-wrap">
         <label class="profile-form__label">
           password
         </label>
         <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
-          <input class="profile-form__input" type="password" name="password" formControlName="password"
+          <input class="profile-form__input" [class.profile-form__input_active]="isDisabled"
+            type="password" name="password" formControlName="password"
             [ngClass]="{ 'is-invalid': submitted && profileFormControls.password.errors }" />
         </show-hide-password>
         <div *ngIf="submitted && profileFormControls.password.errors" class="invalid-feedback">
@@ -92,8 +96,9 @@
           repeat password
         </label>
         <show-hide-password size="lg" btnStyle="primary" [btnOutline]="false">
-          <input class="profile-form__input" type="password" name="password" formControlName="confirmPassword"
-            [ngClass]="{ 'is-invalid': submitted && profileFormControls.confirmPassword.errors }" />
+          <input class="profile-form__input" [class.profile-form__input_active]="isDisabled"
+            type="password" name="password" formControlName="confirmPassword"
+          [ngClass]="{ 'is-invalid': submitted && profileFormControls.confirmPassword.errors }" />
         </show-hide-password>
         <div *ngIf="submitted && profileFormControls.confirmPassword.errors" class="invalid-feedback">
           <div *ngIf="profileFormControls.confirmPassword.errors.mustMatch">
@@ -103,10 +108,9 @@
       </div>
     </fieldset>
     <div class="button-container button-container__account">
-        <button type="button" class="button button_form-account button_form-edit"
-           (click)="formEnable()">Edit</button>
-        <button type="submit" class="button button_form-account button_form-save">Save</button>
-      </div>
+      <button type="button" class="button button_form-account button_form-edit" (click)="formEnable()">Edit</button>
+      <button type="submit" class="button button_form-account button_form-save">Save</button>
+    </div>
   </form>
   <button class="button button_form-account button_form-log-out" (click)="logOut()">Log Out</button>
 </ng-container>
