@@ -63,7 +63,7 @@ export class UserService {
     }
 
     // Checks if email is not empty and is unique
-    if (userDto.email && !(await this.isUnique(userDto.email))) {
+    if (userDto.email && userDto.email !== user.email && !(await this.isUnique(userDto.email))) {
       errors.push({
         property: 'email',
         message: 'Email already exists',
@@ -76,8 +76,8 @@ export class UserService {
       !(await compare(userDto.oldPassword, user?.password ?? ''))
     ) {
       errors.push({
-        property: 'oldPassword',
-        message: 'Old password is not valid',
+        property: 'currentPassword',
+        message: 'Current password is not valid',
       });
     }
 
@@ -97,17 +97,19 @@ export class UserService {
       };
     }
 
+    const updateDto = { ...userDto };
     if (userDto.newPassword) {
-      userDto.newPassword = await hash(userDto.newPassword, await genSalt());
+      updateDto['password'] = await hash(userDto.newPassword, await genSalt());
     }
-    const result = await this.userModel.updateOne(
-      {_id: userDto.id},
-      { ...userDto, password: userDto.newPassword },
+
+    await this.userModel.updateOne(
+      {_id: updateDto.id},
+      { updateDto },
     );
 
     return {
       success: true,
-      user: result,
+      user: await this.userModel.findOne({_id: updateDto.id}),
     };
   }
 

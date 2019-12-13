@@ -69,11 +69,10 @@ export class UsersController {
 
       return;
     }
-    const updatedUser = await this.usersService.update(userDto);
 
     return response.send({
       success: true,
-      payload: updatedUser,
+      payload: validateResult.user,
     });
   }
 }
