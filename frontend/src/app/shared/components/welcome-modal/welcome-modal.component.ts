@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
