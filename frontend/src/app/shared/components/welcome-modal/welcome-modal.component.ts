@@ -11,7 +11,7 @@ import {
   CartService,
   FavouritesService
 } from '../../services';
-import { MustMatch } from '../../helpers/must-match.validator';
+import { mustMatch } from '../../helpers/must-match.validator';
 import { AccountModalService } from '../../services/account-modal/account-modal.service';
 
 @Component({
@@ -61,7 +61,7 @@ export class WelcomeModalComponent implements OnInit {
       confirmPassword: [''],
     },
       {
-        validator: MustMatch('password', 'confirmPassword')
+        validator: mustMatch('password', 'confirmPassword')
       });
   }
 
