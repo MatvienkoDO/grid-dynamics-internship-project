@@ -60,6 +60,7 @@ import {
   WelcomeModalComponent,
   FavouriteButtonComponent,
 } from './shared/components';
+import { HotDealsComponent } from './pages/hot-deals/hot-deals.component';
 
 const translateModuleConfig = {
   loader: {
@@ -98,6 +99,7 @@ const translateModuleConfig = {
     SearchRequestComponent,
     WelcomeModalComponent,
     FavouriteButtonComponent,
+    HotDealsComponent,
   ],
   imports: [
     BrowserModule,
