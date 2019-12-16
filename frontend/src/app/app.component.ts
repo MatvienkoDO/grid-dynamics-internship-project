@@ -31,17 +31,17 @@ export class AppComponent implements OnInit, OnDestroy {
     this.onlineEvent = fromEvent(window, 'online');
     this.offlineEvent = fromEvent(window, 'offline');
 
-    this.subscriptions.push(this.onlineEvent.subscribe(e => {
+    this.subscriptions.push(this.onlineEvent.subscribe(async () => {
       this.connectionStatusMessage = 'Back to online';
       this.connectionStatus = 'online';
-      const message = this.localizationService.getNotificationServiceMessage('onlineNow');
+      const message = await this.localizationService.get('onlineNow').toPromise();
       this.notificationService.info(message);
     }));
 
-    this.subscriptions.push(this.offlineEvent.subscribe(e => {
+    this.subscriptions.push(this.offlineEvent.subscribe(async () => {
       this.connectionStatusMessage = 'Connection lost! You are not connected to internet';
       this.connectionStatus = 'offline';
-      const message = this.localizationService.getNotificationServiceMessage('offlineNow');
+      const message = await this.localizationService.get('offlineNow').toPromise();
       this.notificationService.warning(message);
     }));
   }

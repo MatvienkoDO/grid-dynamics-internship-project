@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models';
@@ -6,7 +7,6 @@ import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 import { localStorageFavouritesKey } from '../../constants';
 import { apiHost } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class FavouritesService {
     }
   }
 
-  addToFavourites(cardProduct: CardProduct) {
+  async addToFavourites(cardProduct: CardProduct) {
     const idx = this.indexOf(cardProduct);
 
     if (idx === -1) {
@@ -45,7 +45,7 @@ export class FavouritesService {
 
       this.items.next(updatedItems);
 
-      const message = this.localizationService.getNotificationServiceMessage('addToFavourites');
+      const message = await this.localizationService.get('favourites.addToFavourites').toPromise();
       this.notificationService.info(`${cardProduct.title} ${message}`);
     }
   }
@@ -56,7 +56,7 @@ export class FavouritesService {
     return list;
   }
 
-  addToCart(cardProduct: CardProduct) {
+  async addToCart(cardProduct: CardProduct) {
     const updatedItems = this.items.value;
 
     const idx = this.indexOf(cardProduct);
@@ -70,7 +70,7 @@ export class FavouritesService {
 
     this.items.next(updatedItems);
 
-    const message = this.localizationService.getNotificationServiceMessage('addToCart');
+    const message = await this.localizationService.get('cart.addToCart').toPromise();
     this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
@@ -81,10 +81,11 @@ export class FavouritesService {
         return i;
       }
     }
+
     return -1;
   }
 
-  deleteFromFavourites(product: CardProduct) {
+  async deleteFromFavourites(product: CardProduct) {
     const updatedItems = [
       ...this.items.value.filter(el => el.id !== product.id)
     ];
@@ -93,18 +94,19 @@ export class FavouritesService {
 
     this.items.next(updatedItems);
 
-    const message = this.localizationService.getNotificationServiceMessage('deleteFromFavourites');
+    const message = await this.localizationService
+      .get('favourites.deleteFromFavourites').toPromise();
     this.notificationService.warning(`${product.title} ${message}`);
   }
 
-  clearFavourites() {
+  async clearFavourites() {
     const updatedItems = [];
 
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
 
-    const message = this.localizationService.getNotificationServiceMessage('clearFavourites');
+    const message = await this.localizationService.get('favourites.clearFavourites').toPromise();
     this.notificationService.warning(message);
   }
 
@@ -137,7 +139,7 @@ export class FavouritesService {
 
     return this.http.patch<any>(address, body, options)
       .subscribe(response => {
-        return response
+        return response;
       });
   }
 

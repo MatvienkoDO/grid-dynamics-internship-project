@@ -34,7 +34,7 @@ export class CartService {
     }
   }
 
-  public addToCart(cardProduct: CardProduct) {
+  public async addToCart(cardProduct: CardProduct) {
     const updatedItems = this.items.value;
 
     const idx = this.indexOf(cardProduct);
@@ -48,7 +48,7 @@ export class CartService {
 
     this.items.next(updatedItems);
 
-    const message = this.localizationService.getNotificationServiceMessage('addToCart');
+    const message = await this.localizationService.get('cart.addToCart').toPromise();
     this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
@@ -63,7 +63,7 @@ export class CartService {
     return -1;
   }
 
-  public deleteFromCart(cardProduct: CardProduct) {
+  public async deleteFromCart(cardProduct: CardProduct) {
     const updatedItems = [
       ...this.items.value.filter(el => el.id !== cardProduct.id)
     ];
@@ -72,18 +72,18 @@ export class CartService {
 
     this.items.next(updatedItems);
 
-    const message = this.localizationService.getNotificationServiceMessage('deleteFromCart');
+    const message = await this.localizationService.get('cart.deleteFromCart').toPromise();
     this.notificationService.warning(`${cardProduct.title} ${message}`);
   }
 
-  public clearCart() {
+  public async clearCart() {
     const updatedItems = [];
 
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
 
-    const message = this.localizationService.getNotificationServiceMessage('clearCart');
+    const message = await this.localizationService.get('cart.clearCart').toPromise();
     this.notificationService.warning(message);
   }
 
@@ -134,18 +134,20 @@ export class CartService {
 
     return this.http.patch<any>(address, body, options)
       .subscribe(response => {
-        return response
+        return response;
       });
   }
 
   public updateWithDebounce() {
+    const debounceTimeoutInMillis = 1000;
+
     const address = `${apiHost}/api/cart`;
     const body = { items: this.items.getValue() };
     const options = { withCredentials: true };
 
     return this.http.put<any>(address, body, options)
       .pipe(
-        debounceTime(1000),
+        debounceTime(debounceTimeoutInMillis),
         switchMap(() =>
           this.http.put<any>(address, { items: this.items.getValue() }, options)
         ),
