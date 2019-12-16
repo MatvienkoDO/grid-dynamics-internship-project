@@ -16,7 +16,7 @@ export class CartService {
   public readonly items$: Observable<CardProduct[]>;
 
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
-  
+
   constructor(
     private readonly localizationService: LocalizationService,
     private readonly notificationService: NotificationService,
@@ -59,6 +59,7 @@ export class CartService {
         return i;
       }
     }
+
     return -1;
   }
 

@@ -19,7 +19,7 @@ export class FavouritesService {
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
     private readonly http: HttpClient,
-  ) { 
+  ) {
     this.items$ = this.items.asObservable();
     this.init();
   }
@@ -50,8 +50,9 @@ export class FavouritesService {
     }
   }
 
-  getListOfFavourites(){
+  getListOfFavourites() {
     const list = this.items.value;
+
     return list;
   }
 
