@@ -100,9 +100,12 @@
     "error password match": "пароль должен совпадать"
   },
 
-    "favourites": {
+  "favourites": {
     "title": "Избранное",
-    "button": "Удалить все"
+    "button": "Удалить все",
+    "addToFavourites": "добавлен в избранное",
+    "deleteFromFavourites": "удален из избранного",
+    "clearFavourites": "Список избранного очищен"
   },
 
   "cart": {
@@ -114,8 +117,14 @@
     "color": "цвет",
     "price": "цена",
     "quantity": "количество",
-    "total cost": "общая стоимость"
+    "total cost": "общая стоимость",
+    "addToCart": "в корзине",
+    "deleteFromCart": "удален из корзины",
+    "clearCart": "Корзина очищена"
   },
+
+  "onlineNow": "Вы онлайн",
+  "offlineNow": "Вы офлайн",
 
   "about": {
     "about": "о",
