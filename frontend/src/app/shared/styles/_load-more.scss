@@ -1,0 +1,21 @@
+.load-more {
+ @include flex;
+ justify-content: center;
+ height: 60px;
+ text-decoration: none;
+ background-color: #ffffff;
+ cursor: pointer;
+
+ &:hover {
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+ }
+
+ &__circle {
+   display: block;
+   margin: 0 2px;
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background-color: #ff5912;
+ }
+}
