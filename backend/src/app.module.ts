@@ -13,6 +13,8 @@ import { FavouriteModule } from './modules/favourite/favourite.module';
 
 const mongoConfig: MongooseModuleOptions = {
   useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
   useUnifiedTopology: true,
 };
 
