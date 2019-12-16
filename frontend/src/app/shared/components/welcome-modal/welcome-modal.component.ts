@@ -63,14 +63,15 @@ export class WelcomeModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    const minPasswordLength = 6;
     this.currentUser$ = this.userService.getMe();
 
     this.profileForm = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
       email: ['', [Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      oldPassword: ['', [Validators.minLength(6)]],
-      password: ['', [Validators.minLength(6)]],
+      oldPassword: ['', [Validators.minLength(minPasswordLength)]],
+      password: ['', [Validators.minLength(minPasswordLength)]],
       confirmPassword: [''],
     },
       {
@@ -109,9 +110,10 @@ export class WelcomeModalComponent implements OnInit {
       }
     }
     if (this.profileForm.value.password) {
-      requestBody['newPassword'] = this.profileForm.value.password;
+      const newPasswordProp = 'newPassword';
+      requestBody[newPasswordProp] = this.profileForm.value.password;
     }
-    const url = `${apiHost}/api/users`;
+    const url = `${apiHost}/api/users/me`;
     const options = { withCredentials: true };
     this.http.patch<any>(url, requestBody, options)
         .pipe(
@@ -133,7 +135,7 @@ export class WelcomeModalComponent implements OnInit {
           if (responseBody && responseBody.success === false) {
             this.errorMessageSubject.next(responseBody.errors);
           } else {
-            this.currentUser$ = responseBody.payload;
+            this.currentUser$ = this.userService.getMe();
             this.errorCurrentPasswordMessage.next('');
             this.errorEmailMessage.next('');
           }

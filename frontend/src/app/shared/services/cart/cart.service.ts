@@ -134,7 +134,6 @@ export class CartService {
 
     return this.http.patch<any>(address, body, options)
       .subscribe(items => {
-        console.log(items);
         this.saveItemsToLocalStorage(items);
         this.items.next(items);
       });
