@@ -49,7 +49,7 @@ export class LocalizationService {
     location.reload();
   }
 
-  get(key: string): Observable<string> {
+  public get(key: string): Observable<string> {
     return this.translate.get(key);
   }
 }
