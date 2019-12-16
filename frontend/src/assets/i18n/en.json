@@ -102,7 +102,10 @@
 
   "favourites": {
     "title": "favourites",
-    "button": "delete all"
+    "button": "delete all",
+    "addToFavourites": "has been added to Favourites",
+    "deleteFromFavourites": "has been removed from Favourites",
+    "clearFavourites": "Favourites has been cleared"
   },
 
   "cart": {
@@ -114,6 +117,12 @@
     "color": "color",
     "price": "price",
     "quantity": "quantity",
-    "total cost": "total cost"
-  }
+    "total cost": "total cost",
+    "addToCart": "has been added",
+    "deleteFromCart": "has been removed",
+    "clearCart": "Cart has been cleared"
+  },
+
+  "onlineNow": "You are online now",
+  "offlineNow": "You are offline now"
 }
