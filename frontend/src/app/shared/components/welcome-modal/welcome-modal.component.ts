@@ -111,7 +111,6 @@ export class WelcomeModalComponent implements OnInit {
     if (this.profileForm.value.password) {
       requestBody['newPassword'] = this.profileForm.value.password;
     }
-    console.log(requestBody);
     const url = `${apiHost}/api/users`;
     const options = { withCredentials: true };
     this.http.patch<any>(url, requestBody, options)
@@ -125,6 +124,7 @@ export class WelcomeModalComponent implements OnInit {
                 this.errorEmailMessage.next(error.message);
               }
             }
+
             return of();
           }),
         )

@@ -19,7 +19,7 @@ export class FavouritesService {
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
     private readonly http: HttpClient,
-  ) { 
+  ) {
     this.items$ = this.items.asObservable();
     this.init();
   }
@@ -33,7 +33,7 @@ export class FavouritesService {
   }
 
   addToFavourites(cardProduct: CardProduct) {
-    const idx = this.indexOf(cardProduct);
+    const idx = this.findIndexSameCardProduct(cardProduct);
 
     if (idx === -1) {
       const updatedItems = [
@@ -50,15 +50,16 @@ export class FavouritesService {
     }
   }
 
-  getListOfFavourites(){
+  getListOfFavourites() {
     const list = this.items.value;
+
     return list;
   }
 
   addToCart(cardProduct: CardProduct) {
     const updatedItems = this.items.value;
 
-    const idx = this.indexOf(cardProduct);
+    const idx = this.findIndexSameCardProduct(cardProduct);
     if (idx !== -1) {
       updatedItems[idx].quantity += cardProduct.quantity;
     } else {
@@ -73,13 +74,14 @@ export class FavouritesService {
     this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
-  private indexOf(cardProduct: CardProduct) {
+  private findIndexSameCardProduct(cardProduct: CardProduct) {
     for (let i = 0; i < this.items.value.length; i++) {
       const item = this.items.value[i];
       if (item.id === cardProduct.id) {
         return i;
       }
     }
+
     return -1;
   }
 
@@ -136,7 +138,8 @@ export class FavouritesService {
 
     return this.http.patch<any>(address, body, options)
       .subscribe(response => {
-        return response
+        this.saveItemsToLocalStorage(response.items);
+        this.items.next(response.items);
       });
   }
 

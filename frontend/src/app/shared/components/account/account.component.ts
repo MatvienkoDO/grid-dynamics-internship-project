@@ -19,7 +19,7 @@ import { CartService, FavouritesService } from '../../services';
 export class AccountComponent implements OnInit {
   public static readonly dialogConfig: MatDialogConfig = {
     width: '550px',
-  }
+  };
   private errorMessageSubject: BehaviorSubject<string>;
   public loginErrorMessage$: Observable<string>;
   public signupErrorMessage$: Observable<string>;
@@ -55,21 +55,36 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.signupForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-    },
+    const passwordMinLength = 6;
+    this.signupForm = this.formBuilder.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [
+          Validators.required,
+          Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+        ]],
+        password: ['', [
+          Validators.required, Validators.minLength(passwordMinLength)
+        ]],
+        confirmPassword: ['', Validators.required],
+      },
       {
         validator: mustMatch('password', 'confirmPassword')
-      });
+      }
+    );
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      email: ['', [
+        Validators.required,
+        Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(passwordMinLength)
+      ]],
     });
   }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -88,6 +103,8 @@ export class AccountComponent implements OnInit {
         .pipe(
           catchError(er => {
             this.loading = false;
+            // TODO handle exception
+
             return of();
           }),
         )
@@ -117,6 +134,8 @@ export class AccountComponent implements OnInit {
         .pipe(
           catchError(er => {
             this.loading = false;
+            // TODO Handle exception
+
             return of();
           }),
         )
@@ -129,7 +148,6 @@ export class AccountComponent implements OnInit {
               this.accountModalService.emptyDialogStack();
               this.accountModalService.openWelcomeDialog();
               this.cartService.sendNewCartItems();
-              this.cartService.getCartItems();
               this.favouritesService.sendNewFavouritesItems();
             }
         });
