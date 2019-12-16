@@ -1,56 +1,59 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { localStorageLocaleKey } from '../../constants';
+
+const langs = ['en', 'ru'];
+const defaultLang = langs[0];
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalizationService {
-  private readonly locale = new BehaviorSubject<string>("en");
+  private readonly locale = new BehaviorSubject<string>(defaultLang);
 
-  constructor(
-    private readonly translate: TranslateService
-  ) {
-    this.translate.addLangs(['en', 'ru']);
-    this.translate.setDefaultLang('en');
+  constructor(private readonly translate: TranslateService) {
     this.init();
-    this.translate.use(this.locale.getValue());
   }
 
   private init() {
-    const localeFromLocalStorage = this.getLocaleFromLocalStorage();
+    this.translate.addLangs(langs);
+    this.translate.setDefaultLang(defaultLang);
 
-    if (localeFromLocalStorage) {
-      this.translate.use(localeFromLocalStorage);
-      this.locale.next(localeFromLocalStorage);
-    }
-  }
+    const localStorageLocale = localStorage.getItem(localStorageLocaleKey);
+    const lang = localStorageLocale && langs.includes(localStorageLocale)
+      ? localStorageLocale
+      : defaultLang;
 
-  private getLocaleFromLocalStorage() {
-    return localStorage.getItem(localStorageLocaleKey);
-  }
-
-  private saveLocaleToLocalStorage(): void {
-    localStorage.setItem(localStorageLocaleKey, this.locale.getValue());
+    this.translate.use(lang);
+    this.locale.next(lang);
   }
 
   public getLangs() {
-    return this.translate.getLangs();
+    return langs;
   }
 
   public getLocale() {
     return this.locale.getValue();
   }
 
-  public setLocale(newLocale: string) {
-    this.translate.use(newLocale);
-    this.locale.next(newLocale);
-    this.saveLocaleToLocalStorage();
+  public setLocale(lang: string) {
+    if (!langs.includes(lang)) {
+      throw {
+        message: `'${lang}' is unknown. It does not exist in langs list (${langs.join(', ')})`,
+      };
+    }
+
+    localStorage.setItem(localStorageLocaleKey, lang);
     location.reload();
   }
 
+  get(key: string): Observable<string> {
+    return this.translate.get(key);
+  }
+
+  // FIXME: remove it later
   public getNotificationServiceMessage(type: string): string {
     const message = notificationServiceMessages[type];
     if (!message) {
