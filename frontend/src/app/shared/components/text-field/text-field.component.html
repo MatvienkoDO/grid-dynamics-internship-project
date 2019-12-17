@@ -7,11 +7,11 @@
   class="input"
   [ngClass]="{ invalid: !pristine && errors.length }"
   [type]="type"
-  [name]="name"
+  [attr.name]="name"
   [required]="required"
   [autocomplete]="autocomplete"
-  [placeholder]="placeholder"
-  [formControlName]="formControlName" />
+  [attr.placeholder]="placeholder"
+  [attr.formControlName]="formControlName" />
 
 <ng-container *ngIf="!pristine">
   <div *ngFor="let error of errors" class="error">
