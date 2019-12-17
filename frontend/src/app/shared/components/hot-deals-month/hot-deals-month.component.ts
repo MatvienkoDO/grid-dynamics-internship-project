@@ -22,7 +22,7 @@ export class HotDealsMonthComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscription = this.productsService.getProducts(0, 6).subscribe({
+    this.subscription = this.productsService.getProductsForMonth(0, 6).subscribe({
       next: (products: ProductResponse) => {
         if (this.subscription) {
           this.subscription.unsubscribe();

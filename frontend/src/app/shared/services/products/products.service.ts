@@ -14,21 +14,37 @@ export class ProductsService {
 
   getProducts(skip: number = 0, limit: number = 0): Observable<ProductResponse> {
     const url = this.createBaseUrl(skip, limit);
+
     return this.http.get<ProductResponse>(url);
   }
 
   getProductsByFilters(skip: number = 0, limit: number = 0, filter: Filter): Observable<ProductResponse> {
     const url = this.createUrlWithFilter(skip, limit, filter);
+
     return this.http.get<ProductResponse>(url);
   }
 
   getProductsForSlider(): Observable<ProductResponse> {
     const url = `${apiHost}/api/products/for-slider`;
+
+    return this.http.get<ProductResponse>(url);
+  }
+
+  getProductsForWeek(skip: number = 0, limit: number = 0): Observable<ProductResponse> {
+    const url = `${apiHost}/api/products/hot-deals-week?skip=${skip}&limit=${limit}`;
+
+    return this.http.get<ProductResponse>(url);
+  }
+
+  getProductsForMonth(skip: number = 0, limit: number = 0): Observable<ProductResponse> {
+    const url = `${apiHost}/api/products/hot-deals-month?skip=${skip}&limit=${limit}`;
+
     return this.http.get<ProductResponse>(url);
   }
 
   getProductById(id: string) {
     const url = `${apiHost}/api/products/by-id/${id}`;
+
     return this.http.get<ProductResponse>(url);
   }
 
@@ -44,11 +60,11 @@ export class ProductsService {
   // TODO: create tests for it
   private createUrlWithFilter(skip: number = 0, limit: number = 0, filter: Filter) {
     let url = this.createBaseUrl(skip, limit);
-    
-    for(const filterName in filter) {
+
+    for (const filterName in filter) {
       const value = filter[filterName];
       const values = Array.isArray(value) ? value : [value];
-      
+
       for (const value of values) {
         url += `&${filterName}=${value}`;
       }

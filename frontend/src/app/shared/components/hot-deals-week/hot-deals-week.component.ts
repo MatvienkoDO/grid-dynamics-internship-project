@@ -1,7 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { switchMap, share, map } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
 
 import {
   Product,
@@ -22,12 +21,10 @@ import {
   styleUrls: ['./hot-deals-week.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HotDealsWeekComponent implements OnInit {
+export class HotDealsWeekComponent implements OnInit, OnDestroy {
 
-  public products$: Observable<Product[]>;
-  public canLoadMore$: Observable<boolean>;
-
-  private readonly productsNumbers = new BehaviorSubject<number>(8);
+  public readonly products$ = new Subject<Product[]>();
+  private subscription?: Subscription = undefined;
 
   constructor(
     private readonly productsService: ProductsService,
@@ -38,38 +35,25 @@ export class HotDealsWeekComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const productResponses: Observable<ProductResponse> = this.productsNumbers
-      .pipe(switchMap(numberOfProducts =>
-        this.productsService.getProducts(0, numberOfProducts)
-      ))
-      .pipe(share());
+    this.subscription = this.productsService.getProductsForMonth(0, 8).subscribe({
+      next: (products: ProductResponse) => {
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+        }
 
-    this.products$ = productResponses.pipe(map(response => {
-      if (response && Array.isArray(response.data)) {
-        return response.data;
-      }
-
-      throw 'incorrect data';
-    }));
-
-    this.canLoadMore$ = productResponses.pipe(map(response => {
-      if (response && Array.isArray(response.data)) {
-        const products = response.data;
-        const quantity = Number(response.quantity);
-
-        if (!isNaN(quantity) && isFinite(quantity)) {
-          return products.length < quantity;
+        if (products && Array.isArray(products.data)) {
+          this.products$.next(products.data);
+        } else {
+          throw new Error('incorrect data');
         }
       }
-
-      throw 'incorrect data';
-    }));
+    });
   }
 
-  public readonly loadMore = () => {
-    this.productsNumbers.next(
-      this.productsNumbers.value + 4
-    );
+  ngOnDestroy() {
+    if (this.subscription && !this.subscription.closed) {
+      this.subscription.unsubscribe();
+    }
   }
 
   public readonly goToPdp = (cardProduct: CardProduct) => {

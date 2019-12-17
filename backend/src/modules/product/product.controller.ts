@@ -83,12 +83,18 @@ export class ProductController {
 
   @Get('hot-deals-month')
     async findAllHotDealsMonth(@Headers() headers, @Query() query) {
-    return this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale);
+    const products = this.productService.findAllHotDealsMonth(query.skip,
+            query.limit, headers.locale);
+
+    return new ProductResponse(await products);
   }
 
   @Get('hot-deals-week')
     async findAllHotDealsWeek(@Headers() headers, @Query() query) {
-    return this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale);
+    const products = this.productService.findAllHotDealsWeek(query.skip,
+             query.limit, headers.locale);
+
+    return new ProductResponse(await products);
   }
 
   @Get('for-slider')
@@ -103,6 +109,6 @@ export class ProductController {
   async findRelatedProducts(@Headers() headers, @Param('id') id: string) {
     const related = await this.productService.findRelatedProducts(id, headers.locale);
 
-    return new ProductResponse(related ?? []);
+    return new ProductResponse([]);
   }
 }

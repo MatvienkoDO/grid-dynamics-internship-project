@@ -83,7 +83,8 @@ export class ProductService {
     locale: string = 'en',
   ): Promise<LocalizedProduct[]> {
 
-    const hotDealsMonthProducts = await this.productModel.find(null, null, { skip, limit });
+    const hotDealsMonthProducts = await this.productModel.find(null, null,
+       { skip: Number(skip), limit: Number(limit) });
 
     return this.getLocalizedProducts(locale, hotDealsMonthProducts);
   }
@@ -93,8 +94,8 @@ export class ProductService {
     limit: number = 8,
     locale: string = 'en',
   ): Promise<LocalizedProduct[]> {
-
-    const hotDealsWeekProducts = await this.productModel.find(null, null, { skip, limit });
+    const hotDealsWeekProducts = await this.productModel.find(null, null,
+      { skip: Number(skip), limit: Number(limit) });
 
     return this.getLocalizedProducts(locale, hotDealsWeekProducts);
   }
