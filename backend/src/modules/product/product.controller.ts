@@ -81,6 +81,16 @@ export class ProductController {
     return this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale);
   }
 
+  @Get('hot-deals-month')
+    async findAllHotDealsMonth(@Headers() headers, @Query() query) {
+    return this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale);
+  }
+
+  @Get('hot-deals-week')
+    async findAllHotDealsWeek(@Headers() headers, @Query() query) {
+    return this.productService.findAll(Number(query.skip), Number(query.limit), headers.locale);
+  }
+
   @Get('for-slider')
   async findForSlider(@Headers() headers, @Query() query) {
     const products = this.productService
