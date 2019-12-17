@@ -124,5 +124,16 @@
   },
 
   "onlineNow": "You are online now",
-  "offlineNow": "You are offline now"
+  "offlineNow": "You are offline now",
+
+  "error": {
+    "noInternet": "There is no Internet connection",
+    "notFound": "Product not found",
+    "serverError": "Server-side error",
+    "unknownError": "Ooops... something goes wrong",
+    "youAreNotAuthenticated": "You are not authenticated",
+    "signupInvalidForm": "Invalid form data",
+    "emailIsNotUnique": "Email is not unique",
+    "incorrectLoginPasswordPair": "Invalid login-password pair"
+  }
 }

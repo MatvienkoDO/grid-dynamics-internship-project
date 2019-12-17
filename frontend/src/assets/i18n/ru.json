@@ -124,5 +124,16 @@
   },
 
   "onlineNow": "Вы онлайн",
-  "offlineNow": "Вы офлайн"
+  "offlineNow": "Вы офлайн",
+
+  "error": {
+    "noInternet": "Отсутствует Интернет соединение",
+    "notFound": "Товар не найден",
+    "serverError": "Ошибка сервера",
+    "unknownError": "Ууупс... что-то пошло не так",
+    "youAreNotAuthenticated": "Вы не аутентифицированы",
+    "signupInvalidForm": "Данные формы некорректны",
+    "emailIsNotUnique": "Данный e-mail уже используется",
+    "incorrectLoginPasswordPair": "Неправильный логин и/или пароль"
+  }
 }
