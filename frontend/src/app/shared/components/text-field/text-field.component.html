@@ -3,15 +3,31 @@
   <span *ngIf="required" class="required">*</span>
 </label>
 
-<input
-  class="input"
-  [ngClass]="{ invalid: !pristine && errors.length }"
-  [type]="type"
-  [attr.name]="name"
-  [required]="required"
-  [autocomplete]="autocomplete"
-  [attr.placeholder]="placeholder"
-  [attr.formControlName]="formControlName" />
+<ng-container *ngIf="multiline; else singleLine">
+  <textarea
+    class="input"
+    [ngClass]="{ invalid: !pristine && errors.length }"
+    [attr.name]="name"
+    [required]="required"
+    [attr.placeholder]="placeholder"
+    [rows]="rows"
+    [attr.formControlName]="formControlName"
+    (input)="changeValue.emit($event)">{{value}}</textarea>
+</ng-container>
+
+<ng-template #singleLine>
+  <input
+    class="input"
+    [ngClass]="{ invalid: !pristine && errors.length }"
+    [type]="type"
+    [attr.name]="name"
+    [required]="required"
+    [autocomplete]="autocomplete"
+    [attr.placeholder]="placeholder"
+    [attr.formControlName]="formControlName"
+    [attr.value]="value"
+    (input)="changeValue.emit($event)" />
+</ng-template>
 
 <ng-container *ngIf="!pristine">
   <div *ngFor="let error of errors" class="error">

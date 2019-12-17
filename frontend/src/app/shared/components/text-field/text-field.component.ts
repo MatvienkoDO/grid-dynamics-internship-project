@@ -1,9 +1,16 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'app-text-field',
   templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss']
+  styleUrls: ['./text-field.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextFieldComponent {
   @Input() public name?: string;
@@ -15,4 +22,9 @@ export class TextFieldComponent {
   @Input() public pristine = false;
   @Input() public placeholder?: string;
   @Input() public errors: string[] = [];
+  @Input() public multiline = false;
+  @Input() public rows = 1;
+  @Input() public value: any = '';
+
+  @Output() public changeValue = new EventEmitter<any>();
 }
