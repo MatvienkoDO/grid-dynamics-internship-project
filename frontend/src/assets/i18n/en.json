@@ -115,5 +115,30 @@
     "price": "price",
     "quantity": "quantity",
     "total cost": "total cost"
+  },
+
+  "about": {
+    "about": "about",
+    "us": "us",
+    "description": "Grid Dynamics is a leader in driving enterprise-level digital transformation services for Fortune 1000 corporations. We work in close collaboration with our clients on digital transformation initiatives that span strategy consulting and enterprise-scale delivery of new digital platforms. We help organizations become more agile and create innovative digital products. Our secret sauce is in applying emergent technologies such as artificial intelligence, data science, cloud computing, Big Data and DevOps to enable digital transformation across the enterprise. Grid Dynamics is known for architecting and delivering some of the largest digital transformation programs in the retail, technology and financial sectors."
+  },
+
+  "team": {
+    "our": "our",
+    "team": "team",
+    "Dmitrii": "Dmitrii",
+    "Matvienko": "Matvienko",
+    "Daniil": "Daniil",
+    "Vadeneev": "Vadeneev",
+    "Timur": "Timur",
+    "Katimullin": "Katimullin",
+    "Vladimir": "Vladimir",
+    "Fedin": "Fedin",
+    "Julia": "Julia",
+    "Kozeeva": "Kozeeva",
+    "Mikhail": "Mikhail",
+    "Savchuk": "Savchuk",
+    "intern": "Intern UI Engineer",
+    "engineer": "UI Engineer"
   }
 }
