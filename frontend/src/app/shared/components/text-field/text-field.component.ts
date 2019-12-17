@@ -13,5 +13,6 @@ export class TextFieldComponent {
   @Input() public autocomplete = true;
   @Input() public formControlName?: string;
   @Input() public pristine = false;
+  @Input() public placeholder?: string;
   @Input() public errors: string[] = [];
 }

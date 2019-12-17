@@ -35,6 +35,10 @@ $gray-light: #a0b3b0;
   &:focus {
     border-color: $primary-color;
   }
+
+  &::placeholder {
+    @include fonts (#84909b, "Open Sans", 12px, 300);
+  }
 }
 
 .invalid {
