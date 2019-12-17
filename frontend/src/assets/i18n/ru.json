@@ -174,5 +174,16 @@
     "hot deals": "горячие предложения",
     "this month": "этого месяца",
     "desc": "Просто фиктивный текст в полиграфии и верстке."
+  },
+
+  "error": {
+    "noInternet": "Отсутствует Интернет соединение",
+    "notFound": "Товар не найден",
+    "serverError": "Ошибка сервера",
+    "unknownError": "Ууупс... что-то пошло не так",
+    "youAreNotAuthenticated": "Вы не аутентифицированы",
+    "signupInvalidForm": "Данные формы некорректны",
+    "emailIsNotUnique": "Данный e-mail уже используется",
+    "incorrectLoginPasswordPair": "Неправильный логин и/или пароль"
   }
 }
