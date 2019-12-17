@@ -35,6 +35,7 @@ import {
   HomeComponent,
   ProductDetailsComponent,
   ProductsComponent,
+  AboutComponent,
   HotDealsComponent,
 } from './pages';
 
@@ -61,7 +62,6 @@ import {
   WelcomeModalComponent,
   FavouriteButtonComponent,
 } from './shared/components';
-import { AboutComponent } from './pages/about/about.component';
 
 const translateModuleConfig = {
   loader: {
