@@ -60,6 +60,7 @@ import {
   WelcomeModalComponent,
   FavouriteButtonComponent,
 } from './shared/components';
+import { AboutComponent } from './pages/about/about.component';
 
 const translateModuleConfig = {
   loader: {
@@ -98,6 +99,7 @@ const translateModuleConfig = {
     SearchRequestComponent,
     WelcomeModalComponent,
     FavouriteButtonComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
