@@ -59,6 +59,7 @@ import {
   AccountComponent,
   WelcomeModalComponent,
   FavouriteButtonComponent,
+  TextFieldComponent,
 } from './shared/components';
 import { AboutComponent } from './pages/about/about.component';
 
@@ -100,6 +101,7 @@ const translateModuleConfig = {
     WelcomeModalComponent,
     FavouriteButtonComponent,
     AboutComponent,
+    TextFieldComponent,
   ],
   imports: [
     BrowserModule,
