@@ -18,11 +18,11 @@ export class BestSalesComponent implements OnInit, OnDestroy {
     private readonly productsService: ProductsService,
     private readonly cartService: CartService,
     private readonly router: Router,
-
   ) { }
 
   ngOnInit() {
-    this.subscription = this.productsService.getProducts(0, 3).subscribe({
+    const numberOfProducts = 3;
+    this.subscription = this.productsService.getProducts(0, numberOfProducts).subscribe({
       next: (products: ProductResponse) => {
         if (this.subscription) {
           this.subscription.unsubscribe();
