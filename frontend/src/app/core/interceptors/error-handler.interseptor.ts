@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Provider } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import {
@@ -23,8 +23,10 @@ import { Error } from '../../shared/models/error';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  public static readonly provider = {
-    provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true,
+  public static readonly provider: Provider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true,
   };
 
   constructor(
