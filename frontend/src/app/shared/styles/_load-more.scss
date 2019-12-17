@@ -1,9 +1,11 @@
+@import 'colors';
+
 .load-more {
  @include flex;
  justify-content: center;
  height: 60px;
  text-decoration: none;
- background-color: #ffffff;
+ background-color: $white;
  cursor: pointer;
 
  &:hover {
@@ -16,6 +18,6 @@
    width: 10px;
    height: 10px;
    border-radius: 50%;
-   background-color: #ff5912;
+   background-color: $primary-color;
  }
 }
