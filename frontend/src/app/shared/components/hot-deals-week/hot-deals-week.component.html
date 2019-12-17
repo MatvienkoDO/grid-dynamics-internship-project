@@ -1,0 +1,43 @@
+<div class="section-wrapper hot-deals-week-wrapper">
+  <h2 class="title-medium">
+    hot deals <span class="title-medium title-medium_primary-color">this week</span>
+  </h2>
+  <p class="text">
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+  </p>
+
+  <div
+    class="cards-container"
+    [class.cards-container_loading]="!(products$ | async)">
+
+    <app-loading-indicator
+      *ngIf="!(products$ | async)"
+      class="cards-container__loading-indicator">
+    </app-loading-indicator>
+
+    <app-card-product
+      *ngFor="let product of products$ | async"
+      [id]="product.id"
+      [image]="product.images[0]"
+      [title]="product.name"
+      [price]="product.price"
+      currency-sign="$"
+      [sizes]="product.sizes"
+      [colors]="product.colors"
+      (show-details)="goToPdp($event)"
+      (add-to-cart)="addToCart($event)"
+      (add-to-favorite)="addToFavourites($event)"
+      (error)="notChosen($event)">
+    </app-card-product>
+  </div>
+
+  <a
+    *ngIf="canLoadMore$ | async"
+    class="load-more"
+    (click)="loadMore()">
+
+    <span class="load-more__circle"></span>
+    <span class="load-more__circle"></span>
+    <span class="load-more__circle"></span>
+  </a>
+</div>
