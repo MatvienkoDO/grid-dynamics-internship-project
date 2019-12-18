@@ -1,9 +1,9 @@
 <div class="section-wrapper hot-deals-week-wrapper">
   <h2 class="title-medium">
-    hot deals <span class="title-medium title-medium_primary-color">this week</span>
+      {{ 'hot deals week.hot deals' | translate }} <span class="title-medium title-medium_primary-color"> {{ 'hot deals week.this week' | translate }} </span>
   </h2>
-  <p class="text">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+  <p class="text"> 
+      {{ 'hot deals week.desc' | translate }}
   </p>
 
   <div
@@ -30,14 +30,4 @@
       (error)="notChosen($event)">
     </app-card-product>
   </div>
-
-  <a
-    *ngIf="canLoadMore$ | async"
-    class="load-more"
-    (click)="loadMore()">
-
-    <span class="load-more__circle"></span>
-    <span class="load-more__circle"></span>
-    <span class="load-more__circle"></span>
-  </a>
 </div>
