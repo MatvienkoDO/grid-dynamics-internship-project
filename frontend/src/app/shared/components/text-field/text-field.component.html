@@ -13,7 +13,8 @@
     [rows]="rows"
     [readonly]="readonly"
     [attr.formControlName]="formControlName"
-    (input)="changeValue.emit($event)">{{value}}</textarea>
+    [value]="value"
+    (input)="changeValue.emit($event)"></textarea>
 </ng-container>
 
 <ng-template #singleLine>
