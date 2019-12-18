@@ -11,6 +11,7 @@
       name="name"
       [label]="'contact.name' | translate"
       [required]="true"
+      [readonly]="loading$ | async"
       [value]="name$ | async"
       [errors]="(nameErrors$ | async) && ('contact.nameHint' | translate)"
       (changeValue)="changeField('name', $event.target.value)">
@@ -20,6 +21,7 @@
       name="email"
       [label]="'contact.email' | translate"
       [required]="true"
+      [readonly]="loading$ | async"
       [value]="email$ | async"
       [errors]="(emailErrors$ | async) && ('contact.emailHint' | translate)"
       (changeValue)="changeField('email', $event.target.value)">
@@ -29,6 +31,7 @@
       name="message"
       [label]="'contact.message' | translate"
       [required]="true"
+      [readonly]="loading$ | async"
       [multiline]="true"
       [rows]="2"
       [value]="message$ | async"
