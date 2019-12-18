@@ -43,7 +43,7 @@ export class FavouriteService {
       },
     );
 
-    return this.favouriteModel.findById(favourites.id).exec();
+    return this.getUserFavourites(favourites.userId);
   }
 
   public async addItemsToUserFavourites(userId: string, newItems: FavouriteItem[]) {
