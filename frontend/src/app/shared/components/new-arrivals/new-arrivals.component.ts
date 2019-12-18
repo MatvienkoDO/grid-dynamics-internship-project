@@ -48,7 +48,7 @@ export class NewArrivalsComponent implements OnInit {
         return response.data;
       }
 
-      throw 'incorrect data';
+      return [];
     }));
 
     this.canLoadMore$ = productResponses.pipe(map(response => {
@@ -61,7 +61,7 @@ export class NewArrivalsComponent implements OnInit {
         }
       }
 
-      throw 'incorrect data';
+      return true;
     }));
   }
 

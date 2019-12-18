@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockTranslatePipe } from '../../../testing/test/mock-translate.pipe';
 import { AppModule } from 'src/app/app.module';
 import { of } from 'rxjs';
@@ -7,7 +7,7 @@ import { ProductsService, CartService } from '../../services';
 import { Product, CardProduct, ProductResponse } from 'src/app/shared/models';
 import { Router } from '@angular/router';
 
-describe('BestSalesComponent', () => {
+xdescribe('BestSalesComponent', () => {
   let component: BestSalesComponent;
   let fixture: ComponentFixture<BestSalesComponent>;
   const ProductsServiceSpy = jasmine.createSpyObj('ProductsService', ['getProducts']);

@@ -8,7 +8,12 @@ import { Subscription } from 'rxjs';
 
 import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
-import { CartService, FavouritesService, ProductFilterService, Query } from 'src/app/shared/services';
+import {
+  CartService,
+  FavouritesService,
+  ProductFilterService,
+  Query,
+} from 'src/app/shared/services';
 
 export interface Query {
   filter: Filter;

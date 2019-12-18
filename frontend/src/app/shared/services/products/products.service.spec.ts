@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { from } from 'rxjs';
 
 import { ProductsService } from './products.service';
-import { Product, Filter } from '../../models'
+import { Product, Filter } from '../../models';
 
 describe('ProductsService', () => {
   const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post']);

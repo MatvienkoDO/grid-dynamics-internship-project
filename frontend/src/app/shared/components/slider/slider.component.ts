@@ -34,7 +34,7 @@ export class SliderComponent implements OnInit, OnDestroy {
           return response.data;
         }
 
-        throw 'incorrect data';
+        return [];
       }))
       .pipe(share());
 

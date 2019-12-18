@@ -19,7 +19,7 @@ import { CartService, FavouritesService } from '../../services';
 export class AccountComponent implements OnInit {
   public static readonly dialogConfig: MatDialogConfig = {
     width: '550px',
-  }
+  };
   private errorMessageSubject: BehaviorSubject<string>;
   public loginErrorMessage$: Observable<string>;
   public signupErrorMessage$: Observable<string>;

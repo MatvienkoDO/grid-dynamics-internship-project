@@ -1,19 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { SliderComponent } from './slider.component';
 import { AppModule } from 'src/app/app.module';
 import { ProductsService } from '../../services';
-import { MockProductsService } from 'src/app/testing/test/products.service.mock';
 
 describe('SliderComponent', () => {
   let component: SliderComponent;
   let fixture: ComponentFixture<SliderComponent>;
 
+  const productServiceSpy = jasmine.createSpyObj('ProductsService', ['getProductsForSlider']);
+  productServiceSpy.getProductsForSlider.and.returnValue(of({
+    data: [],
+  }));
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
       providers: [
-        { provide: ProductsService, useValue: new MockProductsService() }
+        { provide: ProductsService, useValue: productServiceSpy }
       ]
     })
     .compileComponents();

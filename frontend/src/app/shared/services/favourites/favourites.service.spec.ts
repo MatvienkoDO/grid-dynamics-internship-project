@@ -2,23 +2,31 @@ import { TestBed } from '@angular/core/testing';
 
 import { FavouritesService, LocalizationService, NotificationService } from '..';
 import { localStorageFavouritesKey } from '../../constants';
-import { CardProduct } from '../../models'
+import { CardProduct } from '../../models';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 describe('FavouritesService', () => {
-  const LocalizationServiceSpy = 
+  const LocalizationServiceSpy =
   jasmine.createSpyObj('LocalizationService', ['getNotificationServiceMessage']);
   const infoSpy = jasmine.createSpyObj('NotificationService', ['info', 'warning']);
 
   const stubMessage = 'stub Message';
   LocalizationServiceSpy.getNotificationServiceMessage.and.returnValue(stubMessage);
 
+  const HttpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'patch', 'put']);
+  HttpClientSpy.get.and.returnValue(new Observable());
+  HttpClientSpy.patch.and.returnValue(new Observable());
+  HttpClientSpy.put.and.returnValue(new Observable());
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         FavouritesService,
+        { provide: HttpClient, useValue: HttpClientSpy },
         { provide: LocalizationService, useValue: LocalizationServiceSpy },
         { provide: NotificationService, useValue: infoSpy },
-      ] 
+      ]
     });
     localStorage.clear();
   });

@@ -35,7 +35,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly accountModal: AccountModalService,
     private readonly productFilterService: ProductFilterService,
-    private readonly activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -44,9 +43,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.query = query;
         this.searchForm.patchValue({
           search: query.filter.search
-        })
+        });
       }),
-    )
+    );
    }
 
    ngOnDestroy() {
@@ -59,19 +58,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.localizationService.setLocale(value);
   }
 
-  openCart() : void {
+  openCart(): void {
     const dialogRef = this.dialog.open(CartComponentInner, {
       width: '950px'
     });
   }
 
-  openFavourites() : void {
+  openFavourites(): void {
     const dialogRef = this.dialog.open(FavouritesComponentInner, {
       width: '550px'
     });
   }
 
-  openAccount() : void {
+  openAccount(): void {
     this.accountModal.openAccountModal();
   }
 

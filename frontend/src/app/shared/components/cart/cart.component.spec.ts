@@ -16,14 +16,14 @@ describe('CartComponentInner', () => {
     'decreaseQuantity',
   ]);
   CartServiceSpy.deleteFromCart.and.returnValue({ subscribe: () => {} });
-  
+
   const dialogRefSpy = jasmine.createSpyObj('MatDialogRef', ['close']);
 
   CartServiceSpy.items$ = of([]);
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule]
+      imports: [AppModule],
       providers: [
         { provide: CartService, useValue: CartServiceSpy },
         { provide: MatDialogRef, useValue: dialogRefSpy },

@@ -1,24 +1,32 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
 
 import { NotificationService, LocalizationService, CartService } from '..';
 import { localStorageCartKey } from '../../constants';
 import { CardProduct } from '../../models';
+import { Observable } from 'rxjs';
 
 describe('CartService', () => {
-  const LocalizationServiceSpy = 
+  const LocalizationServiceSpy =
   jasmine.createSpyObj('LocalizationService', ['getNotificationServiceMessage']);
   const infoSpy = jasmine.createSpyObj('NotificationService', ['info', 'warning']);
 
   const stubMessage = 'stub Message';
   LocalizationServiceSpy.getNotificationServiceMessage.and.returnValue(stubMessage);
 
+  const HttpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'patch', 'put']);
+  HttpClientSpy.get.and.returnValue(new Observable());
+  HttpClientSpy.patch.and.returnValue(new Observable());
+  HttpClientSpy.put.and.returnValue(new Observable());
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         CartService,
+        { provide: HttpClient, useValue: HttpClientSpy },
         { provide: LocalizationService, useValue: LocalizationServiceSpy },
         { provide: NotificationService, useValue: infoSpy },
-      ] 
+      ]
     });
     localStorage.clear();
   });
@@ -35,9 +43,56 @@ describe('CartService', () => {
   });
 
   it('#init should push value', (done) => {
-    localStorage.setItem(localStorageCartKey, '[1, 2, 3]')
+    const items = [
+      {
+        id: 'test1',
+        title: 'test1',
+        quantity: 'test1',
+        price: 100,
+        size: 'test1',
+        color: 'test1',
+        image: [{
+          "1_1": 'test1',
+          "4_3": 'test1',
+          "16_9": 'test1',
+          "scale": 'test1',
+          "default": 'test1'
+        }],
+      },
+      {
+        id: 'test2',
+        title: 'test2',
+        quantity: 'test2',
+        price: 100,
+        size: 'test2',
+        color: 'test2',
+        image: [{
+          "1_1": 'test2',
+          "4_3": 'test2',
+          "16_9": 'test2',
+          "scale": 'test2',
+          "default": 'test2'
+        }],
+      },
+      {
+        id: 'test3',
+        title: 'test3',
+        quantity: 'test3',
+        price: 100,
+        size: 'test3',
+        color: 'test3',
+        image: [{
+          "1_1": 'test3',
+          "4_3": 'test3',
+          "16_9": 'test3',
+          "scale": 'test3',
+          "default": 'test3'
+        }],
+      },
+    ];
+    localStorage.setItem(localStorageCartKey, JSON.stringify(items));
     TestBed.get(CartService).items$.subscribe(value => {
-      expect(value).toEqual([1, 2, 3]);
+      expect(value).toEqual(items);
       done();
     });
   });
@@ -48,7 +103,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -66,7 +127,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -75,7 +142,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -96,7 +169,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -105,7 +184,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 5,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -128,7 +213,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -148,7 +239,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -157,7 +254,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };
@@ -189,7 +292,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+      '1_1': '',
+      '4_3': '',
+      '16_9': '',
+      'scale': '',
+      'default': '',
+    },
       size: 'm',
       color: 'Red',
     };
@@ -198,7 +307,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+      '1_1': '',
+      '4_3': '',
+      '16_9': '',
+      'scale': '',
+      'default': '',
+    },
       size: 'm',
       color: 'Red',
     };
@@ -219,7 +334,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+      '1_1': '',
+      '4_3': '',
+      '16_9': '',
+      'scale': '',
+      'default': '',
+    },
       size: 'm',
       color: 'Red',
     };
@@ -228,7 +349,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 137,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+      '1_1': '',
+      '4_3': '',
+      '16_9': '',
+      'scale': '',
+      'default': '',
+    },
       size: 'm',
       color: 'Red',
     };
@@ -251,7 +378,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 2,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+      '1_1': '',
+      '4_3': '',
+      '16_9': '',
+      'scale': '',
+      'default': '',
+    },
       size: 'm',
       color: 'Red',
     };
@@ -260,7 +393,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 137,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+      '1_1': '',
+      '4_3': '',
+      '16_9': '',
+      'scale': '',
+      'default': '',
+    },
       size: 'm',
       color: 'Red',
     };
@@ -283,7 +422,13 @@ describe('CartService', () => {
       title: 'Title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
       size: 'm',
       color: 'Red',
     };

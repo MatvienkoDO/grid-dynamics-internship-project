@@ -11,6 +11,7 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule],
       declarations: [ MockTranslatePipe ],
+
     })
     .compileComponents();
     fixture = TestBed.createComponent(HomeComponent);

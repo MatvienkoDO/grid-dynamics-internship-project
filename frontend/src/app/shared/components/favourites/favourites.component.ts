@@ -23,8 +23,8 @@ export class FavouritesComponent implements OnInit {
     this.productsNumber$ = this.favouritesService.items$
       .pipe(map(products => products.length));
   }
-
 }
+
 @Component({
   selector: 'favourites-inner',
   templateUrl: './favourites-inner.component.html',
@@ -48,24 +48,25 @@ export class FavouritesComponentInner implements OnInit {
       .pipe(map(products => products.length));
   }
 
-  deleteFromFavourites(product: CardProduct) {
+  public deleteFromFavourites(product: CardProduct) {
     this.favouritesService.deleteFromFavourites(product);
   }
 
-  clearCart() {
+  public clearCart() {
     this.favouritesService.clearFavourites();
     this.dialogRef.close();
   }
-  onNoClick(): void {
+
+  public onNoClick(): void {
     this.dialogRef.close();
   }
 
-  toPdp(id: string) {
+  public toPdp(id: string) {
     this.router.navigateByUrl(`/product/${id}`);
     this.dialogRef.close();
   }
 
-  addToCartFromFav(cardProduct: CardProduct) {
+  public addToCartFromFav(cardProduct: CardProduct) {
     this.cartService.addToCart(cardProduct);
   }
 }

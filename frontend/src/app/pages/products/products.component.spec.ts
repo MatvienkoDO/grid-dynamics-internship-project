@@ -1,12 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent, Query, UrlQuery } from './products.component';
 import { AppModule } from 'src/app/app.module';
 import { CartService, FavouritesService } from 'src/app/shared/services';
 import { CardProduct } from 'src/app/shared/models';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MockActivatedRoute } from '../product-details/product-details.component.spec';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -56,7 +55,15 @@ describe('ProductsComponent', () => {
       title: 'title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
+      size: 'stub',
+      color: 'stub',
     };
     component.addToCart(stubCard);
     expect(cartServiceSpy.addToCart).toHaveBeenCalled();
@@ -69,7 +76,15 @@ describe('ProductsComponent', () => {
       title: 'title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
+      size: 'stub',
+      color: 'stub',
     };
     component.addToFavourites(stubCard);
     expect(favouritesServiceSpy.addToFavourites).toHaveBeenCalled();
@@ -99,11 +114,8 @@ describe('ProductsComponent', () => {
       paging: {
         limit: 9
       }
-    }
+    };
     expect(result).toEqual(expectedQuery);
   });
-
-  it('#toggleProductBlock', () => {
-    expect(component.toggleProductBlock()).toEqual(undefined);
-  });
+  // TODO add new tests
 });
