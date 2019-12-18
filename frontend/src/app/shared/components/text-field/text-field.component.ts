@@ -23,6 +23,7 @@ export class TextFieldComponent {
   @Input() public placeholder?: string;
   @Input() public multiline = false;
   @Input() public rows = 1;
+  @Input() public readonly = false;
   @Input() public value: any = '';
   @Input('errors') public set errorsProp(value: any) {
     if (Array.isArray(value)) {

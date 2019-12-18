@@ -11,6 +11,7 @@
     [required]="required"
     [attr.placeholder]="placeholder"
     [rows]="rows"
+    [readonly]="readonly"
     [attr.formControlName]="formControlName"
     (input)="changeValue.emit($event)">{{value}}</textarea>
 </ng-container>
@@ -24,6 +25,7 @@
     [required]="required"
     [autocomplete]="autocomplete"
     [attr.placeholder]="placeholder"
+    [readonly]="readonly"
     [attr.formControlName]="formControlName"
     [value]="value"
     (input)="changeValue.emit($event)" />
