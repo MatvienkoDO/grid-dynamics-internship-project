@@ -29,6 +29,8 @@ export class TextFieldComponent {
       this.errors = value.filter(element => typeof element === 'string');
     } else if (typeof value === 'string') {
       this.errors = [ value ];
+    } else {
+      this.errors = [];
     }
   }
   public errors: string[] = [];
