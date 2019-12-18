@@ -140,5 +140,17 @@
     "Savchuk": "Savchuk",
     "intern": "Intern UI Engineer",
     "engineer": "UI Engineer"
+  },
+
+  "hot deals week": {
+    "hot deals": "hot deals",
+    "this week": "this week",
+    "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+  },
+
+  "hot deals month": {
+    "hot deals": "hot deals",
+    "this month": "this month",
+    "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
   }
 }
