@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, BehaviorSubject, combineLatest, timer } from 'rxjs';
 import { map, startWith, first } from 'rxjs/operators';
+
+import { NotificationService } from 'src/app/shared/services';
 
 const nameMinLength = 2;
 const nameMaxLength = 250;
@@ -44,7 +47,10 @@ export class ContactComponent implements OnInit {
 
   private readonly form: FormGroup;
 
-  constructor() {
+  constructor(
+    private readonly notificationService: NotificationService,
+    private readonly translateService: TranslateService,
+  ) {
     this.form = createForm();
     this.name$ = this.form.valueChanges.pipe(map(value => value.name));
     this.email$ = this.form.valueChanges.pipe(map(value => value.email));
@@ -72,22 +78,17 @@ export class ContactComponent implements OnInit {
     this.form.patchValue(patch);
   }
 
-  ngOnInit() {
-    this.nameErrors$.subscribe(console.log);
-    this.emailErrors$.subscribe(console.log);
-    this.messageErrors$.subscribe(console.log);
-    this.form.statusChanges.subscribe(console.log);
-  }
+  ngOnInit() { }
 
   public submit(event: any) {
     this.loading$.next(true);
 
     timer(5000).pipe(first()).subscribe(() => {
-      this.form.setValue({
-        name: '1',
-        email: '2',
-        message: '3',
-      });
+      this.translateService.get('contact.formDataIsSuccessfullySent')
+        .subscribe(text => this.notificationService.success(text));
+
+      this.form.reset();
+
       this.loading$.next(false);
     });
   }
