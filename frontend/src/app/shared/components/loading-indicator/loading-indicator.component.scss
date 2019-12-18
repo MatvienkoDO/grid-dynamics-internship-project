@@ -5,7 +5,13 @@
 $offset: 187;
 $duration: 1.4s;
 
+:host {
+  display: inline-block;
+  height: 65px;
+}
+
 .loading-indicator {
+  height: 100%;
   animation: rotator $duration linear infinite;
 }
 
