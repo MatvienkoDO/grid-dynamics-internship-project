@@ -7,6 +7,10 @@ $gray-light: #a0b3b0;
   display: block;
   text-align: left;
   margin-bottom: 20px;
+
+  &[readonly='true'] {
+    opacity: 0.5;
+  }
 }
 
 .label {

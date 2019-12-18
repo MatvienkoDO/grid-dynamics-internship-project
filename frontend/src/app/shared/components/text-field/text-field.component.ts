@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  HostBinding,
 } from '@angular/core';
 
 @Component({
@@ -23,8 +24,13 @@ export class TextFieldComponent {
   @Input() public placeholder?: string;
   @Input() public multiline = false;
   @Input() public rows = 1;
-  @Input() public readonly = false;
   @Input() public value: any = '';
+  @Input('readonly') public set readonlyProp(value: boolean) {
+    this.hostReadonlyAttribute = value;
+    this.readonly = value;
+  }
+  public readonly = false;
+
   @Input('errors') public set errorsProp(value: any) {
     if (Array.isArray(value)) {
       this.errors = value.filter(element => typeof element === 'string');
@@ -37,4 +43,7 @@ export class TextFieldComponent {
   public errors: string[] = [];
 
   @Output() public changeValue = new EventEmitter<any>();
+
+  @HostBinding('attr.readonly')
+  private hostReadonlyAttribute: boolean;
 }
