@@ -21,10 +21,17 @@ export class TextFieldComponent {
   @Input() public formControlName?: string;
   @Input() public pristine = false;
   @Input() public placeholder?: string;
-  @Input() public errors: string[] = [];
   @Input() public multiline = false;
   @Input() public rows = 1;
   @Input() public value: any = '';
+  @Input('errors') public set errorsProp(value: any) {
+    if (Array.isArray(value)) {
+      this.errors = value.filter(element => typeof element === 'string');
+    } else if (typeof value === 'string') {
+      this.errors = [ value ];
+    }
+  }
+  public errors: string[] = [];
 
   @Output() public changeValue = new EventEmitter<any>();
 }
