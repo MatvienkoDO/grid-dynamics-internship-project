@@ -77,6 +77,29 @@ export class ProductService {
     return this.getLocalizedProducts(locale, bestSalesProducts);
   }
 
+  async findAllHotDealsMonth(
+    skip: number = 0,
+    limit: number = 6,
+    locale: string = 'en',
+  ): Promise<LocalizedProduct[]> {
+
+    const hotDealsMonthProducts = await this.productModel.find(null, null,
+       { skip: Number(skip), limit: Number(limit) });
+
+    return this.getLocalizedProducts(locale, hotDealsMonthProducts);
+  }
+
+  async findAllHotDealsWeek(
+    skip: number = 0,
+    limit: number = 8,
+    locale: string = 'en',
+  ): Promise<LocalizedProduct[]> {
+    const hotDealsWeekProducts = await this.productModel.find(null, null,
+      { skip: Number(skip), limit: Number(limit) });
+
+    return this.getLocalizedProducts(locale, hotDealsWeekProducts);
+  }
+
   async findAllSliders(
     skip: number = 0,
     limit: number = 3,

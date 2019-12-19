@@ -153,5 +153,17 @@
     "messageHint": "Required field. Should have at least 1 character and equal or less than 1000",
     "submit": "submit",
     "formDataIsSuccessfullySent": "Message is successfully sent"
+  },
+
+  "hot deals week": {
+    "hot deals": "hot deals",
+    "this week": "this week",
+    "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+  },
+
+  "hot deals month": {
+    "hot deals": "hot deals",
+    "this month": "this month",
+    "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
   }
 }
