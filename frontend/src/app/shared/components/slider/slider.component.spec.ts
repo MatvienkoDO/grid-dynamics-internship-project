@@ -30,4 +30,6 @@ describe('SliderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // TODO add new tests
 });
