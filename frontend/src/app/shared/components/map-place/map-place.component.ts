@@ -19,6 +19,7 @@ export class MapPlaceComponent implements OnChanges {
   @Input() public latitude?: number;
   @Input() public longitude?: number;
   @Input() public address?: string;
+  @Input() public zoom?: number;
 
   public src: string | SafeResourceUrl = '';
 
@@ -34,6 +35,7 @@ export class MapPlaceComponent implements OnChanges {
       this.longitude,
       this.address,
       this.localization.getLocale(),
+      this.zoom,
     );
 
     this.src = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
@@ -46,14 +48,16 @@ function buildMapsUrl(
   longitude?: number,
   address?: string,
   language: string = 'en',
+  zoom?: number,
 ): string {
   const base = 'https://www.google.com/maps/embed/v1/place';
 
   const withKey = `${base}?key=${key}`;
   const withLanguage = `${withKey}&language=${language}`;
+  const withZoom = zoom !== undefined ? `${withLanguage}&zoom=${zoom}` : withLanguage;
 
   const query = makeQuery(latitude, longitude, address);
-  const withQuery = query ? `${withLanguage}&q=${query}` : withLanguage;
+  const withQuery = query ? `${withZoom}&q=${query}` : withZoom;
 
   return withQuery;
 }
