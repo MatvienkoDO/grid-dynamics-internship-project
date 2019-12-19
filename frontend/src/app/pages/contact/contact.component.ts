@@ -34,7 +34,7 @@ const createForm = () => new FormGroup({
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
   public readonly office = gridDynamicsOfficeAddress;
 
   public readonly name$: Observable<string>;
@@ -81,9 +81,7 @@ export class ContactComponent implements OnInit {
     this.form.patchValue(patch);
   }
 
-  ngOnInit() { }
-
-  public submit(event: any) {
+  public submit() {
     this.loading$.next(true);
 
     timer(5000).pipe(first()).subscribe(() => {
