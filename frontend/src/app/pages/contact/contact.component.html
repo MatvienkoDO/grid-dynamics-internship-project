@@ -1,4 +1,9 @@
-<div class="map"></div>
+<app-map-place
+  class="map"
+  [latitude]="office.lat"
+  [longitude]="office.lon"
+  [address]="office.address">
+</app-map-place>
 
 <div class="feedback">
   <h2 class="title-medium">

@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject, combineLatest, timer } from 'rxjs';
 import { map, startWith, first } from 'rxjs/operators';
 
 import { NotificationService } from 'src/app/shared/services';
+import { gridDynamicsOfficeAddress } from '../../shared/constants';
 
 const nameMinLength = 2;
 const nameMaxLength = 250;
@@ -34,6 +35,8 @@ const createForm = () => new FormGroup({
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  public readonly office = gridDynamicsOfficeAddress;
+
   public readonly name$: Observable<string>;
   public readonly email$: Observable<string>;
   public readonly message$: Observable<string>;
