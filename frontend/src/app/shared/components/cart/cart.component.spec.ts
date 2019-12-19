@@ -1,10 +1,39 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
 import { CartComponentInner, CartComponent } from './cart.component';
 import { CartService } from '../../services';
 import { CardProduct } from '../../models';
 import { of } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
+
+describe('CartComponentInner', () => {
+  let component: CartComponent;
+  let fixture: ComponentFixture<CartComponent>;
+  const CartServiceSpy = jasmine.createSpyObj('CartService', [
+    'items$',
+  ]);
+  CartServiceSpy.items$ = of([]);
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [AppModule],
+      providers: [
+        { provide: CartService, useValue: CartServiceSpy },
+      ],
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CartComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
 
 describe('CartComponentInner', () => {
   let component: CartComponentInner;
@@ -42,7 +71,7 @@ describe('CartComponentInner', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should delete from cart', () => {
+  it('#deleteFromCart should delete from cart', () => {
     const existingCardProduct: CardProduct = {
       id: '1',
       title: 'Title',
@@ -56,25 +85,25 @@ describe('CartComponentInner', () => {
     expect(CartServiceSpy.deleteFromCart).toHaveBeenCalledWith(existingCardProduct);
   });
 
-  it('clearCart should call cartService.clearCart and dialogRef.close', () => {
+  it('#clearCart should call cartService.clearCart and dialogRef.close', () => {
     component.clearCart();
     expect(CartServiceSpy.clearCart).toHaveBeenCalled();
     expect(dialogRefSpy.close).toHaveBeenCalled();
   });
 
-  it('onNoClick should call dialogRef.close', () => {
+  it('#onNoClick should call dialogRef.close', () => {
     component.onNoClick();
     expect(dialogRefSpy.close).toHaveBeenCalled();
   });
 
-  it('increaseQuantity should call cartService.increaseQuantity', () => {
+  it('#increaseQuantity should call cartService.increaseQuantity', () => {
     const stubIndex = 1;
     component.increaseQuantity(stubIndex);
     expect(CartServiceSpy.increaseQuantity).toHaveBeenCalled();
     expect(CartServiceSpy.increaseQuantity).toHaveBeenCalledWith(stubIndex);
   });
 
-  it('decreaseQuantity should call cartService.decreaseQuantity', () => {
+  it('#decreaseQuantity should call cartService.decreaseQuantity', () => {
     const stubIndex = 1;
     component.decreaseQuantity(stubIndex);
     expect(CartServiceSpy.decreaseQuantity).toHaveBeenCalled();

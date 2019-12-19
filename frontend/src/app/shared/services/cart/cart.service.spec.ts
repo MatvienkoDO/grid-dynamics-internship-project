@@ -441,4 +441,28 @@ describe('CartService', () => {
       done();
     });
   });
+
+  it('#sendNewCartItems should call http.patch', () => {
+    const service = TestBed.get(CartService);
+    service.sendNewCartItems();
+    expect(HttpClientSpy.patch).toHaveBeenCalled();
+  });
+
+  it('#updateWithDebounce should call http.put', () => {
+    const service = TestBed.get(CartService);
+    service.updateWithDebounce();
+    expect(HttpClientSpy.put).toHaveBeenCalled();
+  });
+
+  it('#updateCartItems should call http.put', () => {
+    const service = TestBed.get(CartService);
+    service.updateCartItems();
+    expect(HttpClientSpy.put).toHaveBeenCalled();
+  });
+
+  it('#updateCartItems should call http.get', () => {
+    const service = TestBed.get(CartService);
+    service.getCartItems();
+    expect(HttpClientSpy.get).toHaveBeenCalled();
+  });
 });

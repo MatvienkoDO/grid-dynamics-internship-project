@@ -185,7 +185,7 @@ export class ProductFilterService {
     return url;
   }
 
-  public readonly resetSearchQuery = () => {
+  public resetSearchQuery() {
     const newQuery = this.query.value;
     delete newQuery.filter.search;
 

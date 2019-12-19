@@ -7,7 +7,7 @@ import { ProductsService, CartService } from '../../services';
 import { Product, CardProduct, ProductResponse } from 'src/app/shared/models';
 import { Router } from '@angular/router';
 
-xdescribe('BestSalesComponent', () => {
+describe('BestSalesComponent', () => {
   let component: BestSalesComponent;
   let fixture: ComponentFixture<BestSalesComponent>;
   const ProductsServiceSpy = jasmine.createSpyObj('ProductsService', ['getProducts']);

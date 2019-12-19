@@ -49,4 +49,22 @@ describe('RangeSelectComponent', () => {
     expect(component.high).toBe(100);
     expect(component.low).toBe(floor);
   });
+
+  it('#newHigh should set new high value', () => {
+    const newHighInput = {
+      value: 10
+     };
+    const newValue = 10;
+    component.newHigh(newValue, newHighInput);
+    expect(component.high).toEqual(newValue);
+  });
+
+  it('#newLow should set new low value', () => {
+    const newLowInput = {
+      value: 10
+     };
+    const newValue = 10;
+    component.newLow(newValue, newLowInput);
+    expect(component.low).toEqual(newValue);
+  });
 });

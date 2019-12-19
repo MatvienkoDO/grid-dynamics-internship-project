@@ -6,7 +6,13 @@ import { MatDialog } from '@angular/material';
 import { AuthenticationService } from '../authentication/authentication.service';
 
 describe('AccountModalService', () => {
-  const MatDialogSpy = jasmine.createSpyObj('MatDialog', ['open', 'close']);
+  let service: AccountModalService;
+
+  const MatDialogSpy = jasmine.createSpyObj('MatDialog', ['open', 'close', 'pop', 'push']);
+  MatDialogSpy.open.and.returnValue({
+    value: '',
+    close() {},
+  });
   const AuthenticationServiceSpy = jasmine.createSpyObj('AuthenticationService', ['currentUser']);
   AuthenticationServiceSpy.currentUser.and.returnValue(new Observable());
 
@@ -21,8 +27,20 @@ describe('AccountModalService', () => {
   });
 
   it('should be created', () => {
-    const service: AccountModalService = TestBed.get(AccountModalService);
+    service = TestBed.get(AccountModalService);
     expect(service).toBeTruthy();
   });
   // TODO add new tests
+
+  it('#openLoginSignup should callauthService and dialog', () => {
+    service = TestBed.get(AccountModalService);
+    service.openLoginSignup();
+    expect(MatDialogSpy.open).toHaveBeenCalled();
+  });
+
+  it('#openWelcomeDialog should callauthService and dialog', () => {
+    service = TestBed.get(AccountModalService);
+    service.openWelcomeDialog();
+    expect(MatDialogSpy.open).toHaveBeenCalled();
+  });
 });

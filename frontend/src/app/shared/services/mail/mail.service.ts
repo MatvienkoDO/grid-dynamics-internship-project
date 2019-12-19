@@ -8,17 +8,17 @@ import { apiHost } from '../../../../environments/environment';
 })
 export class MailService {
 
-  url:string=`${apiHost}/api/news-letter`;
+  url = `${apiHost}/api/news-letter`;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  get(){
+  public get() {
     return this.http.get(this.url);
   }
 
-  post(data) {
+  public post(data) {
     return this.http.post(this.url, data);
   }
 }

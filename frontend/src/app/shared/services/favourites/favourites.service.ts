@@ -19,7 +19,7 @@ export class FavouritesService {
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
     private readonly http: HttpClient,
-  ) { 
+  ) {
     this.items$ = this.items.asObservable();
     this.init();
   }
@@ -50,27 +50,10 @@ export class FavouritesService {
     }
   }
 
-  getListOfFavourites(){
+  getListOfFavourites() {
     const list = this.items.value;
+
     return list;
-  }
-
-  addToCart(cardProduct: CardProduct) {
-    const updatedItems = this.items.value;
-
-    const idx = this.indexOf(cardProduct);
-    if (idx !== -1) {
-      updatedItems[idx].quantity += cardProduct.quantity;
-    } else {
-      updatedItems.push(cardProduct);
-    }
-
-    this.saveItemsToLocalStorage(updatedItems);
-
-    this.items.next(updatedItems);
-
-    const message = this.localizationService.getNotificationServiceMessage('addToCart');
-    this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
   private indexOf(cardProduct: CardProduct) {
@@ -80,6 +63,7 @@ export class FavouritesService {
         return i;
       }
     }
+
     return -1;
   }
 
@@ -136,7 +120,7 @@ export class FavouritesService {
 
     return this.http.patch<any>(address, body, options)
       .subscribe(response => {
-        return response
+        return response;
       });
   }
 

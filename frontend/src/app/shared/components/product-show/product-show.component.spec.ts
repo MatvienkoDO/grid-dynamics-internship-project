@@ -4,7 +4,7 @@ import { ProductShowComponent } from './product-show.component';
 import { AppModule } from 'src/app/app.module';
 import { EventEmitter } from '@angular/core';
 
-xdescribe('ProductShowComponent', () => {
+describe('ProductShowComponent', () => {
   let component: ProductShowComponent;
   let fixture: ComponentFixture<ProductShowComponent>;
 

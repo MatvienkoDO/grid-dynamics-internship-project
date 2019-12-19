@@ -20,4 +20,18 @@ describe('CardProductSmallComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('#showDetailsCb should emit event', () => {
+    spyOn(component.showDetails, 'emit');
+    component.showDetailsCb();
+
+    expect(component.showDetails.emit).toHaveBeenCalled();
+  });
+
+  it('#addToCartCb should emit event', () => {
+    spyOn(component.addToCart, 'emit');
+    component.addToCartCb();
+
+    expect(component.addToCart.emit).toHaveBeenCalled();
+  });
 });

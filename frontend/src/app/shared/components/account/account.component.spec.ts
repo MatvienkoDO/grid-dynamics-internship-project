@@ -5,6 +5,7 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 import { AccountComponent } from './account.component';
 import { MockTranslatePipe } from 'src/app/testing/test/mock-translate.pipe';
+import { CommonModule } from '@angular/common';
 
 xdescribe('AccountComponent', () => {
   let component: AccountComponent;
@@ -12,7 +13,7 @@ xdescribe('AccountComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, ReactiveFormsModule, ShowHidePasswordModule],
+      imports: [FormsModule, ReactiveFormsModule, ShowHidePasswordModule, CommonModule],
       declarations: [
         AccountComponent,
         MatTab,

@@ -30,4 +30,10 @@ describe('FavouriteButtonComponent', () => {
     component.toggleSelected();
     expect(component.selected).toBe(false);
   });
+
+  it('#toggleSelected should emit event', () => {
+    spyOn(component.selectedChange, 'emit');
+    component.toggleSelected();
+    expect(component.selectedChange.emit).toHaveBeenCalled();
+  });
 });
