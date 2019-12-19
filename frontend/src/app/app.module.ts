@@ -62,6 +62,7 @@ import {
   WelcomeModalComponent,
   FavouriteButtonComponent,
   TextFieldComponent,
+  MapPlaceComponent,
 } from './shared/components';
 
 const translateModuleConfig = {
@@ -104,6 +105,7 @@ const translateModuleConfig = {
     AboutComponent,
     ContactComponent,
     TextFieldComponent,
+    MapPlaceComponent,
   ],
   imports: [
     BrowserModule,
