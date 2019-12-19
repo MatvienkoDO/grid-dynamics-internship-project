@@ -45,5 +45,5 @@ export class TextFieldComponent {
   @Output() public changeValue = new EventEmitter<any>();
 
   @HostBinding('attr.readonly')
-  private hostReadonlyAttribute: boolean;
+  public hostReadonlyAttribute: boolean;
 }

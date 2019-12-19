@@ -11,7 +11,7 @@
     <span class="title-medium_primary-color">{{ 'contact.us' | translate }}</span>
   </h2>
 
-  <form class="feedback__form" (ngSubmit)="submit($event)">
+  <form class="feedback__form" (ngSubmit)="submit()">
     <app-text-field
       name="name"
       [label]="'contact.name' | translate"
