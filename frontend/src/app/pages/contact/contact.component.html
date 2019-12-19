@@ -45,12 +45,12 @@
     </app-text-field>
 
     <button
-      class="button button_form-account"
+      class="feedback__submit button button_form-account"
       type="submit"
       [disabled]="!(submitEnabled$ | async)">
 
       <ng-container *ngIf="loading$ | async; else submitText">
-        <app-loading-indicator class="loading">
+        <app-loading-indicator class="feedback__loading">
         </app-loading-indicator>
       </ng-container>
 

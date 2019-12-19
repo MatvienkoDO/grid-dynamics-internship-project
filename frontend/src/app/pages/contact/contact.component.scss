@@ -32,13 +32,13 @@
     width: 500px;
     max-width: 100%;
   }
-}
 
-.button {
-  height: auto;
-  padding: 10px;
-}
+  &__submit {
+    height: auto;
+    padding: 10px;
+  }
 
-.loading {
-  height: 30px;
+  &__loading {
+    height: 30px;
+  }
 }
