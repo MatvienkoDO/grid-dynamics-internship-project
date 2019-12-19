@@ -1,0 +1,31 @@
+<div class="hot-deals-month-wrapper section-wrapper">
+  <h2 class="title-medium">
+      {{ 'hot deals month.hot deals' | translate }}  <span class="title-medium title-medium_primary-color">
+           {{ 'hot deals month.this month' | translate }}
+      </span>
+  </h2>
+  <p class="text">
+      {{ 'hot deals month.desc' | translate }}
+  </p>
+
+  <div class="cards-container"
+    [class.cards-container_loading]="!(products$ | async)">
+
+    <app-loading-indicator
+      *ngIf="!(products$ | async)"
+      class="cards-container__loading-indicator">
+    </app-loading-indicator>
+
+    <app-card-product-small
+      *ngFor="let product of products$ | async"
+      [id]="product.id"
+      [image]="product.images[0]"
+      [title]="product.name"
+      [price]="product.price"
+      [sizes]="product.sizes"
+      [colors]="product.colors"
+      (show-details)="showDetails($event)"
+      (add-to-cart)="addProductToCart($event)">
+    </app-card-product-small>
+  </div>
+</div>

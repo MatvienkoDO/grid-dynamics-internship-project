@@ -33,7 +33,7 @@ export class FavouritesService {
   }
 
   addToFavourites(cardProduct: CardProduct) {
-    const idx = this.indexOf(cardProduct);
+    const idx = this.findIndexSameCardProduct(cardProduct);
 
     if (idx === -1) {
       const updatedItems = [
@@ -56,7 +56,7 @@ export class FavouritesService {
     return list;
   }
 
-  private indexOf(cardProduct: CardProduct) {
+  private findIndexSameCardProduct(cardProduct: CardProduct) {
     for (let i = 0; i < this.items.value.length; i++) {
       const item = this.items.value[i];
       if (item.id === cardProduct.id) {
@@ -120,7 +120,8 @@ export class FavouritesService {
 
     return this.http.patch<any>(address, body, options)
       .subscribe(response => {
-        return response;
+        this.saveItemsToLocalStorage(response.items);
+        this.items.next(response.items);
       });
   }
 

@@ -37,7 +37,7 @@ export class CartService {
   public addToCart(cardProduct: CardProduct) {
     const updatedItems = this.items.value;
 
-    const idx = this.indexOf(cardProduct);
+    const idx = this.findIndexSameCardProduct(cardProduct);
     if (idx !== -1) {
       updatedItems[idx].quantity += cardProduct.quantity;
     } else {
@@ -52,13 +52,14 @@ export class CartService {
     this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
-  private indexOf(cardProduct: CardProduct) {
+  private findIndexSameCardProduct(cardProduct: CardProduct) {
     for (let i = 0; i < this.items.value.length; i++) {
       const item = this.items.value[i];
       if (item.id === cardProduct.id && item.color === cardProduct.color && item.size) {
         return i;
       }
     }
+
     return -1;
   }
 
@@ -132,8 +133,9 @@ export class CartService {
     const options = { withCredentials: true };
 
     return this.http.patch<any>(address, body, options)
-      .subscribe(response => {
-        return response
+      .subscribe(items => {
+        this.saveItemsToLocalStorage(items);
+        this.items.next(items);
       });
   }
 
@@ -142,9 +144,11 @@ export class CartService {
     const body = { items: this.items.getValue() };
     const options = { withCredentials: true };
 
+    const debounce = 1000;
+
     return this.http.put<any>(address, body, options)
       .pipe(
-        debounceTime(1000),
+        debounceTime(debounce),
         switchMap(() =>
           this.http.put<any>(address, { items: this.items.getValue() }, options)
         ),

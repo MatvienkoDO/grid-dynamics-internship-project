@@ -2,6 +2,9 @@
   max-width: 220px;
   max-height: 275px;
   display: block;
+  @media (max-width: 565px) {
+    max-width: 190px;
+  }
   &__content {
     object-fit: cover;
     width: 100%;

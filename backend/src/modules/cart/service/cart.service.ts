@@ -31,12 +31,15 @@ export class CartService {
       return newCart.save();
     }
 
-    const update = {
-      userId: cart.userId,
-      items,
-    };
+    await this.cartModel.updateOne(
+      { _id: cart.id },
+      {
+        userId: cart.userId,
+        items,
+      }
+    );
 
-    return this.cartModel.findByIdAndUpdate(cart.id, update).exec();
+    return this.getUserCartItems(userId);
   }
 
   public async addItemsToUserCart(userId: string, newItems: CartItem[]) {
@@ -49,12 +52,15 @@ export class CartService {
     }
     const oldItems = cart.items;
 
-    const update = {
-      userId: cart.userId,
-      items: this.mergeItems(oldItems, newItems),
-    };
+    await this.cartModel.updateOne(
+      { _id: cart.id },
+      {
+        userId: cart.userId,
+        items: this.mergeItems(oldItems, newItems),
+      },
+    );
 
-    return this.cartModel.findByIdAndUpdate(cart.id, update).exec();
+    return this.getUserCartItems(userId);
   }
 
   private mergeItems(oldItems: CartItem[], newItems: CartItem[]) {
@@ -87,12 +93,11 @@ export class CartService {
     const itemsIds = items.map(({ id }) => id);
 
     const conditions = {
-      id: {
+      _id: {
         $in: itemsIds,
       },
     };
     const products = await this.productModel.find(conditions);
-
     const itemProductPairs: Pairs<CartItem, Product> = innerJoin(
       items,
       products,
@@ -100,7 +105,12 @@ export class CartService {
     );
 
     const priced: PricedCartItem[] = itemProductPairs.map(([item, product]) => ({
-      ...item,
+      id: item.id,
+      title: item.title,
+      size: item.size,
+      color: item.color,
+      quantity: item.quantity,
+      image: item.image,
       price: product.price,
     }));
 

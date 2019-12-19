@@ -104,7 +104,7 @@ export class UserService {
 
     await this.userModel.updateOne(
       {_id: updateDto.id},
-      { updateDto },
+      updateDto,
     );
 
     return {
