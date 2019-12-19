@@ -50,11 +50,11 @@
         </label>
         <div class="mobile-menu__container">
         <ul class="mobile-menu__list" (click)="onClickMenuItem()">
-          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.home' | translate }}</a></li>
-          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.products' | translate }}</a></li>
-          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.hot-deals' | translate }}</a></li>
-          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.about' | translate }}</a></li>
-          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link">{{ 'nav.contact' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link" routerLink="/">{{ 'nav.home' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link" routerLink="/products">{{ 'nav.products' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link" routerLink="/hot-deals">{{ 'nav.hot-deals' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link" routerLink="/about">{{ 'nav.about' | translate }}</a></li>
+          <li class="mobile-menu__item"><a href="#" class="mobile-menu__link" routerLink="/contact">{{ 'nav.contact' | translate }}</a></li>
         </ul>
         </div>
       </nav>
