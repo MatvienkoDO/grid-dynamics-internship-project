@@ -35,6 +35,8 @@ import {
   HomeComponent,
   ProductDetailsComponent,
   ProductsComponent,
+  AboutComponent,
+  HotDealsComponent,
 } from './pages';
 
 import {
@@ -60,7 +62,8 @@ import {
   WelcomeModalComponent,
   FavouriteButtonComponent,
 } from './shared/components';
-import { AboutComponent } from './pages/about/about.component';
+import { HotDealsWeekComponent } from './shared/components/hot-deals-week/hot-deals-week.component';
+import { HotDealsMonthComponent } from './shared/components/hot-deals-month/hot-deals-month.component';
 
 const translateModuleConfig = {
   loader: {
@@ -99,7 +102,10 @@ const translateModuleConfig = {
     SearchRequestComponent,
     WelcomeModalComponent,
     FavouriteButtonComponent,
+    HotDealsComponent,
     AboutComponent,
+    HotDealsWeekComponent,
+    HotDealsMonthComponent,
   ],
   imports: [
     BrowserModule,

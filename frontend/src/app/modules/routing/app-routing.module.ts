@@ -5,6 +5,7 @@ import {
   HomeComponent,
   ProductDetailsComponent,
   ProductsComponent,
+  HotDealsComponent,
   AboutComponent,
 } from '../../pages';
 
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent
+  },
+  {
+    path: 'hot-deals',
+    component: HotDealsComponent
   },
   {
     path: 'about',

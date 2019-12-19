@@ -3,9 +3,8 @@
 @import 'variables';
 @import 'fonts';
 @import 'button';
-@import 'load-more';
 @import 'cards-container';
 
-.new-arrivals-wrapper {
-  @include container;
+.hot-deals-month-wrapper {
+ @include container;
 }
