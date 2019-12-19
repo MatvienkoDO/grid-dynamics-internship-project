@@ -8,6 +8,8 @@ export const environment = {
 
 export const apiHost = 'http://localhost:3000';
 
+export const googleMapEmbedKey = 'AIzaSyB1av8wRYCxNNKQ7sNwYllTlJG-jbrpo4M';
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
