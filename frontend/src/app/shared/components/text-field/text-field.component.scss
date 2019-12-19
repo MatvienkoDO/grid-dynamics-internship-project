@@ -14,7 +14,7 @@ $gray-light: #a0b3b0;
 }
 
 .label {
-  @include fonts (#34404b, "Open Sans", 12px, 400);
+  @include fonts ($text-color, "Open Sans", 12px, 400);
   text-transform: capitalize;
   pointer-events: none;
 }
@@ -25,7 +25,7 @@ $gray-light: #a0b3b0;
 }
 
 .input {
-  @include fonts (#34404b, "Open Sans", 14px, 400);
+  @include fonts ($text-color, "Open Sans", 14px, 400);
   display: block;
   width: 100%;
   padding: 5px 10px;
@@ -41,16 +41,16 @@ $gray-light: #a0b3b0;
   }
 
   &::placeholder {
-    @include fonts (#84909b, "Open Sans", 12px, 300);
+    @include fonts ($gray-light, "Open Sans", 12px, 300);
   }
 }
 
 .invalid {
-  color: #de1e1e;
+  color: $error-color;
   font-style: italic;
 }
 
 .error {
-  @include fonts (#f44336, "Open Sans", 12px, 400);
+  @include fonts ($error-color, "Open Sans", 12px, 400);
   font-style: italic;
 }
