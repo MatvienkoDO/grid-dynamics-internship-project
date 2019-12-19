@@ -44,6 +44,7 @@ export class UserService {
 
   public async validate(userDto: EditUserDto) {
     const errors: FormError[] = [];
+    // TODO: handle case of null value (user was not found)
     const user = await this.userModel.findById(userDto.id);
 
     // Checks if first name is not empty
