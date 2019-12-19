@@ -7,6 +7,7 @@ import {
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { googleMapEmbedKey } from '../../../../environments';
+import { LocalizationService } from '../../services';
 
 @Component({
   selector: 'app-map-place',
@@ -23,10 +24,18 @@ export class MapPlaceComponent implements OnChanges {
 
   constructor(
     private readonly domSanitizer: DomSanitizer,
+    private readonly localization: LocalizationService,
   ) { }
 
   ngOnChanges() {
-    const url = buildMapsUrl(googleMapEmbedKey, this.latitude, this.longitude, this.address);
+    const url = buildMapsUrl(
+      googleMapEmbedKey,
+      this.latitude,
+      this.longitude,
+      this.address,
+      this.localization.getLocale(),
+    );
+
     this.src = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
@@ -36,11 +45,17 @@ function buildMapsUrl(
   latitude?: number,
   longitude?: number,
   address?: string,
+  language: string = 'en',
 ): string {
-  const baseWithKey = `https://www.google.com/maps/embed/v1/place?key=${key}`;
-  const query = makeQuery(latitude, longitude, address);
+  const base = 'https://www.google.com/maps/embed/v1/place';
 
-  return baseWithKey + (query ? '&q=' : '') + query;
+  const withKey = `${base}?key=${key}`;
+  const withLanguage = `${withKey}&language=${language}`;
+
+  const query = makeQuery(latitude, longitude, address);
+  const withQuery = query ? `${withLanguage}&q=${query}` : withLanguage;
+
+  return withQuery;
 }
 
 function makeQuery(
