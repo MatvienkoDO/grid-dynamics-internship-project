@@ -18,7 +18,9 @@
       "es2018",
       "dom"
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    // TODO: turn it on and fix all errors
+    // "strictPropertyInitialization": true,
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

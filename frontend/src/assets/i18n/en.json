@@ -142,6 +142,19 @@
     "engineer": "UI Engineer"
   },
 
+  "contact": {
+    "contact": "Contact",
+    "us": "us",
+    "name": "name",
+    "nameHint": "Required field. Should have at least 2 characters and equal or less than 250",
+    "email": "e-mail",
+    "emailHint": "Required field. Should be a valid e-mail address",
+    "message": "message",
+    "messageHint": "Required field. Should have at least 1 character and equal or less than 1000",
+    "submit": "submit",
+    "formDataIsSuccessfullySent": "Message is successfully sent"
+  },
+
   "hot deals week": {
     "hot deals": "hot deals",
     "this week": "this week",

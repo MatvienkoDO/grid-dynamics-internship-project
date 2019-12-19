@@ -1,0 +1,62 @@
+<app-map-place
+  class="map"
+  [latitude]="office.lat"
+  [longitude]="office.lon"
+  [address]="office.address">
+</app-map-place>
+
+<div class="feedback">
+  <h2 class="title-medium">
+    {{ 'contact.contact' | translate }}
+    <span class="title-medium_primary-color">{{ 'contact.us' | translate }}</span>
+  </h2>
+
+  <form class="feedback__form" (ngSubmit)="submit($event)">
+    <app-text-field
+      name="name"
+      [label]="'contact.name' | translate"
+      [required]="true"
+      [readonly]="loading$ | async"
+      [value]="name$ | async"
+      [errors]="(nameErrors$ | async) && ('contact.nameHint' | translate)"
+      (changeValue)="changeField('name', $event.target.value)">
+    </app-text-field>
+
+    <app-text-field
+      name="email"
+      [label]="'contact.email' | translate"
+      [required]="true"
+      [readonly]="loading$ | async"
+      [value]="email$ | async"
+      [errors]="(emailErrors$ | async) && ('contact.emailHint' | translate)"
+      (changeValue)="changeField('email', $event.target.value)">
+    </app-text-field>
+
+    <app-text-field
+      name="message"
+      [label]="'contact.message' | translate"
+      [required]="true"
+      [readonly]="loading$ | async"
+      [multiline]="true"
+      [rows]="2"
+      [value]="message$ | async"
+      [errors]="(messageErrors$ | async) && ('contact.messageHint' | translate)"
+      (changeValue)="changeField('message', $event.target.value)">
+    </app-text-field>
+
+    <button
+      class="feedback__submit button button_form-account"
+      type="submit"
+      [disabled]="!(submitEnabled$ | async)">
+
+      <ng-container *ngIf="loading$ | async; else submitText">
+        <app-loading-indicator class="feedback__loading">
+        </app-loading-indicator>
+      </ng-container>
+
+      <ng-template #submitText>
+        {{ 'contact.submit' | translate }}
+      </ng-template>
+    </button>
+  </form>
+</div>

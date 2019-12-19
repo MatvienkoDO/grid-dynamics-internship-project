@@ -17,3 +17,7 @@ export * from './account/account.component';
 export * from './search-request/search-request.component';
 export * from './welcome-modal/welcome-modal.component';
 export * from './favourite-button/favourite-button.component';
+export * from './text-field/text-field.component';
+export * from './map-place/map-place.component';
+export * from './hot-deals-week/hot-deals-week.component';
+export * from './hot-deals-month/hot-deals-month.component';

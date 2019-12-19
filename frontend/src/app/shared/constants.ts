@@ -10,6 +10,12 @@ export const emailIsNotUnique = 'email_is_not_unique';
 export const incorrectLoginPasswordPair = 'incorrect_login_password_pair';
 export const invalidEmailPassword = 'Invalid email/password';
 
+export const gridDynamicsOfficeAddress = {
+  lat: 51.5349366,
+  lon: 46.0100668,
+  address: 'Grid Dynamics',
+};
+
 export const customNotifierOptions: NotifierOptions = {
  position: {
   horizontal: {

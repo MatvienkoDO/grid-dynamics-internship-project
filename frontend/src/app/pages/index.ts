@@ -3,3 +3,4 @@ export * from './product-details/product-details.component';
 export * from './products/products.component';
 export * from './hot-deals/hot-deals.component';
 export * from './about/about.component';
+export * from './contact/contact.component';

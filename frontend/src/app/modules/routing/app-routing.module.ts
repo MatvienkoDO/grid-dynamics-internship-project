@@ -7,6 +7,7 @@ import {
   ProductsComponent,
   HotDealsComponent,
   AboutComponent,
+  ContactComponent,
 } from '../../pages';
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   },
   {
     path: '**',
