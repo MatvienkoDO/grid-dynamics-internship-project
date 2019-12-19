@@ -64,9 +64,9 @@ import {
   FavouriteButtonComponent,
   TextFieldComponent,
   MapPlaceComponent,
+  HotDealsWeekComponent,
+  HotDealsMonthComponent,
 } from './shared/components';
-import { HotDealsWeekComponent } from './shared/components/hot-deals-week/hot-deals-week.component';
-import { HotDealsMonthComponent } from './shared/components/hot-deals-month/hot-deals-month.component';
 
 const translateModuleConfig = {
   loader: {
