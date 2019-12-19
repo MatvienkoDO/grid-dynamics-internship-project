@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, BehaviorSubject, combineLatest, timer } from 'rxjs';
-import { map, startWith, first } from 'rxjs/operators';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 import { NotificationService } from 'src/app/shared/services';
 import { gridDynamicsOfficeAddress } from '../../shared/constants';
+import { apiHost } from '../../../environments';
 
 const nameMinLength = 2;
 const nameMaxLength = 250;
@@ -53,6 +55,7 @@ export class ContactComponent {
   constructor(
     private readonly notificationService: NotificationService,
     private readonly translateService: TranslateService,
+    private readonly http: HttpClient,
   ) {
     this.form = createForm();
     this.name$ = this.form.valueChanges.pipe(map(value => value.name));
@@ -84,7 +87,19 @@ export class ContactComponent {
   public submit() {
     this.loading$.next(true);
 
-    timer(5000).pipe(first()).subscribe(() => {
+    const {
+      name,
+      email,
+      message,
+    } = this.form.controls;
+
+    const body = {
+      name: name.value,
+      email: email.value,
+      message: message.value,
+    };
+
+    this.http.post(`${apiHost}/api/contact-us`, body).subscribe(() => {
       this.translateService.get('contact.formDataIsSuccessfullySent')
         .subscribe(text => this.notificationService.success(text));
 
