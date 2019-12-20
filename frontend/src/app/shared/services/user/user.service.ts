@@ -18,6 +18,7 @@ export class UserService {
 
   getMe(): Observable<User> {
     const url = `${apiHost}/api/users/me`;
+
     return this.http.get<Response<User>>(url, { withCredentials: true })
       .pipe(map(response => {
         if (response && response.payload) {

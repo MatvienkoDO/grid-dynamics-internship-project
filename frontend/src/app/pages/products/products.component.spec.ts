@@ -1,12 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent, Query, UrlQuery } from './products.component';
 import { AppModule } from 'src/app/app.module';
-import { CartService, FavouritesService } from 'src/app/shared/services';
+import { CartService, FavouritesService, ProductFilterService } from 'src/app/shared/services';
 import { CardProduct } from 'src/app/shared/models';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MockActivatedRoute } from '../product-details/product-details.component.spec';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -15,6 +14,7 @@ describe('ProductsComponent', () => {
   const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl', 'navigate']);
   const cartServiceSpy = jasmine.createSpyObj('CartService', ['addToCart']);
   const favouritesServiceSpy = jasmine.createSpyObj('FavouritesService', ['addToFavourites']);
+  const productFilterServiceSpy = jasmine.createSpyObj('ProductFilterService', ['resetSearchQuery']);
 
   const activatedRouteSpy = {
     queryParams: of({
@@ -43,7 +43,7 @@ describe('ProductsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('#goToPdp should call router.navigateByUrl', () => {
+  it('#showDetails should call router.navigateByUrl', () => {
     const stubId = 'stub';
     component.showDetails(stubId);
     expect(routerSpy.navigateByUrl).toHaveBeenCalled();
@@ -56,7 +56,15 @@ describe('ProductsComponent', () => {
       title: 'title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
+      size: 'stub',
+      color: 'stub',
     };
     component.addToCart(stubCard);
     expect(cartServiceSpy.addToCart).toHaveBeenCalled();
@@ -69,7 +77,15 @@ describe('ProductsComponent', () => {
       title: 'title',
       quantity: 1,
       price: 100,
-      image: {"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""},
+      image: {
+        '1_1': '',
+        '4_3': '',
+        '16_9': '',
+        'scale': '',
+        'default': '',
+      },
+      size: 'stub',
+      color: 'stub',
     };
     component.addToFavourites(stubCard);
     expect(favouritesServiceSpy.addToFavourites).toHaveBeenCalled();
@@ -99,11 +115,32 @@ describe('ProductsComponent', () => {
       paging: {
         limit: 9
       }
-    }
+    };
     expect(result).toEqual(expectedQuery);
   });
 
-  it('#toggleProductBlock', () => {
-    expect(component.toggleProductBlock()).toEqual(undefined);
+  it('#loadMore should call router.navigateByUrl', () => {
+    component.loadMore();
+    expect(routerSpy.navigateByUrl).toHaveBeenCalled();
+  });
+
+  it('#newBrands should call router.navigateByUrl', () => {
+    component.newBrands([]);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalled();
+  });
+
+  it('#newSizes should call router.navigateByUrl', () => {
+    component.newSizes([]);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalled();
+  });
+
+  it('#newPriceRange should call router.navigateByUrl', () => {
+    component.newPriceRange([1, 2]);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalled();
+  });
+
+  it('#newCategory should call router.navigateByUrl', () => {
+    component.newCategory(['']);
+    expect(routerSpy.navigateByUrl).toHaveBeenCalled();
   });
 });

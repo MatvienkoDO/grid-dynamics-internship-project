@@ -10,7 +10,7 @@ import { UrlQuery } from 'src/app/pages';
 export interface Query {
   filter: Filter;
   paging: Paging;
-};
+}
 
 export interface UrlQuery {
   skip?: string;
@@ -41,14 +41,14 @@ export class ProductFilterService {
   public productsQuantity$: Observable<number>;
   public loading$: Observable<boolean>;
   public query$: Observable<Query>;
-  
+
   private readonly subscriptions: Subscription[] = [];
 
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly productsService: ProductsService,
     private readonly router: Router,
-  ) { 
+  ) {
     this.products$ = this.products.asObservable();
     this.productsQuantity$ = this.productsQuantity.asObservable();
     this.query$ = this.query.asObservable();
@@ -56,7 +56,7 @@ export class ProductFilterService {
     this.init();
   }
 
-  init() {
+  private init() {
     this.subscriptions.push(
       this.activatedRoute.queryParams.subscribe((urlQuery: UrlQuery) => {
         const newQuery = this.createQueryFromUrlQuery(urlQuery);
@@ -185,7 +185,7 @@ export class ProductFilterService {
     return url;
   }
 
-  public readonly resetSearchQuery = () => {
+  public resetSearchQuery() {
     const newQuery = this.query.value;
     delete newQuery.filter.search;
 

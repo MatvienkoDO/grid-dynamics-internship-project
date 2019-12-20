@@ -48,7 +48,7 @@ export class LocalizationService {
     this.translate.use(newLocale);
     this.locale.next(newLocale);
     this.saveLocaleToLocalStorage();
-    location.reload();
+    location.reload(); // TODO do not test
   }
 
   public getNotificationServiceMessage(type: string): string {

@@ -6,21 +6,23 @@ import { NotifierService } from 'angular-notifier';
   providedIn: 'root'
 })
 export class NotificationService {
-  constructor(private service: NotifierService ) { }
+  constructor(
+    private readonly service: NotifierService,
+  ) { }
 
-  success(message: string) {
+  public success(message: string) {
     this.service.notify('success', message);
   }
 
-  error(message: string) {
+  public error(message: string) {
     this.service.notify('error', message);
   }
 
-  warning(message: string) {
+  public warning(message: string) {
     this.service.notify('warning', message);
   }
 
-  info(message: string) {
+  public info(message: string) {
     this.service.notify('info', message);
   }
 }

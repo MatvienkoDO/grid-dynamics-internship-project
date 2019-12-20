@@ -15,8 +15,10 @@ export class NewsLetterComponent implements OnInit {
   });
   loading = false;
 
-  constructor(private mailService: MailService,
-    private formBuilder: FormBuilder) { }
+  constructor(
+    private mailService: MailService,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
     this.newsLetterForm = this.formBuilder.group({

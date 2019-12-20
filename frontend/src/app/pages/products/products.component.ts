@@ -8,7 +8,12 @@ import { Subscription } from 'rxjs';
 
 import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
-import { CartService, FavouritesService, ProductFilterService, Query } from 'src/app/shared/services';
+import {
+  CartService,
+  FavouritesService,
+  ProductFilterService,
+  Query,
+} from 'src/app/shared/services';
 
 export interface Query {
   filter: Filter;
@@ -169,15 +174,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     this.router.navigateByUrl(this.createNewUrl(newQuery));
   }
-
+//done
   public readonly showDetails = (productsId: string) => {
     this.router.navigateByUrl(`/product/${productsId}`);
   }
-
+//done
   public readonly addToCart = (cardProduct: CardProduct) => {
     this.cartService.addToCart(cardProduct);
   }
-
+//done
   public readonly addToFavourites = (cardProduct: CardProduct) => {
     this.favouritesService.addToFavourites(cardProduct);
   }
@@ -185,11 +190,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
   public changeLoading(newValue: boolean) {
     this.productFilterService.changeLoading(newValue);
   }
-
+//done
   public createQueryFromUrlQuery(urlQuery: UrlQuery) : Query {
     return this.productFilterService.createQueryFromUrlQuery(urlQuery);
   }
-
+//done
   public createNewUrl(query: Query): string {
     return  this.productFilterService.createNewUrl(query);
   }

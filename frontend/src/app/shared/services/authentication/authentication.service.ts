@@ -15,11 +15,11 @@ export class AuthenticationService {
   public currentUser: Observable<User|null>;
 
   constructor(
-    private http: HttpClient,
+    private readonly http: HttpClient,
   ) {
     const userFromLocalStorage = localStorage.getItem('currentUser');
     if (userFromLocalStorage) {
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(userFromLocalStorage));  
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(userFromLocalStorage));
     } else {
       this.currentUserSubject = new BehaviorSubject<User|null>(null);
     }
@@ -37,9 +37,7 @@ export class AuthenticationService {
 
     return this.http.post<any>(address, body, options)
       .pipe(map(user => {
-        // login successful if there's a jwt token in the response
         if (user) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
@@ -57,7 +55,6 @@ export class AuthenticationService {
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
       });
-      // remove user from local storage to log user out
   }
 
   public signup(signupDto: signupDto) {
@@ -74,10 +71,10 @@ export class AuthenticationService {
       if (user.status === 'error') {
         return user;
       } else if (user) {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
       }
+
       return user;
     }));
   }

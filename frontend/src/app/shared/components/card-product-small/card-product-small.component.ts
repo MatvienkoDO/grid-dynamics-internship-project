@@ -19,14 +19,20 @@ export class CardProductSmallComponent {
   @Input() public readonly image: Image;
   @Input() public readonly title: string;
   @Input() public readonly price: string;
-  @Input() public readonly sizes: string[];
-  @Input() public readonly colors: string[];
+  @Input() public readonly sizes: string[] = [''];
+  @Input() public readonly colors: string[] = [''];
 
-  @Input('image-alt') public readonly imageAlt: string | undefined;
-  @Input('currency-sign') public readonly currencySign: string | undefined;
+  @Input('image-alt')
+  public readonly imageAlt: string | undefined;
 
-  @Output('show-details') public readonly showDetails = new EventEmitter<CardProduct>();
-  @Output('add-to-cart') public readonly addToCart = new EventEmitter<CardProduct>();
+  @Input('currency-sign')
+  public readonly currencySign: string | undefined;
+
+  @Output('show-details')
+  public readonly showDetails = new EventEmitter<CardProduct>();
+
+  @Output('add-to-cart')
+  public readonly addToCart = new EventEmitter<CardProduct>();
 
   public readonly showDetailsCb = () => {
     this.showDetails.emit(this.generateCardProduct());

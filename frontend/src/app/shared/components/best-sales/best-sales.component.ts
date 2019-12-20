@@ -31,7 +31,7 @@ export class BestSalesComponent implements OnInit, OnDestroy {
         if (products && Array.isArray(products.data)) {
           this.products$.next(products.data);
         } else {
-          throw new Error('incorrect data');
+          return [];
         }
       }
     });

@@ -11,5 +11,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingIndicatorComponent {
-  @Input('error-message') errorMessage = '';
+  @Input('error-message')
+  errorMessage = '';
 }

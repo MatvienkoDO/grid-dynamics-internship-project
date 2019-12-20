@@ -26,7 +26,7 @@ export class CartService {
     this.init();
   }
 
-  public init() {
+  private init() {
     const itemsFromLocalStorage = this.getItemsFromLocalStorage();
 
     if (itemsFromLocalStorage) {
