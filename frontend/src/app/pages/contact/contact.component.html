@@ -2,7 +2,8 @@
   class="map"
   [latitude]="office.lat"
   [longitude]="office.lon"
-  [address]="office.address">
+  [address]="office.address"
+  [zoom]="mapZoom$ | async">
 </app-map-place>
 
 <div class="feedback">

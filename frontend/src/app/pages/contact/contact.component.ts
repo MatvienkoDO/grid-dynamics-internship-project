@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, BehaviorSubject, combineLatest, timer } from 'rxjs';
-import { map, startWith, first } from 'rxjs/operators';
+import { Observable, BehaviorSubject, combineLatest, timer, fromEvent } from 'rxjs';
+import { map, startWith, first, filter, distinctUntilChanged } from 'rxjs/operators';
 
 import { NotificationService } from 'src/app/shared/services';
 import { gridDynamicsOfficeAddress } from '../../shared/constants';
@@ -36,6 +36,7 @@ const createForm = () => new FormGroup({
 })
 export class ContactComponent {
   public readonly office = gridDynamicsOfficeAddress;
+  public readonly mapZoom$: Observable<number | undefined>;
 
   public readonly name$: Observable<string>;
   public readonly email$: Observable<string>;
@@ -70,6 +71,25 @@ export class ContactComponent {
     this.submitEnabled$ = combineLatest(this.form.statusChanges, this.loading$).pipe(
       map(([status, loading]) => status === 'VALID' && !loading),
       startWith(false)
+    );
+
+    const windowWidth = fromEvent(window, 'resize').pipe(
+      map(({ target }) => target ? (target as any).innerWidth : NaN),
+      filter(width => typeof width === 'number' && !isNaN(width)),
+      startWith(window.innerWidth),
+    );
+
+    this.mapZoom$ = windowWidth.pipe(
+      map(width => {
+        if (width > 900) {
+          return 15;
+        } else if (width > 415) {
+          return 14;
+        } else {
+          return 13;
+        }
+      }),
+      distinctUntilChanged(),
     );
   }
 
