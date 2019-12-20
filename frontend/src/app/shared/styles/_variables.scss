@@ -10,7 +10,7 @@
   &_first {
     padding: 60px 0 30px 0;
     @include for-phone-intermediate {
-      padding: 60px 15px;
+      padding: 60px 15px 30px;
     }
     @include for-phone {
       padding: 30px 10px;

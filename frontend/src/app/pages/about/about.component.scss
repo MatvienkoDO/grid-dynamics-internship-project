@@ -12,14 +12,14 @@
   justify-content: space-around;
   align-items: center;
   padding: 30px 0;
-  @include for-phone-smaller {
+  @media (max-width: 460px) {
    flex-direction: column;
   }
   &__item {
    display: block;
    cursor: pointer;
    text-decoration: none;
-   @include for-phone-smaller {
+   @media (max-width: 460px) {
     padding-bottom: 30px;
     }
    &:hover .teams__name {
@@ -38,9 +38,6 @@
    overflow: hidden;
    transition: all .3s ease-in-out;
    border-radius: 50%;
-   @include for-500px {
-    display: none;
-   }
   }
 
   &__name {
