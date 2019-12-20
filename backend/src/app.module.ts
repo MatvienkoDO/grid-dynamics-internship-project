@@ -10,6 +10,7 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { UsersModule } from './modules/users/users.module';
 import { CartModule } from './modules/cart/cart.module';
 import { FavouriteModule } from './modules/favourite/favourite.module';
+import { ContactUsModule } from './modules/contact-us/contact-us.module';
 
 const mongoConfig: MongooseModuleOptions = {
   useNewUrlParser: true,
@@ -25,6 +26,7 @@ const mongoConfig: MongooseModuleOptions = {
     UsersModule,
     CartModule,
     FavouriteModule,
+    ContactUsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

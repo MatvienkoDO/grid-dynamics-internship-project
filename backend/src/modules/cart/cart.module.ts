@@ -8,6 +8,7 @@ import { ProductSchema } from '../product/product.schema';
 
 @Module({
   imports: [
+    // TODO: maybe it would be correct to be a single module, not 2 MongooseModule.forFeature
     MongooseModule.forFeature([
       { name: cartSchemaName, schema: CartSchema },
     ]),
