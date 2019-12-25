@@ -50,7 +50,7 @@ export class FavouriteService {
     const favourites = await this.favouriteModel.findOne({ userId });
 
     if (!favourites) {
-      const newCart = new this.favouriteModel({ userId, newItems });
+      const newCart = new this.favouriteModel({ userId, items: newItems });
 
       return newCart.save();
     }
