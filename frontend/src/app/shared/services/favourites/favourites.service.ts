@@ -44,6 +44,7 @@ export class FavouritesService {
       this.saveItemsToLocalStorage(updatedItems);
 
       this.items.next(updatedItems);
+      this.updateFavouritesItems();
 
       const message = this.localizationService.getNotificationServiceMessage('addToFavourites');
       this.notificationService.info(`${cardProduct.title} ${message}`);
@@ -75,6 +76,7 @@ export class FavouritesService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    this.updateFavouritesItems();
 
     const message = this.localizationService.getNotificationServiceMessage('deleteFromFavourites');
     this.notificationService.warning(`${product.title} ${message}`);
@@ -86,6 +88,7 @@ export class FavouritesService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    this.updateFavouritesItems();
 
     const message = this.localizationService.getNotificationServiceMessage('clearFavourites');
     this.notificationService.warning(message);

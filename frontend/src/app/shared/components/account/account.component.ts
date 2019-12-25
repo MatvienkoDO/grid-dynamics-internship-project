@@ -117,7 +117,6 @@ export class AccountComponent implements OnInit {
               this.accountModalService.emptyDialogStack();
               this.accountModalService.openWelcomeDialog();
               this.cartService.sendNewCartItems();
-              this.cartService.getCartItems();
               this.favouritesService.sendNewFavouritesItems();
             }
         });

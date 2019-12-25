@@ -46,7 +46,7 @@ export class CartService {
     const cart = await this.cartModel.findOne({userId});
 
     if (!cart) {
-      const newCart = new this.cartModel({userId, newItems});
+      const newCart = new this.cartModel({userId, items: newItems});
 
       return newCart.save();
     }
