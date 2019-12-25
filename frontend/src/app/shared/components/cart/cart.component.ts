@@ -56,24 +56,24 @@ export class CartComponentInner implements OnInit {
     }));
   }
 
-  deleteFromCart(cartProduct: CardProduct) {
+  public deleteFromCart(cartProduct: CardProduct) {
     this.cartService.deleteFromCart(cartProduct);
   }
 
-  clearCart() {
+  public clearCart() {
     this.cartService.clearCart();
     this.dialogRef.close();
   }
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close();
   }
 
-  public readonly increaseQuantity = (index: number) => {
+  public increaseQuantity(index: number) {
     this.cartService.increaseQuantity(index);
   }
 
-  public readonly decreaseQuantity = (index: number) => {
+  public decreaseQuantity(index: number) {
     this.cartService.decreaseQuantity(index);
   }
 }

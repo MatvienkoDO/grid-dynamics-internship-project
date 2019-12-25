@@ -44,6 +44,7 @@ export class FavouritesService {
       this.saveItemsToLocalStorage(updatedItems);
 
       this.items.next(updatedItems);
+      this.updateFavouritesItems();
 
       const message = this.localizationService.getNotificationServiceMessage('addToFavourites');
       this.notificationService.info(`${cardProduct.title} ${message}`);
@@ -54,24 +55,6 @@ export class FavouritesService {
     const list = this.items.value;
 
     return list;
-  }
-
-  addToCart(cardProduct: CardProduct) {
-    const updatedItems = this.items.value;
-
-    const idx = this.findIndexSameCardProduct(cardProduct);
-    if (idx !== -1) {
-      updatedItems[idx].quantity += cardProduct.quantity;
-    } else {
-      updatedItems.push(cardProduct);
-    }
-
-    this.saveItemsToLocalStorage(updatedItems);
-
-    this.items.next(updatedItems);
-
-    const message = this.localizationService.getNotificationServiceMessage('addToCart');
-    this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
   private findIndexSameCardProduct(cardProduct: CardProduct) {
@@ -93,6 +76,7 @@ export class FavouritesService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    this.updateFavouritesItems();
 
     const message = this.localizationService.getNotificationServiceMessage('deleteFromFavourites');
     this.notificationService.warning(`${product.title} ${message}`);
@@ -104,6 +88,7 @@ export class FavouritesService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    this.updateFavouritesItems();
 
     const message = this.localizationService.getNotificationServiceMessage('clearFavourites');
     this.notificationService.warning(message);

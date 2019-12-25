@@ -11,8 +11,8 @@ import { Product, CardProduct, ProductResponse } from 'src/app/shared/models';
 describe('HotDealsMonthComponent', () => {
   let component: HotDealsMonthComponent;
   let fixture: ComponentFixture<HotDealsMonthComponent>;
-  const ProductsServiceSpy = jasmine.createSpyObj('ProductsService', ['getProducts']);
-  ProductsServiceSpy.getProducts.and.returnValue(of(<ProductResponse> {
+  const ProductsServiceSpy = jasmine.createSpyObj('ProductsService', ['getProductsForMonth']);
+  ProductsServiceSpy.getProductsForMonth.and.returnValue(of(<ProductResponse> {
     data: [<Product> { id: '123' }],
     quantity: 1
   }));

@@ -24,7 +24,7 @@ export class AccountModalService {
           this.openLoginSignup();
         }
       }
-    )
+    );
   }
 
   public openLoginSignup() {

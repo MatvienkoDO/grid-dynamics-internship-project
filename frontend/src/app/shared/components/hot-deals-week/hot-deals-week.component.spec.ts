@@ -16,8 +16,8 @@ import { HotDealsWeekComponent } from './hot-deals-week.component';
 describe('HotDealsWeekComponent', () => {
   let component: HotDealsWeekComponent;
   let fixture: ComponentFixture<HotDealsWeekComponent>;
-  const ProductsServiceSpy = jasmine.createSpyObj('ProductsService', ['getProducts']);
-  ProductsServiceSpy.getProducts.and.returnValue(of(<ProductResponse>{
+  const ProductsServiceSpy = jasmine.createSpyObj('ProductsService', ['getProductsForMonth']);
+  ProductsServiceSpy.getProductsForMonth.and.returnValue(of(<ProductResponse>{
     data: [<Product>{ id: '123' }],
     quantity: 1
   }));

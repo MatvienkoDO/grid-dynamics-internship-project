@@ -2,23 +2,31 @@ import { TestBed } from '@angular/core/testing';
 
 import { FavouritesService, LocalizationService, NotificationService } from '..';
 import { localStorageFavouritesKey } from '../../constants';
-import { CardProduct } from '../../models'
+import { CardProduct } from '../../models';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 describe('FavouritesService', () => {
-  const LocalizationServiceSpy = 
+  const LocalizationServiceSpy =
   jasmine.createSpyObj('LocalizationService', ['getNotificationServiceMessage']);
   const infoSpy = jasmine.createSpyObj('NotificationService', ['info', 'warning']);
 
   const stubMessage = 'stub Message';
   LocalizationServiceSpy.getNotificationServiceMessage.and.returnValue(stubMessage);
 
+  const HttpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'patch', 'put']);
+  HttpClientSpy.get.and.returnValue(new Observable());
+  HttpClientSpy.patch.and.returnValue(new Observable());
+  HttpClientSpy.put.and.returnValue(new Observable());
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         FavouritesService,
+        { provide: HttpClient, useValue: HttpClientSpy },
         { provide: LocalizationService, useValue: LocalizationServiceSpy },
         { provide: NotificationService, useValue: infoSpy },
-      ] 
+      ]
     });
     localStorage.clear();
   });
@@ -127,7 +135,7 @@ describe('FavouritesService', () => {
     });
   });
 
-  it('#deleteFromCart should delete item', (done) => {
+  it('#deleteFromFavourites should delete item', (done) => {
     const existingCardProduct: CardProduct = {
       id: '1',
       title: 'Title',
@@ -147,7 +155,7 @@ describe('FavouritesService', () => {
     });
   });
 
-  it('#deleteFromCart should delete specific item', (done) => {
+  it('#deleteFromFavourites should delete specific item', (done) => {
     const cardProduct1: CardProduct = {
       id: '1',
       title: 'Title',
@@ -216,5 +224,28 @@ describe('FavouritesService', () => {
       expect(value.length).toBe(0);
       done();
     });
+  });
+
+  it('#getListOfFavourites should return array', () => {
+    const service: FavouritesService = TestBed.get(FavouritesService);
+    expect(Array.isArray(service.getListOfFavourites())).toBeTruthy();
+  });
+
+  it('#sendNewFavouritesItems should call http.patch', () => {
+    const service: FavouritesService = TestBed.get(FavouritesService);
+    service.sendNewFavouritesItems();
+    expect(HttpClientSpy.patch).toHaveBeenCalled();
+  });
+
+  it('#updateFavouritesItems should call http.put', () => {
+    const service: FavouritesService = TestBed.get(FavouritesService);
+    service.updateFavouritesItems();
+    expect(HttpClientSpy.put).toHaveBeenCalled();
+  });
+
+  it('#getFavouritesItems should call http.get', () => {
+    const service: FavouritesService = TestBed.get(FavouritesService);
+    service.getFavouritesItems();
+    expect(HttpClientSpy.get).toHaveBeenCalled();
   });
 });

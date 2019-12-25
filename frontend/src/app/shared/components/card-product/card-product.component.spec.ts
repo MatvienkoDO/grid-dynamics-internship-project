@@ -1,9 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockTranslatePipe } from '../../../testing/test/mock-translate.pipe';
 import { AppModule } from 'src/app/app.module';
 import { CardProductComponent } from './card-product.component';
 import { CardProduct } from '../../models';
 import { doesNotThrow } from 'assert';
+import { EventEmitter } from '@angular/core';
 
 describe('CardProductComponent', () => {
   let component: CardProductComponent;
@@ -40,5 +41,12 @@ describe('CardProductComponent', () => {
       expect(value).toBe(stubColor);
       done();
     });
+  });
+
+  it('action should emit event', () => {
+    const sender = new EventEmitter<CardProduct>();
+    spyOn(component.error, 'emit');
+    component.action(sender);
+    expect(component.error.emit).toHaveBeenCalled();
   });
 });

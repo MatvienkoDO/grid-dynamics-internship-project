@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HotDealsComponent } from './hot-deals.component';
+import { MockTranslatePipe } from '../../testing/test/mock-translate.pipe';
+import { AppModule } from 'src/app/app.module';
 
 describe('HotDealsComponent', () => {
   let component: HotDealsComponent;
@@ -8,7 +10,8 @@ describe('HotDealsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HotDealsComponent ]
+      imports: [AppModule],
+      declarations: [ MockTranslatePipe ]
     })
     .compileComponents();
   }));

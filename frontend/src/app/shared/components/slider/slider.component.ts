@@ -34,7 +34,7 @@ export class SliderComponent implements OnInit, OnDestroy {
           return response.data;
         }
 
-        throw 'incorrect data';
+        return [];
       }))
       .pipe(share());
 
@@ -62,7 +62,14 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.current$.next(newCurrent);
   }
 
-  public readonly orderProduct = (productId: string, productTitle: string, productPrice: number, image: Image, size: string, color: string) => {
+  public orderProduct(
+    productId: string,
+    productTitle: string,
+    productPrice: number,
+    image: Image,
+    size: string,
+    color: string,
+  ) {
     this.cartService.addToCart({
       id: productId,
       title: productTitle,
@@ -74,10 +81,11 @@ export class SliderComponent implements OnInit, OnDestroy {
     });
   }
 
-  public readonly showDetails = (productId: string) => {
+  public showDetails(productId: string) {
     this.router.navigateByUrl(`/product/${productId}`);
   }
 
-  public readonly trustStyle = (style: string) =>
+  public trustStyle(style: string) {
     this.sanitizer.bypassSecurityTrustStyle(style);
+  }
 }

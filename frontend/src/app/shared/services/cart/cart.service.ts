@@ -26,7 +26,7 @@ export class CartService {
     this.init();
   }
 
-  public init() {
+  private init() {
     const itemsFromLocalStorage = this.getItemsFromLocalStorage();
 
     if (itemsFromLocalStorage) {
@@ -71,6 +71,7 @@ export class CartService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    this.updateCartItems();
 
     const message = this.localizationService.getNotificationServiceMessage('deleteFromCart');
     this.notificationService.warning(`${cardProduct.title} ${message}`);
@@ -82,6 +83,7 @@ export class CartService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    this.updateCartItems();
 
     const message = this.localizationService.getNotificationServiceMessage('clearCart');
     this.notificationService.warning(message);
@@ -133,9 +135,9 @@ export class CartService {
     const options = { withCredentials: true };
 
     return this.http.patch<any>(address, body, options)
-      .subscribe(items => {
-        this.saveItemsToLocalStorage(items);
-        this.items.next(items);
+      .subscribe(response => {
+        this.saveItemsToLocalStorage(response.items);
+        this.items.next(response.items);
       });
   }
 
@@ -175,9 +177,9 @@ export class CartService {
     const options = { withCredentials: true };
 
     return this.http.get<any>(address, options)
-      .subscribe(items => {
-        this.saveItemsToLocalStorage(items.items);
-        this.items.next(items.items);
+      .subscribe(response => {
+        this.saveItemsToLocalStorage(response.items);
+        this.items.next(response.items);
       });
   }
 }
