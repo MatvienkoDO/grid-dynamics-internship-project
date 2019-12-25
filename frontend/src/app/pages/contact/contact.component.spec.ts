@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactComponent } from './contact.component';
+import { MockTranslatePipe } from '../../testing/test/mock-translate.pipe';
+import { AppModule } from 'src/app/app.module';
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -8,7 +10,8 @@ describe('ContactComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactComponent ]
+      imports: [AppModule],
+      declarations: [ MockTranslatePipe ]
     })
     .compileComponents();
   }));
