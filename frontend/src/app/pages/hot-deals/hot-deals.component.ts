@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './hot-deals.component.html',
   styleUrls: ['./hot-deals.component.scss']
 })
-export class HotDealsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class HotDealsComponent { }

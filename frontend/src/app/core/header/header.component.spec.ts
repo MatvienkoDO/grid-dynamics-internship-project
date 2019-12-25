@@ -84,4 +84,5 @@ describe('HeaderComponent', () => {
     component.openAccount();
     expect(accountModalSpy.openAccountModal).toHaveBeenCalled();
   });
+
 });
