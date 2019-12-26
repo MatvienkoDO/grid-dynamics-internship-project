@@ -8,6 +8,7 @@ import { LocalizationService } from '../localization/localization.service';
 import { localStorageCartKey } from '../../constants';
 import { apiHost } from 'src/environments/environment';
 import { debounceTime, switchMap, share } from 'rxjs/operators';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class CartService {
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
 
   constructor(
+    private readonly authService: AuthenticationService,
     private readonly localizationService: LocalizationService,
     private readonly notificationService: NotificationService,
     private readonly http: HttpClient,
@@ -47,6 +49,9 @@ export class CartService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    if (this.authService.currentUserValue) {
+      this.updateCartItems();
+    }
 
     const message = this.localizationService.getNotificationServiceMessage('addToCart');
     this.notificationService.info(`${cardProduct.title} ${message}`);
