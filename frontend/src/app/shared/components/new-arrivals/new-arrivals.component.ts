@@ -25,8 +25,8 @@ const initialProductsNumber = 4;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewArrivalsComponent implements OnInit {
-  public products$: Observable<Product[]>;
-  public canLoadMore$: Observable<boolean>;
+  public products$?: Observable<Product[]>;
+  public canLoadMore$?: Observable<boolean>;
 
   private readonly productsNumbers = new BehaviorSubject<number>(initialProductsNumber);
 
