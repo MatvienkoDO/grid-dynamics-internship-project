@@ -16,6 +16,8 @@ import {
   NotificationService,
 } from 'src/app/shared/services';
 
+const initialProductsNumber = 4;
+
 @Component({
   selector: 'app-new-arrivals',
   templateUrl: './new-arrivals.component.html',
@@ -26,7 +28,7 @@ export class NewArrivalsComponent implements OnInit {
   public products$: Observable<Product[]>;
   public canLoadMore$: Observable<boolean>;
 
-  private readonly productsNumbers = new BehaviorSubject<number>(4);
+  private readonly productsNumbers = new BehaviorSubject<number>(initialProductsNumber);
 
   constructor(
     private readonly productsService: ProductsService,
