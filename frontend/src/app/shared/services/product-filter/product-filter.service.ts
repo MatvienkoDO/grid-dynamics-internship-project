@@ -164,21 +164,25 @@ export class ProductFilterService {
     return query;
   }
 
-  public createNewUrl(query: Query): string {
+  public createNewUrl({ filter, paging }: Query): string {
     let url = '/products?';
 
-    for(const key in query.paging) {
-      url += `${key}=${query.paging[key]}&`;
+    for (const key in paging) {
+      if (paging.hasOwnProperty(key)) {
+        const value = paging[key];
+        url += `${key}=${value}&`;
+      }
     }
 
-    for(const key in query.filter) {
-      const unnormalized = query.filter[key];
-      const values = Array.isArray(unnormalized)
-        ? unnormalized
-        : [unnormalized];
+    for (const key in filter) {
+      if (filter.hasOwnProperty(key)) {
+        const unnormalized = filter[key];
 
-      for(const value of values) {
-        url += `${key}=${value}&`;
+        const values = Array.isArray(unnormalized) ? unnormalized : [unnormalized];
+
+        for (const value of values) {
+          url += `${key}=${value}&`;
+        }
       }
     }
 
