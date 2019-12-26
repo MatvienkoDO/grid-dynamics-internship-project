@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -13,7 +14,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { NotificationService, LocalizationService } from '../../shared/services';
+import { NotificationService } from '../../shared/services';
 import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
 import { AccountComponent } from 'src/app/shared/components';
 import * as constants from '../../shared/constants';
@@ -33,7 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     private readonly dialog: MatDialog,
     private readonly authenticationService: AuthenticationService,
     private readonly errorsService: ErrorsService,
-    private readonly localization: LocalizationService,
+    private readonly translate: TranslateService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -42,47 +43,47 @@ export class ErrorInterceptor implements HttpInterceptor {
         const info: any | null = error.error;
 
         if (error.status === 0) {
-          this.localization.get('error.noInternet').subscribe(this.notificationService.error);
+          this.translate.get('error.noInternet').subscribe(this.notificationService.error);
 
         } else if (info.status === constants.authFailedMessage) {
           this.dialog.closeAll();
           this.dialog.open(AccountComponent, AccountComponent.dialogConfig);
 
-          this.localization.get('error.youAreNotAuthenticated')
+          this.translate.get('error.youAreNotAuthenticated')
             .subscribe(this.notificationService.warning);
 
         } else if (info.status === constants.signupInvalidForm) {
-          this.localization.get('error.signupInvalidForm').subscribe(localizedError => {
+          this.translate.get('error.signupInvalidForm').subscribe(localizedError => {
             this.notificationService.error(localizedError);
             this.errorsService.pushError(Error.Target.SignUp, localizedError);
           });
 
         } else if (info.status === constants.emailIsNotUnique) {
-          this.localization.get('error.emailIsNotUnique').subscribe(localizedError => {
+          this.translate.get('error.emailIsNotUnique').subscribe(localizedError => {
             this.notificationService.error(localizedError);
             this.errorsService.pushError(Error.Target.SignUp, localizedError);
           });
 
         } else if (info.status === constants.incorrectLoginPasswordPair) {
-          this.localization.get('error.incorrectLoginPasswordPair').subscribe(localizedError => {
+          this.translate.get('error.incorrectLoginPasswordPair').subscribe(localizedError => {
             this.notificationService.error(localizedError);
             this.errorsService.pushError(Error.Target.LogIn, localizedError);
           });
 
         } else if (error.status === 400) {
-          this.localization.get('error.notFound').subscribe(this.notificationService.error);
+          this.translate.get('error.notFound').subscribe(this.notificationService.error);
 
         } else if (error.status === 404) {
-          this.localization.get('error.notFound').subscribe(this.notificationService.error);
+          this.translate.get('error.notFound').subscribe(this.notificationService.error);
 
         } else if (error.status === 401) {
           this.authenticationService.logout();
 
         } else if (error.status >= 500 && error.status < 600) {
-          this.localization.get('error.serverError').subscribe(this.notificationService.error);
+          this.translate.get('error.serverError').subscribe(this.notificationService.error);
 
         } else {
-          this.localization.get('error.unknownError').subscribe(this.notificationService.error);
+          this.translate.get('error.unknownError').subscribe(this.notificationService.error);
         }
 
         this.router.navigate(['']);
