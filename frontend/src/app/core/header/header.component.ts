@@ -78,7 +78,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    const search = this.searchForm.value['search'];
+    const search = this.searchForm.value.search;
 
     if (search) {
       this.router.navigateByUrl(`/products?search=${search}`);
