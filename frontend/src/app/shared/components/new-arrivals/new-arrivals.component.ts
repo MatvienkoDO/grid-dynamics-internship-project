@@ -17,6 +17,7 @@ import {
 } from 'src/app/shared/services';
 
 const initialProductsNumber = 4;
+const loadMoreStep = 4;
 
 @Component({
   selector: 'app-new-arrivals',
@@ -69,7 +70,7 @@ export class NewArrivalsComponent implements OnInit {
 
   public readonly loadMore = () => {
     this.productsNumbers.next(
-      this.productsNumbers.value + 4
+      this.productsNumbers.value + loadMoreStep
     );
   }
 
