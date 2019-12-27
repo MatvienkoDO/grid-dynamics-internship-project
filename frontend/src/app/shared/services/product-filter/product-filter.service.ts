@@ -89,7 +89,7 @@ export class ProductFilterService {
 
     this.productsQuantity$ = productsResponse
       .pipe(map(response => {
-        if (response?.quantity !== undefined && Number.isInteger(response.quantity)) {
+        if (response && response.quantity !== undefined && Number.isInteger(response.quantity)) {
           return response.quantity;
         }
 
