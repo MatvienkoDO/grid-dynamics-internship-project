@@ -17,7 +17,7 @@ export class FavouritesService {
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
 
   constructor(
-    private authService: AuthenticationService,
+    private readonly authService: AuthenticationService,
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
     private readonly http: HttpClient,
