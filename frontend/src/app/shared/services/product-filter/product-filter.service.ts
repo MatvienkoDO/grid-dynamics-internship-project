@@ -64,10 +64,11 @@ export class ProductFilterService {
       })
     );
 
+    const debounceForProductsByFilters = 1000;
     const productsResponse = this.query$
       .pipe(
         tap( () => this.changeLoading(true) ),
-        debounceTime(1000),
+        debounceTime(debounceForProductsByFilters),
         switchMap(({ paging, filter }) =>
           this.productsService.getProductsByFilters(paging.skip, paging.limit, filter)
         ),
