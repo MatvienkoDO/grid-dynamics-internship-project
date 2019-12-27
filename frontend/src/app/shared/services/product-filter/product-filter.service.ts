@@ -88,7 +88,7 @@ export class ProductFilterService {
 
     this.productsQuantity$ = response
       .pipe(map(response => {
-        if (response && Number.isInteger(response.quantity)) {
+        if (response?.quantity !== undefined && Number.isInteger(response.quantity)) {
           return response.quantity;
         }
 
