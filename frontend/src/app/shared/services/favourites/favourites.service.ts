@@ -7,6 +7,7 @@ import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 import { localStorageFavouritesKey } from '../../constants';
 import { apiHost } from '../../../../environments/environment';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class FavouritesService {
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
 
   constructor(
+    private readonly authService: AuthenticationService,
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
     private readonly http: HttpClient,
@@ -44,7 +46,9 @@ export class FavouritesService {
       this.saveItemsToLocalStorage(updatedItems);
 
       this.items.next(updatedItems);
-      this.updateFavouritesItems();
+      if (this.authService.currentUserValue) {
+        this.updateFavouritesItems();
+      }
 
       const message = await this.localizationService.get('favourites.addToFavourites').toPromise();
       this.notificationService.info(`${cardProduct.title} ${message}`);
