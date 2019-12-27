@@ -64,7 +64,7 @@ export class ProductFilterService {
       })
     );
 
-    const response = this.query$
+    const productsResponse = this.query$
       .pipe(
         tap( () => this.changeLoading(true) ),
         debounceTime(1000),
@@ -75,7 +75,7 @@ export class ProductFilterService {
         share()
       );
 
-    this.products$ = response
+    this.products$ = productsResponse
       .pipe(map(response => {
         if (response && Array.isArray(response.data)) {
           return response.data;
@@ -86,7 +86,7 @@ export class ProductFilterService {
         };
       }));
 
-    this.productsQuantity$ = response
+    this.productsQuantity$ = productsResponse
       .pipe(map(response => {
         if (response?.quantity !== undefined && Number.isInteger(response.quantity)) {
           return response.quantity;
