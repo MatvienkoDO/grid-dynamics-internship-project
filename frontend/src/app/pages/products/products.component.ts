@@ -6,30 +6,15 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { Filter, Paging, Product, CardProduct } from 'src/app/shared/models';
+import { Product, CardProduct } from 'src/app/shared/models';
 import { ListSelectComponent } from 'src/app/shared/components';
 import {
   CartService,
   FavouritesService,
   ProductFilterService,
   Query,
+  UrlQuery,
 } from 'src/app/shared/services';
-
-export interface Query {
-  filter: Filter;
-  paging: Paging;
-};
-
-export interface UrlQuery {
-  skip?: string;
-  limit?: string;
-  category?: string;
-  minPrice?: string;
-  maxPrice?: string;
-  sizes?: string | string[];
-  brands?: string | string[];
-  search?: string;
-}
 
 @Component({
   selector: 'app-products',
