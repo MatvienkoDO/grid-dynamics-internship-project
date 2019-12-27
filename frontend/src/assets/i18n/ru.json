@@ -100,9 +100,12 @@
     "error password match": "пароль должен совпадать"
   },
 
-    "favourites": {
+  "favourites": {
     "title": "Избранное",
-    "button": "Удалить все"
+    "button": "Удалить все",
+    "addToFavourites": "добавлен в избранное",
+    "deleteFromFavourites": "удален из избранного",
+    "clearFavourites": "Список избранного очищен"
   },
 
   "cart": {
@@ -114,8 +117,14 @@
     "color": "цвет",
     "price": "цена",
     "quantity": "количество",
-    "total cost": "общая стоимость"
+    "total cost": "общая стоимость",
+    "addToCart": "в корзине",
+    "deleteFromCart": "удален из корзины",
+    "clearCart": "Корзина очищена"
   },
+
+  "onlineNow": "Вы онлайн",
+  "offlineNow": "Вы офлайн",
 
   "about": {
     "about": "о",
@@ -165,5 +174,16 @@
     "hot deals": "горячие предложения",
     "this month": "этого месяца",
     "desc": "Просто фиктивный текст в полиграфии и верстке."
+  },
+
+  "error": {
+    "noInternet": "Отсутствует Интернет соединение",
+    "notFound": "Товар не найден",
+    "serverError": "Ошибка сервера",
+    "unknownError": "Ууупс... что-то пошло не так",
+    "youAreNotAuthenticated": "Вы не аутентифицированы",
+    "signupInvalidForm": "Данные формы некорректны",
+    "emailIsNotUnique": "Данный e-mail уже используется",
+    "incorrectLoginPasswordPair": "Неправильный логин и/или пароль"
   }
 }

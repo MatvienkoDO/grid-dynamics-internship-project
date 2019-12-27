@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
+
 import { AccountComponent } from '../../components/account/account.component';
 import { WelcomeModalComponent } from '../../components/welcome-modal/welcome-modal.component';
 import { AuthenticationService } from '../authentication/authentication.service';

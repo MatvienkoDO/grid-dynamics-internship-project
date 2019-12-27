@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { CardProduct } from '../../models';
@@ -6,7 +7,6 @@ import { NotificationService } from '../notification/notification.service';
 import { LocalizationService } from '../localization/localization.service';
 import { localStorageFavouritesKey } from '../../constants';
 import { apiHost } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class FavouritesService {
     }
   }
 
-  addToFavourites(cardProduct: CardProduct) {
+  async addToFavourites(cardProduct: CardProduct) {
     const idx = this.findIndexSameCardProduct(cardProduct);
 
     if (idx === -1) {
@@ -46,7 +46,7 @@ export class FavouritesService {
       this.items.next(updatedItems);
       this.updateFavouritesItems();
 
-      const message = this.localizationService.getNotificationServiceMessage('addToFavourites');
+      const message = await this.localizationService.get('favourites.addToFavourites').toPromise();
       this.notificationService.info(`${cardProduct.title} ${message}`);
     }
   }
@@ -68,7 +68,7 @@ export class FavouritesService {
     return -1;
   }
 
-  deleteFromFavourites(product: CardProduct) {
+  async deleteFromFavourites(product: CardProduct) {
     const updatedItems = [
       ...this.items.value.filter(el => el.id !== product.id)
     ];
@@ -78,11 +78,12 @@ export class FavouritesService {
     this.items.next(updatedItems);
     this.updateFavouritesItems();
 
-    const message = this.localizationService.getNotificationServiceMessage('deleteFromFavourites');
+    const message = await this.localizationService
+      .get('favourites.deleteFromFavourites').toPromise();
     this.notificationService.warning(`${product.title} ${message}`);
   }
 
-  clearFavourites() {
+  async clearFavourites() {
     const updatedItems = [];
 
     this.saveItemsToLocalStorage(updatedItems);
@@ -90,7 +91,7 @@ export class FavouritesService {
     this.items.next(updatedItems);
     this.updateFavouritesItems();
 
-    const message = this.localizationService.getNotificationServiceMessage('clearFavourites');
+    const message = await this.localizationService.get('favourites.clearFavourites').toPromise();
     this.notificationService.warning(message);
   }
 
