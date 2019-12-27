@@ -5,7 +5,6 @@ import { tap, debounceTime, switchMap, share, map } from 'rxjs/operators';
 
 import { Product, Paging, Filter } from '../../models';
 import { ProductsService } from '../products/products.service';
-import { UrlQuery } from 'src/app/pages';
 
 export interface Query {
   filter: Filter;
