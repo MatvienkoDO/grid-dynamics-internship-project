@@ -5,7 +5,6 @@ import { tap, debounceTime, switchMap, share, map } from 'rxjs/operators';
 
 import { Product, Paging, Filter } from '../../models';
 import { ProductsService } from '../products/products.service';
-import { UrlQuery } from 'src/app/pages';
 
 export interface Query {
   filter: Filter;
@@ -65,10 +64,11 @@ export class ProductFilterService {
       })
     );
 
-    const response = this.query$
+    const debounceForProductsByFilters = 1000;
+    const productsResponse = this.query$
       .pipe(
         tap( () => this.changeLoading(true) ),
-        debounceTime(1000),
+        debounceTime(debounceForProductsByFilters),
         switchMap(({ paging, filter }) =>
           this.productsService.getProductsByFilters(paging.skip, paging.limit, filter)
         ),
@@ -76,7 +76,7 @@ export class ProductFilterService {
         share()
       );
 
-    this.products$ = response
+    this.products$ = productsResponse
       .pipe(map(response => {
         if (response && Array.isArray(response.data)) {
           return response.data;
@@ -87,9 +87,9 @@ export class ProductFilterService {
         };
       }));
 
-    this.productsQuantity$ = response
+    this.productsQuantity$ = productsResponse
       .pipe(map(response => {
-        if (response && Number.isInteger(response.quantity)) {
+        if (response && response.quantity !== undefined && Number.isInteger(response.quantity)) {
           return response.quantity;
         }
 
@@ -164,21 +164,25 @@ export class ProductFilterService {
     return query;
   }
 
-  public createNewUrl(query: Query): string {
+  public createNewUrl({ filter, paging }: Query): string {
     let url = '/products?';
 
-    for(const key in query.paging) {
-      url += `${key}=${query.paging[key]}&`;
+    for (const key in paging) {
+      if (paging.hasOwnProperty(key)) {
+        const value = paging[key];
+        url += `${key}=${value}&`;
+      }
     }
 
-    for(const key in query.filter) {
-      const unnormalized = query.filter[key];
-      const values = Array.isArray(unnormalized)
-        ? unnormalized
-        : [unnormalized];
+    for (const key in filter) {
+      if (filter.hasOwnProperty(key)) {
+        const unnormalized = filter[key];
 
-      for(const value of values) {
-        url += `${key}=${value}&`;
+        const values = Array.isArray(unnormalized) ? unnormalized : [unnormalized];
+
+        for (const value of values) {
+          url += `${key}=${value}&`;
+        }
       }
     }
 

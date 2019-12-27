@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import {
   LocalizationService,
   ProductFilterService,
-  Query,
 } from '../../shared/services';
 import {
   CartComponentInner,
@@ -26,7 +25,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   });
 
   private readonly subscriptions: Subscription[] = [];
-  public query: Query;
 
   constructor(
     public readonly localizationService: LocalizationService,
@@ -39,8 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this.productFilterService.query$.subscribe((query) => {
-        this.query = query;
+      this.productFilterService.query$.subscribe(query => {
         this.searchForm.patchValue({
           search: query.filter.search
         });
@@ -81,7 +78,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    const search = this.searchForm.value['search'];
+    const search = this.searchForm.value.search;
 
     if (search) {
       this.router.navigateByUrl(`/products?search=${search}`);

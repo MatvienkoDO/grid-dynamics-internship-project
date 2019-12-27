@@ -9,15 +9,7 @@ import { NotificationService, LocalizationService } from './shared/services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'frontend';
-
-  onlineEvent: Observable<Event>;
-  offlineEvent: Observable<Event>;
-
   subscriptions: Subscription[] = [];
-
-  connectionStatusMessage: string;
-  connectionStatus: string;
 
   constructor(
     private readonly notificationService: NotificationService,
@@ -25,31 +17,21 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    /**
-    * Get the online/offline status from browser window
-    */
-    this.onlineEvent = fromEvent(window, 'online');
-    this.offlineEvent = fromEvent(window, 'offline');
+    const onlineEvent = fromEvent(window, 'online');
+    const offlineEvent = fromEvent(window, 'offline');
 
-    this.subscriptions.push(this.onlineEvent.subscribe(async () => {
-      this.connectionStatusMessage = 'Back to online';
-      this.connectionStatus = 'online';
+    this.subscriptions.push(onlineEvent.subscribe(async () => {
       const message = await this.localizationService.get('onlineNow').toPromise();
       this.notificationService.info(message);
     }));
 
-    this.subscriptions.push(this.offlineEvent.subscribe(async () => {
-      this.connectionStatusMessage = 'Connection lost! You are not connected to internet';
-      this.connectionStatus = 'offline';
+    this.subscriptions.push(offlineEvent.subscribe(async () => {
       const message = await this.localizationService.get('offlineNow').toPromise();
       this.notificationService.warning(message);
     }));
   }
 
   ngOnDestroy(): void {
-    /**
-    * Unsubscribe all subscriptions to avoid memory leak
-    */
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

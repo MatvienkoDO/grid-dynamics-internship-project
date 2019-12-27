@@ -16,6 +16,9 @@ import {
   NotificationService,
 } from 'src/app/shared/services';
 
+const initialProductsNumber = 4;
+const loadMoreStep = 4;
+
 @Component({
   selector: 'app-new-arrivals',
   templateUrl: './new-arrivals.component.html',
@@ -23,10 +26,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewArrivalsComponent implements OnInit {
-  public products$: Observable<Product[]>;
-  public canLoadMore$: Observable<boolean>;
+  public products$?: Observable<Product[]>;
+  public canLoadMore$?: Observable<boolean>;
 
-  private readonly productsNumbers = new BehaviorSubject<number>(4);
+  private readonly productsNumbers = new BehaviorSubject<number>(initialProductsNumber);
 
   constructor(
     private readonly productsService: ProductsService,
@@ -67,7 +70,7 @@ export class NewArrivalsComponent implements OnInit {
 
   public readonly loadMore = () => {
     this.productsNumbers.next(
-      this.productsNumbers.value + 4
+      this.productsNumbers.value + loadMoreStep
     );
   }
 
