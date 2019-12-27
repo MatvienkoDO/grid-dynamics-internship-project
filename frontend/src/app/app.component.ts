@@ -20,13 +20,13 @@ export class AppComponent implements OnInit, OnDestroy {
     const onlineEvent = fromEvent(window, 'online');
     const offlineEvent = fromEvent(window, 'offline');
 
-    this.subscriptions.push(onlineEvent.subscribe(() => {
-      const message = this.localizationService.getNotificationServiceMessage('onlineNow');
+    this.subscriptions.push(onlineEvent.subscribe(async () => {
+      const message = await this.localizationService.get('onlineNow').toPromise();
       this.notificationService.info(message);
     }));
 
-    this.subscriptions.push(offlineEvent.subscribe(() => {
-      const message = this.localizationService.getNotificationServiceMessage('offlineNow');
+    this.subscriptions.push(offlineEvent.subscribe(async () => {
+      const message = await this.localizationService.get('offlineNow').toPromise();
       this.notificationService.warning(message);
     }));
   }

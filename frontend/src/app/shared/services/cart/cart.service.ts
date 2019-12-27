@@ -8,6 +8,7 @@ import { LocalizationService } from '../localization/localization.service';
 import { localStorageCartKey } from '../../constants';
 import { apiHost } from 'src/environments/environment';
 import { debounceTime, switchMap, share } from 'rxjs/operators';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class CartService {
   private readonly items = new BehaviorSubject<CardProduct[]>([]);
 
   constructor(
+    private readonly authService: AuthenticationService,
     private readonly localizationService: LocalizationService,
     private readonly notificationService: NotificationService,
     private readonly http: HttpClient,
@@ -34,7 +36,7 @@ export class CartService {
     }
   }
 
-  public addToCart(cardProduct: CardProduct) {
+  public async addToCart(cardProduct: CardProduct) {
     const updatedItems = this.items.value;
 
     const idx = this.findIndexSameCardProduct(cardProduct);
@@ -47,8 +49,11 @@ export class CartService {
     this.saveItemsToLocalStorage(updatedItems);
 
     this.items.next(updatedItems);
+    if (this.authService.currentUserValue) {
+      this.updateCartItems();
+    }
 
-    const message = this.localizationService.getNotificationServiceMessage('addToCart');
+    const message = await this.localizationService.get('cart.addToCart').toPromise();
     this.notificationService.info(`${cardProduct.title} ${message}`);
   }
 
@@ -63,7 +68,7 @@ export class CartService {
     return -1;
   }
 
-  public deleteFromCart(cardProduct: CardProduct) {
+  public async deleteFromCart(cardProduct: CardProduct) {
     const updatedItems = [
       ...this.items.value.filter(el => el.id !== cardProduct.id)
     ];
@@ -73,11 +78,11 @@ export class CartService {
     this.items.next(updatedItems);
     this.updateCartItems();
 
-    const message = this.localizationService.getNotificationServiceMessage('deleteFromCart');
+    const message = await this.localizationService.get('cart.deleteFromCart').toPromise();
     this.notificationService.warning(`${cardProduct.title} ${message}`);
   }
 
-  public clearCart() {
+  public async clearCart() {
     const updatedItems = [];
 
     this.saveItemsToLocalStorage(updatedItems);
@@ -85,7 +90,7 @@ export class CartService {
     this.items.next(updatedItems);
     this.updateCartItems();
 
-    const message = this.localizationService.getNotificationServiceMessage('clearCart');
+    const message = await this.localizationService.get('cart.clearCart').toPromise();
     this.notificationService.warning(message);
   }
 
@@ -145,7 +150,6 @@ export class CartService {
     const address = `${apiHost}/api/cart`;
     const body = { items: this.items.getValue() };
     const options = { withCredentials: true };
-
     const debounce = 1000;
 
     return this.http.put<any>(address, body, options)

@@ -8,7 +8,12 @@ import { NotifierService } from 'angular-notifier';
 export class NotificationService {
   constructor(
     private readonly service: NotifierService,
-  ) { }
+  ) {
+    this.success = this.success.bind(this);
+    this.error = this.error.bind(this);
+    this.warning = this.warning.bind(this);
+    this.info = this.info.bind(this);
+  }
 
   public success(message: string) {
     this.service.notify('success', message);
