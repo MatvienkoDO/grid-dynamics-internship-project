@@ -36,7 +36,7 @@ export class ProductDetailsComponent implements OnInit {
 
         return this.productsService.getProductById(id)
           .pipe(map(response => {
-            if (response && !Array.isArray(response.data)) {
+            if (response && response.data && !Array.isArray(response.data)) {
               return response.data;
             }
             throw 'product details incorrect data';
