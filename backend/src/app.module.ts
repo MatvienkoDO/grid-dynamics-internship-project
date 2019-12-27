@@ -14,6 +14,8 @@ import { ContactUsModule } from './modules/contact-us/contact-us.module';
 
 const mongoConfig: MongooseModuleOptions = {
   useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
   useUnifiedTopology: true,
 };
 
