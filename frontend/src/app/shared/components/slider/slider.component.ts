@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, combineLatest, Subscription, interval } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, interval, combineLatest } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 
 import { ProductsService, CartService } from '../../services';
@@ -38,24 +38,24 @@ export class SliderComponent implements OnInit, OnDestroy {
       }))
       .pipe(share());
 
-    this.currentProduct$ = combineLatest(this.current$, this.products$)
+    this.currentProduct$ = combineLatest(this.current$, this.products$) // @TODO depricated
       .pipe(map(([slideNumber, products]) => products[slideNumber]));
 
-    this.productChangerSubscription = combineLatest(interval(7000), this.products$)
-      .pipe(map(([_, products]) => products ? products.length : 0))
-      .subscribe(productsNumber => {
-        const possibleNext = this.current$.value + 1;
+    // this.productChangerSubscription = combineLatest(interval(7000), this.products$)
+    // .pipe(map(([_, products]) => products ? products.length : 0))
+    // .subscribe(productsNumber => {
+    //   const possibleNext = this.current$.value + 1;
 
-        const next = possibleNext < productsNumber
-          ? possibleNext
-          : 0;
+    //   const next = possibleNext < productsNumber
+    //     ? possibleNext
+    //     : 0;
 
-        this.current$.next(next);
-      });
+    //   this.current$.next(next);
+    // });
   }
 
   ngOnDestroy() {
-    this.productChangerSubscription.unsubscribe();
+    // this.productChangerSubscription.unsubscribe();
   }
 
   public readonly changeSlide = (newCurrent: number) => {

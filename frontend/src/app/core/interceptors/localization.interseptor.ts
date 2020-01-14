@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -17,8 +18,15 @@ export class LocalizationInterceptor implements HttpInterceptor {
     multi: true,
   };
 
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {}
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const locale = localStorage.getItem('LOCALE');
+    let locale: string | null = 'en';
+    if (isPlatformBrowser(this.platformId)) {
+      locale = localStorage.getItem('LOCALE');
+    }
 
     if (!locale) {
       return next.handle(request);

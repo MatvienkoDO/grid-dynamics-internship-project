@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,7 @@ import {
   FooterComponent,
   ErrorInterceptor,
   LocalizationInterceptor,
+  UniversalInterceptor,
 } from './core';
 
 import {
@@ -67,6 +68,7 @@ import {
   HotDealsWeekComponent,
   HotDealsMonthComponent,
 } from './shared/components';
+import { I18nModule } from './modules/i18n/i18n.module';
 
 const translateModuleConfig = {
   loader: {
@@ -114,7 +116,7 @@ const translateModuleConfig = {
     HotDealsMonthComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
@@ -131,10 +133,16 @@ const translateModuleConfig = {
     MatTabsModule,
     MatExpansionModule,
     ShowHidePasswordModule,
+    I18nModule,
   ],
   providers: [
     LocalizationInterceptor.provider,
-    ErrorInterceptor.provider
+    ErrorInterceptor.provider,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: UniversalInterceptor,
+    //   multi: true
+    // },
   ],
   bootstrap: [AppComponent],
   entryComponents: [

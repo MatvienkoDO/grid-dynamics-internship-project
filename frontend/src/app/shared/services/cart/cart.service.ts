@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -9,6 +9,7 @@ import { localStorageCartKey } from '../../constants';
 import { apiHost } from 'src/environments/environment';
 import { debounceTime, switchMap, share } from 'rxjs/operators';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class CartService {
     private readonly localizationService: LocalizationService,
     private readonly notificationService: NotificationService,
     private readonly http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: any,
   ) {
     this.items$ = this.items;
     this.init();
@@ -95,7 +97,10 @@ export class CartService {
   }
 
   private getItemsFromLocalStorage(): CardProduct[] | null {
-    const localStorageData = localStorage.getItem(localStorageCartKey);
+    let localStorageData: string|null = null;
+    if (isPlatformBrowser(this.platformId)) {
+      localStorageData = localStorage.getItem(localStorageCartKey);
+    }
 
     if (!localStorageData) {
       return null;
@@ -113,7 +118,9 @@ export class CartService {
   }
 
   private saveItemsToLocalStorage(items: CardProduct[]): void {
-    localStorage.setItem(localStorageCartKey, JSON.stringify(items));
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(localStorageCartKey, JSON.stringify(items));
+    }
   }
 
   public readonly increaseQuantity = (index: number) => {

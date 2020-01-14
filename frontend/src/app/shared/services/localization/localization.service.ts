@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { localStorageLocaleKey } from '../../constants';
+import { isPlatformBrowser } from '@angular/common';
 
 const langs = ['en', 'ru'];
 const defaultLang = langs[0];
@@ -13,15 +14,19 @@ const defaultLang = langs[0];
 export class LocalizationService {
   private readonly locale = new BehaviorSubject<string>(defaultLang);
 
-  constructor(private readonly translate: TranslateService) {
+  constructor(
+    private readonly translate: TranslateService,
+    @Inject(PLATFORM_ID) private platformId: any,
+  ) {
     this.init();
   }
 
   private init() {
-    this.translate.addLangs(langs);
-    this.translate.setDefaultLang(defaultLang);
 
-    const localStorageLocale = localStorage.getItem(localStorageLocaleKey);
+    let localStorageLocale: string|null = 'en';
+    if (isPlatformBrowser(this.platformId)) {
+      localStorageLocale = localStorage.getItem(localStorageLocaleKey);
+    }
     const lang = localStorageLocale && langs.includes(localStorageLocale)
       ? localStorageLocale
       : defaultLang;
@@ -45,7 +50,9 @@ export class LocalizationService {
       };
     }
 
-    localStorage.setItem(localStorageLocaleKey, lang);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(localStorageLocaleKey, lang);
+    }
     location.reload();
   }
 

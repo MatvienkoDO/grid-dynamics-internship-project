@@ -18,7 +18,11 @@ export class ProductsService {
     return this.http.get<ProductResponse>(url);
   }
 
-  getProductsByFilters(skip: number = 0, limit: number = 0, filter: Filter): Observable<ProductResponse> {
+  getProductsByFilters(
+    skip: number = 0,
+    limit: number = 0,
+    filter: Filter
+  ): Observable<ProductResponse> {
     const url = this.createUrlWithFilter(skip, limit, filter);
 
     return this.http.get<ProductResponse>(url);
@@ -30,13 +34,19 @@ export class ProductsService {
     return this.http.get<ProductResponse>(url);
   }
 
-  getProductsForWeek(skip: number = 0, limit: number = 0): Observable<ProductResponse> {
+  getProductsForWeek(
+    skip: number = 0,
+    limit: number = 0
+  ): Observable<ProductResponse> {
     const url = `${apiHost}/api/products/hot-deals-week?skip=${skip}&limit=${limit}`;
 
     return this.http.get<ProductResponse>(url);
   }
 
-  getProductsForMonth(skip: number = 0, limit: number = 0): Observable<ProductResponse> {
+  getProductsForMonth(
+    skip: number = 0,
+    limit: number = 0
+  ): Observable<ProductResponse> {
     const url = `${apiHost}/api/products/hot-deals-month?skip=${skip}&limit=${limit}`;
 
     return this.http.get<ProductResponse>(url);
@@ -48,12 +58,19 @@ export class ProductsService {
     return this.http.get<ProductResponse>(url);
   }
 
-  getRelatedProducts(id: string, skip: number = 0, limit: number = 0) {
+  getRelatedProducts(
+    id: string,
+    skip: number = 0,
+    limit: number = 0
+  ) {
     // TODO: make real endpoint and request to it
     return this.getProducts(skip, limit);
   }
 
-  private createBaseUrl(skip: number = 0, limit: number = 0) {
+  private createBaseUrl(
+    skip: number = 0,
+    limit: number = 0
+) {
     return `${apiHost}/api/products?skip=${skip}&limit=${limit}`;
   }
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../models';
 import { apiHost } from 'src/environments/environment';
 import { signupDto } from '../../models/dto/signup.dto';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,12 @@ export class AuthenticationService {
 
   constructor(
     private readonly http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: any,
   ) {
-    const userFromLocalStorage = localStorage.getItem('currentUser');
+    let userFromLocalStorage: string|null = null;
+    if (isPlatformBrowser(this.platformId)) {
+      userFromLocalStorage = localStorage.getItem('currentUser');
+    }
     if (userFromLocalStorage) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(userFromLocalStorage));
     } else {
@@ -38,7 +43,9 @@ export class AuthenticationService {
     return this.http.post<any>(address, body, options)
       .pipe(map(user => {
         if (user) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+          }
           this.currentUserSubject.next(user);
         }
 
@@ -52,7 +59,9 @@ export class AuthenticationService {
 
     return this.http.post<any>(address, {}, options)
       .subscribe(v => {
-        localStorage.removeItem('currentUser');
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.removeItem('currentUser');
+        }
         this.currentUserSubject.next(null);
       });
   }
@@ -71,7 +80,9 @@ export class AuthenticationService {
       if (user.status === 'error') {
         return user;
       } else if (user) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
         this.currentUserSubject.next(user);
       }
 

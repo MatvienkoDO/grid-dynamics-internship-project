@@ -11,8 +11,7 @@ describe('RelatedProductsComponent', () => {
   let component: RelatedProductsComponent;
   let fixture: ComponentFixture<RelatedProductsComponent>;
 
-  const stubProductResponse = new ProductResponse();
-  stubProductResponse.data = [{
+  const data = [{
     id: 'test',
     name: 'test',
     description: 'test',
@@ -24,6 +23,7 @@ describe('RelatedProductsComponent', () => {
     colors: ['test'],
     images: [{"1_1": "", "4_3": "", "16_9": "", "scale": "", "default": ""}],
   }];
+  const stubProductResponse = new ProductResponse(data);
 
   const productsServiceSpy = jasmine.createSpyObj('ProductsService', ['getRelatedProducts']);
   productsServiceSpy.getRelatedProducts.and.returnValue(new Observable(subscriber =>
