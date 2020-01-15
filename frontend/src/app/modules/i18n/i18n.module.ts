@@ -56,7 +56,7 @@ export class I18nModule {
       ? translateCacheService.getCachedLanguage() || translate.getBrowserLang() || 'en'
       : this.getLangFromServerSideCookie();
 
-    translate.use(browserLang.match(/en|ru|fr|gr/) ? browserLang : 'en');
+    translate.use(browserLang.match(langs) ? browserLang : 'en');
   }
 
   getLangFromServerSideCookie() {
