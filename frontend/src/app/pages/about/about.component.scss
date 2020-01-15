@@ -16,7 +16,9 @@
    flex-direction: column;
   }
   &__item {
-   display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
    cursor: pointer;
    text-decoration: none;
    @media (max-width: 460px) {
@@ -46,5 +48,6 @@
 
   &__position {
    @include fonts($black, "Open Sans", 16px, 400);
+   max-width: 250px;
   }
 }
