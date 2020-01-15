@@ -29,7 +29,6 @@ import {
   FooterComponent,
   ErrorInterceptor,
   LocalizationInterceptor,
-  UniversalInterceptor,
 } from './core';
 
 import {
@@ -138,11 +137,6 @@ const translateModuleConfig = {
   providers: [
     LocalizationInterceptor.provider,
     ErrorInterceptor.provider,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: UniversalInterceptor,
-    //   multi: true
-    // },
   ],
   bootstrap: [AppComponent],
   entryComponents: [
