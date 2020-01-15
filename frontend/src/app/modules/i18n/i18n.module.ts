@@ -15,6 +15,8 @@ import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { BrowserTransferStateModule, TransferState } from '@angular/platform-browser';
 import { Request } from 'express';
 
+import { langs } from '../../shared/constants';
+
 @NgModule({
   imports: [
     BrowserTransferStateModule,
@@ -48,7 +50,7 @@ export class I18nModule {
       translateCacheService.init();
     }
 
-    translate.addLangs(['en', 'ru', 'fr', 'gr']);
+    translate.addLangs(langs);
 
     const browserLang = isPlatformBrowser(this.platform)
       ? translateCacheService.getCachedLanguage() || translate.getBrowserLang() || 'en'

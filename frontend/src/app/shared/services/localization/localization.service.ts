@@ -1,11 +1,10 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-import { localStorageLocaleKey } from '../../constants';
 import { isPlatformBrowser } from '@angular/common';
 
-const langs = ['en', 'ru', 'fr', 'gr'];
+import { localStorageLocaleKey, langs } from '../../constants';
+
 const defaultLang = langs[0];
 
 @Injectable({
