@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { LocalizationService } from '../localization/localization.service';
 import { localStorageFavouritesKey } from '../../constants';
 import { apiHost } from '../../../../environments/environment';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class FavouritesService {
     private readonly notificationService: NotificationService,
     private readonly localizationService: LocalizationService,
     private readonly http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: any,
   ) {
     this.items$ = this.items.asObservable();
     this.init();
@@ -100,7 +102,10 @@ export class FavouritesService {
   }
 
   private getItemsFromLocalStorage(): CardProduct[] | null {
-    const localStorageData = localStorage.getItem(localStorageFavouritesKey);
+    let localStorageData: string|null = null;
+    if (isPlatformBrowser(this.platformId)) {
+      localStorageData = localStorage.getItem(localStorageFavouritesKey);
+    }
 
     if (!localStorageData) {
       return null;
@@ -118,7 +123,9 @@ export class FavouritesService {
   }
 
   private saveItemsToLocalStorage(items: CardProduct[]): void {
-    localStorage.setItem(localStorageFavouritesKey, JSON.stringify(items));
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(localStorageFavouritesKey, JSON.stringify(items));
+    }
   }
 
   public sendNewFavouritesItems() {

@@ -42,48 +42,50 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         const info: any | null = error.error;
 
-        if (error.status === 0) {
-          this.translate.get('error.noInternet').subscribe(this.notificationService.error);
+        if (info) {
+          if (error.status === 0) {
+            this.translate.get('error.noInternet').subscribe(this.notificationService.error);
 
-        } else if (info.status === constants.authFailedMessage) {
-          this.dialog.closeAll();
-          this.dialog.open(AccountComponent, AccountComponent.dialogConfig);
+          } else if (info.status === constants.authFailedMessage) {
+            this.dialog.closeAll();
+            this.dialog.open(AccountComponent, AccountComponent.dialogConfig);
 
-          this.translate.get('error.youAreNotAuthenticated')
-            .subscribe(this.notificationService.warning);
+            this.translate.get('error.youAreNotAuthenticated')
+              .subscribe(this.notificationService.warning);
 
-        } else if (info.status === constants.signupInvalidForm) {
-          this.translate.get('error.signupInvalidForm').subscribe(localizedError => {
-            this.notificationService.error(localizedError);
-            this.errorsService.pushError(Error.Target.SignUp, localizedError);
-          });
+          } else if (info.status === constants.signupInvalidForm) {
+            this.translate.get('error.signupInvalidForm').subscribe(localizedError => {
+              this.notificationService.error(localizedError);
+              this.errorsService.pushError(Error.Target.SignUp, localizedError);
+            });
 
-        } else if (info.status === constants.emailIsNotUnique) {
-          this.translate.get('error.emailIsNotUnique').subscribe(localizedError => {
-            this.notificationService.error(localizedError);
-            this.errorsService.pushError(Error.Target.SignUp, localizedError);
-          });
+          } else if (info.status === constants.emailIsNotUnique) {
+            this.translate.get('error.emailIsNotUnique').subscribe(localizedError => {
+              this.notificationService.error(localizedError);
+              this.errorsService.pushError(Error.Target.SignUp, localizedError);
+            });
 
-        } else if (info.status === constants.incorrectLoginPasswordPair) {
-          this.translate.get('error.incorrectLoginPasswordPair').subscribe(localizedError => {
-            this.notificationService.error(localizedError);
-            this.errorsService.pushError(Error.Target.LogIn, localizedError);
-          });
+          } else if (info.status === constants.incorrectLoginPasswordPair) {
+            this.translate.get('error.incorrectLoginPasswordPair').subscribe(localizedError => {
+              this.notificationService.error(localizedError);
+              this.errorsService.pushError(Error.Target.LogIn, localizedError);
+            });
 
-        } else if (error.status === 400) {
-          this.translate.get('error.notFound').subscribe(this.notificationService.error);
+          } else if (error.status === 400) {
+            this.translate.get('error.notFound').subscribe(this.notificationService.error);
 
-        } else if (error.status === 404) {
-          this.translate.get('error.notFound').subscribe(this.notificationService.error);
+          } else if (error.status === 404) {
+            this.translate.get('error.notFound').subscribe(this.notificationService.error);
 
-        } else if (error.status === 401) {
-          this.authenticationService.logout();
+          } else if (error.status === 401) {
+            this.authenticationService.logout();
 
-        } else if (error.status >= 500 && error.status < 600) {
-          this.translate.get('error.serverError').subscribe(this.notificationService.error);
+          } else if (error.status >= 500 && error.status < 600) {
+            this.translate.get('error.serverError').subscribe(this.notificationService.error);
 
-        } else {
-          this.translate.get('error.unknownError').subscribe(this.notificationService.error);
+          } else {
+            this.translate.get('error.unknownError').subscribe(this.notificationService.error);
+          }
         }
 
         this.router.navigate(['']);

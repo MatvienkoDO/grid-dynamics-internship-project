@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductsComponent, Query, UrlQuery } from './products.component';
+import { ProductsComponent } from './products.component';
 import { AppModule } from 'src/app/app.module';
-import { CartService, FavouritesService, ProductFilterService } from 'src/app/shared/services';
+import { CartService, FavouritesService, Query, UrlQuery } from 'src/app/shared/services';
 import { CardProduct } from 'src/app/shared/models';
 import { of } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
