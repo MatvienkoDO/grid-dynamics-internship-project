@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { localStorageLocaleKey } from '../../constants';
 import { isPlatformBrowser } from '@angular/common';
 
-const langs = ['en', 'ru'];
+const langs = ['en', 'ru', 'fr', 'gr'];
 const defaultLang = langs[0];
 
 @Injectable({

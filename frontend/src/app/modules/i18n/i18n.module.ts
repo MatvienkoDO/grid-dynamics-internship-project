@@ -48,13 +48,13 @@ export class I18nModule {
       translateCacheService.init();
     }
 
-    translate.addLangs(['en', 'ru']);
+    translate.addLangs(['en', 'ru', 'fr', 'gr']);
 
     const browserLang = isPlatformBrowser(this.platform)
       ? translateCacheService.getCachedLanguage() || translate.getBrowserLang() || 'en'
       : this.getLangFromServerSideCookie();
 
-    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|ru|fr|gr/) ? browserLang : 'en');
   }
 
   getLangFromServerSideCookie() {
