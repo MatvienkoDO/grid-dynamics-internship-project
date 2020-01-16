@@ -15,6 +15,8 @@ import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { BrowserTransferStateModule, TransferState } from '@angular/platform-browser';
 import { Request } from 'express';
 
+import { langs } from '../../shared/constants';
+
 @NgModule({
   imports: [
     BrowserTransferStateModule,
@@ -48,13 +50,13 @@ export class I18nModule {
       translateCacheService.init();
     }
 
-    translate.addLangs(['en', 'ru']);
+    translate.addLangs(langs);
 
     const browserLang = isPlatformBrowser(this.platform)
       ? translateCacheService.getCachedLanguage() || translate.getBrowserLang() || 'en'
       : this.getLangFromServerSideCookie();
 
-    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
+    translate.use(browserLang.match(langs) ? browserLang : 'en');
   }
 
   getLangFromServerSideCookie() {
