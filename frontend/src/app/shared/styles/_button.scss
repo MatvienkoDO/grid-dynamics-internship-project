@@ -89,9 +89,8 @@ button[disabled] {
   }
 
   &_shopping-cart {
-    @include icon (url(/assets/images/logo-basket.svg), 24px, 17px, 0);
+    @include icon (url(/assets/images/shopping_cart-24px.svg), 22px, 22px, 0);
     background-repeat: no-repeat;
-    filter: invert(36%) sepia(51%) saturate(2878%);
 
     &__count {
       @include fonts (#ffffff, "Open Sans", 10px, 300);
@@ -107,6 +106,33 @@ button[disabled] {
     }
     &:hover {
       filter: invert(37%) sepia(51%) saturate(2878%);
+    }
+  }
+
+  &__mail_outline {
+    @include icon (url(/assets/images/mail_outline-24px.svg), 22px, 22px, 0);
+    background-repeat: no-repeat;
+    filter: invert(37%) sepia(51%) saturate(2878%);
+  }
+
+  &__phone_android {
+    @include icon (url(/assets/images/phone_android-24px.svg), 22px, 22px, 0);
+    background-repeat: no-repeat;
+    filter: invert(37%) sepia(51%) saturate(2878%);
+  }
+
+  &__add_shopping_cart {
+    @include icon (url(/assets/images/add_shopping_cart-24px.svg), 22px, 22px, 0);
+    background-repeat: no-repeat;
+    &:hover {
+      filter: invert(37%) sepia(51%) saturate(2878%);
+    }
+    &_primary {
+      filter: invert(37%) sepia(51%) saturate(2878%);
+    }
+    &_right {
+      width: 28px;
+      margin-right: 9px;
     }
   }
 
