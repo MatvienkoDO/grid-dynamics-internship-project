@@ -45,8 +45,15 @@
 
   &__text {
     @include fonts ($text-color, "Open Sans", 14px);
+    max-width: 300px;
     margin: 0;
     font-style: italic;
+    @media (max-width: 1130px) {
+      max-width: 250px;
+    }
+    @media (max-width: 1000px) {
+      max-width: unset;
+    }
     @include for-phone-intermediate {
       text-align: center;
       padding: 10px 0;
