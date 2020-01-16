@@ -8,4 +8,5 @@ cd frontend
 #
 npm install --production=false
 
-npm run build:prod
+# npm run build:prod
+npm run build:ssr
