@@ -78,3 +78,17 @@ global['Prism'] = null;
 
 import * as cookieParser from 'cookie-parser';
 app.use(cookieParser());
+
+const compression = require('compression');
+
+app.use(compression({ filter: shouldCompress }));
+
+function shouldCompress(req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false;
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res);
+}

@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
+import * as compression from 'compression';
 
 import { AppModule } from './app.module';
 import { mode, Mode, cookieSigningSecret, corsAllowedWebOrigin } from './environment';
@@ -20,6 +21,7 @@ async function bootstrap() {
   });
   app.use(cookieParser(cookieSigningSecret));
   app.use(userIdExpirationUpdater);
+  app.use(compression());
 
   await app.listen(port);
 }
