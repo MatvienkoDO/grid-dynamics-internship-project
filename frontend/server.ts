@@ -20,6 +20,8 @@ import 'zone.js/dist/zone-node';
 import * as express from 'express';
 import {join} from 'path';
 
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
+
 // Express server
 const app = express();
 
@@ -48,9 +50,19 @@ app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'
 }));
 
+const UNIVERSAL_ROUTES = [
+  '/',
+  '/server-side',
+  '/server-side/*'
+];
+
 // All regular routes use the Universal engine
-app.get('*', (req, res) => {
+app.get(UNIVERSAL_ROUTES, (req, res) => {
   res.render('index', { req });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(join(DIST_FOLDER, 'index.html'));
 });
 
 // Start up the Node server
