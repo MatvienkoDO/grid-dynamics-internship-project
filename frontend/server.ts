@@ -19,11 +19,26 @@ import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
 import {join} from 'path';
+import * as cookieParser from 'cookie-parser';
 
 import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 // Express server
 const app = express();
+
+const compression = require('compression');
+app.use(cookieParser());
+app.use(compression({ filter: shouldCompress }));
+
+function shouldCompress(req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false;
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res);
+}
 
 const localhostPort = 4200;
 const PORT = process.env.PORT || localhostPort;
@@ -87,20 +102,3 @@ Object.defineProperty(win.document.body.style, 'transform', {
 });
 global['document'] = win.document;
 global['Prism'] = null;
-
-import * as cookieParser from 'cookie-parser';
-app.use(cookieParser());
-
-const compression = require('compression');
-
-app.use(compression({ filter: shouldCompress }));
-
-function shouldCompress(req, res) {
-  if (req.headers['x-no-compression']) {
-    // don't compress responses with this request header
-    return false;
-  }
-
-  // fallback to standard filter function
-  return compression.filter(req, res);
-}
