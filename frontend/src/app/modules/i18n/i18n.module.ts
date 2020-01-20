@@ -34,7 +34,7 @@ import { langs } from '../../shared/constants';
         useFactory: translateCacheFactory,
         deps: [TranslateService, TranslateCacheSettings]
       },
-      cacheMechanism: 'Cookie'
+      cacheMechanism: 'LocalStorage'
     })
   ],
   exports: [TranslateModule]
@@ -56,13 +56,18 @@ export class I18nModule {
       ? translateCacheService.getCachedLanguage() || translate.getBrowserLang() || 'en'
       : this.getLangFromServerSideCookie();
 
-    translate.use(browserLang.match(langs) ? browserLang : 'en');
+    translate.use(browserLang.match(langs.join('|')) ? browserLang : 'en');
   }
 
   getLangFromServerSideCookie() {
-    return 'en';
     if (this.req) {
-      return this.req.cookies.lang;
+      if (this.req.cookies.lang) {
+        return this.req.cookies.lang;
+      } else {
+        const lang = this.req.acceptsLanguages(langs);
+
+        return lang;
+      }
     }
   }
 }

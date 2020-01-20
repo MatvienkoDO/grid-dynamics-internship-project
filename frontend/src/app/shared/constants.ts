@@ -4,7 +4,7 @@ export const localStorageCartKey = 'CART_ITEMS';
 export const localStorageFavouritesKey = 'FAVOURITES_ITEMS';
 export const localStorageLocaleKey = 'LOCALE';
 
-export const langs = ['en', 'ru', 'fr', 'gr'];
+export const langs = ['ru', 'fr', 'el', 'en'];
 
 export const authFailedMessage = 'client_is_not_authorized';
 export const signupInvalidForm = 'signup_invalid_form';

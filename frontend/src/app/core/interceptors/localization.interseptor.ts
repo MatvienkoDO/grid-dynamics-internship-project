@@ -29,7 +29,7 @@ export class LocalizationInterceptor implements HttpInterceptor {
     }
 
     if (!locale) {
-      return next.handle(request);
+      locale = this.getCookie('lang');
     }
 
     const requestUpdate = {
@@ -41,4 +41,18 @@ export class LocalizationInterceptor implements HttpInterceptor {
     return next.handle(localizedRequest);
   }
 
+
+  private getCookie(key: string): string {
+    const decodedCookie: string = decodeURIComponent(document.cookie);
+    const pairs: string[] = decodedCookie.split(/;\s*/);
+
+    const prefix = `${key}=`;
+    for (const pair of pairs) {
+      if (pair.indexOf(prefix) === 0) {
+        return pair.substring(prefix.length);
+      }
+    }
+
+    return '';
+  }
 }
