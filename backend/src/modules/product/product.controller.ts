@@ -9,6 +9,7 @@ import {
   Param,
   HttpStatus,
   HttpException,
+  Request,
 } from '@nestjs/common';
 
 import { ProductService } from './product.service';
@@ -29,7 +30,7 @@ export class ProductController {
   }
 
   @Get()
-  async findAll(@Headers() headers, @Query() query) {
+  async findAll(@Request() req, @Headers() headers, @Query() query) {
     const filter = new Filter(
       query.category,
       Number(query.minPrice),
@@ -41,8 +42,8 @@ export class ProductController {
 
     const quantity = this.productService.getCount(filter);
     const products = this.productService
-      .findAll(Number(query.skip), Number(query.limit), headers.locale, filter);
-
+      .findAll(Number(query.skip), Number(query.limit), req.cookies.lang, filter);
+    console.log(`Lang cookie ${req.cookies.lang}`);
     return new ProductResponse(await products, await quantity);
   }
 

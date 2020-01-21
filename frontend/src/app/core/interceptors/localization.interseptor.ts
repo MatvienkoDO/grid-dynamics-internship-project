@@ -9,6 +9,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { localStorageLocaleKey } from 'src/app/shared/constants';
+
 @Injectable()
 export class LocalizationInterceptor implements HttpInterceptor {
 
@@ -19,17 +21,17 @@ export class LocalizationInterceptor implements HttpInterceptor {
   };
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let locale: string | null = 'en';
     if (isPlatformBrowser(this.platformId)) {
-      locale = localStorage.getItem('LOCALE');
+      locale = localStorage.getItem(localStorageLocaleKey);
     }
 
     if (!locale) {
-      return next.handle(request);
+      locale = this.getCookie('lang');
     }
 
     const requestUpdate = {
@@ -41,4 +43,18 @@ export class LocalizationInterceptor implements HttpInterceptor {
     return next.handle(localizedRequest);
   }
 
+
+  private getCookie(key: string): string {
+    const decodedCookie: string = decodeURIComponent(document.cookie);
+    const pairs: string[] = decodedCookie.split(/;\s*/);
+
+    const prefix = `${key}=`;
+    for (const pair of pairs) {
+      if (pair.indexOf(prefix) === 0) {
+        return pair.substring(prefix.length);
+      }
+    }
+
+    return '';
+  }
 }

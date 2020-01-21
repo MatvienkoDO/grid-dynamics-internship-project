@@ -83,6 +83,7 @@ export class AuthController {
       firstName: user.firstName,
       lastName: user.lastName,
       role: user.role,
+      locale: user.locale,
     });
 
     return;

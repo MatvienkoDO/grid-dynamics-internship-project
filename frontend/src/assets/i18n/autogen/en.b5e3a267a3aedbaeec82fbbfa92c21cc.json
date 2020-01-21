@@ -1,0 +1,189 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "hot-deals": "Hot Deals",
+    "about": "About",
+    "contact": "Contact"
+  },
+
+  "footer-nav": {
+    "about": "about us",
+    "contact": "contact us",
+    "support": "support",
+    "feed": "our feed",
+    "policy": "terms and conditions",
+    "privacy": "our privacy",
+    "join": "join us",
+    "support-live": "live support"
+  },
+
+  "footer-payment": {
+    "title": "Payment Methods"
+  },
+
+  "button": {
+    "orderNow": "Order Now",
+    "add to cart": "add to cart",
+    "join us": "join us"
+  },
+
+  "input": {
+    "email placesholder": "type your email here"
+  },
+  
+  "price": "Price",
+  
+  "new arrivals": {
+    "new": "new",
+    "arrivals": "arrivals",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+  },
+
+  "best sales": {
+    "best": "best",
+    "sales": "sales",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+  },
+
+  "news letter": {
+    "title": "news letter",
+    "description": "join us now to get all news and special offers"
+  },
+
+  "related products": {
+    "related": "related",
+    "products": "products",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+  },
+
+  "product show": {
+    "chooseSize": "Choose Size",
+    "chooseQuantity": "Choose Quantity"
+  },
+
+  "order now": "order now",
+
+  "categories": "Categories",
+
+  "price filter": "price filter",
+
+  "sizes": "sizes",
+
+  "brands": "brands",
+
+  "no items": "No items",
+
+  "log in": {
+    "title": "log in",
+    "email address": "email address",
+    "password": "password",
+    "forgot password": "forgot password",
+    "submit": "log in",
+    "error email": "Enter a valid email address",
+    "error password": "Enter your password",
+    "error password length": "Password must be at least 6 characters"
+  },
+  "sign up": {
+    "title": "sign up",
+    "first name": "first name",
+    "last name": "last name",
+    "email address": "email address",
+    "password": "password",
+    "repeat password": "repeat password",
+    "submit": "submit",
+    "error first name": "Enter your name",
+    "error last name": "Enter your last name",
+    "error email": "Enter a valid email address",
+    "error password": "Enter your password",
+    "error password length": "Password must be at least 6 characters",
+    "error password match": "Passwords must match"
+  },
+
+  "favourites": {
+    "title": "favourites",
+    "button": "delete all",
+    "addToFavourites": "has been added to Favourites",
+    "deleteFromFavourites": "has been removed from Favourites",
+    "clearFavourites": "Favourites has been cleared"
+  },
+
+  "cart": {
+    "product": "product",
+    "cart": "cart",
+    "button": "delete all",
+    "title": "title",
+    "size": "size",
+    "color": "color",
+    "price": "price",
+    "quantity": "quantity",
+    "total cost": "total cost",
+    "addToCart": "has been added",
+    "deleteFromCart": "has been removed",
+    "clearCart": "Cart has been cleared"
+  },
+
+  "onlineNow": "You are online now",
+  "offlineNow": "You are offline now",
+
+  "about": {
+    "about": "about",
+    "us": "us",
+    "description": "Grid Dynamics is a leader in driving enterprise-level digital transformation services for Fortune 1000 corporations. We work in close collaboration with our clients on digital transformation initiatives that span strategy consulting and enterprise-scale delivery of new digital platforms. We help organizations become more agile and create innovative digital products. Our secret sauce is in applying emergent technologies such as artificial intelligence, data science, cloud computing, Big Data and DevOps to enable digital transformation across the enterprise. Grid Dynamics is known for architecting and delivering some of the largest digital transformation programs in the retail, technology and financial sectors."
+  },
+
+  "team": {
+    "our": "our",
+    "team": "team",
+    "Dmitrii": "Dmitrii",
+    "Matvienko": "Matvienko",
+    "Daniil": "Daniil",
+    "Vadeneev": "Vadeneev",
+    "Timur": "Timur",
+    "Katimullin": "Katimullin",
+    "Vladimir": "Vladimir",
+    "Fedin": "Fedin",
+    "Julia": "Julia",
+    "Kozeeva": "Kozeeva",
+    "Mikhail": "Mikhail",
+    "Savchuk": "Savchuk",
+    "intern": "Intern UI Engineer",
+    "engineer": "UI Engineer"
+  },
+
+  "contact": {
+    "contact": "Contact",
+    "us": "us",
+    "name": "name",
+    "nameHint": "Required field. Should have at least 2 characters and equal or less than 250",
+    "email": "e-mail",
+    "emailHint": "Required field. Should be a valid e-mail address",
+    "message": "message",
+    "messageHint": "Required field. Should have at least 1 character and equal or less than 1000",
+    "submit": "submit",
+    "formDataIsSuccessfullySent": "Message is successfully sent"
+  },
+
+  "hot deals week": {
+    "hot deals": "hot deals",
+    "this week": "this week",
+    "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+  },
+
+  "hot deals month": {
+    "hot deals": "hot deals",
+    "this month": "this month",
+    "desc": "Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+  },
+
+  "error": {
+    "noInternet": "There is no Internet connection",
+    "notFound": "Product not found",
+    "serverError": "Server-side error",
+    "unknownError": "Ooops... something goes wrong",
+    "youAreNotAuthenticated": "You are not authenticated",
+    "signupInvalidForm": "Invalid form data",
+    "emailIsNotUnique": "Email is not unique",
+    "incorrectLoginPasswordPair": "Invalid login-password pair"
+  }
+}

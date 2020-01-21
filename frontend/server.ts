@@ -21,13 +21,12 @@ import * as express from 'express';
 import {join} from 'path';
 import * as cookieParser from 'cookie-parser';
 
-import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
-
 // Express server
 const app = express();
 
-const compression = require('compression');
 app.use(cookieParser());
+
+const compression = require('compression');
 app.use(compression({ filter: shouldCompress }));
 
 function shouldCompress(req, res) {
@@ -45,9 +44,15 @@ const PORT = process.env.PORT || localhostPort;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap} = require('./dist/server/main');
+const {
+  AppServerModuleNgFactory,
+  LAZY_MODULE_MAP,
+  ngExpressEngine,
+  provideModuleMap
+} = require('./dist/server/main');
 
-// Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
+// Our Universal express-engine
+// (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
 app.engine('html', ngExpressEngine({
   bootstrap: AppServerModuleNgFactory,
   providers: [
@@ -71,8 +76,15 @@ const UNIVERSAL_ROUTES = [
   '/server-side/*'
 ];
 
+const langs = ['ru', 'fr', 'el', 'en'];
 // All regular routes use the Universal engine
 app.get(UNIVERSAL_ROUTES, (req, res) => {
+  if (!req.cookies.lang) {
+    const lang = req.acceptsLanguages(langs);
+
+    res.cookie('lang', lang);
+  }
+
   res.render('index', { req });
 });
 

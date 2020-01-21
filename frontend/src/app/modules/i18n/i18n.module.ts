@@ -1,21 +1,33 @@
-import { NgModule, PLATFORM_ID, Inject, Optional } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { isPlatformBrowser } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import {
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
+import {
+  Inject,
+  NgModule,
+  Optional,
+  PLATFORM_ID,
+} from '@angular/core';
+import {
+  BrowserTransferStateModule,
+  TransferState
+} from '@angular/platform-browser';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService,
+} from '@ngx-translate/core';
 import {
   TranslateCacheModule,
+  TranslateCacheService,
   TranslateCacheSettings,
-  TranslateCacheService
 } from 'ngx-translate-cache';
-import { isPlatformBrowser } from '@angular/common';
-import { of, Observable } from 'rxjs';
-import { join } from 'path';
-import { readFileSync } from 'fs';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { BrowserTransferStateModule, TransferState } from '@angular/platform-browser';
+
 import { Request } from 'express';
 
-import { langs } from '../../shared/constants';
+import { translateLoaderFactory } from './translate-loaders';
 
 @NgModule({
   imports: [
@@ -50,17 +62,16 @@ export class I18nModule {
       translateCacheService.init();
     }
 
-    translate.addLangs(langs);
+    translate.addLangs(['en', 'ru']);
 
     const browserLang = isPlatformBrowser(this.platform)
       ? translateCacheService.getCachedLanguage() || translate.getBrowserLang() || 'en'
-      : this.getLangFromServerSideCookie();
+      : this.getLangFromServerSideCookie() || 'en';
 
-    translate.use(browserLang.match(langs) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
   }
 
-  getLangFromServerSideCookie() {
-    return 'en';
+  private getLangFromServerSideCookie() {
     if (this.req) {
       return this.req.cookies.lang;
     }
@@ -69,27 +80,7 @@ export class I18nModule {
 
 export function translateCacheFactory(
   translateService: TranslateService,
-  translateCacheSettings: TranslateCacheSettings
+  translateCacheSettings: TranslateCacheSettings,
 ) {
   return new TranslateCacheService(translateService, translateCacheSettings);
-}
-
-export class TranslateFSLoader implements TranslateLoader {
-  constructor(private prefix = './assets/i18n', private suffix = '.json') { }
-
-  /**
-   * Gets the translations from the server, store them in the transfer state
-   */
-  public getTranslation(lang: string): Observable<any> {
-    const path = join(__dirname, '../browser', this.prefix, `${lang}${this.suffix}`);
-    const data = JSON.parse(readFileSync(path, 'utf8'));
-
-    return of(data);
-  }
-}
-
-export function translateLoaderFactory(httpClient: HttpClient, platform: any) {
-  return isPlatformBrowser(platform)
-    ? new TranslateHttpLoader(httpClient)
-    : new TranslateFSLoader();
 }

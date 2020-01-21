@@ -3,4 +3,5 @@ export interface User {
   lastName: string;
   email: string;
   role: string;
+  locale?: string;
 }

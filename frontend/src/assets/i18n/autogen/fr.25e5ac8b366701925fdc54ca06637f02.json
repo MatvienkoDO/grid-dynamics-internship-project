@@ -1,0 +1,189 @@
+{
+ "nav": {
+   "home": "Accueil",
+   "products": "Des produits",
+   "hot-deals": "Bonnes affaires",
+   "about": "Sur",
+   "contact": "le Contact"
+ },
+
+ "footer-nav": {
+   "about": "à propos de nous",
+   "contact": "Nous contacter",
+   "support": "soutien",
+   "feed": "notre flux",
+   "policy": "termes et conditions",
+   "privacy": "notre intimité",
+   "join": "Rejoignez-nous",
+   "support-live": "support en direct"
+ },
+
+ "footer-payment": {
+   "title": "Méthodes de payement"
+ },
+
+ "button": {
+   "orderNow": "Commandez maintenant",
+   "add to cart": "ajouter au chariot",
+   "join us": "Rejoignez-nous"
+ },
+
+ "input": {
+   "email placesholder": "tapez votre email ici"
+ },
+ 
+ "price": "Prix",
+ 
+ "new arrivals": {
+   "new": "Nouveau",
+   "arrivals": "Arrivées",
+   "description": "Le Lorem Ipsum est tout simplement un texte factice de l'industrie de l'impression et de la composition"
+ },
+
+ "best sales": {
+   "best": "Meilleur",
+   "sales": "Ventes",
+   "description": "Le Lorem Ipsum est tout simplement un texte factice de l'industrie de l'impression et de la composition"
+ },
+
+ "news letter": {
+   "title": "Lettre de nouvelles",
+   "description": "rejoignez-nous maintenant pour obtenir toutes les nouvelles et offres spéciales"
+ },
+
+ "related products": {
+   "related": "en relation",
+   "products": "Des produits",
+   "description": "le Lorem Ipsum est tout simplement un texte factice de l'industrie de l'impression et de la composition"
+ },
+
+ "product show": {
+   "chooseSize": "Choisir la taille",
+   "chooseQuantity": "Choisissez la quantité"
+ },
+
+ "order now": "Commandez maintenant",
+
+ "categories": "Les catégories",
+
+ "price filter": "Filtre de prix",
+
+ "sizes": "Tailles",
+
+ "brands": "Marques",
+
+ "no items": "Pas d'objet",
+
+ "log in": {
+   "title": "s'identifier",
+   "email address": "email",
+   "password": "Mot de passe",
+   "forgot password": "Mot de passe oublié?",
+   "submit": "s'identifier",
+   "error email": "Entrez une adresse mail valide",
+   "error password": "Tapez votre mot de passe",
+   "error password length": "Le mot de passe doit être au moins de 6 caractères"
+ },
+ "sign up": {
+   "title": "s'inscrire",
+   "first name": "Prénom",
+   "last name": "Nom de famille",
+   "email address": "email",
+   "password": "Nouveau mot de passe",
+   "repeat password": "Répéter le mot de passe",
+   "submit": "soumettre",
+   "error first name": "Entrez votre nom",
+   "error last name": "Entrez votre nom de famille",
+   "error email": "Entrez une adresse mail valide",
+   "error password": "Tapez votre mot de passe",
+   "error password length": "Le mot de passe doit être au moins de 6 caractères",
+   "error password match": "les mots de passe doivent correspondre"
+ },
+
+ "favourites": {
+   "title": "favoris",
+   "button": "supprimer tout",
+   "addToFavourites": "a été ajouté aux Favoris",
+   "deleteFromFavourites": "a été supprimé des favoris",
+   "clearFavourites": "Les favoris ont été effacés"
+ },
+
+ "cart": {
+   "product": "produit",
+   "cart": "chariot",
+   "button": "supprimer tout",
+   "title": "titre",
+   "size": "taille",
+   "color": "couleur",
+   "price": "prix",
+   "quantity": "quantité",
+   "total cost": "coût total",
+   "addToCart": "a été ajouté",
+   "deleteFromCart": "a été retiré",
+   "clearCart": "Le panier a été effacé"
+ },
+
+ "onlineNow": "Vous êtes en ligne maintenant",
+ "offlineNow": "Vous êtes déconnecté maintenant",
+
+ "about": {
+   "about": "sur",
+   "us": "nous",
+   "description": "Grid Dynamics est un leader dans la fourniture de services de transformation numérique au niveau de l'entreprise pour les sociétés Fortune 1000. Nous travaillons en étroite collaboration avec nos clients sur des initiatives de transformation numérique qui couvrent le conseil en stratégie et la livraison à l'échelle de l'entreprise de nouvelles plateformes numériques. Nous aidons les organisations à devenir plus agiles et à créer des produits numériques innovants. Notre secret est d'appliquer des technologies émergentes telles que l'intelligence artificielle, la science des données, le cloud computing, le Big Data et DevOps pour permettre la transformation numérique dans toute l'entreprise. Grid Dynamics est connu pour l'architecture et la livraison de certains des plus grands programmes de transformation numérique dans les secteurs de la vente au détail, de la technologie et de la finance."
+ },
+
+ "team": {
+   "our": "notre",
+   "team": "équipe",
+   "Dmitrii": "Dmitrii",
+   "Matvienko": "Matvienko",
+   "Daniil": "Daniil",
+   "Vadeneev": "Vadeneev",
+   "Timur": "Timur",
+   "Katimullin": "Katimullin",
+   "Vladimir": "Vladimir",
+   "Fedin": "Fedin",
+   "Julia": "Julia",
+   "Kozeeva": "Kozeeva",
+   "Mikhail": "Mikhail",
+   "Savchuk": "Savchuk",
+   "intern": "Stagiaire UI Engineer",
+   "engineer": "UI Engineer"
+ },
+
+ "contact": {
+   "contact": "Contact",
+   "us": "nous",
+   "name": "nom",
+   "nameHint": "Champs requis. Doit contenir au moins 2 caractères et être égal ou inférieur à 250",
+   "email": "email",
+   "emailHint": "Champs requis. Doit être une adresse e-mail valide",
+   "message": "message",
+   "messageHint": "Champs requis. Doit avoir au moins 1 caractère et égal ou inférieur à 1000",
+   "submit": "soumettre",
+   "formDataIsSuccessfullySent": "Le message a été envoyé avec succès"
+ },
+
+ "hot deals week": {
+   "hot deals": "Bonnes affaires",
+   "this week": "cette semaine",
+   "desc": "Lorem ipsum dolor sit amet de, rabais consectetur."
+ },
+
+ "hot deals month": {
+   "hot deals": "Bonnes affaires",
+   "this month": "ce mois-ci",
+   "desc": "Lorem ipsum dolor sit amet de, rabais consectetur."
+ },
+
+ "error": {
+   "noInternet": "Il n'y a pas de connexion Internet",
+   "notFound": "Produit non trouvé",
+   "serverError": "Erreur côté serveur",
+   "unknownError": "Oups ... quelque chose ne va pas",
+   "youAreNotAuthenticated": "Vous n'êtes pas authentifié",
+   "signupInvalidForm": "Données de formulaire non valides",
+   "emailIsNotUnique": "L'email n'est pas unique",
+   "incorrectLoginPasswordPair": "Paire de connexion / mot de passe invalide"
+ }
+}

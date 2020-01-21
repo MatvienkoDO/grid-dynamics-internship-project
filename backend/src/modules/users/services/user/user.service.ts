@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { hash, genSalt, compare } from 'bcrypt';
 
 import { UserDocument } from '../../../authentication/models/user-document.interface';
 import { User } from '../../models/user';
 import { userSchemaName } from '../../../authentication/models/user.schema';
 import { EditUserDto } from '../../models/edit-user.dto';
-import { hash, genSalt, compare } from 'bcrypt';
 
 interface FormError {
   property: string;
@@ -30,6 +30,7 @@ export class UserService {
       lastName: query.lastName,
       email: query.email,
       role: query.role,
+      locale: query.locale,
     };
 
     return result;
