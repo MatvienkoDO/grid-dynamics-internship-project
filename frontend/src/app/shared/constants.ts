@@ -2,7 +2,7 @@ import { NotifierOptions } from 'angular-notifier';
 
 export const localStorageCartKey = 'CART_ITEMS';
 export const localStorageFavouritesKey = 'FAVOURITES_ITEMS';
-export const localStorageLocaleKey = 'LOCALE';
+export const localStorageLocaleKey = 'lang';
 
 export const langs = ['ru', 'fr', 'el', 'en'];
 

@@ -9,6 +9,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { localStorageLocaleKey } from 'src/app/shared/constants';
+
 @Injectable()
 export class LocalizationInterceptor implements HttpInterceptor {
 
@@ -19,13 +21,13 @@ export class LocalizationInterceptor implements HttpInterceptor {
   };
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let locale: string | null = 'en';
     if (isPlatformBrowser(this.platformId)) {
-      locale = localStorage.getItem('LOCALE');
+      locale = localStorage.getItem(localStorageLocaleKey);
     }
 
     if (!locale) {

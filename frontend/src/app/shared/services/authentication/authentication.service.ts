@@ -1,12 +1,13 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-import { User } from '../../models';
-import { apiHost } from 'src/environments/environment';
-import { signupDto } from '../../models/dto/signup.dto';
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { apiHost } from 'src/environments/environment';
+import { User } from '../../models';
+import { signupDto } from '../../models/dto/signup.dto';
+import { LocalizationService } from '../localization/localization.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthenticationService {
   constructor(
     private readonly http: HttpClient,
     @Inject(PLATFORM_ID) private platformId: any,
+    private readonly localizationService: LocalizationService
   ) {
     let userFromLocalStorage: string|null = null;
     if (isPlatformBrowser(this.platformId)) {
@@ -47,6 +49,7 @@ export class AuthenticationService {
             localStorage.setItem('currentUser', JSON.stringify(user));
           }
           this.currentUserSubject.next(user);
+          this.localizationService.setLocale(user.locale);
         }
 
         return user;
@@ -73,6 +76,7 @@ export class AuthenticationService {
       lastName: signupDto.lastName,
       email: signupDto.email,
       password: signupDto.password,
+      locale: this.localizationService.getLocale(),
     };
     const options = { withCredentials: true };
 

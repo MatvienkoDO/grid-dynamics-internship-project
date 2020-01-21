@@ -24,6 +24,8 @@ import {
   NotificationModule,
 } from './modules';
 
+import { I18nModule } from './modules/i18n/i18n.module';
+
 import {
   HeaderComponent,
   FooterComponent,
@@ -67,15 +69,6 @@ import {
   HotDealsWeekComponent,
   HotDealsMonthComponent,
 } from './shared/components';
-import { I18nModule } from './modules/i18n/i18n.module';
-
-const translateModuleConfig = {
-  loader: {
-    provide: TranslateLoader,
-    useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
-    deps: [HttpClient]
-  }
-};
 
 @NgModule({
   declarations: [
@@ -120,7 +113,6 @@ const translateModuleConfig = {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule.forRoot(translateModuleConfig),
     NotificationModule,
     Ng5SliderModule,
     BrowserAnimationsModule,

@@ -79,7 +79,6 @@ const UNIVERSAL_ROUTES = [
 const langs = ['ru', 'fr', 'el', 'en'];
 // All regular routes use the Universal engine
 app.get(UNIVERSAL_ROUTES, (req, res) => {
-  // res.cookie('lang', 'ru');
   if (!req.cookies.lang) {
     const lang = req.acceptsLanguages(langs);
 

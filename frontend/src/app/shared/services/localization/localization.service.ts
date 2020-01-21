@@ -33,7 +33,6 @@ export class LocalizationService {
       ? localStorageLocale
       : defaultLang;
 
-    this.translate.use(lang);
     this.locale.next(lang);
   }
 

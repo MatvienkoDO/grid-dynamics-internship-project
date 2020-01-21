@@ -8,6 +8,7 @@ export class EditUserDto {
     public newPassword?: string,
     public oldPassword?: string,
     public role?: string,
+    public locale?: string,
   ) {
   }
 }

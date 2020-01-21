@@ -9,6 +9,7 @@ export const UserSchema = new Schema({
   password: String,
   role: String,
   tokens: [String],
+  locale: String,
 });
 
 UserSchema.set('toJSON', {

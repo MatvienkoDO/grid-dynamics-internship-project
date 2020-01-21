@@ -8,4 +8,5 @@ export interface UserDocument extends Document {
   password: string;
   role: string;
   tokens: string[];
+  locale: string;
 }

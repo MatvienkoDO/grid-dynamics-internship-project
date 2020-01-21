@@ -1,21 +1,33 @@
-import { NgModule, PLATFORM_ID, Inject, Optional } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { isPlatformBrowser } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import {
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
+import {
+  Inject,
+  NgModule,
+  Optional,
+  PLATFORM_ID,
+} from '@angular/core';
+import {
+  BrowserTransferStateModule,
+  TransferState
+} from '@angular/platform-browser';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService,
+} from '@ngx-translate/core';
 import {
   TranslateCacheModule,
+  TranslateCacheService,
   TranslateCacheSettings,
-  TranslateCacheService
 } from 'ngx-translate-cache';
-import { isPlatformBrowser } from '@angular/common';
-import { of, Observable } from 'rxjs';
-import { join } from 'path';
-import { readFileSync } from 'fs';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { BrowserTransferStateModule, TransferState } from '@angular/platform-browser';
+
 import { Request } from 'express';
 
-import { langs } from '../../shared/constants';
+import { translateLoaderFactory } from './translate-loaders';
 
 @NgModule({
   imports: [
@@ -34,7 +46,7 @@ import { langs } from '../../shared/constants';
         useFactory: translateCacheFactory,
         deps: [TranslateService, TranslateCacheSettings]
       },
-      cacheMechanism: 'LocalStorage'
+      cacheMechanism: 'Cookie'
     })
   ],
   exports: [TranslateModule]
@@ -50,51 +62,25 @@ export class I18nModule {
       translateCacheService.init();
     }
 
-    translate.addLangs(langs);
+    translate.addLangs(['en', 'ru']);
 
     const browserLang = isPlatformBrowser(this.platform)
       ? translateCacheService.getCachedLanguage() || translate.getBrowserLang() || 'en'
-      : this.getLangFromServerSideCookie();
+      : this.getLangFromServerSideCookie() || 'en';
 
-    translate.use(browserLang.match(langs.join('|')) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
   }
 
-  getLangFromServerSideCookie() {
+  private getLangFromServerSideCookie() {
     if (this.req) {
-      if (this.req.cookies.lang) {
-        return this.req.cookies.lang;
-      } else {
-        const lang = this.req.acceptsLanguages(langs);
-
-        return lang;
-      }
+      return this.req.cookies.lang;
     }
   }
 }
 
 export function translateCacheFactory(
   translateService: TranslateService,
-  translateCacheSettings: TranslateCacheSettings
+  translateCacheSettings: TranslateCacheSettings,
 ) {
   return new TranslateCacheService(translateService, translateCacheSettings);
-}
-
-export class TranslateFSLoader implements TranslateLoader {
-  constructor(private prefix = './assets/i18n', private suffix = '.json') { }
-
-  /**
-   * Gets the translations from the server, store them in the transfer state
-   */
-  public getTranslation(lang: string): Observable<any> {
-    const path = join(__dirname, '../browser', this.prefix, `${lang}${this.suffix}`);
-    const data = JSON.parse(readFileSync(path, 'utf8'));
-
-    return of(data);
-  }
-}
-
-export function translateLoaderFactory(httpClient: HttpClient, platform: any) {
-  return isPlatformBrowser(platform)
-    ? new TranslateHttpLoader(httpClient)
-    : new TranslateFSLoader();
 }
