@@ -1,0 +1,50 @@
+@import '_colors';
+
+.slider-container {
+  background: #ccc;
+  width: 100vw;
+  margin: 0 auto;
+  height: 350px;
+  padding: 10px;
+  overflow: hidden;
+  display: flex;
+}
+
+.slider-images {
+  display: flex;
+  flex-direction: column;
+}
+
+.images {
+  background: #ccc;
+  width: 300px;
+  height: auto;
+  margin: 0 auto;
+  background-size: 100% 74%;
+  background-repeat: no-repeat;
+  transition: background .5s linear;
+}
+
+input[type='radio'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #444;
+  background-size: 52px 52px;
+  width: 52px;
+  height: 52px;
+  margin: 0px 5px 5px 5px;
+  cursor: pointer;
+  outline:0;
+}
+
+input[type='radio']:checked {
+  content: '';
+  border: solid 3px $mat-deep-orange-500;
+  box-shadow: none;
+}
+
+input[type='radio']:hover{
+  border: solid 1px #111;
+  box-shadow: none;
+  z-index: 9999;
+}
