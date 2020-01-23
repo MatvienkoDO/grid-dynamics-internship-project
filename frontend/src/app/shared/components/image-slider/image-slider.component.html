@@ -9,7 +9,7 @@
       (click)="changeSlide(i)"/>
   </div>
   <div
-    class='images'
-    [ngStyle]="{'background-image': 'url(' + ((currentImage$ | async)?.default || '') + ')'}">
+    class='image-container'>
+    <img class='image' src="{{(currentImage$ | async)?.default}}" />
   </div>
 </div>

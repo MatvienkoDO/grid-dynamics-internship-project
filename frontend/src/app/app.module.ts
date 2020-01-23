@@ -138,6 +138,7 @@ import {
     FavouritesComponentInner,
     AccountComponent,
     WelcomeModalComponent,
+    ImageSliderComponent,
   ]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { MAT_DIALOG_DATA } from '@angular/material';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Image } from '../../models';
@@ -11,7 +12,7 @@ import { isNumber } from 'util';
   styleUrls: ['./image-slider.component.scss']
 })
 export class ImageSliderComponent implements OnInit {
-  @Input() public readonly imagePaths: [Image];
+  public readonly imagePaths: [Image];
 
   private currentNumber: number;
   private currentImage: BehaviorSubject<Image>;
@@ -19,7 +20,9 @@ export class ImageSliderComponent implements OnInit {
 
   constructor(
     private readonly sanitizer: DomSanitizer,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.imagePaths = data.images;
     this.currentImage = new BehaviorSubject({
       '1_1': '', '4_3': '', '16_9': '', 'scale': '', 'default': ''
     });

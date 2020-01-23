@@ -6,9 +6,11 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { BehaviorSubject } from 'rxjs';
 
 import { CardProduct, Image } from '../../models';
+import { ImageSliderComponent } from '../image-slider/image-slider.component';
 
 @Component({
   selector: 'app-product-show[id][title][sizes][price]',
@@ -34,6 +36,12 @@ export class ProductShowComponent implements OnInit {
   public readonly size$ = new BehaviorSubject<string | undefined>(undefined);
   public readonly quantity$ = new BehaviorSubject<number>(1);
   public readonly currentImage$ = new BehaviorSubject(0);
+
+  constructor(
+    private readonly dialog: MatDialog,
+  ) {
+
+  }
 
   ngOnInit() {
     const initialSize = this.sizes[0];
@@ -113,5 +121,17 @@ export class ProductShowComponent implements OnInit {
     };
 
     return info;
+  }
+
+  openZoomModal(): void {
+    this.dialog.open(ImageSliderComponent, {
+      data: {
+        images: this.images,
+      },
+      width: '90%',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      panelClass: 'image-slider',
+    });
   }
 }

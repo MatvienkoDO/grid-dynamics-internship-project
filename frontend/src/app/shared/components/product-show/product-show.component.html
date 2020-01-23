@@ -9,7 +9,8 @@
               [class.slider-container__arrow_disabled]="data.currentImage === 0"
               (click)="prevImage()">
             </a>
-            <picture class="picture-container">
+            <picture class="picture-container"
+              (click)="openZoomModal()">
               <source class="picture-container__content"
               media="(max-width: 767px)"
               sizes="(max-width: 1230px) 100vw, 1230px"
