@@ -1,4 +1,11 @@
 <div class='slider-container'>
+  <div mat-dialog-actions class="close-button-container">
+    <button mat-button class="close-button" (click)="onNoClick()">
+      <i class="material-icons">
+        close
+      </i>
+    </button>
+  </div>
   <div class='slider-images'>
     <input
       *ngFor="let imagePath of imagePaths; index as i"

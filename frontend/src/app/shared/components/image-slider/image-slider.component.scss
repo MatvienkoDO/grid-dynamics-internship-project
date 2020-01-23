@@ -1,11 +1,11 @@
 @import '_colors';
 
 .slider-container {
-  background: #ccc;
+  display: flex;
+  position: relative;
   margin: 0 auto;
   padding: 10px;
   overflow: hidden;
-  display: flex;
   @media screen and (max-width: 480px) {
     flex-direction: column;
     height: 100%;
@@ -68,4 +68,16 @@ input[type='radio']:hover{
   border: solid 1px #111;
   box-shadow: none;
   z-index: 9999;
+}
+
+.close-button-container {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  justify-content: flex-end;
+  margin-bottom: 0;
+}
+
+.close-button {
+  padding: 0;
 }

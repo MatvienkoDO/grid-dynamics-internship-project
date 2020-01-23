@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Image } from '../../models';
@@ -20,7 +20,8 @@ export class ImageSliderComponent implements OnInit {
 
   constructor(
     private readonly sanitizer: DomSanitizer,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public readonly dialogRef: MatDialogRef<ImageSliderComponent>,
   ) {
     this.imagePaths = data.images;
     this.currentImage = new BehaviorSubject({
@@ -49,5 +50,9 @@ export class ImageSliderComponent implements OnInit {
 
   public isChecked(i: number) {
     return i === this.currentNumber;
+  }
+
+  public onNoClick(): void {
+    this.dialogRef.close();
   }
 }

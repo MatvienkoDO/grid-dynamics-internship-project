@@ -123,7 +123,7 @@ export class ProductShowComponent implements OnInit {
     return info;
   }
 
-  openZoomModal(): void {
+  public openZoomModal(): void {
     this.dialog.open(ImageSliderComponent, {
       data: {
         images: this.images,
