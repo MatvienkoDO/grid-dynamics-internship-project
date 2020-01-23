@@ -55,4 +55,24 @@ export class ImageSliderComponent implements OnInit {
   public onNoClick(): void {
     this.dialogRef.close();
   }
+
+  public showPrev(): void {
+    if (this.currentNumber > 0) {
+      this.changeSlide(this.currentNumber - 1);
+    }
+  }
+
+  public showNext(): void {
+    if (this.currentNumber < this.imagePaths.length - 1) {
+      this.changeSlide(this.currentNumber + 1);
+    }
+  }
+
+  public isEnabledPrev(): boolean {
+    return this.currentNumber > 0;
+  }
+
+  public isEnabledNext(): boolean {
+    return this.currentNumber < this.imagePaths.length - 1;
+  }
 }

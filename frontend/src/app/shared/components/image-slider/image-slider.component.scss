@@ -27,6 +27,7 @@
   height: 90vh;
   display: flex;
   justify-content: center;
+  z-index: 10;
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -91,4 +92,42 @@ input[type='radio']:hover{
 
 .close-button {
   padding: 0;
+}
+
+.click-left {
+  width: 50%;
+  height: 100%;
+  background-color: #ccc;
+  position: absolute;
+  z-index: 20;
+  opacity: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.click-right {
+  width: 50%;
+  height: 100%;
+  background-color: #ccc;
+  position: absolute;
+  right: 0;
+  z-index: 20;
+  opacity: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.click-enabled {
+  &:hover {
+    opacity: .5;
+  }
+}
+
+.click-button {
+  font-size: 156pt;
+  color: red;
 }
