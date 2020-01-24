@@ -27,6 +27,7 @@
   height: 90vh;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   z-index: 10;
 
   @media screen and (max-width: 480px) {
@@ -43,7 +44,7 @@
 .image {
   width: 100%;
   max-width: 1200px;
-  height: auto;
+  height: 96.2%;
 
   @media screen and (max-width: 480px) {    
     background-size: 100%;
@@ -92,36 +93,39 @@ input[type='radio']:hover{
 
 .close-button {
   padding: 0;
+  z-index: 20;
+}
+
+.click-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.click {
+  width: 50%;
+  height: 95%;
+  background-color: #ccc;
+  position: absolute;
+  z-index: 20;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 
 .click-left {
-  width: 50%;
-  height: 100%;
-  background-color: #ccc;
-  position: absolute;
-  z-index: 20;
-  opacity: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .click-right {
-  width: 50%;
-  height: 100%;
-  background-color: #ccc;
-  position: absolute;
   right: 0;
-  z-index: 20;
-  opacity: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .click-enabled {
+  cursor: pointer;
   &:hover {
     opacity: .5;
   }

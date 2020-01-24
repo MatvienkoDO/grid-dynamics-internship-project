@@ -18,6 +18,9 @@ export class ImageSliderComponent implements OnInit {
   private currentImage: BehaviorSubject<Image>;
   public currentImage$: Observable<Image>;
 
+  private xDown = 0;
+  private yDown = 0;
+
   constructor(
     private readonly sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -74,5 +77,50 @@ export class ImageSliderComponent implements OnInit {
 
   public isEnabledNext(): boolean {
     return this.currentNumber < this.imagePaths.length - 1;
+  }
+
+  private getTouches(evt) {
+    return evt.touches;
+  }
+
+  public handleTouchStart(event) {
+    const firstTouch = this.getTouches(event)[0];
+    this.xDown = firstTouch.clientX;
+    this.yDown = firstTouch.clientY;
+  }
+
+  public handleTouchMove(event) {
+    if ( ! this.xDown || ! this.yDown ) {
+      return;
+    }
+
+    const xUp = event.touches[0].clientX;
+    const yUp = event.touches[0].clientY;
+
+    const xDiff = this.xDown - xUp;
+    const yDiff = this.yDown - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {
+        if ( xDiff > 0 ) {
+            /* left swipe */
+            if (this.isEnabledPrev()) {
+              this.showPrev();
+            }
+        } else {
+            /* right swipe */
+            if (this.isEnabledNext()) {
+              this.showNext();
+            }
+        }
+    } else {
+        if ( yDiff > 0 ) {
+            /* up swipe */
+        } else {
+            /* down swipe */
+        }
+    }
+    /* reset values */
+    this.xDown = 0;
+    this.yDown = 0;
   }
 }
