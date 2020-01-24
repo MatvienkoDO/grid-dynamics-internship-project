@@ -1,0 +1,38 @@
+<div class='slider-container'
+  (touchstart)="handleTouchStart($event)"
+  (touchmove)="handleTouchMove($event)">
+  <div mat-dialog-actions class="close-button-container">
+    <button mat-button class="close-button" (click)="onNoClick()">
+      <i class="material-icons">
+        close
+      </i>
+    </button>
+  </div>
+  <div class='slider-images'>
+    <input
+      *ngFor="let imagePath of imagePaths; index as i"
+      [checked]="isChecked(i)"
+      name="slider"
+      type='radio'
+      [ngStyle]="{'background-image': 'url(' + (imagePath?.default || '') + ')'}"
+      (click)="changeSlide(i)"/>
+  </div>
+  <div class='click-container'>
+    <div class='click click-left'
+      [ngClass]="{'click-enabled': isEnabledPrev()}"
+      (click)='showPrev()'>
+      <div class="click-button">&#x2039;</div>
+    </div>
+    <div class='click click-right'
+      [ngClass]="{'click-enabled': isEnabledNext()}"
+      (click)='showNext()'>
+      <div class="click-button">&#x203a;</div>
+    </div>
+  </div>
+  <div
+    class='image-container'>
+    <img class='image' 
+      srcset="{{ (currentImage$ | async)?.scale }}"
+      src="{{(currentImage$ | async)?.default}}" />
+  </div>
+</div>

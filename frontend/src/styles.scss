@@ -119,6 +119,10 @@ app-range-select .ng5-slider {
   }
 }
 
+.image-slider .mat-dialog-container {
+    padding: 0;
+}
+
 
 // material accordion
 .mat-expansion-panel:not([class*=mat-elevation-z]) {

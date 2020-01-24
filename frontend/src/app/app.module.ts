@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Ng5SliderModule } from 'ng5-slider';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import {
@@ -68,6 +66,7 @@ import {
   MapPlaceComponent,
   HotDealsWeekComponent,
   HotDealsMonthComponent,
+  ImageSliderComponent,
 } from './shared/components';
 
 @NgModule({
@@ -106,6 +105,7 @@ import {
     MapPlaceComponent,
     HotDealsWeekComponent,
     HotDealsMonthComponent,
+    ImageSliderComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -138,6 +138,7 @@ import {
     FavouritesComponentInner,
     AccountComponent,
     WelcomeModalComponent,
+    ImageSliderComponent,
   ]
 })
 export class AppModule { }

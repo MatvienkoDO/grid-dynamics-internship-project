@@ -21,3 +21,4 @@ export * from './text-field/text-field.component';
 export * from './map-place/map-place.component';
 export * from './hot-deals-week/hot-deals-week.component';
 export * from './hot-deals-month/hot-deals-month.component';
+export * from './image-slider/image-slider.component';
