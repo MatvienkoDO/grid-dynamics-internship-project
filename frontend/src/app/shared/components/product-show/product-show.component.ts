@@ -127,6 +127,7 @@ export class ProductShowComponent implements OnInit {
     this.dialog.open(ImageSliderComponent, {
       data: {
         images: this.images,
+        currentNumber: this.currentImage$.value
       },
       width: '90%',
       maxWidth: '100vw',

@@ -34,7 +34,7 @@ export class ImageSliderComponent implements OnInit {
 
   ngOnInit() {
     if (this.imagePaths.length) {
-      this.currentNumber = 0;
+      this.currentNumber = this.data.currentNumber;
       this.currentImage.next(this.imagePaths[this.currentNumber]);
     }
     this.currentImage$ = this.currentImage.asObservable();
