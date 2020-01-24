@@ -1,4 +1,4 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID, Optional } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import {
   HttpEvent,
@@ -24,7 +24,7 @@ export class LocalizationInterceptor implements HttpInterceptor {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
-    @Inject(REQUEST) private req: Request
+    @Optional() @Inject(REQUEST) private req: Request
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
