@@ -1,5 +1,5 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -8,6 +8,8 @@ import {
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { Request } from 'express';
 
 import { localStorageLocaleKey } from 'src/app/shared/constants';
 
@@ -22,16 +24,23 @@ export class LocalizationInterceptor implements HttpInterceptor {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(REQUEST) private req: Request
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let locale: string | null = 'en';
+    let locale: any = 'en';
     if (isPlatformBrowser(this.platformId)) {
       locale = localStorage.getItem(localStorageLocaleKey);
     }
 
     if (!locale) {
       locale = this.getCookie('lang');
+    }
+
+    if (isPlatformServer(this.platformId)) {
+      if (typeof this.req.cookies.lang === 'string') {
+        locale = this.req.cookies.lang;
+      }
     }
 
     const requestUpdate = {
